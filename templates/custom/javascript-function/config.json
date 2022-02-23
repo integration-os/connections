@@ -1,0 +1,17 @@
+{
+  "name": "",
+  "title": "JavaScript Function",
+  "description": "Execute a custom synchronous JavaScript function",
+  "type": "js-function",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/javascript.png",
+  "category": "custom",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": [],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

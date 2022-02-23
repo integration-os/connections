@@ -1,0 +1,26 @@
+{
+  "name": "deletedRecords",
+  "title": "Delete Records",
+  "description": "Delete records from a table using the Airtable API",
+  "type": "js-request-function",
+  "envVars": {
+    "AIRTABLE_API_KEY": {
+      "development": "",
+      "production": ""
+    },
+    "AIRTABLE_BASE_ID": {
+      "development": "",
+      "production": ""
+    }
+  },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/airtable.svg",
+  "category": "storage",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "airtable",
+  "tags": ["db", "crud", "api"],
+  "stateType": "stateful",
+  "__version": "1.0.0"
+}

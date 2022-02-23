@@ -1,0 +1,20 @@
+{
+  "name": "listProjectCollaboratorsResult",
+  "title": "List Project Collaborators",
+  "description": "List Project Collaborators using the GitHub API",
+  "type": "js-request-function",
+  "envVars": {
+    "GITHUB_API_TOKEN": { "development": "", "production": "" },
+    "GITHUB_API_USERNAME": { "development": "", "production": "" }
+  },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/github.svg",
+  "category": "git",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "github",
+  "tags": ["git", "github"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

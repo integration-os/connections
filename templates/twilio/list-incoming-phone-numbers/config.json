@@ -1,0 +1,26 @@
+{
+  "title": "List Phone Numbers",
+  "description": "List all available Incoming Phone Numbers within your Twilio account",
+  "image": "https://assets.buildable.dev/catalog/node-templates/twilio.svg",
+  "envVars": {
+    "TWILIO_ACCOUNT_SID": {
+      "development": "",
+      "production": ""
+    },
+    "TWILIO_AUTH_TOKEN": {
+      "development": "",
+      "production": ""
+    }
+  },
+  "fee": 0,
+  "name": "incomingPhoneNumbers",
+  "platform": "twilio",
+  "category": "communication",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "type": "js-request-function",
+  "tags": ["marketing"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "insertedData",
+  "title": "Insert Data",
+  "description": "Insert data into a table in a Supabase database",
+  "type": "js-request-function",
+  "envVars": {
+    "SUPABASE_URL": {
+      "development": "",
+      "production": ""
+    },
+    "SUPABASE_KEY": {
+      "development": "",
+      "production": ""
+    }
+  },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/supabase.svg",
+  "category": "storage",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "supabase",
+  "tags": ["db", "crud", "api"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

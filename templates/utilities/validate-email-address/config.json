@@ -1,0 +1,17 @@
+{
+  "name": "email",
+  "title": "Validate Email Address",
+  "description": "Validates an email address using Regular Expression",
+  "type": "js-function",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/utilities.svg",
+  "category": "utilities",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": ["security", "validation"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

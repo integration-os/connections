@@ -1,0 +1,17 @@
+{
+  "name": "",
+  "title": "GraphQL Request",
+  "description": "Perform a request using GraphQL",
+  "type": "js-request-function",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/graphql.svg",
+  "category": "custom",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": [],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

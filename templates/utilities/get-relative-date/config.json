@@ -1,0 +1,17 @@
+{
+  "title": "Get Relative Date",
+  "description": "Converts a timestamp to a human readable, relative date",
+  "type": "js-function",
+  "name": "date",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/utilities.svg",
+  "category": "utilities",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": ["time"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

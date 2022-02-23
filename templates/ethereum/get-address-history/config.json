@@ -1,0 +1,17 @@
+{
+  "name": "history",
+  "title": "Get Transactions",
+  "description": "Get all transactions of an Ethereum address using ethersJS",
+  "type": "js-request-function",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/ethereum.svg",
+  "category": "web3",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": ["blockchain", "ethereum", "crypto"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

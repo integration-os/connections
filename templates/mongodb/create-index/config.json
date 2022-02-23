@@ -1,0 +1,17 @@
+{
+  "name": "indexResults",
+  "title": "Create Index",
+  "description": "Create an index on a MongoDB collection",
+  "type": "js-request-function",
+  "envVars": { "MONGODB_CONNECTION_KEY": { "development": "", "production": "" } },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/mongo.svg",
+  "category": "databases",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "mongodb",
+  "tags": ["db", "crud", "api"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Send Mail",
+  "description": "Send an email using SendGrid's v3 Web API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/sendgrid.svg",
+  "envVars": {
+    "SENDGRID_API_KEY": {
+      "development": "",
+      "production": ""
+    }
+  },
+  "fee": 0,
+  "name": "mail",
+  "platform": "sendgrid",
+  "category": "communication",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "type": "js-request-function",
+  "tags": ["email", "marketing"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

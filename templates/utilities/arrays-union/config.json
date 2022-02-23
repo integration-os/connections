@@ -1,0 +1,17 @@
+{
+  "title": "Merge Arrays and Remove Duplicates",
+  "description": "Merge multiple arrays into one and remove duplicates",
+  "type": "js-function",
+  "name": "array",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/utilities.svg",
+  "category": "utilities",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": [],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

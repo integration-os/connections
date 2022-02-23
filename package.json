@@ -1,0 +1,38 @@
+{
+  "name": "templates",
+  "version": "1.0.0",
+  "description": "A collection of open-source solution templates to integrate within Buildable Flows",
+  "main": "",
+  "scripts": {
+    "sync-localhost": "NODE_ENV=localhost node ./sync/",
+    "sync-staging": "NODE_ENV=staging node ./sync/",
+    "sync-production": "NODE_ENV=production node ./sync/",
+    "lint": "eslint --fix templates/* --ext .js",
+    "prettier": "prettier --write templates/*",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buildable/templates.git"
+  },
+  "keywords": [
+    "buildable",
+    "templates"
+  ],
+  "author": "Buildable Technologies Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buildable/templates/issues"
+  },
+  "homepage": "https://github.com/buildable/templates#readme",
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^4.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "dotenv": "^16.0.0"
+  }
+}

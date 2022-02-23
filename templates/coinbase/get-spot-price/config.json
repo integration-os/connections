@@ -1,0 +1,17 @@
+{
+  "name": "spotPrice",
+  "title": "Get Spot Price",
+  "description": "Get the current market price for bitcoin using the Coinbase API",
+  "type": "js-request-function",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/coinbase.svg",
+  "category": "web3",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "coinbase",
+  "tags": ["blockchain", "exchange", "crypto"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

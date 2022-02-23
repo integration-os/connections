@@ -1,0 +1,20 @@
+{
+  "name": "updatedOrder",
+  "title": "Update Order",
+  "description": "Update an order using the Shopify API",
+  "type": "js-request-function",
+  "envVars": {
+    "SHOPIFY_ACCESS_TOKEN": { "development": "", "production": "" },
+    "SHOPIFY_STORE_URL": { "development": "", "production": "" }
+  },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/shopify.svg",
+  "category": "ecommerce",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "shopify",
+  "tags": ["sales", "business"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

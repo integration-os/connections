@@ -1,0 +1,17 @@
+{
+  "title": "Get Countries",
+  "description": "Get a list of countries",
+  "type": "js-function",
+  "name": "countries",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/utilities.svg",
+  "category": "utilities",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": ["data", "locations"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

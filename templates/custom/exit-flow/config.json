@@ -1,0 +1,17 @@
+{
+  "name": "exit",
+  "title": "Exit Flow",
+  "description": "Exit a Flow and set a custom response",
+  "type": "js-function",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/exit.svg",
+  "category": "custom",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": ["security"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

@@ -1,0 +1,17 @@
+{
+  "title": "Get Random Item",
+  "description": "Select and return a random item from an array",
+  "type": "js-function",
+  "name": "randomItem",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/utilities.svg",
+  "category": "utilities",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": [],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "userTweetsTimelineByUserIDResult",
+  "title": "User Tweets Timeline by User ID",
+  "description": "User Tweets Timeline by User ID using the Twitter v2 API",
+  "type": "js-request-function",
+  "envVars": {
+    "TWITTER_BEARER_TOKEN": { "development": "", "production": "" }
+  },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/twitter.svg",
+  "category": "social",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "twitter",
+  "tags": ["twitter", "social"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

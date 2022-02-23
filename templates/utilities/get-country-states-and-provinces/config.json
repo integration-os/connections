@@ -1,0 +1,22 @@
+{
+  "title": "Get States or Provinces",
+  "description": "Given a specific country, get a list of its states or provinces",
+  "envVars": {
+    "COUNTRY_STATES_URL": {
+      "development": "https://countriesnow.space/api/v0.1/countries/states",
+      "production": "https://countriesnow.space/api/v0.1/countries/states"
+    }
+  },
+  "type": "js-request-function",
+  "name": "states",
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/utilities.svg",
+  "category": "utilities",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": ["data", "locations", "request"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

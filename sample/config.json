@@ -1,0 +1,22 @@
+{
+  "name": "nodeName",
+  "title": "Template Name",
+  "description": "Description about your template",
+  "type": "js-request-function",
+  "envVars": {
+    "API_KEY": {
+      "development": "",
+      "production": ""
+    }
+  },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/buildable.svg",
+  "category": "",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": [],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}
