@@ -1,0 +1,17 @@
+{
+  "name": "updatedCollectionItem",
+  "title": "Update Collection Item",
+  "description": "Update Collection Item using the Webflow API Reference",
+  "type": "js-request-function",
+  "envVars": { "WEBFLOW_BEARER_TOKEN": { "development": "", "production": "" } },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/webflow.svg",
+  "category": "cms",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "webflow",
+  "tags": ["marketing", "website design"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}
