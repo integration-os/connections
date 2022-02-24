@@ -22,6 +22,7 @@ Each template folder is grouped in a parent directory that relates to its platfo
 ├── templates/
 │   ├── twilio/
 │       ├── Send SMS/
+│           ├── CHANGELOG.md
 │           ├── config.json
 |           ├── input.js
 |           └── run.js
