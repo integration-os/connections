@@ -29,7 +29,7 @@ Each template folder is grouped in a parent directory that relates to its platfo
 
 General templates that do not fall under the category of any vendor should be added under `templates/utilities/`.
 
-### 4. Update the config.json file ✅
+### 4. Update the `config.json` file ✅
 
 The `config.json` file contains all the settings for your template. Below are the descriptions for each configuration parameter.
 
@@ -122,19 +122,25 @@ The `config.json` file contains all the settings for your template. Below are th
 
 A sample [config.json](sample/config.json) file is visible inside the `sample/` directory.
 
-### 5. Update the input.js file ✅
+### 5. Update the `input.js` file ✅
 
 Update your `input.js` file to set the input values that will be passed into your run function. Read more about the `input` function in our [docs](https://docs.buildable.dev/core-products/flows/add-nodes-to-a-flow#what-makes-up-a-node).
 
 A sample [input.js](sample/input.js) file is visible inside the `sample/` directory.
 
-### 6. Update the run.js file ✅
+### 6. Update the `run.js` file ✅
 
 Write your template's main logic within the `run.js` file. Read more about the `run` function in our [docs](https://docs.buildable.dev/core-products/flows/add-nodes-to-a-flow#what-makes-up-a-node).
 
 A sample [run.js](sample/run.js) file is visible inside the `sample/` directory.
 
-### 7. Create a pull request ✅
+### 7. Update the `CHANGELOG.md` file ✅
+
+You'll notice that each template folder contains a `CHANGELOG.md` file. When creating a template, ensure that you've also copied this file over from the `sample/` folder. 
+
+Update the sample `CHANGELOG.md` file to reflect the appropriate information about your template.
+
+### 8. Create a pull request ✅
 
 Once you've tested and finished your template, create a pull request on this repository. Once approved, your template will be live on Buildable, for the entire community!
 
@@ -151,6 +157,10 @@ To format the code structure of the templates, simply run:
 ```
 npm run prettier
 ```
+
+### Tracking changes 📝
+
+All updates to any template should be carefully documented in this file, following the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) structure and adhering to [Semantic Versioning](http://semver.org/).
 
 ### Creating your own private templates (BETA) 🤫
 
