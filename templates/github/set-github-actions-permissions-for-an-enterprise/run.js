@@ -64,5 +64,6 @@ const verifyInput = ({ enterprise, enabled_organizations }) => {
   };
 
   if (typeof enterprise !== "string") throw new Error(ERRORS.INVALID_ENTERPRISE);
-  if (typeof enabled_organizations !== "string") throw new Error(ERRORS.INVALID_ENABLED_ORGANIZATIONS);
+  if (typeof enabled_organizations !== "string")
+    throw new Error(ERRORS.INVALID_ENABLED_ORGANIZATIONS);
 };

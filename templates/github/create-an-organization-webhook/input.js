@@ -23,11 +23,11 @@ const nodeInput = ({ $trigger, $nodes }) => {
     org: "string", // Required
     config: {
       url: "https://example.com/webhook",
-      content_type: "\"json\"",
-      secret: "\"********\"",
-      insecure_ssl: "\"0\"",
-      username: "\"kdaigle\"",
-      password: "\"password\"",
+      content_type: '"json"',
+      secret: '"********"',
+      insecure_ssl: '"0"',
+      username: '"kdaigle"',
+      password: '"password"',
     }, // Required
     name: "string", // Required
 

@@ -6,7 +6,7 @@
  * @access    open
  * @license   MIT
  * @docs      https://developers.webflow.com/#get-all-items-for-a-collection
- * 
+ *
  * ----------------------------------------------------------------------------------------------------
  */
 

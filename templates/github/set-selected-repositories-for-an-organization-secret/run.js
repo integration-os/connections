@@ -58,5 +58,6 @@ const verifyInput = ({ org, secret_name, selected_repository_ids }) => {
 
   if (typeof org !== "string") throw new Error(ERRORS.INVALID_ORG);
   if (typeof secret_name !== "string") throw new Error(ERRORS.INVALID_SECRET_NAME);
-  if (typeof selected_repository_ids !== "object") throw new Error(ERRORS.INVALID_SELECTED_REPOSITORY_IDS);
+  if (typeof selected_repository_ids !== "object")
+    throw new Error(ERRORS.INVALID_SELECTED_REPOSITORY_IDS);
 };

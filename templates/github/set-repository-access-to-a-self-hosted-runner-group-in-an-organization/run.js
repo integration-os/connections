@@ -59,5 +59,6 @@ const verifyInput = ({ org, runner_group_id, selected_repository_ids }) => {
 
   if (typeof org !== "string") throw new Error(ERRORS.INVALID_ORG);
   if (typeof runner_group_id !== "number") throw new Error(ERRORS.INVALID_RUNNER_GROUP_ID);
-  if (typeof selected_repository_ids !== "object") throw new Error(ERRORS.INVALID_SELECTED_REPOSITORY_IDS);
+  if (typeof selected_repository_ids !== "object")
+    throw new Error(ERRORS.INVALID_SELECTED_REPOSITORY_IDS);
 };

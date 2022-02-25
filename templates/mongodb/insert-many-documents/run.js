@@ -67,7 +67,8 @@ const verifyInput = ({ MONGODB_CONNECTION_KEY, collection, entities }) => {
   if (!MONGODB_CONNECTION_KEY) throw new Error(ERRORS.NO_MONGODB_CONNECTION_KEY);
   if (!collection || typeof collection !== "string") throw new Error(ERRORS.NO_COLLECTION);
   if (!entities || !Array.isArray(entities)) throw new Error(ERRORS.NO_ENTITIES);
-  if (entities.some((doc) => typeof doc !== "object" || Array.isArray(doc))) throw new Error(ERRORS.ENTITIES_ELEMENTS_NOT_OBJECT);
+  if (entities.some((doc) => typeof doc !== "object" || Array.isArray(doc)))
+    throw new Error(ERRORS.ENTITIES_ELEMENTS_NOT_OBJECT);
 };
 
 const cleanUUID = () => uuid().replace(/-/g, "");

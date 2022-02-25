@@ -52,5 +52,6 @@ const verifyInput = ({ pre_receive_environment_id }) => {
       "A valid pre_receive_environment_id field (number) was not provided in the input.",
   };
 
-  if (typeof pre_receive_environment_id !== "number") throw new Error(ERRORS.INVALID_PRE_RECEIVE_ENVIRONMENT_ID);
+  if (typeof pre_receive_environment_id !== "number")
+    throw new Error(ERRORS.INVALID_PRE_RECEIVE_ENVIRONMENT_ID);
 };
