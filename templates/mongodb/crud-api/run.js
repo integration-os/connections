@@ -187,4 +187,5 @@ const verifyInput = ({ MONGODB_CONNECTION_KEY, collection, action }) => {
 
 const cleanUUID = () => uuid().replace(/-/g, "");
 
-const convertArrayToMongoProjection = (arr) => arr.reduce((acc, curr) => ({ ...acc, [curr]: 1 }), {});
+const convertArrayToMongoProjection = (arr) =>
+  arr.reduce((acc, curr) => ({ ...acc, [curr]: 1 }), {});

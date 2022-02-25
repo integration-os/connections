@@ -97,7 +97,9 @@ const verifyInput = ({
   if (typeof repo !== "string") throw new Error(ERRORS.INVALID_REPO);
   if (typeof branch !== "string") throw new Error(ERRORS.INVALID_BRANCH);
   if (typeof restrictions !== "object") throw new Error(ERRORS.INVALID_RESTRICTIONS);
-  if (typeof required_pull_request_reviews !== "object") throw new Error(ERRORS.INVALID_REQUIRED_PULL_REQUEST_REVIEWS);
+  if (typeof required_pull_request_reviews !== "object")
+    throw new Error(ERRORS.INVALID_REQUIRED_PULL_REQUEST_REVIEWS);
   if (typeof enforce_admins !== "boolean") throw new Error(ERRORS.INVALID_ENFORCE_ADMINS);
-  if (typeof required_status_checks !== "object") throw new Error(ERRORS.INVALID_REQUIRED_STATUS_CHECKS);
+  if (typeof required_status_checks !== "object")
+    throw new Error(ERRORS.INVALID_REQUIRED_STATUS_CHECKS);
 };

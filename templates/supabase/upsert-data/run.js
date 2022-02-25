@@ -14,13 +14,14 @@
 
 const { createClient } = require("@supabase/supabase-js");
 
-const getSupabaseClient = (url, key) => createClient(url, key, {
-  // schema: "public",
-  // headers: { "x-my-custom-header": "my-app-name" },
-  // autoRefreshToken: true,
-  // persistSession: true,
-  // detectSessionInUrl: true
-});
+const getSupabaseClient = (url, key) =>
+  createClient(url, key, {
+    // schema: "public",
+    // headers: { "x-my-custom-header": "my-app-name" },
+    // autoRefreshToken: true,
+    // persistSession: true,
+    // detectSessionInUrl: true
+  });
 
 /**
  * The Node’s executable function
@@ -74,5 +75,6 @@ const verifyInput = ({ SUPABASE_URL, SUPABASE_KEY, tableName, __namedParameters,
   if (typeof SUPABASE_KEY !== "string") throw new Error(ERRORS.INVALID_SUPABASE_KEY);
   if (typeof tableName !== "string") throw new Error(ERRORS.INVALID_TABLE_NAME);
   if (typeof __namedParameters !== "object") throw new Error(ERRORS.INVALID_NAMED_PARAMETERS);
-  if (values && !Array.isArray(values) && typeof values !== "object") throw new Error(ERRORS.INVALID_VALUES);
+  if (values && !Array.isArray(values) && typeof values !== "object")
+    throw new Error(ERRORS.INVALID_VALUES);
 };

@@ -95,4 +95,5 @@ const verifyInput = ({
   if (fields && !Array.isArray(fields)) throw new Error(ERRORS.INVALID_FIELDS);
 };
 
-const convertArrayToMongoProjection = (arr) => arr.reduce((acc, curr) => ({ ...acc, [curr]: 1 }), {});
+const convertArrayToMongoProjection = (arr) =>
+  arr.reduce((acc, curr) => ({ ...acc, [curr]: 1 }), {});

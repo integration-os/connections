@@ -14,15 +14,16 @@
 
 const Stripe = require("stripe");
 
-const getStripe = (key) => new Stripe(key, {
-  // apiVersion: null,
-  // maxNetworkRetries: 0,
-  // timeout: 80000,
-  // host: "api.stripe.com",
-  // protocol: "https",
-  // port: 443,
-  // telemetry: true,
-});
+const getStripe = (key) =>
+  new Stripe(key, {
+    // apiVersion: null,
+    // maxNetworkRetries: 0,
+    // timeout: 80000,
+    // host: "api.stripe.com",
+    // protocol: "https",
+    // port: 443,
+    // telemetry: true,
+  });
 
 /**
  * The Node’s executable function

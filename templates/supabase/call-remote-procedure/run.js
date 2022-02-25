@@ -14,13 +14,14 @@
 
 const { createClient } = require("@supabase/supabase-js");
 
-const getSupabaseClient = (url, key) => createClient(url, key, {
-  // schema: "public",
-  // headers: { "x-my-custom-header": "my-app-name" },
-  // autoRefreshToken: true,
-  // persistSession: true,
-  // detectSessionInUrl: true
-});
+const getSupabaseClient = (url, key) =>
+  createClient(url, key, {
+    // schema: "public",
+    // headers: { "x-my-custom-header": "my-app-name" },
+    // autoRefreshToken: true,
+    // persistSession: true,
+    // detectSessionInUrl: true
+  });
 
 /**
  * The Node’s executable function

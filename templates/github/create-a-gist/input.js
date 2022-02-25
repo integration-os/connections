@@ -20,7 +20,7 @@ const nodeInput = ({ $trigger, $nodes }) => {
   return {
     GITHUB_API_USERNAME: $trigger.env.GITHUB_API_USERNAME, // Required for private repos or if making structural changes (i.e modifying branch protection rules)
     GITHUB_API_TOKEN: $trigger.env.GITHUB_API_TOKEN, // Required for private repos or if making structural changes (i.e modifying branch protection rules)
-    files: { "hello.rb": { content: "puts \"Hello, World!\"" } }, // Required
+    files: { "hello.rb": { content: 'puts "Hello, World!"' } }, // Required
 
     // description: "Example Ruby script",
     // public: true,

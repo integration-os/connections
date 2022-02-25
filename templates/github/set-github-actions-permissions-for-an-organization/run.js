@@ -59,5 +59,6 @@ const verifyInput = ({ org, enabled_repositories }) => {
   };
 
   if (typeof org !== "string") throw new Error(ERRORS.INVALID_ORG);
-  if (typeof enabled_repositories !== "string") throw new Error(ERRORS.INVALID_ENABLED_REPOSITORIES);
+  if (typeof enabled_repositories !== "string")
+    throw new Error(ERRORS.INVALID_ENABLED_REPOSITORIES);
 };
