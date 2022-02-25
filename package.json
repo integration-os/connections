@@ -8,7 +8,7 @@
     "sync-staging": "NODE_ENV=staging node ./sync/",
     "sync-production": "NODE_ENV=production node ./sync/",
     "lint": "eslint --fix templates/* --ext .js",
-    "prettier": "prettier --write templates/*",
+    "prettier": "prettier --write templates/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -6,7 +6,7 @@
  * @access    open
  * @license   MIT
  * @docs      https://developers.webflow.com/#create-new-live-collection-item
- * 
+ *
  * ----------------------------------------------------------------------------------------------------
  */
 
@@ -29,6 +29,6 @@ const nodeInput = ({ $trigger, $nodes }) => {
       color: "#a98080",
       "post-summary": "Summary of exciting blog post",
       "main-image": "580e63fe8c9a982ac9b8b749",
-    }
+    },
   };
 };

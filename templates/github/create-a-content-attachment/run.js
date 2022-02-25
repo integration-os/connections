@@ -60,7 +60,8 @@ const verifyInput = ({ owner, repo, content_reference_id, body, title }) => {
 
   if (typeof owner !== "string") throw new Error(ERRORS.INVALID_OWNER);
   if (typeof repo !== "string") throw new Error(ERRORS.INVALID_REPO);
-  if (typeof content_reference_id !== "number") throw new Error(ERRORS.INVALID_CONTENT_REFERENCE_ID);
+  if (typeof content_reference_id !== "number")
+    throw new Error(ERRORS.INVALID_CONTENT_REFERENCE_ID);
   if (typeof body !== "string") throw new Error(ERRORS.INVALID_BODY);
   if (typeof title !== "string") throw new Error(ERRORS.INVALID_TITLE);
 };

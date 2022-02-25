@@ -78,7 +78,8 @@ const getOrders = async (client, params, since_id) => {
 const paginate = (data, page, pageSize) => {
   const totalPages = Math.ceil(data.length / pageSize);
 
-  if (page > totalPages) throw new Error(`Requested page is out of scope. Last page number is ${totalPages}.`);
+  if (page > totalPages)
+    throw new Error(`Requested page is out of scope. Last page number is ${totalPages}.`);
 
   return {
     rows: data.slice((page - 1) * pageSize, page * pageSize),

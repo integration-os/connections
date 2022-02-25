@@ -67,5 +67,6 @@ const verifyInput = ({ MONGODB_CONNECTION_KEY, collection, query, fieldToSum, fi
   if (!collection || typeof collection !== "string") throw new Error(ERRORS.NO_COLLECTION);
   if (query && typeof query !== "object") throw new Error(ERRORS.INVALID_QUERY);
   if (!fieldToSum || typeof fieldToSum !== "string") throw new Error(ERRORS.NO_FIELD_TO_SUM);
-  if (fieldToGroupBy && typeof fieldToGroupBy !== "string") throw new Error(ERRORS.INVALID_FIELD_TO_GROUP_BY);
+  if (fieldToGroupBy && typeof fieldToGroupBy !== "string")
+    throw new Error(ERRORS.INVALID_FIELD_TO_GROUP_BY);
 };
