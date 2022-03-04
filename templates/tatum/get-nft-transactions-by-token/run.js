@@ -20,17 +20,8 @@ const axios = require("axios");
  * @param {Run} input - Data passed to your Node from the input function
  */
 const run = async (input) => {
-  const {
-    TATUM_API_URL,
-    TATUM_API_KEY,
-    pageSize,
-    tokenAddress,
-    tokenId,
-    chain,
-    offset,
-    from,
-    to,
-  } = input;
+  const { TATUM_API_URL, TATUM_API_KEY, pageSize, tokenAddress, tokenId, chain, offset, from, to } =
+    input;
 
   verifyInput(input);
 
@@ -60,36 +51,20 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({
-  TATUM_API_KEY,
-  TATUM_API_URL,
-  chain,
-  tokenId,
-  tokenAddress,
-  pageSize,
-}) => {
+const verifyInput = ({ TATUM_API_KEY, TATUM_API_URL, chain, tokenId, tokenAddress, pageSize }) => {
   const ERRORS = {
-    INVALID_TATUM_API_KEY:
-      "A valid TATUM_API_KEY field (string) was not provided in the input.",
-    INVALID_TATUM_API_URL:
-      "A valid TATUM_API_URL field (string) was not provided in the input.",
-    INVALID_CHAIN:
-      "A valid chain field (string) was not provided in the input.",
-    INVALID_TOKEN_ID:
-      "A valid tokenId field (number) was not provided in the input.",
-    INVALID_TOKEN_ADDRESS:
-      "A valid tokenAddress field (string) was not provided in the input.",
-    INVALID_PAGE_SIZE:
-      "A valid pageSize field (number) was not provided in the input.",
+    INVALID_TATUM_API_KEY: "A valid TATUM_API_KEY field (string) was not provided in the input.",
+    INVALID_TATUM_API_URL: "A valid TATUM_API_URL field (string) was not provided in the input.",
+    INVALID_CHAIN: "A valid chain field (string) was not provided in the input.",
+    INVALID_TOKEN_ID: "A valid tokenId field (number) was not provided in the input.",
+    INVALID_TOKEN_ADDRESS: "A valid tokenAddress field (string) was not provided in the input.",
+    INVALID_PAGE_SIZE: "A valid pageSize field (number) was not provided in the input.",
   };
 
-  if (typeof TATUM_API_KEY !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_KEY);
-  if (typeof TATUM_API_URL !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_URL);
+  if (typeof TATUM_API_KEY !== "string") throw new Error(ERRORS.INVALID_TATUM_API_KEY);
+  if (typeof TATUM_API_URL !== "string") throw new Error(ERRORS.INVALID_TATUM_API_URL);
   if (typeof chain !== "string") throw new Error(ERRORS.INVALID_CHAIN);
   if (typeof tokenId !== "number") throw new Error(ERRORS.INVALID_TOKEN_ID);
-  if (typeof tokenAddress !== "string")
-    throw new Error(ERRORS.INVALID_TOKEN_ADDRESS);
+  if (typeof tokenAddress !== "string") throw new Error(ERRORS.INVALID_TOKEN_ADDRESS);
   if (typeof pageSize !== "number") throw new Error(ERRORS.INVALID_PAGE_SIZE);
 };

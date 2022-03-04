@@ -71,29 +71,19 @@ const verifyInput = ({
   chain,
 }) => {
   const ERRORS = {
-    INVALID_TATUM_API_KEY:
-      "A valid TATUM_API_KEY field (string) was not provided in the input.",
-    INVALID_TATUM_API_URL:
-      "A valid TATUM_API_URL field (string) was not provided in the input.",
+    INVALID_TATUM_API_KEY: "A valid TATUM_API_KEY field (string) was not provided in the input.",
+    INVALID_TATUM_API_URL: "A valid TATUM_API_URL field (string) was not provided in the input.",
     INVALID_FROM_PRIVATE_KEY:
       "A valid fromPrivateKey field (string) was not provided in the input.",
-    INVALID_AUCTION_FEE:
-      "A valid auctionFee field (number) was not provided in the input.",
-    INVALID_FEE_RECIPIENT:
-      "A valid feeRecipient field (string) was not provided in the input.",
-    INVALID_CHAIN:
-      "A valid chain field (string) was not provided in the input.",
+    INVALID_AUCTION_FEE: "A valid auctionFee field (number) was not provided in the input.",
+    INVALID_FEE_RECIPIENT: "A valid feeRecipient field (string) was not provided in the input.",
+    INVALID_CHAIN: "A valid chain field (string) was not provided in the input.",
   };
 
-  if (typeof TATUM_API_KEY !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_KEY);
-  if (typeof TATUM_API_URL !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_URL);
-  if (typeof fromPrivateKey !== "string")
-    throw new Error(ERRORS.INVALID_FROM_PRIVATE_KEY);
-  if (typeof auctionFee !== "number")
-    throw new Error(ERRORS.INVALID_AUCTION_FEE);
-  if (typeof feeRecipient !== "string")
-    throw new Error(ERRORS.INVALID_FEE_RECIPIENT);
+  if (typeof TATUM_API_KEY !== "string") throw new Error(ERRORS.INVALID_TATUM_API_KEY);
+  if (typeof TATUM_API_URL !== "string") throw new Error(ERRORS.INVALID_TATUM_API_URL);
+  if (typeof fromPrivateKey !== "string") throw new Error(ERRORS.INVALID_FROM_PRIVATE_KEY);
+  if (typeof auctionFee !== "number") throw new Error(ERRORS.INVALID_AUCTION_FEE);
+  if (typeof feeRecipient !== "string") throw new Error(ERRORS.INVALID_FEE_RECIPIENT);
   if (typeof chain !== "string") throw new Error(ERRORS.INVALID_CHAIN);
 };

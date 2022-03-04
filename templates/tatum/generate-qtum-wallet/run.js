@@ -48,20 +48,14 @@ const run = async (input) => {
  */
 const verifyInput = ({ TATUM_API_KEY, TATUM_API_URL, index, mnemonic }) => {
   const ERRORS = {
-    INVALID_TATUM_API_KEY:
-      "A valid TATUM_API_KEY field (string) was not provided in the input.",
-    INVALID_TATUM_API_URL:
-      "A valid TATUM_API_URL field (string) was not provided in the input.",
-    INVALID_INDEX:
-      "A valid index field (number) was not provided in the input.",
-    INVALID_MNEMONIC:
-      "A valid mnemonic field (string) was not provided in the input.",
+    INVALID_TATUM_API_KEY: "A valid TATUM_API_KEY field (string) was not provided in the input.",
+    INVALID_TATUM_API_URL: "A valid TATUM_API_URL field (string) was not provided in the input.",
+    INVALID_INDEX: "A valid index field (number) was not provided in the input.",
+    INVALID_MNEMONIC: "A valid mnemonic field (string) was not provided in the input.",
   };
 
-  if (typeof TATUM_API_KEY !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_KEY);
-  if (typeof TATUM_API_URL !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_URL);
+  if (typeof TATUM_API_KEY !== "string") throw new Error(ERRORS.INVALID_TATUM_API_KEY);
+  if (typeof TATUM_API_URL !== "string") throw new Error(ERRORS.INVALID_TATUM_API_URL);
   if (typeof index !== "number") throw new Error(ERRORS.INVALID_INDEX);
   if (typeof mnemonic !== "string") throw new Error(ERRORS.INVALID_MNEMONIC);
 };

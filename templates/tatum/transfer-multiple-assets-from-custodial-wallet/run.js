@@ -80,32 +80,22 @@ const verifyInput = ({
   chain,
 }) => {
   const ERRORS = {
-    INVALID_TATUM_API_KEY:
-      "A valid TATUM_API_KEY field (string) was not provided in the input.",
-    INVALID_TATUM_API_URL:
-      "A valid TATUM_API_URL field (string) was not provided in the input.",
+    INVALID_TATUM_API_KEY: "A valid TATUM_API_KEY field (string) was not provided in the input.",
+    INVALID_TATUM_API_URL: "A valid TATUM_API_URL field (string) was not provided in the input.",
     INVALID_FROM_PRIVATE_KEY:
       "A valid fromPrivateKey field (string) was not provided in the input.",
-    INVALID_RECIPIENT:
-      "A valid recipient field (object) was not provided in the input.",
-    INVALID_CONTRACT_TYPE:
-      "A valid contractType field (object) was not provided in the input.",
+    INVALID_RECIPIENT: "A valid recipient field (object) was not provided in the input.",
+    INVALID_CONTRACT_TYPE: "A valid contractType field (object) was not provided in the input.",
     INVALID_CUSTODIAL_ADDRESS:
       "A valid custodialAddress field (string) was not provided in the input.",
-    INVALID_CHAIN:
-      "A valid chain field (string) was not provided in the input.",
+    INVALID_CHAIN: "A valid chain field (string) was not provided in the input.",
   };
 
-  if (typeof TATUM_API_KEY !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_KEY);
-  if (typeof TATUM_API_URL !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_URL);
-  if (typeof fromPrivateKey !== "string")
-    throw new Error(ERRORS.INVALID_FROM_PRIVATE_KEY);
+  if (typeof TATUM_API_KEY !== "string") throw new Error(ERRORS.INVALID_TATUM_API_KEY);
+  if (typeof TATUM_API_URL !== "string") throw new Error(ERRORS.INVALID_TATUM_API_URL);
+  if (typeof fromPrivateKey !== "string") throw new Error(ERRORS.INVALID_FROM_PRIVATE_KEY);
   if (typeof recipient !== "object") throw new Error(ERRORS.INVALID_RECIPIENT);
-  if (typeof contractType !== "object")
-    throw new Error(ERRORS.INVALID_CONTRACT_TYPE);
-  if (typeof custodialAddress !== "string")
-    throw new Error(ERRORS.INVALID_CUSTODIAL_ADDRESS);
+  if (typeof contractType !== "object") throw new Error(ERRORS.INVALID_CONTRACT_TYPE);
+  if (typeof custodialAddress !== "string") throw new Error(ERRORS.INVALID_CUSTODIAL_ADDRESS);
   if (typeof chain !== "string") throw new Error(ERRORS.INVALID_CHAIN);
 };

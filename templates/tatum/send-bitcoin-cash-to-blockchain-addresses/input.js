@@ -28,8 +28,7 @@ const nodeInput = ({ $trigger, $nodes }) => {
     ], // Required
     fromUTXO: [
       {
-        txHash:
-          "53faa103e8217e1520f5149a4e8c84aeb58e55bdab11164a95e69a8ca50f8fcc",
+        txHash: "53faa103e8217e1520f5149a4e8c84aeb58e55bdab11164a95e69a8ca50f8fcc",
         index: 0,
         privateKey: "cVX7YtgL5muLTPncHFhP95oitV1mqUUA5VeSn8HeCRJbPqipzobf",
       },

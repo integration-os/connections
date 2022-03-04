@@ -78,25 +78,18 @@ const verifyInput = ({
   senderAccountId,
 }) => {
   const ERRORS = {
-    INVALID_TATUM_API_KEY:
-      "A valid TATUM_API_KEY field (string) was not provided in the input.",
-    INVALID_TATUM_API_URL:
-      "A valid TATUM_API_URL field (string) was not provided in the input.",
-    INVALID_AMOUNT:
-      "A valid amount field (string) was not provided in the input.",
+    INVALID_TATUM_API_KEY: "A valid TATUM_API_KEY field (string) was not provided in the input.",
+    INVALID_TATUM_API_URL: "A valid TATUM_API_URL field (string) was not provided in the input.",
+    INVALID_AMOUNT: "A valid amount field (string) was not provided in the input.",
     INVALID_RECIPIENT_ACCOUNT_ID:
       "A valid recipientAccountId field (string) was not provided in the input.",
     INVALID_SENDER_ACCOUNT_ID:
       "A valid senderAccountId field (string) was not provided in the input.",
   };
 
-  if (typeof TATUM_API_KEY !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_KEY);
-  if (typeof TATUM_API_URL !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_URL);
+  if (typeof TATUM_API_KEY !== "string") throw new Error(ERRORS.INVALID_TATUM_API_KEY);
+  if (typeof TATUM_API_URL !== "string") throw new Error(ERRORS.INVALID_TATUM_API_URL);
   if (typeof amount !== "string") throw new Error(ERRORS.INVALID_AMOUNT);
-  if (typeof recipientAccountId !== "string")
-    throw new Error(ERRORS.INVALID_RECIPIENT_ACCOUNT_ID);
-  if (typeof senderAccountId !== "string")
-    throw new Error(ERRORS.INVALID_SENDER_ACCOUNT_ID);
+  if (typeof recipientAccountId !== "string") throw new Error(ERRORS.INVALID_RECIPIENT_ACCOUNT_ID);
+  if (typeof senderAccountId !== "string") throw new Error(ERRORS.INVALID_SENDER_ACCOUNT_ID);
 };

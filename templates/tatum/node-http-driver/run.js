@@ -47,13 +47,10 @@ const run = async (input) => {
  */
 const verifyInput = ({ TATUM_API_URL, xApiKey }) => {
   const ERRORS = {
-    INVALID_TATUM_API_URL:
-      "A valid TATUM_API_URL field (string) was not provided in the input.",
-    INVALID_X_API_KEY:
-      "A valid xApiKey field (string) was not provided in the input.",
+    INVALID_TATUM_API_URL: "A valid TATUM_API_URL field (string) was not provided in the input.",
+    INVALID_X_API_KEY: "A valid xApiKey field (string) was not provided in the input.",
   };
 
-  if (typeof TATUM_API_URL !== "string")
-    throw new Error(ERRORS.INVALID_TATUM_API_URL);
+  if (typeof TATUM_API_URL !== "string") throw new Error(ERRORS.INVALID_TATUM_API_URL);
   if (typeof xApiKey !== "string") throw new Error(ERRORS.INVALID_X_API_KEY);
 };
