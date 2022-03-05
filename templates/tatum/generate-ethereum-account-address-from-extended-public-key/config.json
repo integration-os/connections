@@ -1,0 +1,23 @@
+{
+  "name": "generateEthereumAccountAddressFromExtendedPublicKeyResult",
+  "title": "Generate Ethereum Account Address From Extended Public Key",
+  "description": "Generate ethereum account address from extended public key using the Tatum API",
+  "type": "js-request-function",
+  "envVars": {
+    "TATUM_API_URL": {
+      "development": "https://api-us-west1.tatum.io",
+      "production": "https://api-us-west1.tatum.io"
+    },
+    "TATUM_API_KEY": { "development": "", "production": "" }
+  },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/tatum.svg",
+  "category": "web3",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "tatum",
+  "tags": ["blockchain", "cryptocurrency"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}
