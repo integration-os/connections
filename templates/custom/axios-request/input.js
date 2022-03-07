@@ -20,7 +20,7 @@
 const nodeInput = ({ $trigger, $nodes }) => {
   return {
     method: "GET", // Required
-    url: "https://api.example.com", // Required
+    url: "https://api.yourcompanydomain.co", // Required
 
     // data: {},
     // responseType: "json",
