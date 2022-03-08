@@ -1,0 +1,17 @@
+{
+  "name": "retrieveAPageResult",
+  "title": "Retrieve a Page",
+  "description": "Retrieve a page using the Notion API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/notion.svg",
+  "platform": "notion",
+  "type": "js-request-function",
+  "envVars": { "NOTION_API_TOKEN": { "development": "", "production": "" } },
+  "fee": 0,
+  "category": "cms",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["notes", "database", "website"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}
