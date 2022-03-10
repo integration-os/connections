@@ -20,7 +20,7 @@ const nodeInput = ({ $trigger, $nodes }) => {
   return {
     TATUM_API_KEY: $trigger.env.TATUM_API_KEY, // Required
     TATUM_API_URL: $trigger.env.TATUM_API_URL, // Required
-    id: "stringstringstringstring", // Required
+    id: "string", // Required
 
     // revert: true,
   };

@@ -22,7 +22,7 @@ const nodeInput = ({ $trigger, $nodes }) => {
     GITHUB_API_USERNAME: $trigger.env.GITHUB_API_USERNAME, // Required
     owner: "string", // Required
     repo: "string", // Required
-    commit_sha: "stringstringstringstringstringstringstri", // Required
+    commit_sha: "string", // Required
     ref: "string", // Required
     sarif: "string", // Required
 
