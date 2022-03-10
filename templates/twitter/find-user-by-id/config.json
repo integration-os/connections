@@ -1,19 +1,19 @@
 {
-  "name": "userLookupByIDResult",
+  "name": "findUserByIdResult",
   "title": "User Lookup by ID",
-  "description": "User Lookup by ID using the Twitter v2 API",
+  "description": "User lookup by id using the Twitter API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/twitter.svg",
   "type": "js-request-function",
   "envVars": {
     "TWITTER_BEARER_TOKEN": { "development": "", "production": "" }
   },
   "fee": 0,
-  "image": "https://assets.buildable.dev/catalog/node-templates/twitter.svg",
   "category": "social",
   "accessType": "open",
   "language": "javascript",
   "price": "free",
   "platform": "twitter",
-  "tags": ["twitter", "social"],
+  "tags": ["news", "tweet"],
   "stateType": "stateless",
   "__version": "1.0.0"
 }

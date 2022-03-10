@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * User Lookup by Usernames [Run]
  *
- * @description - User Lookup by Usernames using the Twitter v2 API
+ * @description - User lookup by usernames using the Twitter API
  *
  * @author    Buildable Technologies Inc.
  * @access    open
@@ -21,7 +21,13 @@ const qs = require("qs");
  * @param {Run} input - Data passed to your Node from the input function
  */
 const run = async (input) => {
-  const { TWITTER_BEARER_TOKEN, usernames, expansions, tweetFields, userFields } = input;
+  const {
+    TWITTER_BEARER_TOKEN,
+    usernames,
+    expansions,
+    tweetFields,
+    userFields,
+  } = input;
 
   verifyInput(input);
 
@@ -29,8 +35,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: "https://api.twitter.com/2/users/by",
-      auth: {},
-      headers: { authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
+      headers: { Authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
       params: {
         usernames,
         ...(expansions ? { expansions } : {}),
@@ -55,10 +60,15 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ usernames }) => {
+const verifyInput = ({ TWITTER_BEARER_TOKEN, usernames }) => {
   const ERRORS = {
-    INVALID_USERNAMES: "A valid usernames field (object) was not provided in the input.",
+    INVALID_TWITTER_BEARER_TOKEN:
+      "A valid TWITTER_BEARER_TOKEN field (string) was not provided in the input.",
+    INVALID_USERNAMES:
+      "A valid usernames field (object) was not provided in the input.",
   };
 
+  if (typeof TWITTER_BEARER_TOKEN !== "string")
+    throw new Error(ERRORS.INVALID_TWITTER_BEARER_TOKEN);
   if (typeof usernames !== "object") throw new Error(ERRORS.INVALID_USERNAMES);
 };

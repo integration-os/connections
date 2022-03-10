@@ -22,6 +22,13 @@ const nodeInput = ({ $trigger, $nodes }) => {
     id: "1SLjjRYNejbKM", // Required
 
     // max_results: 25,
-    // tweetFields: ["created_at","author_id","entities","conversation_id","reply_settings","public_metrics"],
+    // tweetFields: [
+    //     "created_at",
+    //     "author_id",
+    //     "entities",
+    //     "conversation_id",
+    //     "reply_settings",
+    //     "public_metrics"
+    //   ],
   };
 };

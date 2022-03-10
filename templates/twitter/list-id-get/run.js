@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * List Lookup by List ID [Run]
  *
- * @description - List Lookup by List ID using the Twitter v2 API
+ * @description - List lookup by list id using the Twitter API
  *
  * @author    Buildable Technologies Inc.
  * @access    open
@@ -21,7 +21,8 @@ const qs = require("qs");
  * @param {Run} input - Data passed to your Node from the input function
  */
 const run = async (input) => {
-  const { TWITTER_BEARER_TOKEN, id, listFields, expansions, userFields } = input;
+  const { TWITTER_BEARER_TOKEN, id, listFields, expansions, userFields } =
+    input;
 
   verifyInput(input);
 
@@ -29,8 +30,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: `https://api.twitter.com/2/lists/${id}`,
-      auth: {},
-      headers: { authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
+      headers: { Authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
       params: {
         ...(listFields ? { "list.fields": listFields } : {}),
         ...(expansions ? { expansions } : {}),
@@ -54,10 +54,14 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ id }) => {
+const verifyInput = ({ TWITTER_BEARER_TOKEN, id }) => {
   const ERRORS = {
+    INVALID_TWITTER_BEARER_TOKEN:
+      "A valid TWITTER_BEARER_TOKEN field (string) was not provided in the input.",
     INVALID_ID: "A valid id field (string) was not provided in the input.",
   };
 
+  if (typeof TWITTER_BEARER_TOKEN !== "string")
+    throw new Error(ERRORS.INVALID_TWITTER_BEARER_TOKEN);
   if (typeof id !== "string") throw new Error(ERRORS.INVALID_ID);
 };

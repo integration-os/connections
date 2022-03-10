@@ -1,19 +1,19 @@
 {
-  "name": "returnsUserObjectsThatFollowTheProvidedUserIDResult",
+  "name": "usersIdFollowersResult",
   "title": "Returns User Objects that Follow the Provided User ID",
-  "description": "Returns User Objects that Follow the Provided User ID using the Twitter v2 API",
+  "description": "Returns user objects that follow the provided user id using the Twitter API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/twitter.svg",
   "type": "js-request-function",
   "envVars": {
     "TWITTER_BEARER_TOKEN": { "development": "", "production": "" }
   },
   "fee": 0,
-  "image": "https://assets.buildable.dev/catalog/node-templates/twitter.svg",
   "category": "social",
   "accessType": "open",
   "language": "javascript",
   "price": "free",
   "platform": "twitter",
-  "tags": ["twitter", "social"],
+  "tags": ["news", "tweet"],
   "stateType": "stateless",
   "__version": "1.0.0"
 }
