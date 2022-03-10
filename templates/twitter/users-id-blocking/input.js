@@ -22,6 +22,6 @@ const nodeInput = ({ $trigger, $nodes }) => {
     id: "2244994945", // Required
 
     // max_results: 1,
-    // pagination_token: "stringstringstri",
+    // pagination_token: "stringngstri",
   };
 };

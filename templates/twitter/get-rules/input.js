@@ -22,6 +22,6 @@ const nodeInput = ({ $trigger, $nodes }) => {
 
     // ids: ["120897978112909812"],
     // max_results: 1000,
-    // pagination_token: "stringstringstri",
+    // pagination_token: "stringngstri",
   };
 };
