@@ -1,0 +1,17 @@
+{
+  "name": "workflows_updateStepResult",
+  "title": "Update the Configuration for a Workflow Extension Step.",
+  "description": "Update the configuration for a workflow extension step. using the Slack API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/slack.svg",
+  "platform": "slack",
+  "type": "js-request-function",
+  "envVars": { "SLACK_ACCESS_TOKEN": { "development": "", "production": "" } },
+  "fee": 0,
+  "category": "communication",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["business", "messaging", "chat"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

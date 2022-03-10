@@ -1,0 +1,17 @@
+{
+  "name": "admin_apps_restricted_listResult",
+  "title": "List Restricted Apps for an Org or Workspace.",
+  "description": "List restricted apps for an org or workspace. using the Slack API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/slack.svg",
+  "platform": "slack",
+  "type": "js-request-function",
+  "envVars": { "SLACK_ACCESS_TOKEN": { "development": "", "production": "" } },
+  "fee": 0,
+  "category": "communication",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["business", "messaging", "chat"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

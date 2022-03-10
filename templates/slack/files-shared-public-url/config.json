@@ -1,0 +1,17 @@
+{
+  "name": "files_sharedPublicURLResult",
+  "title": "Enables a File for Public/external Sharing.",
+  "description": "Enables a file for public/external sharing. using the Slack API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/slack.svg",
+  "platform": "slack",
+  "type": "js-request-function",
+  "envVars": { "SLACK_ACCESS_TOKEN": { "development": "", "production": "" } },
+  "fee": 0,
+  "category": "communication",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["business", "messaging", "chat"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}
