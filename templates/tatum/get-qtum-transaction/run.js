@@ -20,7 +20,7 @@ const axios = require("axios");
  * @param {Run} input - Data passed to your Node from the input function
  */
 const run = async (input) => {
-  const { TATUM_API_URL, TATUM_API_KEY, hash } = input;
+  const { TATUM_API_KEY, TATUM_API_URL, hash } = input;
 
   verifyInput(input);
 
@@ -28,8 +28,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: `${TATUM_API_URL}/v3/qtum/transaction/${hash}`,
-      headers: { "x-api-key": `${TATUM_API_KEY}` },
-      params: {},
+      headers: { "x-api-key": TATUM_API_KEY },
     });
 
     return data;
@@ -47,12 +46,16 @@ const run = async (input) => {
  */
 const verifyInput = ({ TATUM_API_KEY, TATUM_API_URL, hash }) => {
   const ERRORS = {
-    INVALID_TATUM_API_KEY: "A valid TATUM_API_KEY field (string) was not provided in the input.",
-    INVALID_TATUM_API_URL: "A valid TATUM_API_URL field (string) was not provided in the input.",
+    INVALID_TATUM_API_KEY:
+      "A valid TATUM_API_KEY field (string) was not provided in the input.",
+    INVALID_TATUM_API_URL:
+      "A valid TATUM_API_URL field (string) was not provided in the input.",
     INVALID_HASH: "A valid hash field (string) was not provided in the input.",
   };
 
-  if (typeof TATUM_API_KEY !== "string") throw new Error(ERRORS.INVALID_TATUM_API_KEY);
-  if (typeof TATUM_API_URL !== "string") throw new Error(ERRORS.INVALID_TATUM_API_URL);
+  if (typeof TATUM_API_KEY !== "string")
+    throw new Error(ERRORS.INVALID_TATUM_API_KEY);
+  if (typeof TATUM_API_URL !== "string")
+    throw new Error(ERRORS.INVALID_TATUM_API_URL);
   if (typeof hash !== "string") throw new Error(ERRORS.INVALID_HASH);
 };

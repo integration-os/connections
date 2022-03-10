@@ -20,11 +20,11 @@ const nodeInput = ({ $trigger, $nodes }) => {
   return {
     TATUM_API_KEY: $trigger.env.TATUM_API_KEY, // Required
     TATUM_API_URL: $trigger.env.TATUM_API_URL, // Required
-    id: `stringstri`, // Required
-    externalId: `123654`, // Required
+    id: "stringstri", // Required
+    externalId: "123654", // Required
 
-    // accountingCurrency: `USD`,
-    // customerCountry: `US`,
-    // providerCountry: `US`,
+    // accountingCurrency: "USD",
+    // customerCountry: "US",
+    // providerCountry: "US",
   };
 };

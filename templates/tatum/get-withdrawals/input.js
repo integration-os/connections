@@ -22,8 +22,8 @@ const nodeInput = ({ $trigger, $nodes }) => {
     TATUM_API_URL: $trigger.env.TATUM_API_URL, // Required
     pageSize: 10, // Required
 
-    // currency: `BTC`,
-    // status: `Done`,
+    // currency: "BTC",
+    // status: "Done",
     // offset: 0,
   };
 };

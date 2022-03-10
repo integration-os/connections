@@ -21,12 +21,12 @@ const axios = require("axios");
  */
 const run = async (input) => {
   const {
-    TATUM_API_URL,
     TATUM_API_KEY,
-    fee,
-    amount,
-    address,
+    TATUM_API_URL,
     senderAccountId,
+    address,
+    amount,
+    fee,
     attr,
     compliant,
     multipleAmounts,
@@ -40,13 +40,12 @@ const run = async (input) => {
     const { data } = await axios({
       method: "post",
       url: `${TATUM_API_URL}/v3/offchain/withdrawal`,
-      headers: { "x-api-key": `${TATUM_API_KEY}` },
-      params: {},
+      headers: { "x-api-key": TATUM_API_KEY },
       data: {
-        fee,
-        amount,
-        address,
         senderAccountId,
+        address,
+        amount,
+        fee,
         ...(attr ? { attr } : {}),
         ...(compliant ? { compliant } : {}),
         ...(multipleAmounts ? { multipleAmounts } : {}),
@@ -68,21 +67,35 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ TATUM_API_KEY, TATUM_API_URL, fee, amount, address, senderAccountId }) => {
+const verifyInput = ({
+  TATUM_API_KEY,
+  TATUM_API_URL,
+  senderAccountId,
+  address,
+  amount,
+  fee,
+}) => {
   const ERRORS = {
-    INVALID_TATUM_API_KEY: "A valid TATUM_API_KEY field (string) was not provided in the input.",
-    INVALID_TATUM_API_URL: "A valid TATUM_API_URL field (string) was not provided in the input.",
-    INVALID_FEE: "A valid fee field (string) was not provided in the input.",
-    INVALID_AMOUNT: "A valid amount field (string) was not provided in the input.",
-    INVALID_ADDRESS: "A valid address field (string) was not provided in the input.",
+    INVALID_TATUM_API_KEY:
+      "A valid TATUM_API_KEY field (string) was not provided in the input.",
+    INVALID_TATUM_API_URL:
+      "A valid TATUM_API_URL field (string) was not provided in the input.",
     INVALID_SENDER_ACCOUNT_ID:
       "A valid senderAccountId field (string) was not provided in the input.",
+    INVALID_ADDRESS:
+      "A valid address field (string) was not provided in the input.",
+    INVALID_AMOUNT:
+      "A valid amount field (string) was not provided in the input.",
+    INVALID_FEE: "A valid fee field (string) was not provided in the input.",
   };
 
-  if (typeof TATUM_API_KEY !== "string") throw new Error(ERRORS.INVALID_TATUM_API_KEY);
-  if (typeof TATUM_API_URL !== "string") throw new Error(ERRORS.INVALID_TATUM_API_URL);
-  if (typeof fee !== "string") throw new Error(ERRORS.INVALID_FEE);
-  if (typeof amount !== "string") throw new Error(ERRORS.INVALID_AMOUNT);
+  if (typeof TATUM_API_KEY !== "string")
+    throw new Error(ERRORS.INVALID_TATUM_API_KEY);
+  if (typeof TATUM_API_URL !== "string")
+    throw new Error(ERRORS.INVALID_TATUM_API_URL);
+  if (typeof senderAccountId !== "string")
+    throw new Error(ERRORS.INVALID_SENDER_ACCOUNT_ID);
   if (typeof address !== "string") throw new Error(ERRORS.INVALID_ADDRESS);
-  if (typeof senderAccountId !== "string") throw new Error(ERRORS.INVALID_SENDER_ACCOUNT_ID);
+  if (typeof amount !== "string") throw new Error(ERRORS.INVALID_AMOUNT);
+  if (typeof fee !== "string") throw new Error(ERRORS.INVALID_FEE);
 };

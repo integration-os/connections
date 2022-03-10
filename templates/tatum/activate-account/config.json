@@ -2,7 +2,7 @@
   "name": "activateAccountResult",
   "title": "Activate Account",
   "description": "Activate account using the Tatum API",
-  "type": "js-request-function",
+  "image": "https://assets.buildable.dev/catalog/node-templates/tatum.svg",
   "envVars": {
     "TATUM_API_URL": {
       "development": "https://api-us-west1.tatum.io",
@@ -10,14 +10,14 @@
     },
     "TATUM_API_KEY": { "development": "", "production": "" }
   },
+  "type": "js-request-function",
   "fee": 0,
-  "image": "https://assets.buildable.dev/catalog/node-templates/tatum.svg",
   "category": "web3",
   "accessType": "open",
   "language": "javascript",
   "price": "free",
   "platform": "tatum",
-  "tags": ["blockchain", "cryptocurrency"],
+  "tags": ["blockchain", "crypto", "nft"],
   "stateType": "stateless",
   "__version": "1.0.0"
 }
