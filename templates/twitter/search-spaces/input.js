@@ -23,7 +23,20 @@ const nodeInput = ({ $trigger, $nodes }) => {
 
     // state: "live",
     // max_results: 25,
-    // spaceFields: ["created_at","creator_id","host_ids","invited_user_ids","is_ticketed","lang","participant_count","scheduled_start","speaker_ids","started_at","title","updated_at"],
-    // expansions: ["creator_id","host_ids","invited_user_ids","speaker_ids"],
+    // spaceFields: [
+    //     "created_at",
+    //     "creator_id",
+    //     "host_ids",
+    //     "invited_user_ids",
+    //     "is_ticketed",
+    //     "lang",
+    //     "participant_count",
+    //     "scheduled_start",
+    //     "speaker_ids",
+    //     "started_at",
+    //     "title",
+    //     "updated_at"
+    //   ],
+    // expansions: ["creator_id", "host_ids", "invited_user_ids", "speaker_ids"],
   };
 };

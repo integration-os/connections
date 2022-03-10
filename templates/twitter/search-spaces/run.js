@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * Search for Spaces [Run]
  *
- * @description - Search for Spaces using the Twitter v2 API
+ * @description - Search for spaces using the Twitter API
  *
  * @author    Buildable Technologies Inc.
  * @access    open
@@ -21,7 +21,14 @@ const qs = require("qs");
  * @param {Run} input - Data passed to your Node from the input function
  */
 const run = async (input) => {
-  const { TWITTER_BEARER_TOKEN, query, state, max_results, spaceFields, expansions } = input;
+  const {
+    TWITTER_BEARER_TOKEN,
+    query,
+    state,
+    max_results,
+    spaceFields,
+    expansions,
+  } = input;
 
   verifyInput(input);
 
@@ -29,8 +36,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: "https://api.twitter.com/2/spaces/search",
-      auth: {},
-      headers: { authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
+      headers: { Authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
       params: {
         query,
         ...(state ? { state } : {}),
@@ -56,10 +62,15 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ query }) => {
+const verifyInput = ({ TWITTER_BEARER_TOKEN, query }) => {
   const ERRORS = {
-    INVALID_QUERY: "A valid query field (string) was not provided in the input.",
+    INVALID_TWITTER_BEARER_TOKEN:
+      "A valid TWITTER_BEARER_TOKEN field (string) was not provided in the input.",
+    INVALID_QUERY:
+      "A valid query field (string) was not provided in the input.",
   };
 
+  if (typeof TWITTER_BEARER_TOKEN !== "string")
+    throw new Error(ERRORS.INVALID_TWITTER_BEARER_TOKEN);
   if (typeof query !== "string") throw new Error(ERRORS.INVALID_QUERY);
 };

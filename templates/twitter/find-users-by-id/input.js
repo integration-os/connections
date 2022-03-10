@@ -22,7 +22,14 @@ const nodeInput = ({ $trigger, $nodes }) => {
     ids: ["2244994945"], // Required
 
     // expansions: ["pinned_tweet_id"],
-    // tweetFields: ["created_at","author_id","entities","conversation_id","reply_settings","public_metrics"],
-    // userFields: ["username","verified","profile_image_url"],
+    // tweetFields: [
+    //     "created_at",
+    //     "author_id",
+    //     "entities",
+    //     "conversation_id",
+    //     "reply_settings",
+    //     "public_metrics"
+    //   ],
+    // userFields: ["username", "verified", "profile_image_url"],
   };
 };

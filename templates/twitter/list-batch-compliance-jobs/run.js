@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * List Compliance Jobs [Run]
  *
- * @description - List Compliance Jobs using the Twitter v2 API
+ * @description - List compliance jobs using the Twitter API
  *
  * @author    Buildable Technologies Inc.
  * @access    open
@@ -29,8 +29,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: "https://api.twitter.com/2/compliance/jobs",
-      auth: {},
-      headers: { authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
+      headers: { Authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
       params: { type, ...(status ? { status } : {}) },
       paramsSerializer: (params) => {
         return qs.stringify(params, { arrayFormat: "comma" });
@@ -50,10 +49,14 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ type }) => {
+const verifyInput = ({ TWITTER_BEARER_TOKEN, type }) => {
   const ERRORS = {
+    INVALID_TWITTER_BEARER_TOKEN:
+      "A valid TWITTER_BEARER_TOKEN field (string) was not provided in the input.",
     INVALID_TYPE: "A valid type field (string) was not provided in the input.",
   };
 
+  if (typeof TWITTER_BEARER_TOKEN !== "string")
+    throw new Error(ERRORS.INVALID_TWITTER_BEARER_TOKEN);
   if (typeof type !== "string") throw new Error(ERRORS.INVALID_TYPE);
 };

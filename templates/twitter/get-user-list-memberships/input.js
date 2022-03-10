@@ -23,8 +23,8 @@ const nodeInput = ({ $trigger, $nodes }) => {
 
     // max_results: 100,
     // pagination_token: 0,
-    // listFields: ["created_at","description","follower_count","member_count","name","private"],
+    // listFields: ["created_at", "description", "follower_count", "member_count", "name", "private"],
     // expansions: ["owner_id"],
-    // userFields: ["username","verified","profile_image_url"],
+    // userFields: ["username", "verified", "profile_image_url"],
   };
 };

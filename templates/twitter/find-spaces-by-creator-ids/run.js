@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * Space Lookup by Their Creators [Run]
  *
- * @description - Space Lookup by Their Creators using the Twitter v2 API
+ * @description - Space lookup by their creators using the Twitter API
  *
  * @author    Buildable Technologies Inc.
  * @access    open
@@ -29,8 +29,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: "https://api.twitter.com/2/spaces/by/creator_ids",
-      auth: {},
-      headers: { authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
+      headers: { Authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
       params: {
         user_ids,
         ...(spaceFields ? { "space.fields": spaceFields } : {}),
@@ -54,10 +53,15 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ user_ids }) => {
+const verifyInput = ({ TWITTER_BEARER_TOKEN, user_ids }) => {
   const ERRORS = {
-    INVALID_USER_IDS: "A valid user_ids field (object) was not provided in the input.",
+    INVALID_TWITTER_BEARER_TOKEN:
+      "A valid TWITTER_BEARER_TOKEN field (string) was not provided in the input.",
+    INVALID_USER_IDS:
+      "A valid user_ids field (object) was not provided in the input.",
   };
 
+  if (typeof TWITTER_BEARER_TOKEN !== "string")
+    throw new Error(ERRORS.INVALID_TWITTER_BEARER_TOKEN);
   if (typeof user_ids !== "object") throw new Error(ERRORS.INVALID_USER_IDS);
 };

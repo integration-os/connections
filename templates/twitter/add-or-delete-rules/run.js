@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * Add/Delete Rules [Run]
  *
- * @description - Add/Delete Rules using the Twitter v2 API
+ * @description - Add/delete rules using the Twitter API
  *
  * @author    Buildable Technologies Inc.
  * @access    open
@@ -29,8 +29,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "post",
       url: "https://api.twitter.com/2/tweets/search/stream/rules",
-      auth: {},
-      headers: { authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
+      headers: { Authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
       params: { ...(dry_run ? { dry_run } : {}) },
       paramsSerializer: (params) => {
         return qs.stringify(params, { arrayFormat: "comma" });
@@ -50,6 +49,12 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = () => {
-  const ERRORS = {};
+const verifyInput = ({ TWITTER_BEARER_TOKEN }) => {
+  const ERRORS = {
+    INVALID_TWITTER_BEARER_TOKEN:
+      "A valid TWITTER_BEARER_TOKEN field (string) was not provided in the input.",
+  };
+
+  if (typeof TWITTER_BEARER_TOKEN !== "string")
+    throw new Error(ERRORS.INVALID_TWITTER_BEARER_TOKEN);
 };

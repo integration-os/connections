@@ -1,19 +1,19 @@
 {
-  "name": "listLookupByListIDResult",
+  "name": "listIdGetResult",
   "title": "List Lookup by List ID",
-  "description": "List Lookup by List ID using the Twitter v2 API",
+  "description": "List lookup by list id using the Twitter API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/twitter.svg",
   "type": "js-request-function",
   "envVars": {
     "TWITTER_BEARER_TOKEN": { "development": "", "production": "" }
   },
   "fee": 0,
-  "image": "https://assets.buildable.dev/catalog/node-templates/twitter.svg",
   "category": "social",
   "accessType": "open",
   "language": "javascript",
   "price": "free",
   "platform": "twitter",
-  "tags": ["twitter", "social"],
+  "tags": ["news", "tweet"],
   "stateType": "stateless",
   "__version": "1.0.0"
 }
