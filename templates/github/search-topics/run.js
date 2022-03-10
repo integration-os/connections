@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * Search Topics [Run]
  *
- * @description - Search Topics using the GitHub API
+ * @description - Search topics using the Github API
  *
  * @author    Buildable Technologies Inc.
  * @access    open
@@ -20,7 +20,7 @@ const axios = require("axios");
  * @param {Run} input - Data passed to your Node from the input function
  */
 const run = async (input) => {
-  const { GITHUB_API_USERNAME, GITHUB_API_TOKEN, q, per_page, page } = input;
+  const { GITHUB_API_TOKEN, GITHUB_API_USERNAME, q, per_page, page } = input;
 
   verifyInput(input);
 
@@ -28,8 +28,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: "https://api.github.com/search/topics",
-      auth: { username: GITHUB_API_USERNAME, password: GITHUB_API_TOKEN },
-      headers: { accept: "application/vnd.github.v3+json" },
+      auth: { password: GITHUB_API_TOKEN, username: GITHUB_API_USERNAME },
       params: {
         q,
         ...(per_page ? { per_page } : {}),
@@ -50,10 +49,18 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ q }) => {
+const verifyInput = ({ GITHUB_API_TOKEN, GITHUB_API_USERNAME, q }) => {
   const ERRORS = {
+    INVALID_GITHUB_API_TOKEN:
+      "A valid GITHUB_API_TOKEN field (string) was not provided in the input.",
+    INVALID_GITHUB_API_USERNAME:
+      "A valid GITHUB_API_USERNAME field (string) was not provided in the input.",
     INVALID_Q: "A valid q field (string) was not provided in the input.",
   };
 
+  if (typeof GITHUB_API_TOKEN !== "string")
+    throw new Error(ERRORS.INVALID_GITHUB_API_TOKEN);
+  if (typeof GITHUB_API_USERNAME !== "string")
+    throw new Error(ERRORS.INVALID_GITHUB_API_USERNAME);
   if (typeof q !== "string") throw new Error(ERRORS.INVALID_Q);
 };
