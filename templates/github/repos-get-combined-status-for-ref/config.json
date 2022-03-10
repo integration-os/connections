@@ -1,0 +1,20 @@
+{
+  "name": "reposGetCombinedStatusForRefResult",
+  "title": "Get the Combined Status for a Specific Reference",
+  "description": "Get the combined status for a specific reference using the Github API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/github.svg",
+  "platform": "github",
+  "envVars": {
+    "GITHUB_API_TOKEN": { "development": "", "production": "" },
+    "GITHUB_API_USERNAME": { "development": "", "production": "" }
+  },
+  "fee": 0,
+  "category": "git",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["git", "code"],
+  "type": "js-request-function",
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

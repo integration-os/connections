@@ -1,0 +1,20 @@
+{
+  "name": "result",
+  "title": "Update a Self-Hosted Runner Group for an Enterprise",
+  "description": "Update a self-hosted runner group for an enterprise using the Github API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/github.svg",
+  "platform": "github",
+  "envVars": {
+    "GITHUB_API_TOKEN": { "development": "", "production": "" },
+    "GITHUB_API_USERNAME": { "development": "", "production": "" }
+  },
+  "fee": 0,
+  "category": "git",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["git", "code"],
+  "type": "js-request-function",
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

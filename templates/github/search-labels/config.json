@@ -1,20 +1,20 @@
 {
   "name": "searchLabelsResult",
   "title": "Search Labels",
-  "description": "Search Labels using the GitHub API",
-  "type": "js-request-function",
+  "description": "Search labels using the Github API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/github.svg",
+  "platform": "github",
   "envVars": {
     "GITHUB_API_TOKEN": { "development": "", "production": "" },
     "GITHUB_API_USERNAME": { "development": "", "production": "" }
   },
   "fee": 0,
-  "image": "https://assets.buildable.dev/catalog/node-templates/github.svg",
   "category": "git",
   "accessType": "open",
   "language": "javascript",
   "price": "free",
-  "platform": "github",
-  "tags": ["git", "github"],
+  "tags": ["git", "code"],
+  "type": "js-request-function",
   "stateType": "stateless",
   "__version": "1.0.0"
 }
