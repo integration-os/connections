@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * Tweet Lookup by Tweet IDs [Run]
  *
- * @description - Tweet Lookup by Tweet IDs using the Twitter v2 API
+ * @description - Tweet lookup by tweet ids using the Twitter API
  *
  * @author    Buildable Technologies Inc.
  * @access    open
@@ -38,8 +38,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: "https://api.twitter.com/2/tweets",
-      auth: {},
-      headers: { authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
+      headers: { Authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
       params: {
         ids,
         ...(expansions ? { expansions } : {}),
@@ -67,10 +66,14 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ ids }) => {
+const verifyInput = ({ TWITTER_BEARER_TOKEN, ids }) => {
   const ERRORS = {
+    INVALID_TWITTER_BEARER_TOKEN:
+      "A valid TWITTER_BEARER_TOKEN field (string) was not provided in the input.",
     INVALID_IDS: "A valid ids field (object) was not provided in the input.",
   };
 
+  if (typeof TWITTER_BEARER_TOKEN !== "string")
+    throw new Error(ERRORS.INVALID_TWITTER_BEARER_TOKEN);
   if (typeof ids !== "object") throw new Error(ERRORS.INVALID_IDS);
 };

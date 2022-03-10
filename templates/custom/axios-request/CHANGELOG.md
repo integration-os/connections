@@ -5,6 +5,13 @@ The format followed is based on [Keep a Changelog](http://keepachangelog.com/) a
 
 ---
  
+## [1.0.1] - 2022-03-7
+ 
+### Changed
+- Updated the default endpoint from `https://api.example.com` to `https://api.yourcompanydomain.co`.
+
+---
+
 ## [1.0.0] - 2022-02-24
  
 ⚡️ Initial Version

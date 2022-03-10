@@ -18,8 +18,8 @@
  */
 const nodeInput = ({ $trigger, $nodes }) => {
   return {
-    GITHUB_API_USERNAME: $trigger.env.GITHUB_API_USERNAME, // Required for private repos or if making structural changes (i.e modifying branch protection rules)
-    GITHUB_API_TOKEN: $trigger.env.GITHUB_API_TOKEN, // Required for private repos or if making structural changes (i.e modifying branch protection rules)
+    GITHUB_API_TOKEN: $trigger.env.GITHUB_API_TOKEN, // Required
+    GITHUB_API_USERNAME: $trigger.env.GITHUB_API_USERNAME, // Required
     q: "string", // Required
 
     // sort: "comments",

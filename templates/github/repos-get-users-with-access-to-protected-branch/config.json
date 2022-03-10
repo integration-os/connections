@@ -1,0 +1,20 @@
+{
+  "name": "reposGetUsersWithAccessToProtectedBranchResult",
+  "title": "Get Users with Access to the Protected Branch",
+  "description": "Get users with access to the protected branch using the Github API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/github.svg",
+  "platform": "github",
+  "envVars": {
+    "GITHUB_API_TOKEN": { "development": "", "production": "" },
+    "GITHUB_API_USERNAME": { "development": "", "production": "" }
+  },
+  "fee": 0,
+  "category": "git",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["git", "code"],
+  "type": "js-request-function",
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

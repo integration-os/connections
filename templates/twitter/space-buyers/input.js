@@ -21,6 +21,6 @@ const nodeInput = ({ $trigger, $nodes }) => {
     TWITTER_BEARER_TOKEN: $trigger.env.TWITTER_BEARER_TOKEN, // Required
     id: "1SLjjRYNejbKM", // Required
 
-    // userFields: ["username","verified","profile_image_url"],
+    // userFields: ["username", "verified", "profile_image_url"],
   };
 };

@@ -1,0 +1,17 @@
+{
+  "name": "admin_conversations_getTeamsResult",
+  "title": "Get All the Workspaces a Given Public or Private Channel Is Connected to Within This Enterprise Org.",
+  "description": "Get all the workspaces a given public or private channel is connected to within this enterprise org. using the Slack API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/slack.svg",
+  "platform": "slack",
+  "type": "js-request-function",
+  "envVars": { "SLACK_ACCESS_TOKEN": { "development": "", "production": "" } },
+  "fee": 0,
+  "category": "communication",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["business", "messaging", "chat"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * Recent Search Counts [Run]
  *
- * @description - Recent Search Counts using the Twitter v2 API
+ * @description - Recent search counts using the Twitter API
  *
  * @author    Buildable Technologies Inc.
  * @access    open
@@ -39,8 +39,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: "https://api.twitter.com/2/tweets/counts/recent",
-      auth: {},
-      headers: { authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
+      headers: { Authorization: `Bearer ${TWITTER_BEARER_TOKEN}` },
       params: {
         query,
         ...(start_time ? { start_time } : {}),
@@ -69,10 +68,15 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ query }) => {
+const verifyInput = ({ TWITTER_BEARER_TOKEN, query }) => {
   const ERRORS = {
-    INVALID_QUERY: "A valid query field (string) was not provided in the input.",
+    INVALID_TWITTER_BEARER_TOKEN:
+      "A valid TWITTER_BEARER_TOKEN field (string) was not provided in the input.",
+    INVALID_QUERY:
+      "A valid query field (string) was not provided in the input.",
   };
 
+  if (typeof TWITTER_BEARER_TOKEN !== "string")
+    throw new Error(ERRORS.INVALID_TWITTER_BEARER_TOKEN);
   if (typeof query !== "string") throw new Error(ERRORS.INVALID_QUERY);
 };
