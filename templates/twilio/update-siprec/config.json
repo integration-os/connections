@@ -1,0 +1,20 @@
+{
+  "name": "updateSiprecResult",
+  "title": "Update Siprec",
+  "description": "Stop a siprec using either the sid of the siprec resource or the `name` used when creating the resource",
+  "image": "https://assets.buildable.dev/catalog/node-templates/twilio.svg",
+  "platform": "twilio",
+  "envVars": {
+    "TWILIO_ACCOUNT_SID": { "development": "", "production": "" },
+    "TWILIO_AUTH_TOKEN": { "development": "", "production": "" }
+  },
+  "fee": 0,
+  "category": "communication",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["marketing", "messages", "text"],
+  "stateType": "stateless",
+  "__version": "1.0.0",
+  "type": "js-request-function"
+}
