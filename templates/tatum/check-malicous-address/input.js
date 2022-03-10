@@ -20,6 +20,6 @@ const nodeInput = ({ $trigger, $nodes }) => {
   return {
     TATUM_API_KEY: $trigger.env.TATUM_API_KEY, // Required
     TATUM_API_URL: $trigger.env.TATUM_API_URL, // Required
-    address: `0x002Bf459dC58584D58886169EA0E80f3Ca95FFAF`, // Required
+    address: "0x002Bf459dC58584D58886169EA0E80f3Ca95FFAF", // Required
   };
 };
