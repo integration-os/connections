@@ -1,0 +1,24 @@
+{
+  "name": "result",
+  "title": "Get Information About The User's Current Playback",
+  "description": "Get information about the user's current playback using the Spotify API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/spotify.svg",
+  "platform": "spotify",
+  "type": "js-request-function",
+  "envVars": {
+    "SPOTIFY_BASE_URI": {
+      "development": "https://api.spotify.com/v1",
+      "production": "https://api.spotify.com/v1"
+    },
+    "SPOTIFY_CLIENT_ID": { "development": "", "production": "" },
+    "SPOTIFY_CLIENT_SECRET": { "development": "", "production": "" }
+  },
+  "fee": 0,
+  "category": "media",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["music", "podcasts"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}
