@@ -1,0 +1,17 @@
+{
+  "name": "updateResult",
+  "title": "Update Row",
+  "description": "Update a row by its ID in a PostgreSQL table",
+  "type": "js-request-function",
+  "envVars": { "POSTGRESQL_CONNECTION_KEY": { "development": "", "production": "" } },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/postgresql.svg",
+  "category": "databases",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "postgresql",
+  "tags": ["db", "crud", "api"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}
