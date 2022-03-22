@@ -10,8 +10,8 @@
   "accessType": "open",
   "language": "javascript",
   "price": "free",
-  "platform": "",
-  "tags": ["blockchain", "ethereum", "crypto"],
+  "platform": "ethereum",
+  "tags": ["blockchain", "eth", "crypto"],
   "stateType": "stateless",
   "__version": "1.0.0"
 }
