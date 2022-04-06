@@ -14,7 +14,7 @@
 
 const { getConnection } = require("@buildable/firestore");
 
-const MISSING_STARTAT_FIELD_IN_SORT_ERROR = "sort must contain the startAtField";
+const MISSING_START_AT_FIELD_IN_SORT_ERROR = "sort must contain the startAtField";
 
 /**
  * The Node’s executable function
@@ -74,7 +74,7 @@ const run = async (input) => {
 
     if (startAt) {
       if (!sortKeys.includes(startAtField)) {
-        throw new Error(MISSING_STARTAT_FIELD_IN_SORT_ERROR);
+        throw new Error(MISSING_START_AT_FIELD_IN_SORT_ERROR);
       }
       snapshot = snapshot.startAt(startAt);
     }
