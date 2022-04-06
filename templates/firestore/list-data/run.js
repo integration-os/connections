@@ -79,7 +79,7 @@ const run = async (input) => {
       snapshot = snapshot.startAt(startAt);
     }
 
-    let result = await snapshot.get();
+    const result = await snapshot.get();
 
     const rows = [];
 
