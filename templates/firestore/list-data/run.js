@@ -38,36 +38,36 @@ const run = async (input) => {
   try {
     const db = await getConnection(FIRESTORE_CONNECTION_KEY);
 
-    let query = await db.collection(collection);
+    let _query = await db.collection(collection);
 
     if (Array.isArray(query)) {
       if (Array.isArray(query[0])) {
         // multiple queries
         for (let q of query) {
-          query = query.where(...q);
+          _query = _query.where(...q);
         }
       } else {
-        query = query.where(...query);
+        _query = _query.where(...query);
       }
     }
 
     if (fields.length > 0) {
-      query = query.select(...fields);
+      _query = _query.select(...fields);
     }
 
     if(pageSize > 200) {
       throw new Error("The optimized value for pageSize is less than or equal to 200")
     }
 
-    query = query.limit(pageSize);
+    _query = _query.limit(pageSize);
 
     let sortKeys = Object.keys(sort);
     if (sortKeys.length > 0) {
       sortKeys.forEach((key) => {
         if (sort[key] === -1) {
-          query = query.orderBy(key, "desc");
+          _query = _query.orderBy(key, "desc");
         } else {
-          query = query.orderBy(key, "asc");
+          _query = _query.orderBy(key, "asc");
         }
       });
     }
@@ -76,10 +76,10 @@ const run = async (input) => {
       if (!sortKeys.includes(startAtField)) {
         throw new Error(MISSING_START_AT_FIELD_IN_SORT_ERROR);
       }
-      query = query.startAt(startAt);
+      _query = _query.startAt(startAt);
     }
 
-    const snapshot = await query.get();
+    const snapshot = await _query.get();
 
     const rows = [];
 
