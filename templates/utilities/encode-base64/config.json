@@ -3,12 +3,7 @@
   "title": "Encode in Base64",
   "description": "Encode plain text in Base64",
   "type": "js-function",
-  "envVars": {
-    "API_KEY": {
-      "development": "",
-      "production": ""
-    }
-  },
+  "envVars": {},
   "fee": 0,
   "image": "https://assets.buildable.dev/catalog/node-templates/utilities.svg",
   "category": "utilities",
