@@ -143,7 +143,7 @@ Update the sample `CHANGELOG.md` file to reflect the appropriate information abo
 
 ### 8. Create a pull request ✅
 
-Once you've tested and finished your template, create a pull request on this repository. Once approved, your template will be live on Buildable, for the entire community!
+Once you've tested and finished your template, create a pull request on the `development` branch of this repository. Once approved and merged to main, your template will be live on Buildable, for the entire community!
 
 ---
 
