@@ -22,6 +22,8 @@
   try {
     if (plainText === "") {
       throw new Error("Plain text cannot be empty")
+    } else if (typeof plainText !== "string") {
+      throw new Error("The input provided is not a string!");
     }
     const encoded = Buffer.from(plainText).toString('base64');
     return encoded;
