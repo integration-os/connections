@@ -1,0 +1,17 @@
+{
+  "name": "encodeBase64",
+  "title": "Encode in Base64",
+  "description": "Encode plain text in Base64",
+  "type": "js-function",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/utilities.svg",
+  "category": "utilities",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": ["base64", "encode"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}
