@@ -20,7 +20,7 @@
  const nodeInput = ({ $trigger, $nodes }) => {
   return {
     method: "GET", // Required
-    url: "https://dev.sellix.io/v1/blacklists", // Required
+    url: ($trigger.env.SELLIX_API_BASE || "https://dev.sellix.io/v1")+"/blacklists", // Required
     headers: {
       "Authorization": `Bearer ${$trigger.env.SELLIX_API_KEY}` // Required
     },
