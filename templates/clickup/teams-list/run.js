@@ -25,7 +25,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "get",
-      url: CLICKUP_API_URL,
+      url: `${CLICKUP_API_URL}/team`,
       headers: { Authorization: `${CLICKUP_API_TOKEN}` },
     });
 
