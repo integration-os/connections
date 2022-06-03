@@ -1,0 +1,23 @@
+{
+  "name": "teams_listResult",
+  "title": "List all teams in a ClickUp workspace",
+  "description": "List all teams in a ClickUp workspace using the ClickUp Api",
+  "type": "js-request-function",
+  "envVars": {
+    "CLICKUP_API_TOKEN": {
+      "development": "",
+      "production": ""
+    }
+  },
+  "fee": 0,
+  "image": "https://github.com/LaunchUpCorp/PublicAssets/blob/main/ClickUpIcons/desktop%20app%20-%20white%20rounded.svg",
+  "category": "",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "clickup",
+  "tags": ["business","project managment","agile"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}
+
