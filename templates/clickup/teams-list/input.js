@@ -20,5 +20,6 @@
 const nodeInput = ({ $trigger, $nodes }) => {
   return {
     CLICKUP_API_TOKEN: $trigger.env.CLICKUP_API_TOKEN, // Required
+    CLICKUP_API_URL: $trigger.env.CLICKUP_API_URL, // Required
   };
 };

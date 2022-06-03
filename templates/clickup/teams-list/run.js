@@ -18,14 +18,14 @@ const axios = require("axios");
  * @param {Run} input - Data passed to your Node from the input function
  */
 const run = async (input) => {
-  const { CLICKUP_API_TOKEN } = input;
+  const { CLICKUP_API_TOKEN, CLICKUP_API_URL } = input;
 
   verifyInput(input);
 
   try {
     const { data } = await axios({
       method: "get",
-      url: "https://api.clickup.com/api/v2/team",
+      url: CLICKUP_API_URL,
       headers: { Authorization: `${CLICKUP_API_TOKEN}` },
     });
 

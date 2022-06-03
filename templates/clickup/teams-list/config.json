@@ -7,16 +7,20 @@
     "CLICKUP_API_TOKEN": {
       "development": "",
       "production": ""
+    }, 
+    "CLICKUP_API_URL": {
+      "development": "https://api.clickup.com/api/v2/",
+      "production": "https://api.clickup.com/api/v2/"
     }
   },
   "fee": 0,
-  "image": "https://github.com/LaunchUpCorp/PublicAssets/blob/main/ClickUpIcons/desktop%20app%20-%20white%20rounded.svg",
-  "category": "",
+  "image": "https://assets.buildable.dev/catalog/node-templates/clickup.svg",
+  "category": "productivity",
   "accessType": "open",
   "language": "javascript",
   "price": "free",
   "platform": "clickup",
-  "tags": ["business","project managment","agile"],
+  "tags": ["business","projects","teams"],
   "stateType": "stateless",
   "__version": "1.0.0"
 }
