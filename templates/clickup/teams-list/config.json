@@ -1,5 +1,5 @@
 {
-  "name": "teams_listResult",
+  "name": "teams",
   "title": "List all teams in a ClickUp workspace",
   "description": "List all teams in a ClickUp workspace using the ClickUp Api",
   "type": "js-request-function",
