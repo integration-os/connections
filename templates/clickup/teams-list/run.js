@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * List All User Groups for a Team [Run]
  *
- * @author    Launch Up corp.
+ * @author    LaunchUp Technology Ltd.
  * @access    open
  * @license   MIT
  * @docs      https://clickup.com/api

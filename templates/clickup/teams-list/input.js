@@ -2,7 +2,7 @@
  * ----------------------------------------------------------------------------------------------------
  * List All Teams in Workspace [Input]
  *
- * @author    Launch Up corp.
+ * @author    LaunchUp Technology Ltd.
  * @access    open
  * @license   MIT
  * @docs      https://clickup.com/api
