@@ -1,6 +1,6 @@
 {
   "name": "teams",
-  "title": "List all teams in a ClickUp workspace",
+  "title": "List teams",
   "description": "List all teams in a ClickUp workspace using the ClickUp Api",
   "type": "js-request-function",
   "envVars": {
@@ -9,8 +9,8 @@
       "production": ""
     }, 
     "CLICKUP_API_URL": {
-      "development": "https://api.clickup.com/api/v2/",
-      "production": "https://api.clickup.com/api/v2/"
+      "development": "https://api.clickup.com/api/v2",
+      "production": "https://api.clickup.com/api/v2"
     }
   },
   "fee": 0,
