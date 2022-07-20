@@ -4,11 +4,11 @@
   "description": "Update account using the Tatum API",
   "image": "https://assets.buildable.dev/catalog/node-templates/tatum.svg",
   "envVars": {
-    "TATUM_API_URL": {
+    "BUILDABLE_TATUM_API_URL": {
       "development": "https://api-us-west1.tatum.io",
       "production": "https://api-us-west1.tatum.io"
     },
-    "TATUM_API_KEY": { "development": "", "production": "" }
+    "BUILDABLE_TATUM_API_KEY": { "development": "", "production": "" }
   },
   "type": "js-request-function",
   "fee": 0,
