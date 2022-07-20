@@ -1,12 +1,10 @@
 {
   "name": "listIdUpdateResult",
-  "title": "Update List",
-  "description": "Update list using the Twitter API",
+  "title": "Update List.",
+  "description": "Update list. using the Twitter API",
   "image": "https://assets.buildable.dev/catalog/node-templates/twitter.svg",
   "type": "js-request-function",
-  "envVars": {
-    "TWITTER_BEARER_TOKEN": { "development": "", "production": "" }
-  },
+  "envVars": { "BUILDABLE_TWITTER_BEARER_TOKEN": { "development": "", "production": "" } },
   "fee": 0,
   "category": "social",
   "accessType": "open",

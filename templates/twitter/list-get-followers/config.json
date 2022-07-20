@@ -4,9 +4,7 @@
   "description": "Returns user objects that follow a list by the provided list id using the Twitter API",
   "image": "https://assets.buildable.dev/catalog/node-templates/twitter.svg",
   "type": "js-request-function",
-  "envVars": {
-    "TWITTER_BEARER_TOKEN": { "development": "", "production": "" }
-  },
+  "envVars": { "BUILDABLE_TWITTER_BEARER_TOKEN": { "development": "", "production": "" } },
   "fee": 0,
   "category": "social",
   "accessType": "open",

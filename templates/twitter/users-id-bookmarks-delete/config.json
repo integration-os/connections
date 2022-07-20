@@ -1,0 +1,17 @@
+{
+  "name": "usersIdBookmarksDeleteResult",
+  "title": "Remove a Bookmarked Tweet",
+  "description": "Remove a bookmarked tweet using the Twitter API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/twitter.svg",
+  "type": "js-request-function",
+  "envVars": { "BUILDABLE_TWITTER_BEARER_TOKEN": { "development": "", "production": "" } },
+  "fee": 0,
+  "category": "social",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "twitter",
+  "tags": ["news", "tweet"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}
