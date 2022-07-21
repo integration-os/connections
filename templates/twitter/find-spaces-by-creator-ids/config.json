@@ -13,5 +13,6 @@
   "platform": "twitter",
   "tags": ["news", "tweet"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "62d86a790bd36f737a23f636", "type": "integration" }]
 }
