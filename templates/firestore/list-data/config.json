@@ -3,7 +3,7 @@
   "title": "List Data",
   "description": "List data from a Firestore collection with pagination and filtering",
   "type": "js-request-function",
-  "envVars": { "FIRESTORE_CONNECTION_KEY": { "development": "", "production": "" } },
+  "envVars": { "BUILDABLE_FIRESTORE_CONNECTION_KEY": { "development": "", "production": "" } },
   "fee": 0,
   "image": "https://assets.buildable.dev/catalog/node-templates/firestore.svg",
   "category": "databases",

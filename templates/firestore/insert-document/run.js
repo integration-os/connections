@@ -1,32 +1,13 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Insert Document [Run]
- *
- * @description - Insert a single document into a Firestore collection
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://firebase.google.com/docs/firestore/manage-data/add-data#add_a_document
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const { getConnection } = require("@buildable/firestore");
 const uuid = require("uuid");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
-  const { FIRESTORE_CONNECTION_KEY, collection, id, ...fieldsToInsert } = input;
+  const { BUILDABLE_FIRESTORE_CONNECTION_KEY, collection, id, ...fieldsToInsert } = input;
 
   verifyInput(input);
 
   try {
-    const db = await getConnection(FIRESTORE_CONNECTION_KEY);
+    const db = await getConnection(BUILDABLE_FIRESTORE_CONNECTION_KEY);
 
     return await db
       .collection(collection)
@@ -43,16 +24,13 @@ const run = async (input) => {
   }
 };
 
-const verifyInput = ({ FIRESTORE_CONNECTION_KEY, collection }) => {
+const verifyInput = ({ BUILDABLE_FIRESTORE_CONNECTION_KEY, collection }) => {
   const ERRORS = {
-    NO_FIRESTORE_CONNECTION_KEY: `A valid FIRESTORE_CONNECTION_KEY is required. 
-                                 You can add one to your environment variables at 
-                                 https://app.buildable.dev/settings/environment-variables. 
-                                 You may also need to add a Firestore Datasource to your project.`,
+    NO_BUILDABLE_FIRESTORE_CONNECTION_KEY: "A valid BUILDABLE_FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     NO_ID: "A valid id is required.",
   };
 
-  if (!FIRESTORE_CONNECTION_KEY) throw new Error(ERRORS.NO_FIRESTORE_CONNECTION_KEY);
+  if (!BUILDABLE_FIRESTORE_CONNECTION_KEY) throw new Error(ERRORS.NO_BUILDABLE_FIRESTORE_CONNECTION_KEY);
   if (!collection || typeof collection !== "string") throw new Error(ERRORS.NO_COLLECTION);
 };
