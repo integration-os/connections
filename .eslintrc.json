@@ -30,6 +30,7 @@
     "object-curly-newline": ["off"],
     "curly": ["off"],
     "nonblock-statement-body-position": ["off"],
-    "consistent-return": ["off"]
+    "consistent-return": ["off"],
+    "newIsCap": ["off"]
   }
 }
