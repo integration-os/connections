@@ -8,7 +8,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "delete",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/trade/account/${id}`,
+      url: `{TATUM_API_URL}/v3/trade/account/${id}`,
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
     });
 

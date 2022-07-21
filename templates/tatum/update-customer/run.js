@@ -16,7 +16,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "put",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/ledger/customer/${id}`,
+      url: `{TATUM_API_URL}/v3/ledger/customer/${id}`,
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
       data: {
         externalId,

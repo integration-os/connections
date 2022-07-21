@@ -8,7 +8,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/ethereum/web3/${xApiKey}`,
+      url: `{TATUM_API_URL}/v3/ethereum/web3/${xApiKey}`,
       params: { ...(testnetType ? { testnetType } : {}) },
       data: { jsonrpc, method, params, id },
     });

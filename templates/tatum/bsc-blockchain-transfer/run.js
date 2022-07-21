@@ -18,7 +18,7 @@ const run = async (input) => {
   try {
     const { data: _data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/bsc/transaction`,
+      url: "{TATUM_API_URL}/v3/bsc/transaction",
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
       data: {
         to,

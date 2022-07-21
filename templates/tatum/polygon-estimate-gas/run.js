@@ -8,7 +8,7 @@ const run = async (input) => {
   try {
     const { data: _data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/polygon/gas`,
+      url: "{TATUM_API_URL}/v3/polygon/gas",
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
       data: { from, to, amount, ...(data ? { data } : {}) },
     });

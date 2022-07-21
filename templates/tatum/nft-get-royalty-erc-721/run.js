@@ -15,7 +15,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "get",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/nft/royalty/${chain}/${contractAddress}/${token}`,
+      url: `{TATUM_API_URL}/v3/nft/royalty/${chain}/${contractAddress}/${token}`,
       headers: {
         "x-api-key": BUILDABLE_TATUM_API_KEY,
         ...(testnetType ? { "x-testnet-type": testnetType } : {}),

@@ -22,7 +22,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/nft/mint/batch`,
+      url: "{TATUM_API_URL}/v3/nft/mint/batch",
       headers: {
         "x-api-key": BUILDABLE_TATUM_API_KEY,
         ...(testnetType ? { "x-testnet-type": testnetType } : {}),

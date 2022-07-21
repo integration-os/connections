@@ -8,7 +8,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "get",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/ledger/account/${id}/balance`,
+      url: `{TATUM_API_URL}/v3/ledger/account/${id}/balance`,
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
     });
 
