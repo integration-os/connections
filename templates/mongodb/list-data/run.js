@@ -1,27 +1,8 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * List Data [Run]
- *
- * @description - List data from a MongoDB collection with pagination and filtering
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://docs.mongodb.com/manual/reference/method/db.collection.find/
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const { getConnection } = require("@buildable/mongodb");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
   const {
-    MONGODB_CONNECTION_KEY,
+    BUILDABLE_MONGODB_CONNECTION_KEY,
     collection,
     query,
     fields = [],
@@ -33,7 +14,7 @@ const run = async (input) => {
   verifyInput(input);
 
   try {
-    const db = await getConnection(MONGODB_CONNECTION_KEY);
+    const db = await getConnection(BUILDABLE_MONGODB_CONNECTION_KEY);
 
     const rowsPromise = db
       .collection(collection)
@@ -65,7 +46,7 @@ const run = async (input) => {
 };
 
 const verifyInput = ({
-  MONGODB_CONNECTION_KEY,
+  BUILDABLE_MONGODB_CONNECTION_KEY,
   collection,
   query,
   fields,
@@ -74,10 +55,7 @@ const verifyInput = ({
   sort = { createdAt: -1 },
 }) => {
   const ERRORS = {
-    NO_MONGODB_CONNECTION_KEY: `A valid MONGODB_CONNECTION_KEY is required. 
-                                You can add one to your environment variables at 
-                                https://app.buildable.dev/settings/environment-variables. 
-                                You may also need to add a MongoDB Datasource to your project.`,
+    NO_BUILDABLE_MONGODB_CONNECTION_KEY: "A valid BUILDABLE_MONGODB_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     INVALID_QUERY: "The query must be an object.",
     INVALID_PAGESIZE: "The pageSize must be a number.",
@@ -86,7 +64,7 @@ const verifyInput = ({
     INVALID_FIELDS: "The fields must be an array.",
   };
 
-  if (!MONGODB_CONNECTION_KEY) throw new Error(ERRORS.NO_MONGODB_CONNECTION_KEY);
+  if (!BUILDABLE_MONGODB_CONNECTION_KEY) throw new Error(ERRORS.NO_BUILDABLE_MONGODB_CONNECTION_KEY);
   if (!collection || typeof collection !== "string") throw new Error(ERRORS.NO_COLLECTION);
   if (query && typeof query !== "object") throw new Error(ERRORS.INVALID_QUERY);
   if (pageSize && typeof pageSize !== "number") throw new Error(ERRORS.INVALID_PAGESIZE);
