@@ -30,8 +30,7 @@ const run = async (input) => {
  */
 const verifyInput = ({ BUILDABLE_NOTION_API_TOKEN, notionVersion }) => {
   const ERRORS = {
-    INVALID_BUILDABLE_NOTION_API_TOKEN:
-      "A valid BUILDABLE_NOTION_API_TOKEN field (string) was not provided in the input.",
+    INVALID_BUILDABLE_NOTION_API_TOKEN: "A valid BUILDABLE_NOTION_API_TOKEN field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_NOTION_VERSION: "A valid notionVersion field (string) was not provided in the input.",
   };
 
