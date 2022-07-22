@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const run = async (input) => {
-  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_ID, login, admin, profile_name } =
+  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, login, admin, profile_name } =
     input;
 
   verifyInput(input);
@@ -10,7 +10,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "post",
       url: "https://api.github.com/admin/organizations",
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_ID },
+      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
       data: { login, admin, ...(profile_name ? { profile_name } : {}) },
     });
 
@@ -29,23 +29,23 @@ const run = async (input) => {
  */
 const verifyInput = ({
   BUILDABLE_GITHUB_ACCESS_TOKEN,
-  BUILDABLE_GITHUB_ACCOUNT_ID,
+  BUILDABLE_GITHUB_ACCOUNT_USERNAME,
   login,
   admin,
 }) => {
   const ERRORS = {
     INVALID_BUILDABLE_GITHUB_ACCESS_TOKEN:
-      "A valid BUILDABLE_GITHUB_ACCESS_TOKEN field (string) was not provided in the input.",
-    INVALID_BUILDABLE_GITHUB_ACCOUNT_ID:
-      "A valid BUILDABLE_GITHUB_ACCOUNT_ID field (string) was not provided in the input.",
+      "A valid BUILDABLE_GITHUB_ACCESS_TOKEN field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
+    INVALID_BUILDABLE_GITHUB_ACCOUNT_USERNAME:
+      "A valid BUILDABLE_GITHUB_ACCOUNT_USERNAME field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_LOGIN: "A valid login field (string) was not provided in the input.",
     INVALID_ADMIN: "A valid admin field (string) was not provided in the input.",
   };
 
   if (typeof BUILDABLE_GITHUB_ACCESS_TOKEN !== "string")
     throw new Error(ERRORS.INVALID_BUILDABLE_GITHUB_ACCESS_TOKEN);
-  if (typeof BUILDABLE_GITHUB_ACCOUNT_ID !== "string")
-    throw new Error(ERRORS.INVALID_BUILDABLE_GITHUB_ACCOUNT_ID);
+  if (typeof BUILDABLE_GITHUB_ACCOUNT_USERNAME !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_GITHUB_ACCOUNT_USERNAME);
   if (typeof login !== "string") throw new Error(ERRORS.INVALID_LOGIN);
   if (typeof admin !== "string") throw new Error(ERRORS.INVALID_ADMIN);
 };

@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const run = async (input) => {
-  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_ID, owner, repo, analysis_id } =
+  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, owner, repo, analysis_id } =
     input;
 
   verifyInput(input);
@@ -10,7 +10,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: `https://api.github.com/repos/${owner}/${repo}/code-scanning/analyses/${analysis_id}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_ID },
+      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
     });
 
     return data;
@@ -28,16 +28,16 @@ const run = async (input) => {
  */
 const verifyInput = ({
   BUILDABLE_GITHUB_ACCESS_TOKEN,
-  BUILDABLE_GITHUB_ACCOUNT_ID,
+  BUILDABLE_GITHUB_ACCOUNT_USERNAME,
   owner,
   repo,
   analysis_id,
 }) => {
   const ERRORS = {
     INVALID_BUILDABLE_GITHUB_ACCESS_TOKEN:
-      "A valid BUILDABLE_GITHUB_ACCESS_TOKEN field (string) was not provided in the input.",
-    INVALID_BUILDABLE_GITHUB_ACCOUNT_ID:
-      "A valid BUILDABLE_GITHUB_ACCOUNT_ID field (string) was not provided in the input.",
+      "A valid BUILDABLE_GITHUB_ACCESS_TOKEN field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
+    INVALID_BUILDABLE_GITHUB_ACCOUNT_USERNAME:
+      "A valid BUILDABLE_GITHUB_ACCOUNT_USERNAME field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_OWNER: "A valid owner field (string) was not provided in the input.",
     INVALID_REPO: "A valid repo field (string) was not provided in the input.",
     INVALID_ANALYSIS_ID: "A valid analysis_id field (number) was not provided in the input.",
@@ -45,8 +45,8 @@ const verifyInput = ({
 
   if (typeof BUILDABLE_GITHUB_ACCESS_TOKEN !== "string")
     throw new Error(ERRORS.INVALID_BUILDABLE_GITHUB_ACCESS_TOKEN);
-  if (typeof BUILDABLE_GITHUB_ACCOUNT_ID !== "string")
-    throw new Error(ERRORS.INVALID_BUILDABLE_GITHUB_ACCOUNT_ID);
+  if (typeof BUILDABLE_GITHUB_ACCOUNT_USERNAME !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_GITHUB_ACCOUNT_USERNAME);
   if (typeof owner !== "string") throw new Error(ERRORS.INVALID_OWNER);
   if (typeof repo !== "string") throw new Error(ERRORS.INVALID_REPO);
   if (typeof analysis_id !== "number") throw new Error(ERRORS.INVALID_ANALYSIS_ID);

@@ -3,7 +3,7 @@ const axios = require("axios");
 const run = async (input) => {
   const {
     BUILDABLE_GITHUB_ACCESS_TOKEN,
-    BUILDABLE_GITHUB_ACCOUNT_ID,
+    BUILDABLE_GITHUB_ACCOUNT_USERNAME,
     owner,
     repo,
     asset_id,
@@ -18,7 +18,7 @@ const run = async (input) => {
     const { data } = await axios({
       method: "patch",
       url: `https://api.github.com/repos/${owner}/${repo}/releases/assets/${asset_id}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_ID },
+      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
       data: { ...(name ? { name } : {}), ...(label ? { label } : {}), ...(state ? { state } : {}) },
     });
 
@@ -37,16 +37,16 @@ const run = async (input) => {
  */
 const verifyInput = ({
   BUILDABLE_GITHUB_ACCESS_TOKEN,
-  BUILDABLE_GITHUB_ACCOUNT_ID,
+  BUILDABLE_GITHUB_ACCOUNT_USERNAME,
   owner,
   repo,
   asset_id,
 }) => {
   const ERRORS = {
     INVALID_BUILDABLE_GITHUB_ACCESS_TOKEN:
-      "A valid BUILDABLE_GITHUB_ACCESS_TOKEN field (string) was not provided in the input.",
-    INVALID_BUILDABLE_GITHUB_ACCOUNT_ID:
-      "A valid BUILDABLE_GITHUB_ACCOUNT_ID field (string) was not provided in the input.",
+      "A valid BUILDABLE_GITHUB_ACCESS_TOKEN field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
+    INVALID_BUILDABLE_GITHUB_ACCOUNT_USERNAME:
+      "A valid BUILDABLE_GITHUB_ACCOUNT_USERNAME field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_OWNER: "A valid owner field (string) was not provided in the input.",
     INVALID_REPO: "A valid repo field (string) was not provided in the input.",
     INVALID_ASSET_ID: "A valid asset_id field (number) was not provided in the input.",
@@ -54,8 +54,8 @@ const verifyInput = ({
 
   if (typeof BUILDABLE_GITHUB_ACCESS_TOKEN !== "string")
     throw new Error(ERRORS.INVALID_BUILDABLE_GITHUB_ACCESS_TOKEN);
-  if (typeof BUILDABLE_GITHUB_ACCOUNT_ID !== "string")
-    throw new Error(ERRORS.INVALID_BUILDABLE_GITHUB_ACCOUNT_ID);
+  if (typeof BUILDABLE_GITHUB_ACCOUNT_USERNAME !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_GITHUB_ACCOUNT_USERNAME);
   if (typeof owner !== "string") throw new Error(ERRORS.INVALID_OWNER);
   if (typeof repo !== "string") throw new Error(ERRORS.INVALID_REPO);
   if (typeof asset_id !== "number") throw new Error(ERRORS.INVALID_ASSET_ID);
