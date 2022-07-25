@@ -1,11 +1,11 @@
 {
   "name": "admin_users_setOwnerResult",
   "title": "Set an Existing Guest, Regular User, or Admin User to Be a Workspace Owner.",
-  "description": "Set an existing guest, regular user, or admin user to be a workspace owner. using the Slack API",
+  "description": "Set an existing guest, regular user, or admin user to be a workspace owner using the Slack API",
   "image": "https://assets.buildable.dev/catalog/node-templates/slack.svg",
   "platform": "slack",
   "type": "js-request-function",
-  "envVars": { "SLACK_ACCESS_TOKEN": { "development": "", "production": "" } },
+  "envVars": { "BUILDABLE_SLACK_ACCESS_TOKEN": { "development": "", "production": "" } },
   "fee": 0,
   "category": "communication",
   "accessType": "open",
@@ -13,5 +13,6 @@
   "price": "free",
   "tags": ["business", "messaging", "chat"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "62d863cd0bd36f737a23f631", "type": "integration" }]
 }

@@ -1,11 +1,11 @@
 {
   "name": "rtm_connectResult",
   "title": "Starts a Real Time Messaging Session.",
-  "description": "Starts a real time messaging session. using the Slack API",
+  "description": "Starts a real time messaging session using the Slack API",
   "image": "https://assets.buildable.dev/catalog/node-templates/slack.svg",
   "platform": "slack",
   "type": "js-request-function",
-  "envVars": { "SLACK_ACCESS_TOKEN": { "development": "", "production": "" } },
+  "envVars": { "BUILDABLE_SLACK_ACCESS_TOKEN": { "development": "", "production": "" } },
   "fee": 0,
   "category": "communication",
   "accessType": "open",
@@ -13,5 +13,6 @@
   "price": "free",
   "tags": ["business", "messaging", "chat"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "62d863cd0bd36f737a23f631", "type": "integration" }]
 }

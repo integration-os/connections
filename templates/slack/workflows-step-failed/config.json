@@ -1,11 +1,11 @@
 {
   "name": "workflows_stepFailedResult",
   "title": "Indicate that an App's Step in a Workflow Failed to Execute.",
-  "description": "Indicate that an app's step in a workflow failed to execute. using the Slack API",
+  "description": "Indicate that an app's step in a workflow failed to execute using the Slack API",
   "image": "https://assets.buildable.dev/catalog/node-templates/slack.svg",
   "platform": "slack",
   "type": "js-request-function",
-  "envVars": { "SLACK_ACCESS_TOKEN": { "development": "", "production": "" } },
+  "envVars": { "BUILDABLE_SLACK_ACCESS_TOKEN": { "development": "", "production": "" } },
   "fee": 0,
   "category": "communication",
   "accessType": "open",
@@ -13,5 +13,6 @@
   "price": "free",
   "tags": ["business", "messaging", "chat"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "62d863cd0bd36f737a23f631", "type": "integration" }]
 }
