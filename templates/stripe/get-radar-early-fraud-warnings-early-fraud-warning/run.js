@@ -33,7 +33,7 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_STRIPE_API_KEY, early_fraud_warning }) => {
   const ERRORS = {
     INVALID_BUILDABLE_STRIPE_API_KEY:
-      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_EARLY_FRAUD_WARNING:
       "A valid early_fraud_warning field (string) was not provided in the input.",
   };

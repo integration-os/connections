@@ -43,7 +43,7 @@ const verifyInput = ({
 }) => {
   const ERRORS = {
     INVALID_BUILDABLE_STRIPE_API_KEY:
-      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_READER: "A valid reader field (string) was not provided in the input.",
     INVALID_CUSTOMER_CONSENT_COLLECTED:
       "A valid customer_consent_collected field (boolean) was not provided in the input.",

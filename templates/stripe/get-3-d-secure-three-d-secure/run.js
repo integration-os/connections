@@ -33,7 +33,7 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_STRIPE_API_KEY, three_d_secure }) => {
   const ERRORS = {
     INVALID_BUILDABLE_STRIPE_API_KEY:
-      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_THREE_D_SECURE: "A valid three_d_secure field (string) was not provided in the input.",
   };
 

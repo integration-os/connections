@@ -46,7 +46,7 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_STRIPE_API_KEY, address, display_name }) => {
   const ERRORS = {
     INVALID_BUILDABLE_STRIPE_API_KEY:
-      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_ADDRESS: "A valid address field (object) was not provided in the input.",
     INVALID_DISPLAY_NAME: "A valid display_name field (string) was not provided in the input.",
   };

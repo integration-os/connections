@@ -64,7 +64,7 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_STRIPE_API_KEY, currency, line_items }) => {
   const ERRORS = {
     INVALID_BUILDABLE_STRIPE_API_KEY:
-      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_CURRENCY: "A valid currency field (string) was not provided in the input.",
     INVALID_LINE_ITEMS: "A valid line_items field (object) was not provided in the input.",
   };

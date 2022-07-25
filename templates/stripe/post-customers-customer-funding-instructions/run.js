@@ -40,7 +40,7 @@ const verifyInput = ({
 }) => {
   const ERRORS = {
     INVALID_BUILDABLE_STRIPE_API_KEY:
-      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_CUSTOMER: "A valid customer field (string) was not provided in the input.",
     INVALID_BANK_TRANSFER: "A valid bank_transfer field (object) was not provided in the input.",
     INVALID_CURRENCY: "A valid currency field (string) was not provided in the input.",

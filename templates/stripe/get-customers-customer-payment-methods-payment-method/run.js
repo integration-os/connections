@@ -33,7 +33,7 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_STRIPE_API_KEY, customer, payment_method }) => {
   const ERRORS = {
     INVALID_BUILDABLE_STRIPE_API_KEY:
-      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_CUSTOMER: "A valid customer field (string) was not provided in the input.",
     INVALID_PAYMENT_METHOD: "A valid payment_method field (string) was not provided in the input.",
   };

@@ -96,7 +96,7 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_STRIPE_API_KEY, cancel_url, success_url }) => {
   const ERRORS = {
     INVALID_BUILDABLE_STRIPE_API_KEY:
-      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_STRIPE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_CANCEL_URL: "A valid cancel_url field (string) was not provided in the input.",
     INVALID_SUCCESS_URL: "A valid success_url field (string) was not provided in the input.",
   };
