@@ -28,7 +28,7 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_TATUM_API_URL, xApiKey, jsonrpc, method, params, id }) => {
   const ERRORS = {
     INVALID_BUILDABLE_TATUM_API_URL:
-      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input.",
+      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_X_API_KEY: "A valid xApiKey field (string) was not provided in the input.",
     INVALID_JSONRPC: "A valid jsonrpc field (string) was not provided in the input.",
     INVALID_METHOD: "A valid method field (string) was not provided in the input.",

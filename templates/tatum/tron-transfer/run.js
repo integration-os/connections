@@ -35,9 +35,9 @@ const verifyInput = ({
 }) => {
   const ERRORS = {
     INVALID_BUILDABLE_TATUM_API_KEY:
-      "A valid BUILDABLE_TATUM_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_TATUM_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_BUILDABLE_TATUM_API_URL:
-      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input.",
+      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_FROM_PRIVATE_KEY:
       "A valid fromPrivateKey field (string) was not provided in the input.",
     INVALID_TO: "A valid to field (string) was not provided in the input.",

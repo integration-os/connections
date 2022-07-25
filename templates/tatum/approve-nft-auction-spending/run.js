@@ -58,9 +58,9 @@ const verifyInput = ({
 }) => {
   const ERRORS = {
     INVALID_BUILDABLE_TATUM_API_KEY:
-      "A valid BUILDABLE_TATUM_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_TATUM_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_BUILDABLE_TATUM_API_URL:
-      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input.",
+      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_CHAIN: "A valid chain field (string) was not provided in the input.",
     INVALID_SPENDER: "A valid spender field (string) was not provided in the input.",
     INVALID_IS_ERC721: "A valid isErc721 field (boolean) was not provided in the input.",

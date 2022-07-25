@@ -65,7 +65,7 @@ const verifyInput = ({
 }) => {
   const ERRORS = {
     INVALID_BUILDABLE_TATUM_API_URL:
-      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input.",
+      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_X_API_KEY: "A valid xApiKey field (string) was not provided in the input.",
     INVALID_VERSION: "A valid version field (number) was not provided in the input.",
     INVALID_CHAIN_ID: "A valid chainId field (string) was not provided in the input.",

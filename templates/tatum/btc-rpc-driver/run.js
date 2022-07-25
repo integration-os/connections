@@ -33,7 +33,7 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_TATUM_API_URL }) => {
   const ERRORS = {
     INVALID_BUILDABLE_TATUM_API_URL:
-      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input.",
+      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
   };
 
   if (typeof BUILDABLE_TATUM_API_URL !== "string")

@@ -28,9 +28,9 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_TATUM_API_KEY, BUILDABLE_TATUM_API_URL, txId, index }) => {
   const ERRORS = {
     INVALID_BUILDABLE_TATUM_API_KEY:
-      "A valid BUILDABLE_TATUM_API_KEY field (string) was not provided in the input.",
+      "A valid BUILDABLE_TATUM_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_BUILDABLE_TATUM_API_URL:
-      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input.",
+      "A valid BUILDABLE_TATUM_API_URL field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_TX_ID: "A valid txId field (string) was not provided in the input.",
     INVALID_INDEX: "A valid index field (number) was not provided in the input.",
   };
