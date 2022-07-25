@@ -37,7 +37,7 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_TWITTER_BEARER_TOKEN, type }) => {
   const ERRORS = {
     INVALID_BUILDABLE_TWITTER_BEARER_TOKEN:
-      "A valid BUILDABLE_TWITTER_BEARER_TOKEN field (string) was not provided in the input.",
+      "A valid BUILDABLE_TWITTER_BEARER_TOKEN field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_TYPE: "A valid type field (string) was not provided in the input.",
   };
 
