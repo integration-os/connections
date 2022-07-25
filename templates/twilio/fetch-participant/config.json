@@ -16,5 +16,6 @@
   "tags": ["marketing", "messages", "text"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "type": "js-request-function"
+  "type": "js-request-function",
+  "connections": [{ "id": "62d8691d0bd36f737a23f635", "type": "integration" }]
 }

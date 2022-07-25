@@ -55,9 +55,9 @@ const verifyInput = ({
 }) => {
   const ERRORS = {
     INVALID_BUILDABLE_TWILIO_ACCOUNT_SID:
-      "A valid BUILDABLE_TWILIO_ACCOUNT_SID field (string) was not provided in the input.",
+      "A valid BUILDABLE_TWILIO_ACCOUNT_SID field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_BUILDABLE_TWILIO_AUTH_TOKEN:
-      "A valid BUILDABLE_TWILIO_AUTH_TOKEN field (string) was not provided in the input.",
+      "A valid BUILDABLE_TWILIO_AUTH_TOKEN field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_CALLBACK_URL: "A valid callbackUrl field (string) was not provided in the input.",
     INVALID_TRIGGER_VALUE: "A valid triggerValue field (string) was not provided in the input.",
     INVALID_USAGE_CATEGORY: "A valid usageCategory field (string) was not provided in the input.",

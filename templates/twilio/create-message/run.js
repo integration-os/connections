@@ -73,9 +73,9 @@ const run = async (input) => {
 const verifyInput = ({ BUILDABLE_TWILIO_ACCOUNT_SID, BUILDABLE_TWILIO_AUTH_TOKEN, to }) => {
   const ERRORS = {
     INVALID_BUILDABLE_TWILIO_ACCOUNT_SID:
-      "A valid BUILDABLE_TWILIO_ACCOUNT_SID field (string) was not provided in the input.",
+      "A valid BUILDABLE_TWILIO_ACCOUNT_SID field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_BUILDABLE_TWILIO_AUTH_TOKEN:
-      "A valid BUILDABLE_TWILIO_AUTH_TOKEN field (string) was not provided in the input.",
+      "A valid BUILDABLE_TWILIO_AUTH_TOKEN field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_TO: "A valid to field (string) was not provided in the input.",
   };
 
