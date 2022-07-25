@@ -9,7 +9,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/solana/transaction`,
+      url: "{TATUM_API_URL}/v3/solana/transaction",
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
       data: { from, to, amount, fromPrivateKey },
     });

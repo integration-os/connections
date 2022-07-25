@@ -9,7 +9,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/quorum/account/${address}/unlock`,
+      url: `{TATUM_API_URL}/v3/quorum/account/${address}/unlock`,
       headers: { "x-quorum-endpoint": quorumEndpoint, "x-api-key": BUILDABLE_TATUM_API_KEY },
       data: { password },
     });

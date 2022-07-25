@@ -8,7 +8,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/algorand/node/algod/${xApiKey}/**`,
+      url: `{TATUM_API_URL}/v3/algorand/node/algod/${xApiKey}/**`,
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
       data: { ...(rawtxn ? { rawtxn } : {}) },
     });

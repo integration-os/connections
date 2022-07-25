@@ -15,7 +15,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/polygon/smartcontract`,
+      url: "{TATUM_API_URL}/v3/polygon/smartcontract",
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
       data: { contractAddress, methodName, methodABI, params },
     });

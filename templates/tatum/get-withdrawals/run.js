@@ -9,7 +9,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "get",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/offchain/withdrawal`,
+      url: "{TATUM_API_URL}/v3/offchain/withdrawal",
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
       params: {
         pageSize,

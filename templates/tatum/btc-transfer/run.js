@@ -22,7 +22,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/offchain/bitcoin/transfer`,
+      url: "{TATUM_API_URL}/v3/offchain/bitcoin/transfer",
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
       data: {
         senderAccountId,

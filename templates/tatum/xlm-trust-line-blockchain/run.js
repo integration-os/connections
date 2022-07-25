@@ -16,7 +16,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/xlm/trust`,
+      url: "{TATUM_API_URL}/v3/xlm/trust",
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
       data: { fromAccount, issuerAccount, token, fromSecret, ...(limit ? { limit } : {}) },
     });

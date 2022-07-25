@@ -23,7 +23,7 @@ const run = async (input) => {
   try {
     const { data } = await axios({
       method: "post",
-      url: `${BUILDABLE_TATUM_API_URL}/v3/trade/buy`,
+      url: "{TATUM_API_URL}/v3/trade/buy",
       headers: { "x-api-key": BUILDABLE_TATUM_API_KEY },
       data: {
         pageSize,
