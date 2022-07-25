@@ -4,8 +4,8 @@
   "description": "Create a product using the Shopify API",
   "type": "js-request-function",
   "envVars": {
-    "SHOPIFY_ACCESS_TOKEN": { "development": "", "production": "" },
-    "SHOPIFY_STORE_URL": { "development": "", "production": "" }
+    "BUILDABLE_SHOPIFY_ACCESS_TOKEN": { "development": "", "production": "" },
+    "BUILDABLE_SHOPIFY_STORE_URL": { "development": "", "production": "" }
   },
   "fee": 0,
   "image": "https://assets.buildable.dev/catalog/node-templates/shopify.svg",
@@ -16,5 +16,6 @@
   "platform": "shopify",
   "tags": ["sales", "business"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "6296661448d9214b8e446de2", "type": "integration" }]
 }
