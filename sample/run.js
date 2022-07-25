@@ -1,22 +1,3 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Template Name [Run]
- * 
- * @description - Description about your template
- * 
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      link-to-appropriate-documentation
- * 
- * ----------------------------------------------------------------------------------------------------
- */
-
-/**
- * The Node’s executable function
- * 
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
   const {
     API_KEY,
@@ -50,9 +31,7 @@ const run = async (input) => {
  */
 const verifyInput = ({ API_KEY, name }) => {
   const ERRORS = {
-	  NO_API_KEY: `A valid API_KEY is required. 
-	              You can add one to your environment variables at 
-	              https://app.buildable.dev/settings/environment-variables.`,
+	  NO_API_KEY: "A valid API_KEY (string) is required.",
 	  NO_NAME: "A valid name is required."
 	};
 
