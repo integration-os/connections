@@ -56,8 +56,10 @@ The input function’s sole purpose is to select the data that will be passed in
 
 It has access to:
 
-- `$trigger` - The Flow's request object
-- `$nodes` - The outputs of all Nodes above itself
+- `$body` - The Flow's body
+- `$headers` - The Flow's headers
+- `$env` - Your Environment Variables
+- `$data` - The outputs of all Nodes above itself
 
 ⚠️ It’s important to make sure your input function is only used for selection and not for processing. Following best practices, you shouldn’t write any logic within the Input function. To enforce this, Buildable purposefully allocates lower resources to input functions.
 
