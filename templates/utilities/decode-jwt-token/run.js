@@ -1,24 +1,5 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Decode JWT Token [Run]
- *
- * @description - Decode a JSON Web Token
- *
- * @author    Buildable Technologies Inc.
- * @license   MIT
- * @access    open
- * @docs      https://github.com/auth0/node-jsonwebtoken#readme
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const jwt = require("jsonwebtoken");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = (input) => {
   const { token } = input;
 

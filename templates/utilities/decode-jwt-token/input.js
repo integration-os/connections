@@ -1,23 +1,4 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Decode JWT Token [Input]
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://github.com/auth0/node-jsonwebtoken#readme
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
-/**
- * Lets you select the input for your Node's run function
- *
- * @param {Params} params
- * @param {Object} $trigger - This Flow's request object
- * @param {Object} $nodes - Data from the Nodes above
- */
-const nodeInput = ({ $trigger, $nodes }) => {
+const nodeInput = ({ $body, $headers, $env, $data }) => {
   return {
     // Required
     token:

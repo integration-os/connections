@@ -1,16 +1,3 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Get Countries [Run]
- *
- * @description - Get a list of countries
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const COUNTRIES = [
   "Afghanistan",
   "Aland Islands",
@@ -261,11 +248,6 @@ const COUNTRIES = [
   "Zimbabwe",
 ];
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
   const { query: { term } = {} } = input;
 

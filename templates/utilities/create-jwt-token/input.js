@@ -1,26 +1,7 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Create JWT Token [Input]
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://github.com/auth0/node-jsonwebtoken#readme
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
-/**
- * Lets you select the input for your Node's run function
- *
- * @param {Params} params
- * @param {Object} $trigger - This Flow's request object
- * @param {Object} $nodes - Data from the Nodes above
- */
-const nodeInput = ({ $trigger, $nodes }) => {
+const nodeInput = ({ $body, $headers, $env, $data }) => {
   return {
-    JWT_SECRET: $trigger.env.JWT_SECRET, // Required
-    JWT_ISSUER: $trigger.env.JWT_ISSUER, // Required
+    BUILDABLE_JWT_SECRET: $env.BUILDABLE_JWT_SECRET, // Required
+    BUILDABLE_JWT_ISSUER: $env.BUILDABLE_JWT_ISSUER, // Required
     audience: "users", // Required
 
     // Required - Data to be encoded in the JWT
