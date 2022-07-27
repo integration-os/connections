@@ -1,7 +1,7 @@
 {
   "name": "getTreasuryInboundTransfersResult",
-  "title": "<p>Returns a List of InboundTransfers Sent From the Specified FinancialAccount.</p>",
-  "description": "<p>returns a list of inboundtransfers sent from the specified financialaccount.</p> using the Stripe API",
+  "title": "Get Treasury Inbound Transfers",
+  "description": "Returns a list of inboundtransfers sent from the specified financialaccount using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

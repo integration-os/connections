@@ -1,7 +1,7 @@
 {
   "name": "postSubscriptionSchedulesScheduleCancelResult",
-  "title": "<p>Cancels a Subscription Schedule and Its Associated Subscription Immediately (if the Subscription ",
-  "description": "<p>cancels a subscription schedule and its associated subscription immediately (if the subscription schedule has an active subscription). A subscription schedule can only be canceled if its status is <code>not_started</code> or <code>active</code>.</p> using the Stripe API",
+  "title": "Post Subscription Schedules Schedule Cancel",
+  "description": "Cancels a subscription schedule and its associated subscription immediately (if the subscription schedule has an active subscription) using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

@@ -1,7 +1,7 @@
 {
   "name": "getPaymentLinksPaymentLinkLineItemsResult",
-  "title": "<p>When Retrieving a Payment Link, There Is an Includable <Strong>line_items</strong> Property Conta",
-  "description": "<p>when retrieving a payment link, there is an includable <strong>line_items</strong> property containing the first handful of those items. There is also a url where you can retrieve the full (paginated) list of line items.</p> using the Stripe API",
+  "title": "Get Payment Links Payment Link Line Items",
+  "description": "When retrieving a payment link, there is an includable line_items property containing the first handful of those items using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

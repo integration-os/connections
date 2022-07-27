@@ -1,7 +1,7 @@
 {
   "name": "getTopupsTopupResult",
-  "title": "<p>Retrieves the Details of a Top-up that Has Previously Been Created. Supply the Unique Top-up ID t",
-  "description": "<p>retrieves the details of a top-up that has previously been created. Supply the unique top-up id that was returned from your previous request, and stripe will return the corresponding top-up information.</p> using the Stripe API",
+  "title": "Get Topups Topup",
+  "description": "Retrieves the details of a top-up that has previously been created using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

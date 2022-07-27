@@ -1,7 +1,7 @@
 {
   "name": "postAppsSecretsDeleteResult",
-  "title": "<p>Deletes a Secret From the Secret Store by Name and scope.</p>",
-  "description": "<p>deletes a secret from the secret store by name and scope.</p> using the Stripe API",
+  "title": "Post Apps Secrets Delete",
+  "description": "Deletes a secret from the secret store by name and scope using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

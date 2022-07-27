@@ -1,7 +1,7 @@
 {
   "name": "getCreditNotesIdResult",
-  "title": "<p>Retrieves the Credit Note Object with the Given identifier.</p>",
-  "description": "<p>retrieves the credit note object with the given identifier.</p> using the Stripe API",
+  "title": "Get Credit Notes Id",
+  "description": "Retrieves the credit note object with the given identifier using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

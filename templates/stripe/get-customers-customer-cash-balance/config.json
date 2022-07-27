@@ -1,7 +1,7 @@
 {
   "name": "getCustomersCustomerCashBalanceResult",
-  "title": "<p>Retrieves a Customer’s Cash balance.</p>",
-  "description": "<p>retrieves a customer’s cash balance.</p> using the Stripe API",
+  "title": "Get Customers Customer Cash Balance",
+  "description": "Retrieves a customer’s cash balance using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

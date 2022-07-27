@@ -1,7 +1,7 @@
 {
   "name": "getAccountsAccountPeopleResult",
-  "title": "<p>Returns a List of People Associated with the Account’s Legal Entity. The People Are Returned Sort",
-  "description": "<p>returns a list of people associated with the account’s legal entity. The people are returned sorted by creation date, with the most recent people appearing first.</p> using the Stripe API",
+  "title": "Get Accounts Account People",
+  "description": "Returns a list of people associated with the account’s legal entity using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

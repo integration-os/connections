@@ -1,7 +1,7 @@
 {
   "name": "result",
-  "title": "<p>Retrieve an Existing Source Transaction Object. Supply the Unique Source ID From a Source Creatio",
-  "description": "<p>retrieve an existing source transaction object. Supply the unique source id from a source creation request and the source transaction id and stripe will return the corresponding up-to-date source object information.</p> using the Stripe API",
+  "title": "Get Sources Source Source Transactions Source Transaction",
+  "description": "Retrieve an existing source transaction object using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

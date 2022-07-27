@@ -1,7 +1,7 @@
 {
   "name": "getChargesChargeRefundsResult",
-  "title": "<p>You Can See a List of the Refunds Belonging to a Specific Charge. Note that the 10 Most Recent Re",
-  "description": "<p>you can see a list of the refunds belonging to a specific charge. Note that the 10 most recent refunds are always available by default on the charge object. If you need more than those 10, you can use this api method and the <code>limit</code> and <code>starting_after</code> parameters to page through additional refunds.</p> using the Stripe API",
+  "title": "Get Charges Charge Refunds",
+  "description": "You can see a list of the refunds belonging to a specific charge using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

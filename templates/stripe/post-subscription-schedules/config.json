@@ -1,7 +1,7 @@
 {
   "name": "postSubscriptionSchedulesResult",
-  "title": "<p>Creates a New Subscription Schedule Object. Each Customer Can Have up to 500 Active or Scheduled ",
-  "description": "<p>creates a new subscription schedule object. Each customer can have up to 500 active or scheduled subscriptions.</p> using the Stripe API",
+  "title": "Post Subscription Schedules",
+  "description": "Creates a new subscription schedule object using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

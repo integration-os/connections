@@ -1,7 +1,7 @@
 {
   "name": "postProductsIdResult",
-  "title": "<p>Updates the Specific Product by Setting the Values of the Parameters Passed. Any Parameters Not P",
-  "description": "<p>updates the specific product by setting the values of the parameters passed. Any parameters not provided will be left unchanged.</p> using the Stripe API",
+  "title": "Post Products Id",
+  "description": "Updates the specific product by setting the values of the parameters passed using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

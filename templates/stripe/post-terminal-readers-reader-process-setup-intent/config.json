@@ -1,7 +1,7 @@
 {
   "name": "postTerminalReadersReaderProcessSetupIntentResult",
-  "title": "<p>Initiates a Setup Intent Flow on a Reader.</p>",
-  "description": "<p>initiates a setup intent flow on a reader.</p> using the Stripe API",
+  "title": "Post Terminal Readers Reader Process Setup Intent",
+  "description": "Initiates a setup intent flow on a reader using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

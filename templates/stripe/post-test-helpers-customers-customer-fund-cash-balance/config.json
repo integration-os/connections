@@ -1,7 +1,7 @@
 {
   "name": "result",
-  "title": "<p>Create an Incoming Testmode Bank Transfer</p>",
-  "description": "<p>create an incoming testmode bank transfer</p> using the Stripe API",
+  "title": "Post Test Helpers Customers Customer Fund Cash Balance",
+  "description": "Create an incoming testmode bank transfer using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

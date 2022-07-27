@@ -1,7 +1,7 @@
 {
   "name": "getExchangeRatesRateIdResult",
-  "title": "<p>Retrieves the Exchange Rates From the Given Currency to Every Supported currency.</p>",
-  "description": "<p>retrieves the exchange rates from the given currency to every supported currency.</p> using the Stripe API",
+  "title": "Get Exchange Rates Rate Id",
+  "description": "Retrieves the exchange rates from the given currency to every supported currency using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

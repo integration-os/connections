@@ -1,7 +1,7 @@
 {
   "name": "postIssuingCardholdersResult",
-  "title": "<p>Creates a New Issuing <code>Cardholder</code> Object that Can Be Issued cards.</p>",
-  "description": "<p>creates a new issuing <code>cardholder</code> object that can be issued cards.</p> using the Stripe API",
+  "title": "Post Issuing Cardholders",
+  "description": "Creates a new issuing cardholder object that can be issued cards using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
@@ -14,5 +14,5 @@
   "tags": ["payments", "accounts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "datastore" }]
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }
