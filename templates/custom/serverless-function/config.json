@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "title": "JavaScript Function",
-  "description": "Execute a custom synchronous JavaScript function",
-  "type": "js-function",
+  "name": "serverless",
+  "title": "Serverless Function",
+  "description": "Execute a custom JavaScript function",
+  "type": "js-request-function",
   "envVars": {},
   "fee": 0,
   "image": "https://assets.buildable.dev/catalog/node-templates/javascript.png",
