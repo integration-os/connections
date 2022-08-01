@@ -3,7 +3,7 @@
   "title": "Update Row",
   "description": "Update a row by its ID in a MySQL table",
   "type": "js-request-function",
-  "envVars": { "BUILDABLE_MYSQL_CONNECTION_KEY": { "development": "", "production": "" } },
+  "envVars": { "MYSQL_CONNECTION_KEY": { "development": "", "production": "" } },
   "fee": 0,
   "image": "https://assets.buildable.dev/catalog/node-templates/mysql.svg",
   "category": "databases",
