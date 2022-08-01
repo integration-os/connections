@@ -14,5 +14,5 @@
   "tags": ["db", "crud", "api"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "624df5e7d9526e1987817cce", "type": "database" }]
+  "connections": [{ "id": "62291dfff59c7b1f20ced9d7", "type": "database" }]
 }
