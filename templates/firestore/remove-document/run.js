@@ -3,12 +3,12 @@ const { getConnection } = require("@buildable/firestore");
 const DOCUMENT_NOT_FOUND_ERROR = "Document not found.";
 
 const run = async (input) => {
-  const { BUILDABLE_FIRESTORE_CONNECTION_KEY, collection, id } = input;
+  const { FIRESTORE_CONNECTION_KEY, collection, id } = input;
 
   verifyInput(input);
 
   try {
-    const db = await getConnection(BUILDABLE_FIRESTORE_CONNECTION_KEY);
+    const db = await getConnection(FIRESTORE_CONNECTION_KEY);
 
     const doc = await db.collection(collection).doc(id).get();
 
@@ -32,14 +32,14 @@ const run = async (input) => {
   }
 };
 
-const verifyInput = ({ BUILDABLE_FIRESTORE_CONNECTION_KEY, collection, id }) => {
+const verifyInput = ({ FIRESTORE_CONNECTION_KEY, collection, id }) => {
   const ERRORS = {
-    NO_BUILDABLE_FIRESTORE_CONNECTION_KEY: "A valid BUILDABLE_FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_FIRESTORE_CONNECTION_KEY: "A valid FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     NO_ID: "A valid id is required.",
   };
 
-  if (!BUILDABLE_FIRESTORE_CONNECTION_KEY) throw new Error(ERRORS.NO_BUILDABLE_FIRESTORE_CONNECTION_KEY);
+  if (!FIRESTORE_CONNECTION_KEY) throw new Error(ERRORS.NO_FIRESTORE_CONNECTION_KEY);
   if (!collection || typeof collection !== "string") throw new Error(ERRORS.NO_COLLECTION);
   if (!id) throw new Error(ERRORS.NO_ID);
 };

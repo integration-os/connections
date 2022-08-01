@@ -4,7 +4,7 @@ const MISSING_START_AT_FIELD_IN_SORT_ERROR = "sort must contain the startAtField
 
 const run = async (input) => {
   const {
-    BUILDABLE_FIRESTORE_CONNECTION_KEY,
+    FIRESTORE_CONNECTION_KEY,
     collection,
     query,
     fields = [],
@@ -17,7 +17,7 @@ const run = async (input) => {
   verifyInput(input);
 
   try {
-    const db = await getConnection(BUILDABLE_FIRESTORE_CONNECTION_KEY);
+    const db = await getConnection(FIRESTORE_CONNECTION_KEY);
 
     let _query = await db.collection(collection);
 
@@ -81,7 +81,7 @@ const run = async (input) => {
 };
 
 const verifyInput = ({
-  BUILDABLE_FIRESTORE_CONNECTION_KEY,
+  FIRESTORE_CONNECTION_KEY,
   collection,
   query,
   fields,
@@ -89,7 +89,7 @@ const verifyInput = ({
   sort = { createdAt: -1 },
 }) => {
   const ERRORS = {
-    NO_BUILDABLE_FIRESTORE_CONNECTION_KEY: "A valid BUILDABLE_FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_FIRESTORE_CONNECTION_KEY: "A valid FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     INVALID_QUERY: "The query must be an array.",
     INVALID_PAGESIZE: "The pageSize must be a number.",
@@ -98,7 +98,7 @@ const verifyInput = ({
     INVALID_FIELDS: "The fields must be an array.",
   };
 
-  if (!BUILDABLE_FIRESTORE_CONNECTION_KEY) throw new Error(ERRORS.NO_BUILDABLE_FIRESTORE_CONNECTION_KEY);
+  if (!FIRESTORE_CONNECTION_KEY) throw new Error(ERRORS.NO_FIRESTORE_CONNECTION_KEY);
   if (!collection || typeof collection !== "string") throw new Error(ERRORS.NO_COLLECTION);
   if (query && !Array.isArray(query)) throw new Error(ERRORS.INVALID_QUERY);
   if (pageSize && typeof pageSize !== "number") throw new Error(ERRORS.INVALID_PAGESIZE);
