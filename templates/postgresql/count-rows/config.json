@@ -4,7 +4,7 @@
   "description": "Count number of rows from a PostgreSQL table",
   "type": "js-request-function",
   "envVars": {
-    "BUILDABLE_POSTGRESQL_CONNECTION_KEY": {
+    "POSTGRESQL_CONNECTION_KEY": {
       "development": "",
       "production": ""
     }

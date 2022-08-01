@@ -1,12 +1,12 @@
 const { getConnection } = require("@buildable/knex");
 
 const run = async (input) => {
-  const { BUILDABLE_POSTGRESQL_CONNECTION_KEY, tableName, id } = input;
+  const { POSTGRESQL_CONNECTION_KEY, tableName, id } = input;
 
   verifyInput(input);
 
   try {
-    const db = await getConnection(BUILDABLE_POSTGRESQL_CONNECTION_KEY);
+    const db = await getConnection(POSTGRESQL_CONNECTION_KEY);
 
     const results = await db.select().where({ id }).from(tableName);
 
@@ -22,14 +22,14 @@ const run = async (input) => {
   }
 };
 
-const verifyInput = ({ BUILDABLE_POSTGRESQL_CONNECTION_KEY, tableName, id }) => {
+const verifyInput = ({ POSTGRESQL_CONNECTION_KEY, tableName, id }) => {
   const ERRORS = {
-    NO_BUILDABLE_POSTGRESQL_CONNECTION_KEY: "A valid BUILDABLE_POSTGRESQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_POSTGRESQL_CONNECTION_KEY: "A valid POSTGRESQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_TABLE_NAME: "A valid tableName name is required.",
     NO_ID: "A valid id is required.",
   };
 
-  if (!BUILDABLE_POSTGRESQL_CONNECTION_KEY) throw new Error(ERRORS.NO_BUILDABLE_POSTGRESQL_CONNECTION_KEY);
+  if (!POSTGRESQL_CONNECTION_KEY) throw new Error(ERRORS.NO_POSTGRESQL_CONNECTION_KEY);
   if (!tableName || typeof tableName !== "string") throw new Error(ERRORS.NO_TABLE_NAME);
   if (!id) throw new Error(ERRORS.NO_ID);
 };

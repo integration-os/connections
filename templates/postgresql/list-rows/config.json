@@ -3,7 +3,7 @@
   "title": "List Rows",
   "description": "List rows from a PostgreSQL table with pagination and filtering",
   "type": "js-request-function",
-  "envVars": { "BUILDABLE_POSTGRESQL_CONNECTION_KEY": { "development": "", "production": "" } },
+  "envVars": { "POSTGRESQL_CONNECTION_KEY": { "development": "", "production": "" } },
   "fee": 0,
   "image": "https://assets.buildable.dev/catalog/node-templates/postgresql.svg",
   "category": "databases",

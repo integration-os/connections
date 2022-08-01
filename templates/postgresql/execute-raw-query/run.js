@@ -1,7 +1,7 @@
 const { getConnection } = require("@buildable/knex");
 
 const run = async (input) => {
-  const { BUILDABLE_POSTGRESQL_CONNECTION_KEY, maxLimit } = input;
+  const { POSTGRESQL_CONNECTION_KEY, maxLimit } = input;
   let { query } = input;
 
   verifyInput(input);
@@ -9,7 +9,7 @@ const run = async (input) => {
   query = handleLimit(query, maxLimit);
 
   try {
-    const db = await getConnection(BUILDABLE_POSTGRESQL_CONNECTION_KEY);
+    const db = await getConnection(POSTGRESQL_CONNECTION_KEY);
 
     return db.raw(query);
   } catch (error) {
@@ -21,14 +21,14 @@ const run = async (input) => {
   }
 };
 
-const verifyInput = ({ BUILDABLE_POSTGRESQL_CONNECTION_KEY, query, maxLimit }) => {
+const verifyInput = ({ POSTGRESQL_CONNECTION_KEY, query, maxLimit }) => {
   const ERRORS = {
-    NO_BUILDABLE_POSTGRESQL_CONNECTION_KEY: "A valid BUILDABLE_POSTGRESQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_POSTGRESQL_CONNECTION_KEY: "A valid POSTGRESQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     INVALID_QUERY: "The query must be a string.",
     INVALID_MAX_LIMIT: "The maxLimit must be a number.",
   };
 
-  if (!BUILDABLE_POSTGRESQL_CONNECTION_KEY) throw new Error(ERRORS.NO_BUILDABLE_POSTGRESQL_CONNECTION_KEY);
+  if (!POSTGRESQL_CONNECTION_KEY) throw new Error(ERRORS.NO_POSTGRESQL_CONNECTION_KEY);
   if (typeof query !== "string") throw new Error(ERRORS.INVALID_QUERY);
   if (typeof maxLimit !== "number") throw new Error(ERRORS.INVALID_MAX_LIMIT);
 };

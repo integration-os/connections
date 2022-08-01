@@ -3,7 +3,7 @@
   "title": "Execute Raw Query",
   "description": "Execute a raw query on a PostgreSQL database",
   "type": "js-request-function",
-  "envVars": { "BUILDABLE_POSTGRESQL_CONNECTION_KEY": { "development": "", "production": "" } },
+  "envVars": { "POSTGRESQL_CONNECTION_KEY": { "development": "", "production": "" } },
   "fee": 0,
   "image": "https://assets.buildable.dev/catalog/node-templates/postgresql.svg",
   "category": "databases",
