@@ -3,7 +3,7 @@
   "title": "Create Index",
   "description": "Create an index on a MongoDB collection",
   "type": "js-request-function",
-  "envVars": { "BUILDABLE_MONGODB_CONNECTION_KEY": { "development": "", "production": "" } },
+  "envVars": { "MONGODB_CONNECTION_KEY": { "development": "", "production": "" } },
   "fee": 0,
   "image": "https://assets.buildable.dev/catalog/node-templates/mongo.svg",
   "category": "databases",

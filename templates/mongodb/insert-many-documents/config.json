@@ -3,7 +3,7 @@
   "title": "Insert Many Documents",
   "description": "Insert many documents into a MongoDB collection",
   "type": "js-request-function",
-  "envVars": { "BUILDABLE_MONGODB_CONNECTION_KEY": { "development": "", "production": "" } },
+  "envVars": { "MONGODB_CONNECTION_KEY": { "development": "", "production": "" } },
   "fee": 0,
   "image": "https://assets.buildable.dev/catalog/node-templates/mongo.svg",
   "category": "databases",
