@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "graphqlResult",
   "title": "GraphQL Request",
   "description": "Perform a request using GraphQL",
   "type": "js-request-function",

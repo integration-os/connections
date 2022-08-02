@@ -1,24 +1,5 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Count Documents [Run]
- *
- * @description - Count the number of documents in a MongoDB collection
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://docs.mongodb.com/manual/reference/method/db.collection.countDocuments/
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const { getConnection } = require("@buildable/mongodb");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
   const { MONGODB_CONNECTION_KEY, collection, query = {} } = input;
 
@@ -40,10 +21,7 @@ const run = async (input) => {
 
 const verifyInput = ({ MONGODB_CONNECTION_KEY, collection, query }) => {
   const ERRORS = {
-    NO_MONGODB_CONNECTION_KEY: `A valid MONGODB_CONNECTION_KEY is required. 
-                                You can add one to your environment variables at 
-                                https://app.buildable.dev/settings/environment-variables. 
-                                You may also need to add a MongoDB Datasource to your project.`,
+    NO_MONGODB_CONNECTION_KEY: "A valid MONGODB_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     INVALID_QUERY: "The query must be an object.",
   };

@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "axiosResult",
   "title": "Axios Request",
   "description": "Perform an HTTP request to an external API endpoint using Axios",
   "type": "js-request-function",

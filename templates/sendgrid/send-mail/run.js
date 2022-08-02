@@ -1,30 +1,11 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Send Mail [Run]
- *
- * @description - Send an email using SendGrid's v3 Web API
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://docs.sendgrid.com/api-reference/mail-send/mail-send
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const client = require("@sendgrid/mail");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
-  const { SENDGRID_API_KEY, ...params } = input;
+  const { BUILDABLE_SENDGRID_API_KEY, ...params } = input;
 
   verifyInput(input);
 
-  client.setApiKey(SENDGRID_API_KEY);
+  client.setApiKey(BUILDABLE_SENDGRID_API_KEY);
 
   try {
     const data = await client.send(params);
@@ -44,12 +25,10 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ SENDGRID_API_KEY }) => {
+const verifyInput = ({ BUILDABLE_SENDGRID_API_KEY }) => {
   const ERRORS = {
-    NO_SENDGRID_API_KEY: `A valid SENDGRID_API_KEY (string) is required. 
-                          You can add one to your environment variables at 
-                          https://app.buildable.dev/settings/environment-variables.`,
+    NO_BUILDABLE_SENDGRID_API_KEY: "A valid BUILDABLE_SENDGRID_API_KEY (string) is required. Create your appropriate Connection to automatically add it.",
   };
 
-  if (typeof SENDGRID_API_KEY !== "string") throw new Error(ERRORS.NO_SENDGRID_API_KEY);
+  if (typeof BUILDABLE_SENDGRID_API_KEY !== "string") throw new Error(ERRORS.NO_BUILDABLE_SENDGRID_API_KEY);
 };

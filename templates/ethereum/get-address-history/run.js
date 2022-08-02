@@ -1,24 +1,5 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Get Balance [Run]
- *
- * @description - Get the ETH balance of an Ethereum address using ethersJS
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://docs.ethers.io/v5/
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const ethers = require("ethers");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
   const { network, address } = input;
 

@@ -1,21 +1,3 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Merge and Clean Arrays [Run]
- *
- * @description - Merge multiple arrays into one and remove duplicates
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = (input) => {
   const { arrays } = input;
 

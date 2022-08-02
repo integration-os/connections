@@ -4,11 +4,11 @@
   "description": "Login a user using the Supabase Auth Service",
   "type": "js-request-function",
   "envVars": {
-    "SUPABASE_URL": {
+    "BUILDABLE_SUPABASE_URL": {
       "development": "",
       "production": ""
     },
-    "SUPABASE_KEY": {
+    "BUILDABLE_SUPABASE_KEY": {
       "development": "",
       "production": ""
     }
@@ -22,5 +22,6 @@
   "platform": "supabase",
   "tags": ["security", "auth", "users"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "62d8668e0bd36f737a23f633", "type": "integration" }]
 }

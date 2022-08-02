@@ -1,26 +1,7 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * List Data [Run]
- *
- * @description - List data from a Firestore collection with pagination and filtering
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://firebase.google.com/docs/firestore/query-data/get-data#get_multiple_documents_from_a_collection
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const { getConnection } = require("@buildable/firestore");
 
 const MISSING_START_AT_FIELD_IN_SORT_ERROR = "sort must contain the startAtField";
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
   const {
     FIRESTORE_CONNECTION_KEY,
@@ -108,10 +89,7 @@ const verifyInput = ({
   sort = { createdAt: -1 },
 }) => {
   const ERRORS = {
-    NO_FIRESTORE_CONNECTION_KEY: `A valid FIRESTORE_CONNECTION_KEY is required. 
-                                 You can add one to your environment variables at 
-                                 https://app.buildable.dev/settings/environment-variables. 
-                                 You may also need to add a Firestore Datasource to your project.`,
+    NO_FIRESTORE_CONNECTION_KEY: "A valid FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     INVALID_QUERY: "The query must be an array.",
     INVALID_PAGESIZE: "The pageSize must be a number.",

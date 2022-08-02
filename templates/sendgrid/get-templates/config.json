@@ -3,7 +3,7 @@
   "description": "Retrieve paged transactional templates using SendGrid's v3 Web API",
   "image": "https://assets.buildable.dev/catalog/node-templates/sendgrid.svg",
   "envVars": {
-    "SENDGRID_API_KEY": {
+    "BUILDABLE_SENDGRID_API_KEY": {
       "development": "",
       "production": ""
     }
@@ -18,5 +18,6 @@
   "type": "js-request-function",
   "tags": ["email", "marketing"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "62d85a850bd36f737a23f62e", "type": "integration" }]
 }

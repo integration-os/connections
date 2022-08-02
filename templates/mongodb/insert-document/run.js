@@ -1,25 +1,6 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Insert Document [Run]
- *
- * @description - Insert a single document into a MongoDB collection
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://docs.mongodb.com/manual/reference/method/db.collection.insertOne/
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const { getConnection } = require("@buildable/mongodb");
 const uuid = require("uuid").v4;
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
   const { MONGODB_CONNECTION_KEY, collection, ...fieldsToInsert } = input;
 
@@ -53,10 +34,7 @@ const run = async (input) => {
 
 const verifyInput = ({ MONGODB_CONNECTION_KEY, collection }) => {
   const ERRORS = {
-    NO_MONGODB_CONNECTION_KEY: `A valid MONGODB_CONNECTION_KEY is required. 
-                                You can add one to your environment variables at 
-                                https://app.buildable.dev/settings/environment-variables. 
-                                You may also need to add a MongoDB Datasource to your project.`,
+    NO_MONGODB_CONNECTION_KEY: "A valid MONGODB_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     NO_ID: "A valid id is required.",
   };

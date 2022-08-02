@@ -1,16 +1,3 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Validate Password Strength [Run]
- *
- * @description - Password strength validator using Regular Expression
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const PASSED = "passed";
 const FAILED = "failed";
 const NOT_APPLICABLE = "n/a";
@@ -27,11 +14,6 @@ const regExpTypes = {
   number: /(?=.*[0-9])/,
 };
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = (input) => {
   const {
     password,

@@ -1,25 +1,6 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Insert Document [Run]
- *
- * @description - Insert a single document into a Firestore collection
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://firebase.google.com/docs/firestore/manage-data/add-data#add_a_document
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const { getConnection } = require("@buildable/firestore");
 const uuid = require("uuid");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
   const { FIRESTORE_CONNECTION_KEY, collection, id, ...fieldsToInsert } = input;
 
@@ -45,10 +26,7 @@ const run = async (input) => {
 
 const verifyInput = ({ FIRESTORE_CONNECTION_KEY, collection }) => {
   const ERRORS = {
-    NO_FIRESTORE_CONNECTION_KEY: `A valid FIRESTORE_CONNECTION_KEY is required. 
-                                 You can add one to your environment variables at 
-                                 https://app.buildable.dev/settings/environment-variables. 
-                                 You may also need to add a Firestore Datasource to your project.`,
+    NO_FIRESTORE_CONNECTION_KEY: "A valid FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     NO_ID: "A valid id is required.",
   };

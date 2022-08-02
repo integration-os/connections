@@ -5,7 +5,7 @@
   "image": "https://assets.buildable.dev/catalog/node-templates/notion.svg",
   "platform": "notion",
   "type": "js-request-function",
-  "envVars": { "NOTION_API_TOKEN": { "development": "", "production": "" } },
+  "envVars": { "BUILDABLE_NOTION_API_TOKEN": { "development": "", "production": "" } },
   "fee": 0,
   "category": "cms",
   "accessType": "open",
@@ -13,5 +13,6 @@
   "price": "free",
   "tags": ["notes", "database", "website"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "62d8577d0bd36f737a23f62c", "type": "integration" }]
 }

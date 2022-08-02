@@ -13,5 +13,6 @@
   "platform": "firestore",
   "tags": ["db", "crud", "api"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "62291dfff59c7b1f20ced9d7", "type": "database" }]
 }

@@ -1,23 +1,5 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Get Relative Date [Run]
- *
- * @description - Converts a timestamp to a human readable, relative date
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const { formatDistance } = require("date-fns");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = (input) => {
   const { timestamp } = input;
 

@@ -1,24 +1,5 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * List Rows [Run]
- *
- * @description - List rows from a PostgreSQL table with pagination and filtering
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://knexjs.org
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const { getConnection } = require("@buildable/knex");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
   const {
     POSTGRESQL_CONNECTION_KEY,
@@ -82,10 +63,7 @@ const verifyInput = ({
   sort = { createdAt: -1 },
 }) => {
   const ERRORS = {
-    NO_POSTGRESQL_CONNECTION_KEY: `A valid POSTGRESQL_CONNECTION_KEY is required. 
-                                  You can add one to your environment variables at 
-                                  https://app.buildable.dev/settings/environment-variables. 
-                                  You may also need to add a PostgreSQL Datasource to your project.`,
+    NO_POSTGRESQL_CONNECTION_KEY: "A valid POSTGRESQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_TABLE_NAME: "A valid tableName name is required.",
     INVALID_QUERY: "The query must be an object.",
     INVALID_PAGESIZE: "The pageSize must be a number.",

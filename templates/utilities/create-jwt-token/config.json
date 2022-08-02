@@ -1,20 +1,20 @@
 {
   "title": "Create JWT Token",
   "description": "Create a JSON Web Token",
-  "image": "https://assets.buildable.dev/catalog/node-templates/auth.svg",
+  "image": "https://assets.buildable.dev/catalog/node-templates/jwt.svg",
   "envVars": {
-    "JWT_SECRET": {
+    "BUILDABLE_JWT_SECRET": {
       "development": "",
       "production": ""
     },
-    "JWT_ISSUER": {
+    "BUILDABLE_JWT_ISSUER": {
       "development": "",
       "production": ""
     }
   },
   "fee": 0,
   "name": "token",
-  "platform": "",
+  "platform": "jwt",
   "category": "authentication",
   "accessType": "open",
   "language": "javascript",
@@ -22,5 +22,6 @@
   "type": "js-function",
   "tags": ["security", "auth", "user"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "62d875900bd36f737a23f63e", "type": "integration" }]
 }

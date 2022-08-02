@@ -1,0 +1,17 @@
+{
+  "name": "serverless",
+  "title": "Serverless Function",
+  "description": "Execute a custom JavaScript function",
+  "type": "js-request-function",
+  "envVars": {},
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/javascript.png",
+  "category": "custom",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "",
+  "tags": [],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

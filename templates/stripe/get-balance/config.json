@@ -1,17 +1,18 @@
 {
-  "name": "balance",
-  "title": "Get Account Balance",
-  "description": "Get your account balance using the Stripe API",
-  "type": "js-request-function",
-  "envVars": { "STRIPE_SECRET_KEY": { "development": "", "production": "" } },
-  "fee": 0,
+  "name": "getBalanceResult",
+  "title": "Get Balance",
+  "description": "Retrieves the current account balance, based on the authentication that was used to make the request using the Stripe API.",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
+  "platform": "stripe",
+  "type": "js-request-function",
+  "envVars": { "BUILDABLE_STRIPE_API_KEY": { "development": "", "production": "" } },
+  "fee": 0,
   "category": "payments",
   "accessType": "open",
   "language": "javascript",
   "price": "free",
-  "platform": "stripe",
-  "tags": ["finance", "transactions"],
+  "tags": ["payments", "accounts"],
   "stateType": "stateless",
-  "__version": "1.0.0"
+  "__version": "1.0.0",
+  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
 }

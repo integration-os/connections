@@ -1,26 +1,7 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Insert Data [Input]
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://supabase.com/docs/reference/javascript/insert
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
-/**
- * Lets you select the input for your Node's run function
- *
- * @param {Params} params
- * @param {Object} $trigger - This Flow's request object
- * @param {Object} $nodes - Data from above Nodes
- */
-const nodeInput = ({ $trigger, $nodes }) => {
+const nodeInput = ({ $body, $headers, $env, $data }) => {
   return {
-    SUPABASE_URL: $trigger.env.SUPABASE_URL, // Required
-    SUPABASE_KEY: $trigger.env.SUPABASE_KEY, // Required
+    BUILDABLE_SUPABASE_URL: $env.BUILDABLE_SUPABASE_URL, // Required
+    BUILDABLE_SUPABASE_KEY: $env.BUILDABLE_SUPABASE_KEY, // Required
     tableName: "your-table-name", // Required
 
     // Required - Object or array of objects to insert

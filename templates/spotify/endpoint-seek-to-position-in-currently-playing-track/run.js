@@ -1,28 +1,14 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Seek To Position In Currently Playing Track [Run]
- *
- * @description - Seek to position in currently playing track using the Spotify API
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://developer.spotify.com/documentation/web-api/reference/#endpoint-seek-to-position-in-currently-playing-track
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const axios = require("axios");
 const qs = require("qs");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
-  const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_BASE_URI, position_ms, device_id } =
-    input;
+  const {
+    BUILDABLE_SPOTIFY_CLIENT_ID,
+    BUILDABLE_SPOTIFY_CLIENT_SECRET,
+    BUILDABLE_SPOTIFY_BASE_URI,
+    position_ms,
+    device_id,
+  } = input;
 
   verifyInput(input);
 
@@ -36,15 +22,15 @@ const run = async (input) => {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       auth: {
-        username: SPOTIFY_CLIENT_ID,
-        password: SPOTIFY_CLIENT_SECRET,
+        username: BUILDABLE_SPOTIFY_CLIENT_ID,
+        password: BUILDABLE_SPOTIFY_CLIENT_SECRET,
       },
       data: qs.stringify({ grant_type: "client_credentials" }),
     });
 
     const { data } = await axios({
       method: "put",
-      url: `${SPOTIFY_BASE_URI}/me/player/seek`,
+      url: `${BUILDABLE_SPOTIFY_BASE_URI}/me/player/seek`,
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
@@ -65,24 +51,26 @@ const run = async (input) => {
  * Verifies the input parameters
  */
 const verifyInput = ({
-  SPOTIFY_CLIENT_ID,
-  SPOTIFY_CLIENT_SECRET,
-  SPOTIFY_BASE_URI,
+  BUILDABLE_SPOTIFY_CLIENT_ID,
+  BUILDABLE_SPOTIFY_CLIENT_SECRET,
+  BUILDABLE_SPOTIFY_BASE_URI,
   position_ms,
 }) => {
   const ERRORS = {
-    INVALID_SPOTIFY_CLIENT_ID:
-      "A valid SPOTIFY_CLIENT_ID field (string) was not provided in the input.",
-    INVALID_SPOTIFY_CLIENT_SECRET:
-      "A valid SPOTIFY_CLIENT_SECRET field (string) was not provided in the input.",
-    INVALID_SPOTIFY_BASE_URI:
-      "A valid SPOTIFY_BASE_URI field (string) was not provided in the input.",
+    INVALID_BUILDABLE_SPOTIFY_CLIENT_ID:
+      "A valid BUILDABLE_SPOTIFY_CLIENT_ID field (string) was not provided in the input.",
+    INVALID_BUILDABLE_SPOTIFY_CLIENT_SECRET:
+      "A valid BUILDABLE_SPOTIFY_CLIENT_SECRET field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
+    INVALID_BUILDABLE_SPOTIFY_BASE_URI:
+      "A valid BUILDABLE_SPOTIFY_BASE_URI field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_POSITION_MS: "A valid position_ms field (number) was not provided in the input.",
   };
 
-  if (typeof SPOTIFY_CLIENT_ID !== "string") throw new Error(ERRORS.INVALID_SPOTIFY_CLIENT_ID);
-  if (typeof SPOTIFY_CLIENT_SECRET !== "string")
-    throw new Error(ERRORS.INVALID_SPOTIFY_CLIENT_SECRET);
-  if (typeof SPOTIFY_BASE_URI !== "string") throw new Error(ERRORS.INVALID_SPOTIFY_BASE_URI);
+  if (typeof BUILDABLE_SPOTIFY_CLIENT_ID !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_SPOTIFY_CLIENT_ID);
+  if (typeof BUILDABLE_SPOTIFY_CLIENT_SECRET !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_SPOTIFY_CLIENT_SECRET);
+  if (typeof BUILDABLE_SPOTIFY_BASE_URI !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_SPOTIFY_BASE_URI);
   if (typeof position_ms !== "number") throw new Error(ERRORS.INVALID_POSITION_MS);
 };

@@ -1,27 +1,8 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Update the List of Users for a User Group [Run]
- *
- * @description - Update the list of users for a user group using the Slack API
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://api.slack.com/methods/usergroups.users.update
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const axios = require("axios");
 const qs = require("qs");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
-  const { SLACK_ACCESS_TOKEN, usergroup, users, include_count } = input;
+  const { BUILDABLE_SLACK_ACCESS_TOKEN, usergroup, users, include_count } = input;
 
   verifyInput(input);
 
@@ -30,7 +11,7 @@ const run = async (input) => {
       method: "post",
       url: "https://slack.com/api/usergroups.users.update",
       headers: {
-        Authorization: `Bearer ${SLACK_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${BUILDABLE_SLACK_ACCESS_TOKEN}`,
         "Content-Type": "application/x-www-form-urlencoded",
       },
       data: qs.stringify({ usergroup, users, ...(include_count ? { include_count } : {}) }),
@@ -49,15 +30,16 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ SLACK_ACCESS_TOKEN, usergroup, users }) => {
+const verifyInput = ({ BUILDABLE_SLACK_ACCESS_TOKEN, usergroup, users }) => {
   const ERRORS = {
-    INVALID_SLACK_ACCESS_TOKEN:
-      "A valid SLACK_ACCESS_TOKEN field (string) was not provided in the input.",
+    INVALID_BUILDABLE_SLACK_ACCESS_TOKEN:
+      "A valid BUILDABLE_SLACK_ACCESS_TOKEN field (string) was not provided in the input.",
     INVALID_USERGROUP: "A valid usergroup field (string) was not provided in the input.",
     INVALID_USERS: "A valid users field (string) was not provided in the input.",
   };
 
-  if (typeof SLACK_ACCESS_TOKEN !== "string") throw new Error(ERRORS.INVALID_SLACK_ACCESS_TOKEN);
+  if (typeof BUILDABLE_SLACK_ACCESS_TOKEN !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_SLACK_ACCESS_TOKEN);
   if (typeof usergroup !== "string") throw new Error(ERRORS.INVALID_USERGROUP);
   if (typeof users !== "string") throw new Error(ERRORS.INVALID_USERS);
 };

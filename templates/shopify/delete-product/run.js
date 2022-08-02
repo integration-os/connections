@@ -1,35 +1,15 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Delete Product [Run]
- *
- * @description - Delete a product using the Shopify API
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://help.shopify.com/api/reference/request
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const { Shopify } = require("@shopify/shopify-api");
 
 const getClient = (storeUrl, accessToken) => new Shopify.Clients.Rest(storeUrl, accessToken);
 
 const getPath = (productId) => `products/${productId}`;
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
-
 const run = async (input) => {
-  const { ACCESS_TOKEN, productId, STORE_URL } = input;
+  const { BUILDABLE_SHOPIFY_ACCESS_TOKEN, productId, BUILDABLE_SHOPIFY_STORE_URL } = input;
 
   verifyInput(input);
 
-  const client = getClient(STORE_URL, ACCESS_TOKEN);
+  const client = getClient(BUILDABLE_SHOPIFY_STORE_URL, BUILDABLE_SHOPIFY_ACCESS_TOKEN);
 
   const path = getPath(productId);
 
@@ -57,18 +37,14 @@ const run = async (input) => {
 /*
  * Verifies the input parameters
  */
-const verifyInput = ({ ACCESS_TOKEN, STORE_URL }) => {
+const verifyInput = ({ BUILDABLE_SHOPIFY_ACCESS_TOKEN, BUILDABLE_SHOPIFY_STORE_URL }) => {
   const ERRORS = {
-    NO_ACCESS_TOKEN: `A valid ACCESS_TOKEN is required. 
-                  You can add one to your environment variables at 
-                  https://app.buildable.dev/settings/environment-variables.`,
-    NO_STORE_URL: `A valid STORE_URL is required. 
-                  You can add one to your environment variables at 
-                  https://app.buildable.dev/settings/environment-variables.`,
+    NO_BUILDABLE_SHOPIFY_ACCESS_TOKEN: "A valid BUILDABLE_SHOPIFY_ACCESS_TOKEN is required. Create your appropriate Connection to automatically add it.",
+    NO_BUILDABLE_SHOPIFY_STORE_URL: "A valid BUILDABLE_SHOPIFY_STORE_URL is required. Create your appropriate Connection to automatically add it."
   };
 
-  if (typeof ACCESS_TOKEN === "undefined") throw new Error(ERRORS.NO_ACCESS_TOKEN);
-  if (typeof STORE_URL === "undefined") throw new Error(ERRORS.NO_STORE_URL);
+  if (typeof BUILDABLE_SHOPIFY_ACCESS_TOKEN === "undefined") throw new Error(ERRORS.NO_BUILDABLE_SHOPIFY_ACCESS_TOKEN);
+  if (typeof BUILDABLE_SHOPIFY_STORE_URL === "undefined") throw new Error(ERRORS.NO_BUILDABLE_SHOPIFY_STORE_URL);
 };
 
 const getErrorMessageFromStatusCode = (statusCode) => {

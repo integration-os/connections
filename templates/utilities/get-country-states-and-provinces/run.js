@@ -1,23 +1,5 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Get States or Provinces [Run]
- *
- * @description - Given a specific country, get a list of its states or provinces
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const axios = require("axios");
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = async (input) => {
   const { COUNTRY_STATES_URL, query, page = 1, pageSize = 10 } = input;
 
@@ -53,9 +35,7 @@ const run = async (input) => {
  */
 const verifyInput = ({ COUNTRY_STATES_URL, query }) => {
   const ERRORS = {
-    NO_COUNTRY_STATES_URL: `A valid COUNTRY_STATES_URL is required. 
-                            You can add one to your environment variables at 
-                            https://app.buildable.dev/settings/environment-variables.`,
+    NO_COUNTRY_STATES_URL: "A valid COUNTRY_STATES_URL is required.",
     NO_QUERY: "A query is required.",
     NO_QUERY_COUNTRY: "A query.country is required.",
     INVALID_QUERY_COUNTRY: "The query.country must be a string.",

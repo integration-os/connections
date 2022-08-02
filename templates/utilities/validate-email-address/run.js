@@ -1,24 +1,6 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Validate Email Address [Run]
- *
- * @description - Validates an email address using Regular Expression
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
 const PASSED = "passed";
 const FAILED = "failed";
 
-/**
- * The Node’s executable function
- *
- * @param {Run} input - Data passed to your Node from the input function
- */
 const run = (input) => {
   const { email } = input;
 

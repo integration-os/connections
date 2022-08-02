@@ -1,25 +1,6 @@
-/**
- * ----------------------------------------------------------------------------------------------------
- * Send Mail [Input]
- *
- * @author    Buildable Technologies Inc.
- * @access    open
- * @license   MIT
- * @docs      https://docs.sendgrid.com/api-reference/mail-send/mail-send
- *
- * ----------------------------------------------------------------------------------------------------
- */
-
-/**
- * Lets you select the input for your Node's run function
- *
- * @param {Params} params
- * @param {Object} $trigger - This Flow's request object
- * @param {Object} $nodes - Data from above Nodes
- */
-const nodeInput = ({ $trigger, $nodes }) => {
+const nodeInput = ({ $body, $headers, $env, $data }) => {
   return {
-    SENDGRID_API_KEY: $trigger.env.SENDGRID_API_KEY, // Required
+    BUILDABLE_SENDGRID_API_KEY: $env.BUILDABLE_SENDGRID_API_KEY, // Required
 
     to: {
       email: "example-recipient@domain.com", // Required
