@@ -1,4 +1,4 @@
-# Creating Node Templates
+# Creating Action Templates
 
 To create and publish your own templates, simply follow the steps below.
 

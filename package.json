@@ -1,5 +1,5 @@
 {
-  "name": "templates",
+  "name": "connections",
   "version": "1.0.0",
   "description": "A collection of open-source solution templates to integrate within Buildable Flows",
   "main": "",
@@ -13,18 +13,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/buildable/templates.git"
+    "url": "git+https://github.com/buildable/connections.git"
   },
   "keywords": [
     "buildable",
-    "templates"
+    "connections",
+    "templates",
+    "integrations",
+    "actions"
   ],
   "author": "Buildable Technologies Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/buildable/templates/issues"
+    "url": "https://github.com/buildable/connections/issues"
   },
-  "homepage": "https://github.com/buildable/templates#readme",
+  "homepage": "https://github.com/buildable/connections#readme",
   "devDependencies": {
     "eslint": "^8.9.0",
     "eslint-config-airbnb": "^19.0.4",
