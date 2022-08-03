@@ -1,10 +1,10 @@
-import GitHubIntegration from "../integrations/github/GitHub";
+import GitHubIntegration from "../catalog/github/GitHub";
 import { createHmac } from "crypto";
 
 const github = new GitHubIntegration({
-  GITHUB_ACCOUNT_ID: "hzerrad",
-  GITHUB_REPOSITORY: "roomz",
-  GITHUB_ACCESS_TOKEN: "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",
+  GITHUB_ACCOUNT_ID: "buildable-dev",
+  GITHUB_REPOSITORY: "test",
+  GITHUB_ACCESS_TOKEN: "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",
 });
 
 describe("GitHub Integration", () => {
@@ -134,8 +134,8 @@ describe("GitHub Integration", () => {
 
       expect(result).toBeTruthy();
 
-      expect(result.webhook.events).toContain("fork");
-      expect(result.webhook.events.length).toBeGreaterThan(1);
+      expect(result?.webhook?.events).toContain("fork");
+      expect(result?.webhook?.events.length).toBeGreaterThan(1);
     });
 
     it("should handle subscription of an existing event", async () => {
@@ -146,7 +146,7 @@ describe("GitHub Integration", () => {
 
       expect(result).toBeTruthy();
 
-      expect(result.webhook.events.length).toBe(2);
+      expect(result?.webhook?.events.length).toBe(2);
     });
   });
 
@@ -285,7 +285,7 @@ describe("GitHub Integration", () => {
 
     it("should delete the webhook", async () => {
       const result = await github.deleteWebhookEndpoint({
-        webhookId,
+        webhookId: (webhookId as string),
       });
 
       expect(result).toBeTruthy();

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "pretty": true,
+    "target": "es6",
+    "outDir": "dist"
+  },
+  "include": ["./**/*"],
+  "exclude": ["node_modules/**/*", "sources/tests"]
+}

@@ -1,4 +1,4 @@
-import CircleCIIntegration from "../integrations/circleci/CircleCI";
+import CircleCIIntegration from "../catalog/circleci/CircleCI";
 import { createHmac } from "crypto";
 
 const circleci = new CircleCIIntegration({
@@ -41,7 +41,7 @@ describe("CircleCI Integration", () => {
       let errorMessage = "no error message";
 
       try {
-        await mockCircleCi.init({
+        await mockCircleCi?.init?.({
           webhookUrl: "https://example.com/webhook",
           events: ["job-completed"],
         });
@@ -162,7 +162,7 @@ describe("CircleCI Integration", () => {
       let errorMessage = "no error message";
 
       try {
-        await mockCircleCi.subscribe({
+        await mockCircleCi?.subscribe?.({
           webhookId: webhookId,
           events: ["job-completed"],
         });
@@ -224,7 +224,7 @@ describe("CircleCI Integration", () => {
       let errorMessage = "no error message";
 
       try {
-        await mockCircleCi.unsubscribe({
+        await mockCircleCi?.unsubscribe?.({
           webhookId: webhookId,
           events: ["job-completed"],
         });
@@ -281,7 +281,7 @@ describe("CircleCI Integration", () => {
 
       const mock = mockFailGetIntegration();
       try {
-        await mock.getWebhooks({
+        await mock?.getWebhooks?.({
           webhookId: webhookId,
         });
       } catch (e) {
@@ -338,7 +338,7 @@ describe("CircleCI Integration", () => {
 
     it("should delete the webhook", async () => {
       const result = await circleci.deleteWebhookEndpoint({
-        webhookId,
+        webhookId: (webhookId as string),
       });
 
       expect(result).toBeTruthy();
@@ -364,8 +364,8 @@ describe("CircleCI Integration", () => {
       let errorMessage = "no error message";
 
       try {
-        await mockCircleCi.deleteWebhookEndpoint({
-          webhookId: webhookId,
+        await mockCircleCi?.deleteWebhookEndpoint?.({
+          webhookId: (webhookId as string),
         });
       } catch (e) {
         errorMessage = e.message;
@@ -388,7 +388,7 @@ describe("CircleCI Integration", () => {
       const mock = mockFailGetIntegration();
 
       try {
-        await mock.testConnection();
+        await mock?.testConnection?.();
       } catch (err) {
         errorMessage = err.message;
       }
@@ -426,7 +426,7 @@ function mockFailingIntegration(): Partial<CircleCIIntegration> {
         CIRCLECI_PERSONAL_API_KEY: "arbitrary-personal-api-key",
       });
 
-      this.getWebhooks = async ({ webhookId }) => {
+      this.getWebhooks = async ({ webhookId }: { webhookId: string }) => {
         return {
           id: webhookId,
           events: ["workflow-completed"],
