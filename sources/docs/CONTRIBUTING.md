@@ -47,7 +47,7 @@ The class has the below methods and your implementation **must** not change the 
 - Must throw an error if unable to establish a connection
 - If any keys cannot be tested, this must be added in the markdown notes in the definition (`frontend.options.docs`)
 
-## Integration Definition
+## Sample Integration Definition
 
 ```json
 {
@@ -147,7 +147,3 @@ The class has the below methods and your implementation **must** not change the 
   ]
 }
 ```
-
-## Best Practices + Conventions
-
-Coming soon!
