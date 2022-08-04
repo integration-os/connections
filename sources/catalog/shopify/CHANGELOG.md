@@ -1,5 +1,5 @@
 # 📣 Change Log
-All notable changes to the `CircleCI` Connection will be documented in this file.
+All notable changes to the `Shopify` Connection will be documented in this file.
 
 The format followed is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
