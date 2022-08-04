@@ -1,7 +1,7 @@
 {
   "title": "CircleCI",
   "description": "CircleCI Projects Management",
-  "apiVersion": null,
+  "apiVersion": "NA",
   "platform": "circleci",
   "category": "version-control",
   "image": "https://assets.buildable.dev/catalog/node-templates/circleci.svg",
@@ -19,12 +19,6 @@
       "name": "CIRCLECI_PROJECT_ID",
       "label": "Enter your CircleCI Project ID",
       "placeholder": "e15b2f31-6791-435d-a244-153455d7a7b1" 
-    },
-    {
-      "name": "CIRCLECI_WEBHOOK_NAME",
-      "label": "Enter your CircleCI Webhook Name (Optional)",
-      "placeholder": "my-circleci-webhook",
-      "required": false
     }
   ],
   "eventSchema": {
@@ -94,6 +88,7 @@
     "secret": "_.body.config.secret",
     "signature": "_.headers.circleci-signature"
   },
+  "connectionTypes": ["source"],
   "events": [
     {
       "name": "workflow-completed",

@@ -1,12 +1,12 @@
 {
   "title": "GitHub",
   "description": "GitHub Repository Management",
-  "apiVersion": null,
-  "platform": "github",
+  "apiVersion": "NA",
+  "platform": "github-repos",
   "category": "version-control",
-  "image": "https://assets.buildable.dev/catalog/node-templates/github.svg",
+  "image": "https://assets.buildable.dev/catalog/node-templates/github-repos.svg",
   "tags": [
-    "github",
+    "git",
     "version-control"
   ],
   "authentication": [
@@ -228,6 +228,7 @@
     "secret": "_.body.config.secret",
     "signature": "_.headers.x-hub-signature-256"
   },
+  "connectionTypes": ["source", "action"],
   "events": [
     {
       "name": "branch_protection_rule",
