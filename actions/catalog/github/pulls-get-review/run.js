@@ -16,7 +16,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: `https://api.github.com/repos/${owner}/${repo}/pulls/${pull_number}/reviews/${review_id}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
     });
 
     return data;

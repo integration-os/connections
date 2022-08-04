@@ -15,7 +15,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "delete",
       url: `https://api.github.com/repos/${owner}/${repo}/pre-receive-hooks/${pre_receive_hook_id}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
     });
 
     return data;

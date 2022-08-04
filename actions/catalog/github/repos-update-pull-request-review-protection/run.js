@@ -19,7 +19,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "patch",
       url: `https://api.github.com/repos/${owner}/${repo}/branches/${branch}/protection/required_pull_request_reviews`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: {
         ...(dismissal_restrictions ? { dismissal_restrictions } : {}),
         ...(dismiss_stale_reviews ? { dismiss_stale_reviews } : {}),

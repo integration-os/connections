@@ -1,8 +1,13 @@
 const axios = require("axios");
 
 const run = async (input) => {
-  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, featured, per_page, page } =
-    input;
+  const {
+    BUILDABLE_GITHUB_ACCESS_TOKEN,
+    BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+    featured,
+    per_page,
+    page,
+  } = input;
 
   verifyInput(input);
 
@@ -10,7 +15,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: "https://api.github.com/licenses",
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       params: {
         ...(featured ? { featured } : {}),
         ...(per_page ? { per_page } : {}),

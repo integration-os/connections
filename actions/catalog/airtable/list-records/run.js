@@ -15,7 +15,15 @@ const run = async (input) => {
 
   verifyInput(input);
 
-  const url = getUrl({ endpoint, BUILDABLE_AIRTABLE_BASE_ID, tableName, pageSize, fields, sort, filter });
+  const url = getUrl({
+    endpoint,
+    BUILDABLE_AIRTABLE_BASE_ID,
+    tableName,
+    pageSize,
+    fields,
+    sort,
+    filter,
+  });
 
   try {
     const { data } = await axios.get(url, {
@@ -61,7 +69,15 @@ const getSortParams = (sort) => {
 
 const getFieldsParams = (fields) => fields.reduce((acc, cur) => `${acc}fields[]=${cur}&`, "");
 
-const getUrl = ({ endpoint, BUILDABLE_AIRTABLE_BASE_ID, tableName, pageSize, fields, sort, filter }) => {
+const getUrl = ({
+  endpoint,
+  BUILDABLE_AIRTABLE_BASE_ID,
+  tableName,
+  pageSize,
+  fields,
+  sort,
+  filter,
+}) => {
   let url = `${endpoint}/${BUILDABLE_AIRTABLE_BASE_ID}/${tableName}`;
 
   const params = [];
@@ -97,16 +113,25 @@ const paginate = (data, page, pageSize) => {
   };
 };
 
-const verifyInput = ({ BUILDABLE_AIRTABLE_API_KEY, BUILDABLE_AIRTABLE_BASE_ID, endpoint, tableName }) => {
+const verifyInput = ({
+  BUILDABLE_AIRTABLE_API_KEY,
+  BUILDABLE_AIRTABLE_BASE_ID,
+  endpoint,
+  tableName,
+}) => {
   const ERRORS = {
-    INVALID_BUILDABLE_AIRTABLE_API_KEY: "A valid BUILDABLE_AIRTABLE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
-    INVALID_BUILDABLE_AIRTABLE_BASE_ID: "A valid BUILDABLE_AIRTABLE_BASE_ID field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
+    INVALID_BUILDABLE_AIRTABLE_API_KEY:
+      "A valid BUILDABLE_AIRTABLE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
+    INVALID_BUILDABLE_AIRTABLE_BASE_ID:
+      "A valid BUILDABLE_AIRTABLE_BASE_ID field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_ENDPOINT: "A valid endpoint field (string) was not provided in the input.",
     INVALID_TABLE_NAME: "A valid tableName field (string) was not provided in the input.",
   };
 
-  if (typeof BUILDABLE_AIRTABLE_API_KEY !== "string") throw new Error(ERRORS.INVALID_BUILDABLE_AIRTABLE_API_KEY);
-  if (typeof BUILDABLE_AIRTABLE_BASE_ID !== "string") throw new Error(ERRORS.INVALID_BUILDABLE_AIRTABLE_BASE_ID);
+  if (typeof BUILDABLE_AIRTABLE_API_KEY !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_AIRTABLE_API_KEY);
+  if (typeof BUILDABLE_AIRTABLE_BASE_ID !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_AIRTABLE_BASE_ID);
   if (typeof tableName !== "string") throw new Error(ERRORS.INVALID_TABLE_NAME);
   if (typeof endpoint !== "string") throw new Error(ERRORS.INVALID_ENDPOINT);
 };

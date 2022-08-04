@@ -1,8 +1,13 @@
 const axios = require("axios");
 
 const run = async (input) => {
-  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, owner, repo, check_run_id } =
-    input;
+  const {
+    BUILDABLE_GITHUB_ACCESS_TOKEN,
+    BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+    owner,
+    repo,
+    check_run_id,
+  } = input;
 
   verifyInput(input);
 
@@ -10,7 +15,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "post",
       url: `https://api.github.com/repos/${owner}/${repo}/check-runs/${check_run_id}/rerequest`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
     });
 
     return data;

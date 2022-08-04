@@ -1,12 +1,13 @@
 const { createClient } = require("@supabase/supabase-js");
 
-const getSupabaseClient = (url, key) => createClient(url, key, {
-  // schema: "public",
-  // headers: { "x-my-custom-header": "my-app-name" },
-  // autoRefreshToken: true,
-  // persistSession: true,
-  // detectSessionInUrl: true
-});
+const getSupabaseClient = (url, key) =>
+  createClient(url, key, {
+    // schema: "public",
+    // headers: { "x-my-custom-header": "my-app-name" },
+    // autoRefreshToken: true,
+    // persistSession: true,
+    // detectSessionInUrl: true
+  });
 
 const run = async (input) => {
   const { BUILDABLE_SUPABASE_URL, BUILDABLE_SUPABASE_KEY, accessToken, password } = input;
@@ -47,8 +48,10 @@ const verifyInput = ({ BUILDABLE_SUPABASE_URL, BUILDABLE_SUPABASE_KEY, accessTok
     INVALID_PASSWORD: "A valid password field (string) is required.",
   };
 
-  if (typeof BUILDABLE_SUPABASE_URL !== "string") throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_URL);
-  if (typeof BUILDABLE_SUPABASE_KEY !== "string") throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_KEY);
+  if (typeof BUILDABLE_SUPABASE_URL !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_URL);
+  if (typeof BUILDABLE_SUPABASE_KEY !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_KEY);
   if (typeof accessToken !== "string") throw new Error(ERRORS.INVALID_ACCESS_TOKEN);
   if (typeof password !== "string") throw new Error(ERRORS.INVALID_PASSWORD);
 };

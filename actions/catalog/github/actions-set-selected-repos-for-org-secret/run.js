@@ -15,7 +15,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "put",
       url: `https://api.github.com/orgs/${org}/actions/secrets/${secret_name}/repositories`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: { selected_repository_ids },
     });
 

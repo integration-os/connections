@@ -18,7 +18,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "post",
       url: `https://api.github.com/repos/${owner}/${repo}/hooks`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: {
         ...(name ? { name } : {}),
         ...(config ? { config } : {}),
@@ -40,7 +43,12 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, owner, repo }) => {
+const verifyInput = ({
+  BUILDABLE_GITHUB_ACCESS_TOKEN,
+  BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+  owner,
+  repo,
+}) => {
   const ERRORS = {
     INVALID_BUILDABLE_GITHUB_ACCESS_TOKEN:
       "A valid BUILDABLE_GITHUB_ACCESS_TOKEN field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",

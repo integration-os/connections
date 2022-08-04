@@ -17,7 +17,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "delete",
       url: `https://api.github.com/repos/${owner}/${repo}/pulls/${pull_number}/requested_reviewers`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: { reviewers, ...(team_reviewers ? { team_reviewers } : {}) },
     });
 

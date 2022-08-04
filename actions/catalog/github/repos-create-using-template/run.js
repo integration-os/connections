@@ -19,7 +19,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "post",
       url: `https://api.github.com/repos/${template_owner}/${template_repo}/generate`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: {
         name,
         ...(owner ? { owner } : {}),

@@ -1,8 +1,13 @@
 const axios = require("axios");
 
 const run = async (input) => {
-  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, files, description, public } =
-    input;
+  const {
+    BUILDABLE_GITHUB_ACCESS_TOKEN,
+    BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+    files,
+    description,
+    public,
+  } = input;
 
   verifyInput(input);
 
@@ -10,7 +15,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "post",
       url: "https://api.github.com/gists",
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: { files, ...(description ? { description } : {}), ...(public ? { public } : {}) },
     });
 
@@ -27,7 +35,11 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, files }) => {
+const verifyInput = ({
+  BUILDABLE_GITHUB_ACCESS_TOKEN,
+  BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+  files,
+}) => {
   const ERRORS = {
     INVALID_BUILDABLE_GITHUB_ACCESS_TOKEN:
       "A valid BUILDABLE_GITHUB_ACCESS_TOKEN field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",

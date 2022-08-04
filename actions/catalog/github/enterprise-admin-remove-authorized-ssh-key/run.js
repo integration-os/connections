@@ -2,7 +2,8 @@ const axios = require("axios");
 const qs = require("qs");
 
 const run = async (input) => {
-  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, authorized_key } = input;
+  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, authorized_key } =
+    input;
 
   verifyInput(input);
 
@@ -11,7 +12,10 @@ const run = async (input) => {
       method: "delete",
       url: "https://api.github.com/setup/api/settings/authorized-keys",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: qs.stringify({ authorized_key }),
     });
 

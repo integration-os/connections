@@ -20,7 +20,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "patch",
       url: `https://api.github.com/repos/${owner}/${repo}/pulls/${pull_number}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: {
         ...(title ? { title } : {}),
         ...(body ? { body } : {}),

@@ -19,7 +19,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "post",
       url: `https://api.github.com/repos/${owner}/${repo}/statuses/${sha}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: {
         state,
         ...(target_url ? { target_url } : {}),

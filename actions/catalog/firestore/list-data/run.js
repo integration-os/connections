@@ -36,8 +36,8 @@ const run = async (input) => {
       _query = _query.select(...fields);
     }
 
-    if(pageSize > 200) {
-      throw new Error("The optimized value for pageSize is less than or equal to 200")
+    if (pageSize > 200) {
+      throw new Error("The optimized value for pageSize is less than or equal to 200");
     }
 
     _query = _query.limit(pageSize);
@@ -89,7 +89,8 @@ const verifyInput = ({
   sort = { createdAt: -1 },
 }) => {
   const ERRORS = {
-    NO_FIRESTORE_CONNECTION_KEY: "A valid FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_FIRESTORE_CONNECTION_KEY:
+      "A valid FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     INVALID_QUERY: "The query must be an array.",
     INVALID_PAGESIZE: "The pageSize must be a number.",

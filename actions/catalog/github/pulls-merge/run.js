@@ -19,7 +19,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "put",
       url: `https://api.github.com/repos/${owner}/${repo}/pulls/${pull_number}/merge`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: {
         ...(commit_title ? { commit_title } : {}),
         ...(commit_message ? { commit_message } : {}),

@@ -8,7 +8,9 @@ const run = async (input) => {
   try {
     const db = await getConnection(MYSQL_CONNECTION_KEY);
 
-    const total = Number.parseInt((await db(tableName).where(query).count({ count: "*" }))[0].count);
+    const total = Number.parseInt(
+      (await db(tableName).where(query).count({ count: "*" }))[0].count,
+    );
 
     return total;
   } catch (error) {
@@ -22,7 +24,8 @@ const run = async (input) => {
 
 const verifyInput = ({ MYSQL_CONNECTION_KEY, tableName, query }) => {
   const ERRORS = {
-    NO_MYSQL_CONNECTION_KEY: "A valid MYSQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_MYSQL_CONNECTION_KEY:
+      "A valid MYSQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_TABLE_NAME: "A valid tableName name is required.",
     INVALID_QUERY: "The query must be an object.",
   };

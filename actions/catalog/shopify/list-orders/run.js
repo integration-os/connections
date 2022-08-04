@@ -5,7 +5,14 @@ const getClient = (storeUrl, accessToken) => new Shopify.Clients.Rest(storeUrl, 
 const LIST_PATH = "orders";
 
 const run = async (input) => {
-  const { BUILDABLE_SHOPIFY_ACCESS_TOKEN, BUILDABLE_SHOPIFY_STORE_URL, page = 1, limit = 10, since_id = undefined, ...params } = input;
+  const {
+    BUILDABLE_SHOPIFY_ACCESS_TOKEN,
+    BUILDABLE_SHOPIFY_STORE_URL,
+    page = 1,
+    limit = 10,
+    since_id = undefined,
+    ...params
+  } = input;
 
   verifyInput(input);
 
@@ -35,12 +42,16 @@ const run = async (input) => {
  */
 const verifyInput = ({ BUILDABLE_SHOPIFY_ACCESS_TOKEN, BUILDABLE_SHOPIFY_STORE_URL }) => {
   const ERRORS = {
-    NO_BUILDABLE_SHOPIFY_ACCESS_TOKEN: "A valid BUILDABLE_SHOPIFY_ACCESS_TOKEN is required. Create your appropriate Connection to automatically add it.",
-    NO_BUILDABLE_SHOPIFY_STORE_URL: "A valid BUILDABLE_SHOPIFY_STORE_URL is required. Create your appropriate Connection to automatically add it."
+    NO_BUILDABLE_SHOPIFY_ACCESS_TOKEN:
+      "A valid BUILDABLE_SHOPIFY_ACCESS_TOKEN is required. Create your appropriate Connection to automatically add it.",
+    NO_BUILDABLE_SHOPIFY_STORE_URL:
+      "A valid BUILDABLE_SHOPIFY_STORE_URL is required. Create your appropriate Connection to automatically add it.",
   };
 
-  if (typeof BUILDABLE_SHOPIFY_ACCESS_TOKEN === "undefined") throw new Error(ERRORS.NO_BUILDABLE_SHOPIFY_ACCESS_TOKEN);
-  if (typeof BUILDABLE_SHOPIFY_STORE_URL === "undefined") throw new Error(ERRORS.NO_BUILDABLE_SHOPIFY_STORE_URL);
+  if (typeof BUILDABLE_SHOPIFY_ACCESS_TOKEN === "undefined")
+    throw new Error(ERRORS.NO_BUILDABLE_SHOPIFY_ACCESS_TOKEN);
+  if (typeof BUILDABLE_SHOPIFY_STORE_URL === "undefined")
+    throw new Error(ERRORS.NO_BUILDABLE_SHOPIFY_STORE_URL);
 };
 
 const getOrders = async (client, params, since_id) => {

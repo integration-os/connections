@@ -1,8 +1,12 @@
 const axios = require("axios");
 
 const run = async (input) => {
-  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, org, selected_repository_ids } =
-    input;
+  const {
+    BUILDABLE_GITHUB_ACCESS_TOKEN,
+    BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+    org,
+    selected_repository_ids,
+  } = input;
 
   verifyInput(input);
 
@@ -10,7 +14,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "put",
       url: `https://api.github.com/orgs/${org}/actions/permissions/repositories`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: { selected_repository_ids },
     });
 

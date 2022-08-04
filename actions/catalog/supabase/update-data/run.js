@@ -1,15 +1,23 @@
 const { createClient } = require("@supabase/supabase-js");
 
-const getSupabaseClient = (url, key) => createClient(url, key, {
-  // schema: "public",
-  // headers: { "x-my-custom-header": "my-app-name" },
-  // autoRefreshToken: true,
-  // persistSession: true,
-  // detectSessionInUrl: true
-});
+const getSupabaseClient = (url, key) =>
+  createClient(url, key, {
+    // schema: "public",
+    // headers: { "x-my-custom-header": "my-app-name" },
+    // autoRefreshToken: true,
+    // persistSession: true,
+    // detectSessionInUrl: true
+  });
 
 const run = async (input) => {
-  const { BUILDABLE_SUPABASE_URL, BUILDABLE_SUPABASE_KEY, tableName, __namedParameters, values, match } = input;
+  const {
+    BUILDABLE_SUPABASE_URL,
+    BUILDABLE_SUPABASE_KEY,
+    tableName,
+    __namedParameters,
+    values,
+    match,
+  } = input;
 
   verifyInput(input);
 
@@ -60,8 +68,10 @@ const verifyInput = ({
     INVALID_MATCH: "A valid update field (object) is required.",
   };
 
-  if (typeof BUILDABLE_SUPABASE_URL !== "string") throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_URL);
-  if (typeof BUILDABLE_SUPABASE_KEY !== "string") throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_KEY);
+  if (typeof BUILDABLE_SUPABASE_URL !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_URL);
+  if (typeof BUILDABLE_SUPABASE_KEY !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_KEY);
   if (typeof tableName !== "string") throw new Error(ERRORS.INVALID_TABLE_NAME);
   if (typeof __namedParameters !== "object") throw new Error(ERRORS.INVALID_NAMED_PARAMETERS);
   if (typeof values !== "object") throw new Error(ERRORS.INVALID_VALUES);

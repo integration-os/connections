@@ -14,7 +14,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: `https://api.github.com/repositories/${repository_id}/environments/${environment_name}/secrets/public-key`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
     });
 
     return data;

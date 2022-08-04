@@ -26,7 +26,8 @@ const run = async (input) => {
 
 const verifyInput = ({ FIRESTORE_CONNECTION_KEY, collection }) => {
   const ERRORS = {
-    NO_FIRESTORE_CONNECTION_KEY: "A valid FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_FIRESTORE_CONNECTION_KEY:
+      "A valid FIRESTORE_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     NO_ID: "A valid id is required.",
   };

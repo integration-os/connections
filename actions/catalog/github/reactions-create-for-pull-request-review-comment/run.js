@@ -16,7 +16,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "post",
       url: `https://api.github.com/repos/${owner}/${repo}/pulls/comments/${comment_id}/reactions`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: { content },
     });
 

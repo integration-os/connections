@@ -1,8 +1,13 @@
 const axios = require("axios");
 
 const run = async (input) => {
-  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, gist_id, comment_id, body } =
-    input;
+  const {
+    BUILDABLE_GITHUB_ACCESS_TOKEN,
+    BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+    gist_id,
+    comment_id,
+    body,
+  } = input;
 
   verifyInput(input);
 
@@ -10,7 +15,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "patch",
       url: `https://api.github.com/gists/${gist_id}/comments/${comment_id}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: { body },
     });
 

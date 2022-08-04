@@ -34,12 +34,14 @@ const run = async (input) => {
  */
 const verifyInput = ({ BUILDABLE_SENDGRID_API_KEY, email, source }) => {
   const ERRORS = {
-    NO_BUILDABLE_SENDGRID_API_KEY: "A valid BUILDABLE_SENDGRID_API_KEY (string) is required. Create your appropriate Connection to automatically add it.",
+    NO_BUILDABLE_SENDGRID_API_KEY:
+      "A valid BUILDABLE_SENDGRID_API_KEY (string) is required. Create your appropriate Connection to automatically add it.",
     INVALID_EMAIL: "A valid email field (string) is required.",
     INVALID_SOURCE: "A valid source field (string) is required.",
   };
 
-  if (typeof BUILDABLE_SENDGRID_API_KEY !== "string") throw new Error(ERRORS.NO_BUILDABLE_SENDGRID_API_KEY);
+  if (typeof BUILDABLE_SENDGRID_API_KEY !== "string")
+    throw new Error(ERRORS.NO_BUILDABLE_SENDGRID_API_KEY);
   if (typeof email !== "string") throw new Error(ERRORS.INVALID_EMAIL);
   if (typeof source !== "string") throw new Error(ERRORS.INVALID_SOURCE);
 };

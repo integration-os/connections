@@ -1,8 +1,14 @@
 const axios = require("axios");
 
 const run = async (input) => {
-  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, org, team_slug, owner, repo } =
-    input;
+  const {
+    BUILDABLE_GITHUB_ACCESS_TOKEN,
+    BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+    org,
+    team_slug,
+    owner,
+    repo,
+  } = input;
 
   verifyInput(input);
 
@@ -10,7 +16,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "delete",
       url: `https://api.github.com/orgs/${org}/teams/${team_slug}/repos/${owner}/${repo}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
     });
 
     return data;

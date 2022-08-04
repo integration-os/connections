@@ -7,12 +7,12 @@ const run = (input) => {
     } else if (plainText === "") {
       throw new Error("Plain text cannot be empty");
     }
-    const encoded = Buffer.from(plainText).toString('base64');
+    const encoded = Buffer.from(plainText).toString("base64");
     return encoded;
   } catch (error) {
     return {
       failed: true,
       message: error.message,
-    }
+    };
   }
 };

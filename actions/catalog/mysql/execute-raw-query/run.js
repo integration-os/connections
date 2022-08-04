@@ -23,7 +23,8 @@ const run = async (input) => {
 
 const verifyInput = ({ MYSQL_CONNECTION_KEY, query, maxLimit }) => {
   const ERRORS = {
-    NO_MYSQL_CONNECTION_KEY: "A valid MYSQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_MYSQL_CONNECTION_KEY:
+      "A valid MYSQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     INVALID_QUERY: "The query must be a string.",
     INVALID_MAX_LIMIT: "The maxLimit must be a number.",
   };
@@ -34,37 +35,41 @@ const verifyInput = ({ MYSQL_CONNECTION_KEY, query, maxLimit }) => {
 };
 
 const handleLimit = (query, maxLimit) => {
-  if(maxLimit > 200) {
-  throw new Error("The optimized value for maxLimit is less than or equal to 200")
+  if (maxLimit > 200) {
+    throw new Error("The optimized value for maxLimit is less than or equal to 200");
   }
 
-  const splitQuery = query.split(";")
+  const splitQuery = query.split(";");
 
   splitQuery.forEach((q, i) => {
-    if(q.trim().toLowerCase().substring(0, "select".length) === "select") {
-      splitQuery[i] = setHardLimit(q.trim(), maxLimit)
+    if (q.trim().toLowerCase().substring(0, "select".length) === "select") {
+      splitQuery[i] = setHardLimit(q.trim(), maxLimit);
     }
-  })
+  });
 
-  return splitQuery.join("; ")
-}
+  return splitQuery.join("; ");
+};
 
 const setHardLimit = (query, maxLimit) => {
-  if(query.charAt(query.length - 1) === ";") {
-    query = query.substring(0, query.length - 1)
+  if (query.charAt(query.length - 1) === ";") {
+    query = query.substring(0, query.length - 1);
   }
 
   const tokenizedQuery = query.split(" ");
-  const foundIndex = Math.max(tokenizedQuery.lastIndexOf("limit"), tokenizedQuery.lastIndexOf("LIMIT"));
-  if(foundIndex > 0) {
-    const limit = tokenizedQuery[foundIndex + 1]
-    if(Number.parseInt(limit) > maxLimit) {
-      tokenizedQuery[foundIndex + 1] = maxLimit + limit.toString().substring(Number.parseInt(limit).toString().length) //handle parsing with parenthesis or semi colons
+  const foundIndex = Math.max(
+    tokenizedQuery.lastIndexOf("limit"),
+    tokenizedQuery.lastIndexOf("LIMIT"),
+  );
+  if (foundIndex > 0) {
+    const limit = tokenizedQuery[foundIndex + 1];
+    if (Number.parseInt(limit) > maxLimit) {
+      tokenizedQuery[foundIndex + 1] =
+        maxLimit + limit.toString().substring(Number.parseInt(limit).toString().length); //handle parsing with parenthesis or semi colons
     }
   } else {
-    tokenizedQuery.push("LIMIT")
-    tokenizedQuery.push(maxLimit)
+    tokenizedQuery.push("LIMIT");
+    tokenizedQuery.push(maxLimit);
   }
 
-  return tokenizedQuery.join(" ")
-}
+  return tokenizedQuery.join(" ");
+};

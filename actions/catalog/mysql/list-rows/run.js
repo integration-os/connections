@@ -1,15 +1,8 @@
 const { getConnection } = require("@buildable/knex");
 
 const run = async (input) => {
-  const {
-    MYSQL_CONNECTION_KEY,
-    tableName,
-    query = {},
-    fields = [],
-    page = 1,
-    sort = {},
-  } = input;
-  let { pageSize = 10 } = input
+  const { MYSQL_CONNECTION_KEY, tableName, query = {}, fields = [], page = 1, sort = {} } = input;
+  let { pageSize = 10 } = input;
 
   verifyInput(input);
 
@@ -23,8 +16,8 @@ const run = async (input) => {
       };
     });
 
-    if(pageSize > 200) {
-      throw new Error("The optimized value for pageSize is less than or equal to 200")
+    if (pageSize > 200) {
+      throw new Error("The optimized value for pageSize is less than or equal to 200");
     }
 
     const rows = await db
@@ -35,7 +28,9 @@ const run = async (input) => {
       .limit(pageSize)
       .offset(page > 1 ? page * pageSize : 0);
 
-    const total = Number.parseInt((await db(tableName).where(query).count({ count: "*" }))[0].count);
+    const total = Number.parseInt(
+      (await db(tableName).where(query).count({ count: "*" }))[0].count,
+    );
 
     return {
       rows,
@@ -63,7 +58,8 @@ const verifyInput = ({
   sort = { createdAt: -1 },
 }) => {
   const ERRORS = {
-    NO_MYSQL_CONNECTION_KEY: "A valid MYSQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_MYSQL_CONNECTION_KEY:
+      "A valid MYSQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_TABLE_NAME: "A valid tableName name is required.",
     INVALID_QUERY: "The query must be an object.",
     INVALID_PAGESIZE: "The pageSize must be a number.",

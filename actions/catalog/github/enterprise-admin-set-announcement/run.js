@@ -1,8 +1,12 @@
 const axios = require("axios");
 
 const run = async (input) => {
-  const { BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, announcement, expires_at } =
-    input;
+  const {
+    BUILDABLE_GITHUB_ACCESS_TOKEN,
+    BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+    announcement,
+    expires_at,
+  } = input;
 
   verifyInput(input);
 
@@ -10,7 +14,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "patch",
       url: "https://api.github.com/enterprise/announcement",
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: { announcement, ...(expires_at ? { expires_at } : {}) },
     });
 

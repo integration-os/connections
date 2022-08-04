@@ -26,7 +26,8 @@ const run = async (input) => {
 
 const verifyInput = ({ POSTGRESQL_CONNECTION_KEY, tableName, id }) => {
   const ERRORS = {
-    NO_POSTGRESQL_CONNECTION_KEY: "A valid POSTGRESQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_POSTGRESQL_CONNECTION_KEY:
+      "A valid POSTGRESQL_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_TABLE_NAME: "A valid tableName name is required.",
     NO_ID: "A valid id is required.",
   };

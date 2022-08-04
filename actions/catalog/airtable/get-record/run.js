@@ -1,7 +1,8 @@
 const axios = require("axios");
 
 const run = async (input) => {
-  const { BUILDABLE_AIRTABLE_API_KEY, BUILDABLE_AIRTABLE_BASE_ID, endpoint, tableName, recordId } = input;
+  const { BUILDABLE_AIRTABLE_API_KEY, BUILDABLE_AIRTABLE_BASE_ID, endpoint, tableName, recordId } =
+    input;
 
   verifyInput(input);
 
@@ -37,17 +38,27 @@ const getUrl = ({ endpoint, BUILDABLE_AIRTABLE_BASE_ID, tableName, recordId }) =
   return encodeURI(url);
 };
 
-const verifyInput = ({ BUILDABLE_AIRTABLE_API_KEY, BUILDABLE_AIRTABLE_BASE_ID, endpoint, tableName, recordId }) => {
+const verifyInput = ({
+  BUILDABLE_AIRTABLE_API_KEY,
+  BUILDABLE_AIRTABLE_BASE_ID,
+  endpoint,
+  tableName,
+  recordId,
+}) => {
   const ERRORS = {
-    INVALID_BUILDABLE_AIRTABLE_API_KEY: "A valid BUILDABLE_AIRTABLE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
-    INVALID_BUILDABLE_AIRTABLE_BASE_ID: "A valid BUILDABLE_AIRTABLE_BASE_ID field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
+    INVALID_BUILDABLE_AIRTABLE_API_KEY:
+      "A valid BUILDABLE_AIRTABLE_API_KEY field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
+    INVALID_BUILDABLE_AIRTABLE_BASE_ID:
+      "A valid BUILDABLE_AIRTABLE_BASE_ID field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",
     INVALID_ENDPOINT: "A valid endpoint field (string) was not provided in the input.",
     INVALID_TABLE_NAME: "A valid tableName field (string) was not provided in the input.",
     INVALID_RECORD_ID: "A valid recordId field (string) was not provided in the input.",
   };
 
-  if (typeof BUILDABLE_AIRTABLE_API_KEY !== "string") throw new Error(ERRORS.INVALID_BUILDABLE_AIRTABLE_API_KEY);
-  if (typeof BUILDABLE_AIRTABLE_BASE_ID !== "string") throw new Error(ERRORS.INVALID_BUILDABLE_AIRTABLE_BASE_ID);
+  if (typeof BUILDABLE_AIRTABLE_API_KEY !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_AIRTABLE_API_KEY);
+  if (typeof BUILDABLE_AIRTABLE_BASE_ID !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_AIRTABLE_BASE_ID);
   if (typeof endpoint !== "string") throw new Error(ERRORS.INVALID_ENDPOINT);
   if (typeof tableName !== "string") throw new Error(ERRORS.INVALID_TABLE_NAME);
   if (typeof recordId !== "string") throw new Error(ERRORS.INVALID_RECORD_ID);

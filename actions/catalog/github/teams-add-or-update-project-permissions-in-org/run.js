@@ -16,7 +16,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "put",
       url: `https://api.github.com/orgs/${org}/teams/${team_slug}/projects/${project_id}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: { ...(permission ? { permission } : {}) },
     });
 

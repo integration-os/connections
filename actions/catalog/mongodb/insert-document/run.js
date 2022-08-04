@@ -34,7 +34,8 @@ const run = async (input) => {
 
 const verifyInput = ({ MONGODB_CONNECTION_KEY, collection }) => {
   const ERRORS = {
-    NO_MONGODB_CONNECTION_KEY: "A valid MONGODB_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
+    NO_MONGODB_CONNECTION_KEY:
+      "A valid MONGODB_CONNECTION_KEY is required. Create your appropriate Database to automatically add it.",
     NO_COLLECTION: "A valid collection name is required.",
     NO_ID: "A valid id is required.",
   };

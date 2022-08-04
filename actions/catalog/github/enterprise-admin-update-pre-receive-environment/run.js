@@ -15,7 +15,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "patch",
       url: `https://api.github.com/admin/pre-receive-environments/${pre_receive_environment_id}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: { ...(name ? { name } : {}), ...(image_url ? { image_url } : {}) },
     });
 

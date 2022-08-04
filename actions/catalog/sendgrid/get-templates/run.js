@@ -1,7 +1,12 @@
 const client = require("@sendgrid/client");
 
 const run = async (input) => {
-  const { BUILDABLE_SENDGRID_API_KEY, page_size, generations = "legacy,dynamic", ...params } = input;
+  const {
+    BUILDABLE_SENDGRID_API_KEY,
+    page_size,
+    generations = "legacy,dynamic",
+    ...params
+  } = input;
 
   verifyInput(input);
 
@@ -36,10 +41,12 @@ const run = async (input) => {
  */
 const verifyInput = ({ BUILDABLE_SENDGRID_API_KEY, page_size }) => {
   const ERRORS = {
-    NO_BUILDABLE_SENDGRID_API_KEY: "A valid BUILDABLE_SENDGRID_API_KEY (string) is required. Create your appropriate Connection to automatically add it.",
+    NO_BUILDABLE_SENDGRID_API_KEY:
+      "A valid BUILDABLE_SENDGRID_API_KEY (string) is required. Create your appropriate Connection to automatically add it.",
     INVALID_PAGE_SIZE: "A valid page_size field (number) is required.",
   };
 
-  if (typeof BUILDABLE_SENDGRID_API_KEY !== "string") throw new Error(ERRORS.NO_BUILDABLE_SENDGRID_API_KEY);
+  if (typeof BUILDABLE_SENDGRID_API_KEY !== "string")
+    throw new Error(ERRORS.NO_BUILDABLE_SENDGRID_API_KEY);
   if (typeof page_size !== "number") throw new Error(ERRORS.INVALID_PAGE_SIZE);
 };

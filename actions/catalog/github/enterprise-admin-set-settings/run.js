@@ -11,7 +11,10 @@ const run = async (input) => {
       method: "put",
       url: "https://api.github.com/setup/api/settings",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: qs.stringify({ settings }),
     });
 
@@ -28,7 +31,11 @@ const run = async (input) => {
 /**
  * Verifies the input parameters
  */
-const verifyInput = ({ BUILDABLE_GITHUB_ACCESS_TOKEN, BUILDABLE_GITHUB_ACCOUNT_USERNAME, settings }) => {
+const verifyInput = ({
+  BUILDABLE_GITHUB_ACCESS_TOKEN,
+  BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+  settings,
+}) => {
   const ERRORS = {
     INVALID_BUILDABLE_GITHUB_ACCESS_TOKEN:
       "A valid BUILDABLE_GITHUB_ACCESS_TOKEN field (string) was not provided in the input. Create your appropriate Connection to automatically add it.",

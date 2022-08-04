@@ -19,7 +19,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: `https://api.github.com/orgs/${org}/teams/${team_slug}/discussions/${discussion_number}/comments/${comment_number}/reactions`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       params: {
         ...(content ? { content } : {}),
         ...(per_page ? { per_page } : {}),

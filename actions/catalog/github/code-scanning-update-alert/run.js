@@ -17,7 +17,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "patch",
       url: `https://api.github.com/repos/${owner}/${repo}/code-scanning/alerts/${alert_number}`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: { state, ...(dismissed_reason ? { dismissed_reason } : {}) },
     });
 

@@ -11,7 +11,10 @@ const run = async (input) => {
       method: "post",
       url: "https://api.github.com/setup/api/upgrade",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       data: qs.stringify({ ...(license ? { license } : {}) }),
     });
 

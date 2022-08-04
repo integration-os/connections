@@ -18,7 +18,10 @@ const run = async (input) => {
     const { data } = await axios({
       method: "get",
       url: `https://api.github.com/repos/${owner}/${repo}/actions/runs/${run_id}/jobs`,
-      auth: { password: BUILDABLE_GITHUB_ACCESS_TOKEN, username: BUILDABLE_GITHUB_ACCOUNT_USERNAME },
+      auth: {
+        password: BUILDABLE_GITHUB_ACCESS_TOKEN,
+        username: BUILDABLE_GITHUB_ACCOUNT_USERNAME,
+      },
       params: {
         ...(filter ? { filter } : {}),
         ...(per_page ? { per_page } : {}),

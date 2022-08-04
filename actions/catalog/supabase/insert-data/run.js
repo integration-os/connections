@@ -1,12 +1,13 @@
 const { createClient } = require("@supabase/supabase-js");
 
-const getSupabaseClient = (url, key) => createClient(url, key, {
-  // schema: "public",
-  // headers: { "x-my-custom-header": "my-app-name" },
-  // autoRefreshToken: true,
-  // persistSession: true,
-  // detectSessionInUrl: true
-});
+const getSupabaseClient = (url, key) =>
+  createClient(url, key, {
+    // schema: "public",
+    // headers: { "x-my-custom-header": "my-app-name" },
+    // autoRefreshToken: true,
+    // persistSession: true,
+    // detectSessionInUrl: true
+  });
 
 const run = async (input) => {
   const { BUILDABLE_SUPABASE_URL, BUILDABLE_SUPABASE_KEY, tableName, values, ...params } = input;
@@ -45,8 +46,10 @@ const verifyInput = ({ BUILDABLE_SUPABASE_URL, BUILDABLE_SUPABASE_KEY, tableName
     INVALID_VALUES: "A valid values object or array of objects is required.",
   };
 
-  if (typeof BUILDABLE_SUPABASE_URL !== "string") throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_URL);
-  if (typeof BUILDABLE_SUPABASE_KEY !== "string") throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_KEY);
+  if (typeof BUILDABLE_SUPABASE_URL !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_URL);
+  if (typeof BUILDABLE_SUPABASE_KEY !== "string")
+    throw new Error(ERRORS.INVALID_BUILDABLE_SUPABASE_KEY);
   if (typeof tableName !== "string") throw new Error(ERRORS.INVALID_TABLE_NAME);
   if (values && !Array.isArray(values) && typeof values !== "object")
     throw new Error(ERRORS.INVALID_VALUES);
