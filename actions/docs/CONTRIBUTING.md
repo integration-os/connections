@@ -1,34 +1,35 @@
 # Creating Action Templates
 
-To create and publish your own templates, simply follow the steps below.
+To create and publish your own action templates, simply follow the steps below.
 
 ### 1. Clone this repository ✅
 
 ```
-git clone https://github.com/buildable/templates.git
+git clone https://github.com/buildable/connections.git
 ```
 
 ### 2. Create a branch for your template ✅
 
-`git checkout -b feature/utilities/your-template-name`
+`git checkout -b feature/actions/utilities/your-template-name`
 
 ### 3. Copy the boilerplate folder into the proper directory ✅
 
-Copy the `sample` folder into the respective location within the `templates` folder.
+Copy the `actions/sample` folder into the respective location within the `actions/catalog` folder.
 
 Each template folder is grouped in a parent directory that relates to its platform. For example, the <a href="https://www.twilio.com/" target="_blank">Twilio</a> action to send an SMS message should be stored in the following path structure:
 
 ```
-├── templates/
-│   ├── twilio/
-│       ├── Send SMS/
-│           ├── CHANGELOG.md
-│           ├── config.json
-|           ├── input.js
-|           └── run.js
+├── actions/
+│   ├── catalog/
+│       ├── twilio/
+│           ├── Send SMS/
+│               ├── CHANGELOG.md
+│               ├── config.json
+|               ├── input.js
+|               └── run.js
 ```
 
-General templates that do not fall under the category of any vendor should be added under `templates/utilities/`.
+General templates that do not fall under the category of any vendor should be added under `action/catalog/utilities/`.
 
 ### 4. Update the `config.json` file ✅
 
@@ -46,7 +47,7 @@ The `config.json` file contains all the settings for your template. Below are th
   <tr>
     <td>name</td>
     <td>String</td>
-    <td>The name of the node. This should represent the output of out your run function.</td>
+    <td>The name of the template. This should represent the output of out your run function.</td>
   </tr>
   <tr>
     <td>title</td>
@@ -121,25 +122,25 @@ The `config.json` file contains all the settings for your template. Below are th
 </tbody>
 </table>
 
-A sample [config.json](sample/config.json) file is visible inside the `sample/` directory.
+A sample [config.json](actions/sample/config.json) file is visible inside the `actions/sample/` directory.
 
 ### 5. Update the `input.js` file ✅
 
-Update your `input.js` file to set the input values that will be passed into your run function. Read more about the `input` function in our [docs](https://docs.buildable.dev/core-products/flows/add-nodes-to-a-flow#what-makes-up-a-node).
+Update your `input.js` file to set the input values that will be passed into your run function. Read more about the `input` function in our [docs](https://docs.buildable.dev/workflows/building-workflows).
 
-A sample [input.js](sample/input.js) file is visible inside the `sample/` directory.
+A sample [input.js](actions/sample/input.js) file is visible inside the `actions/sample/` directory.
 
 ### 6. Update the `run.js` file ✅
 
-Write your template's main logic within the `run.js` file. Read more about the `run` function in our [docs](https://docs.buildable.dev/core-products/flows/add-nodes-to-a-flow#what-makes-up-a-node).
+Write your template's main logic within the `run.js` file. Read more about the `run` function in our [docs](https://docs.buildable.dev/workflows/building-workflows).
 
-A sample [run.js](sample/run.js) file is visible inside the `sample/` directory.
+A sample [run.js](actions/sample/run.js) file is visible inside the `actions/sample/` directory.
 
 ### 7. Update the `CHANGELOG.md` file ✅
 
-You'll notice that each template folder contains a `CHANGELOG.md` file. When creating a template, ensure that you've also copied this file over from the `sample/` folder. 
+You'll notice that each template folder contains a `CHANGELOG.md` file. When creating a template, ensure that you've also copied this file over from the `actions/sample/` folder. 
 
-Update the sample `CHANGELOG.md` file to reflect the appropriate information about your template.
+Update the sample [CHANGELOG.md](actions/sample/CHANGELOG.md) file to reflect the appropriate information about your template.
 
 ### 8. Create a pull request ✅
 
@@ -149,7 +150,7 @@ Once you've tested and finished your template, create a pull request on the `dev
 
 ### Testing your code 💡
 
-To test your templates, you can write your logic within a Node in a [Buildable Flow](https://docs.buildable.dev/core-products/flows/creating-a-flow) to ensure everything works as expected.
+To test your templates, you can write your logic within an Action template in a [Buildable Workflow](https://docs.buildable.dev/workflows/building-workflows) to ensure everything works as expected.
 
 ### Code formatting
 

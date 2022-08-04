@@ -2,7 +2,7 @@
 
 This is where we build and share our App Connections for popular and useful apps like Stripe, Shopify, and many more.
 
-The class has the below methods and your implementation **must** not change the TypeScript interface. The class will be used to communicate and manage the `service (i.e. github)` webhook.
+The class has the below methods and your implementation **must** not change the [TypeScript interface](sources/types/classDefinition.d.ts). The class will be used to communicate and manage the `service (i.e. github)` webhook.
 
 ## Class Definition
 
