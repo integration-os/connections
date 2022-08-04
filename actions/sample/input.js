@@ -1,4 +1,4 @@
-const nodeInput = ({ $body, $headers, $env, $data }) => {
+const nodeInput = ({ $body, $headers, $env, $actions }) => {
   return {
     API_KEY: $env.API_KEY, // Required
     name: "Mr. Bean", // Required

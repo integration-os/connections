@@ -1,4 +1,4 @@
-const nodeInput = ({ $body, $headers, $env, $data }) => {
+const nodeInput = ({ $body, $headers, $env, $actions }) => {
   return {
     endpoint: "https://api.example.com/movies/", // Required
 

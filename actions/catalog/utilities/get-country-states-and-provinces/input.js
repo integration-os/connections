@@ -1,4 +1,4 @@
-const nodeInput = ({ $body, $headers, $env, $data }) => {
+const nodeInput = ({ $body, $headers, $env, $actions }) => {
   return {
     COUNTRY_STATES_URL: "https://countriesnow.space/api/v0.1/countries/states", // Required
 

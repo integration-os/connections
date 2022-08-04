@@ -1,3 +1,3 @@
-const nodeInput = ({ $body, $headers, $env, $data }) => {
+const nodeInput = ({ $body, $headers, $env, $actions }) => {
   return {};
 };

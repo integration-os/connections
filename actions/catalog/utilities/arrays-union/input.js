@@ -1,4 +1,4 @@
-const nodeInput = ({ $body, $headers, $env, $data }) => {
+const nodeInput = ({ $body, $headers, $env, $actions }) => {
   return {
     // Required - Array of all arrays you want to merge
     arrays: [

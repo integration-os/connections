@@ -1,4 +1,4 @@
-const nodeInput = ({ $body, $headers, $env, $data }) => {
+const nodeInput = ({ $body, $headers, $env, $actions }) => {
   return {
     BUILDABLE_JWT_SECRET: $env.BUILDABLE_JWT_SECRET, // Required
     BUILDABLE_JWT_ISSUER: $env.BUILDABLE_JWT_ISSUER, // Required
