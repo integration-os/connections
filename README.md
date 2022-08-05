@@ -15,12 +15,15 @@ When you capture event data in Buildable, you can send them in real-time to your
 ## How can Buildable help you?
 
 **[Simplify event collection](https://docs.buildable.dev/connections/source-catalog)**
+
 Start by integrating the tools you use for data storage, notifications, payments, sales and more.
 
 **[Audit system-wide activity](https://docs.buildable.dev/streams/viewing-events)**
+
 Query and review a central stream of all backend activity happening across all platforms.
 
 **[Ship and scale code](https://docs.buildable.dev/workflows/building-workflows)**
+
 Save hundreds of development hours by setting up webhooks and connecting APIs in minutes
 
 ## Getting started
