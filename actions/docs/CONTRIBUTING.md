@@ -10,7 +10,7 @@ git clone https://github.com/buildable/connections.git
 
 ### 2. Create a branch for your template ✅
 
-`git checkout -b feature/actions/utilities/your-template-name`
+`git checkout -b feature/action/utilities/your-template-name`
 
 ### 3. Copy the boilerplate folder into the proper directory ✅
 

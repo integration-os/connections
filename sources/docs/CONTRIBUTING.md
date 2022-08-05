@@ -2,9 +2,18 @@
 
 This is where we build and share our App Connections for popular and useful apps like Stripe, Shopify, and many more.
 
-The class has the below methods and your implementation **must** not change the [TypeScript interface](sources/types/classDefinition.d.ts). The class will be used to communicate and manage the `service (i.e. github)` webhook.
+## Setup
+
+```
+> git clone https://github.com/buildable/connections.git
+> git checkout -b feature/source/stripe
+```
+
+Create a folder in the [sources catalog](sources/catalog/) that matches the name of the connection that is being created. Copy over the [sample definition file](sources/sample/definition.json) and [sample changelog file](sources/sample/CHANGELOG.md) into the folder and begin creating the Class file.
 
 ## Class Definition
+
+The class has the below methods and your implementation **must** not change the [TypeScript interface](sources/types/classDefinition.d.ts). The class will be used to communicate and manage the `service (i.e. github)` webhook.
 
 ### `constructor`
 
