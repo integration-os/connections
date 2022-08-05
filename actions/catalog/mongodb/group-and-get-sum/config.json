@@ -1,0 +1,18 @@
+{
+  "name": "aggregateResults",
+  "title": "Group and Get Sum",
+  "description": "Group by and get the sum of a field in a MongoDB collection",
+  "type": "js-request-function",
+  "envVars": { "MONGODB_CONNECTION_KEY": { "development": "", "production": "" } },
+  "fee": 0,
+  "image": "https://assets.buildable.dev/catalog/node-templates/mongo.svg",
+  "category": "databases",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "platform": "mongodb",
+  "tags": ["db", "crud", "api"],
+  "stateType": "stateless",
+  "__version": "1.0.0",
+  "connections": [{ "id": "61b11922ad7dd049241e0eac", "type": "database" }]
+}

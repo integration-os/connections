@@ -1,0 +1,17 @@
+{
+  "title": "Decode JWT Token",
+  "description": "Decode a JSON Web Token",
+  "image": "https://assets.buildable.dev/catalog/node-templates/jwt.svg",
+  "envVars": {},
+  "fee": 0,
+  "name": "decodedToken",
+  "platform": "jwt",
+  "category": "authentication",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "type": "js-function",
+  "tags": ["security", "auth", "user"],
+  "stateType": "stateless",
+  "__version": "1.0.0"
+}

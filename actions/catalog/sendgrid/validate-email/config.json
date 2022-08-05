@@ -1,0 +1,23 @@
+{
+  "title": "Validate Email",
+  "description": "Validate an email address using SendGrid's v3 Web API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/sendgrid.svg",
+  "envVars": {
+    "BUILDABLE_SENDGRID_API_KEY": {
+      "development": "",
+      "production": ""
+    }
+  },
+  "fee": 0,
+  "name": "validationResult",
+  "platform": "sendgrid",
+  "category": "communication",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "type": "js-request-function",
+  "tags": ["email", "security"],
+  "stateType": "stateless",
+  "__version": "1.0.0",
+  "connections": [{ "id": "62d85a850bd36f737a23f62e", "type": "integration" }]
+}

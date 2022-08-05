@@ -1,0 +1,21 @@
+{
+  "name": "reposAddStatusCheckContextsResult",
+  "title": "Add Status Check Contexts",
+  "description": "Add status check contexts using the Github API",
+  "image": "https://assets.buildable.dev/catalog/node-templates/github.svg",
+  "platform": "github",
+  "type": "js-request-function",
+  "envVars": {
+    "BUILDABLE_GITHUB_ACCESS_TOKEN": { "development": "", "production": "" },
+    "BUILDABLE_GITHUB_ACCOUNT_USERNAME": { "development": "", "production": "" }
+  },
+  "fee": 0,
+  "category": "git",
+  "accessType": "open",
+  "language": "javascript",
+  "price": "free",
+  "tags": ["git", "code"],
+  "stateType": "stateless",
+  "__version": "1.0.0",
+  "connections": [{ "id": "62dace890bd36f737a23f655", "type": "integration" }]
+}
