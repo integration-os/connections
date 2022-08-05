@@ -1,119 +1,65 @@
-
-![Header](https://github.com/buildable/templates/blob/main/assets/templates.png)
+![Header](https://assets.buildable.dev/catalog/graphics/one-api-100-integrations.png)
 
 [![Buildable](https://assets.buildable.dev/buildable-logos/powered-by-buildable.svg)](https://buildable.dev) [![GitHub stars](https://img.shields.io/github/stars/buildable/templates)](https://github.com/buildable/templates/stargazers) ![GitHub contributors](https://img.shields.io/github/contributors/buildable/templates) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/buildable/templates) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/buildable/templates) [![GitHub issues](https://img.shields.io/github/issues/buildable/templates)](https://github.com/buildable/templates/issues) ![GitHub closed issues](https://img.shields.io/github/issues-closed/buildable/templates) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/buildable/templates) [![GitHub license](https://img.shields.io/github/license/buildable/templates)](https://github.com/buildable/templates) [![Twitter Follow](https://img.shields.io/twitter/follow/BuildableHQ?style=social)](https://twitter.com/BuildableHQ)
 
 ---
 
-## Buildable ⚡️
+## What is Buildable?
 
-[Buildable](https://buildable.dev/) is an instant backend tool that makes a software developer’s day more delightful. We’re helping engineers breeze through feature development using enterprise-grade tools.
+[Buildable](https://buildable.dev/) is the easiest way to collect, transform, send and action your backend system events. Buildable simplifies the process of collecting event data from your disparate systems and connecting new tools to action those events, allowing you to spend more of your engineering time on things that matter.
 
-- [x] One-click Databases (Hosted and Self-Hosted)
-- [x] Auto-generated APIs
-- [x] 1,500+ Open-Source Integration Templates for Coinbase, Stripe, Shopify and hundreds more!
-- [x] Managed infrastructure
-- [x] Dashboard
+When you capture event data in Buildable, you can send them in real-time to your databases, sales, analytics, payment, communication and eCommerce tools. In most cases, you'll be able to set up a Connection once and forget about it forever.
 
-## How to Contribute 🚀
+![Graph](https://assets.buildable.dev/catalog/graphics/buildable-graph.png)
 
-### Publishing to the community
-To get started with publishing your own templates, take a look at the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+## How can Buildable help you?
 
-### Creating your own private templates (BETA)
-If you'd like to create private templates that are only accessible in your Buildable account, you can do so by publishing privately. This feature is currently still in Beta so if you'd like access, send us a request by emailing `friends@buildable.dev` for a private publishing token.
+**[Simplify event collection](https://docs.buildable.dev/connections/source-catalog)**
+Start by integrating the tools you use for data storage, notifications, payments, sales and more.
 
-## Documentation 📖
+**[Audit system-wide activity](https://docs.buildable.dev/streams/viewing-events)**
+Query and review a central stream of all backend activity happening across all platforms.
 
-For full documentation, visit [docs.buildable.dev](https://docs.buildable.dev)
+**[Ship and scale code](https://docs.buildable.dev/workflows/building-workflows)**
+Save hundreds of development hours by setting up webhooks and connecting APIs in minutes
 
-To get to know Buildable, visit [Getting Started](https://docs.buildable.dev/introduction/getting-started)
+## Getting started
 
-## Community & Support 👥
+Your first pipeline can be operational within 10 minutes:
 
-- [GitHub Issues](https://github.com/buildable/templates/issues). Best for: bugs and errors you encounter using Buildable
-- [Discord](https://discord.com/invite/47AJ42Wzys). Best for help with building, discussion about logic best practices, sharing your Flows and hanging out with the community
-- [Email Support](https://docs.buildable.dev/help/need-support). Best For: problems with your Flows or infrastructure
+1. Sign in at [https://app.buildable.dev/sign-in](https://app.buildable.dev/sign-in)
+2. Connect a Source using our [Source Catalog](https://docs.buildable.dev/connections/source-catalog) or SDKs
+3. View your events in your [Event Stream](https://docs.buildable.dev/streams/viewing-events)
+4. Connect an [Action Provider](https://docs.buildable.dev/connections/action-catalog)
+5. [Create a Workflow](https://docs.buildable.dev/workflows/building-workflows) to action your events
 
-## What are Templates? 🤔
+[![Basic Demo](https://img.youtube.com/vi/JUpjxvqAM6w/0.jpg)](https://www.youtube.com/watch?v=JUpjxvqAM6w&feature=emb_imp_woyt)
 
-[Buildable Templates](https://docs.buildable.dev/core-products/templates) is a collection of open-source functions that save developers hundreds of hours when integrating databases, apps and other complicated logic. They work natively with [Buildable Flows](https://docs.buildable.dev/core-products/flows), which means you can build, test, deploy any integration using Templates in a matter of minutes.
+## Contributing to Connections
 
-## Getting Started 🏁
+Buildable’s core engineering team will be reviewing and merging submissions from customers and the community daily. 
 
-To get access to the entire library, simply [create a free developer account](https://welcome.buildable.dev) on Buildable and follow the onboarding tutorial once your developer account is activated. The entire process takes less than 5 minutes. 
+If we’re missing an event source your team needs, for example, you can build it using our samples within a few hours or request it our Public Roadmap
 
-To add a Template to your Flow, simply press the `+` button to expose the Template Library, where you can instantly integrate any template within your Flow!
+## New more help?
 
-[![Adding Templates in Buildable](https://github.com/buildable/templates/blob/main/assets/buildable-templates.gif)](https://buildable.dev)
+Learn more about Buildable 👇
 
-## How Templates Work ⚙️
+💻 Website: [https://buildable.dev](https://buildable.dev/)
+🏁 Get started: [https://app.buildable.dev/sign-in](https://app.buildable.dev/sign-in)
+📄 Docs: [https://docs.buildable.dev](https://docs.buildable.dev/)
+💬 Discord: [https://discord.com/invite/47AJ42Wzys](https://discord.com/invite/47AJ42Wzys)
+🐦 Twitter: [https://twitter.com/BuildableHQ](https://twitter.com/BuildableHQ)
+🚥 Roadmap: [https://roadmap.buildable.dev](https://roadmap.buildable.dev)
+📣 Changelog: [https://buildable.dev/changelog](https://buildable.dev/changelog)
 
-Each Node Template is composed of an `input` and `run` function. Together, they should represent one logic step with a single purpose (i.e. Sending an email with Sendgrid).
+## Contributors
 
-### The Input Function
-The input function’s sole purpose is to select the data that will be passed into the run function.
+Bravo and a special thanks to all the awesome people who've contributed to the Connections Library!
 
-It has access to:
-
-- `$body` - The Flow's body
-- `$headers` - The Flow's headers
-- `$env` - Your Environment Variables
-- `$data` - The outputs of all Nodes above itself
-
-⚠️ It’s important to make sure your input function is only used for selection and not for processing. Following best practices, you shouldn’t write any logic within the Input function. To enforce this, Buildable purposefully allocates lower resources to input functions.
-
-### The Run Function
-The run function is where you write the processing and logic of your node. Whatever is returned in the run function will be the response of the node.
-
-It has access to:
-
-- `input` - The values passed in from the input function
-
-You can view a sample `run` function in the `/sample` directory.
-
-## Demos and Tutorials 📹
-
-We've also got a library of on-demand demo videos and tutorials where we showcase how to use core features in Buildable along with building out real world examples.
-
-You can find these resources below:
-- [On-Demand Demos](https://www.buildable.dev/on-demand-demos)
-- [Tutorials](https://www.buildable.dev/tutorials)
-
-## Status 🚥
-- [x] Alpha: Testing Buildable with a closed set of advisors, investors and technologists
-- [x] Private Beta: Closed to a set of early community members and enterprise customers
-- [x] Public Beta: Anyone with an invite code can sign up and invite others to the platform
-- [x] Public: Production-ready and open to everyone
-- [ ] Scale: Support for large organizations (50+ seats)
-
-🎉 Buildable is currently availably publicly and is no longer invite-only! 
-
-Watch this repo to stay notified on all updates ⬇️
-
-[![Star and Watch](https://github.com/buildable/templates/blob/main/assets/star-and-watch.gif)](https://buildable.dev)
-
-## Roadmap 🗺
-
-<a href="https://roadmap.buildable.dev/">
-  <img src="https://assets.buildable.dev/catalog/graphics/upvoty.png" width="150" />
+<a href="https://github.com/buildable/connections/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=buildable/connections" />
 </a>
-
-Stay up to date with our roadmap on [UpVoty](https://roadmap.buildable.dev/), where you can request and vote for app features and new templates!
-
-## Contributors ❤️
-
-Bravo and a special thanks to all the awesome people who've contributed to the Template library!
-
-<a href="https://github.com/buildable/templates/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=buildable/templates" />
-</a>
-
-## Want to chat? 📬
-
-We'd love to! Reach out to us on [Discord](https://discord.gg/uKydsjsVga) or shoot over an email to [friends@buildable.dev](mailto:friends@buildable.dev).
-
-<br />
 
 ### License
 
