@@ -1,6 +1,3 @@
-// for the list of available events visit:
-// https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads
-
 import { Octokit } from "@octokit/core";
 
 import {
