@@ -36,7 +36,7 @@ Your first pipeline can be operational within 10 minutes:
 4. Connect an [Action Provider](https://docs.buildable.dev/connections/action-catalog)
 5. [Create a Workflow](https://docs.buildable.dev/workflows/building-workflows) to action your events
 
-[![Basic Demo](https://img.youtube.com/vi/JUpjxvqAM6w/0.jpg)](https://www.youtube.com/watch?v=JUpjxvqAM6w&feature=emb_imp_woyt)
+[![Basic Demo](https://assets.buildable.dev/catalog/graphics/youtube-placeholder.png)](https://www.youtube.com/watch?v=JUpjxvqAM6w&feature=emb_imp_woyt)
 
 ## Contributing to Connections
 
@@ -66,7 +66,7 @@ Learn more about Buildable 👇
 
 ## Contributors
 
-Bravo and a special thanks to all the awesome people who've contributed to the Connections Library!
+Supported by a network of early advocates, contributors, and champions!
 
 <a href="https://github.com/buildable/connections/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=buildable/connections" />

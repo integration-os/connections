@@ -28,7 +28,7 @@ It has access to:
 
 - `input` - The values passed in from the input function
 
-You can view a sample `run` function in the [sample directory](actions/sample/).
+You can view a sample `run` function in the [sample directory](/actions/sample/).
 
 ## Read More
 
