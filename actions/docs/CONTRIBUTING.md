@@ -122,25 +122,25 @@ The `config.json` file contains all the settings for your template. Below are th
 </tbody>
 </table>
 
-A sample [config.json](actions/sample/config.json) file is visible inside the `actions/sample/` directory.
+A sample [config.json](/actions/sample/config.json) file is visible inside the `actions/sample/` directory.
 
 ### 5. Update the `input.js` file ✅
 
 Update your `input.js` file to set the input values that will be passed into your run function. Read more about the `input` function in our [docs](https://docs.buildable.dev/workflows/building-workflows).
 
-A sample [input.js](actions/sample/input.js) file is visible inside the `actions/sample/` directory.
+A sample [input.js](/actions/sample/input.js) file is visible inside the `actions/sample/` directory.
 
 ### 6. Update the `run.js` file ✅
 
 Write your template's main logic within the `run.js` file. Read more about the `run` function in our [docs](https://docs.buildable.dev/workflows/building-workflows).
 
-A sample [run.js](actions/sample/run.js) file is visible inside the `actions/sample/` directory.
+A sample [run.js](/actions/sample/run.js) file is visible inside the `actions/sample/` directory.
 
 ### 7. Update the `CHANGELOG.md` file ✅
 
 You'll notice that each template folder contains a `CHANGELOG.md` file. When creating a template, ensure that you've also copied this file over from the `actions/sample/` folder. 
 
-Update the sample [CHANGELOG.md](actions/sample/CHANGELOG.md) file to reflect the appropriate information about your template.
+Update the sample [CHANGELOG.md](/actions/sample/CHANGELOG.md) file to reflect the appropriate information about your template.
 
 ### 8. Create a pull request ✅
 

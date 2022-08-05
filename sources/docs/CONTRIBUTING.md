@@ -9,7 +9,7 @@ This is where we build and share our App Connections for popular and useful apps
 > git checkout -b feature/source/stripe
 ```
 
-Create a folder in the [sources catalog](sources/catalog/) that matches the name of the connection that is being created. Copy over the [sample definition file](sources/sample/config.json) and [sample changelog file](sources/sample/CHANGELOG.md) into the folder and begin creating the Class file.
+Create a folder in the [sources catalog](/sources/catalog/) that matches the name of the connection that is being created. Copy over the [sample definition file](/sources/sample/config.json) and [sample changelog file](/sources/sample/CHANGELOG.md) into the folder and begin creating the Class file.
 
 ```
 ├── sources/
@@ -22,7 +22,7 @@ Create a folder in the [sources catalog](sources/catalog/) that matches the name
 
 ## Class Definition
 
-The class has the below methods and your implementation **must** not change the [TypeScript interface](sources/types/classDefinition.d.ts). The class will be used to communicate and manage the `service (i.e. github)` webhook.
+The class has the below methods and your implementation **must** not change the [TypeScript interface](/sources/types/classDefinition.d.ts). The class will be used to communicate and manage the `service (i.e. github)` webhook.
 
 ### `constructor`
 
@@ -67,4 +67,4 @@ The class has the below methods and your implementation **must** not change the 
 
 ## Sample Source Connection Definition
 
-You can view a sample Source Connection definition in the [sample folder](sources/sample/).
+You can view a sample Source Connection definition in the [sample folder](/sources/sample/).
