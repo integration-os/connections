@@ -11,17 +11,17 @@
   ],
   "authentication": [
     {
-      "name": "GITHUB_REPOSITORY",
+      "name": "GITHUB_REPOS_REPOSITORY",
       "label": "Enter your GitHub Repository Name",
       "placeholder": "Hello-World"
     },
     {
-      "name": "GITHUB_ACCOUNT_ID",
-      "label": "Enter your GitHub Account ID",
+      "name": "GITHUB_REPOS_ACCOUNT_USERNAME",
+      "label": "Enter the GitHub Repo Owner's Username",
       "placeholder": "buildable"
     },
     {
-      "name": "GITHUB_ACCESS_TOKEN",
+      "name": "GITHUB_REPOS_ACCESS_TOKEN",
       "label": "Enter your GitHub Personal Access Token",
       "placeholder": "ghp_7PqohaaQWid5WnTYLRa96oQ05aQ8BO12pLuy"
     }
