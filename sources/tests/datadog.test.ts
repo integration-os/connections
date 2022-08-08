@@ -1,10 +1,14 @@
+require("dotenv").config();
+
 import DatadogIntegration from "../catalog/datadog/Datadog";
 import { WebhooksIntegration } from "@datadog/datadog-api-client/dist/packages/datadog-api-client-v1";
 
+type DatadogRegion = "us1" | "us3" | "us5" | "eu" | "us1-fed";
+
 const datadog = new DatadogIntegration({
-  DATADOG_API_KEY: "7606dd7296f5916bb66aa79c697da808",
-  DATADOG_APP_KEY: "405cbb6b78c6e9040d23b8b2981b070d0eef4a70",
-  DATADOG_REGION: "us5",
+  DATADOG_API_KEY: process.env.DATADOG_API_KEY as string,
+  DATADOG_APP_KEY: process.env.DATADOG_APP_KEY as string,
+  DATADOG_REGION: process.env.DATADOG_REGION as DatadogRegion,
 });
 
 describe("Datadog Integration", () => {
