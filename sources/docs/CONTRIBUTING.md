@@ -4,10 +4,9 @@ This is where we build and share our App Connections for popular and useful apps
 
 ## Setup
 
-```
-> git clone https://github.com/buildable/connections.git
-> git checkout -b feature/source/stripe
-```
+1. Fork this repository
+
+2. Create a branch for your work
 
 Create a folder in the [sources catalog](/sources/catalog/) that matches the name of the connection that is being created. Copy over the [sample definition file](/sources/sample/config.json) and [sample changelog file](/sources/sample/CHANGELOG.md) into the folder and begin creating the Class file.
 
@@ -19,6 +18,8 @@ Create a folder in the [sources catalog](/sources/catalog/) that matches the nam
 │           ├── config.json
 |           └── Stripe.ts
 ```
+
+Once you've tested and finished your Source Connection, create a pull request on the `development` branch of this repository from your forked repository's branch. Once approved and merged to main, your Connection will be live on Buildable, for the entire community!
 
 ## Class Definition
 

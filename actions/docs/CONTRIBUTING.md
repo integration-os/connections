@@ -2,11 +2,7 @@
 
 To create and publish your own action templates, simply follow the steps below.
 
-### 1. Clone this repository ✅
-
-```
-git clone https://github.com/buildable/connections.git
-```
+### 1. Fork this repository ✅
 
 ### 2. Create a branch for your template ✅
 
@@ -144,7 +140,7 @@ Update the sample [CHANGELOG.md](/actions/sample/CHANGELOG.md) file to reflect t
 
 ### 8. Create a pull request ✅
 
-Once you've tested and finished your template, create a pull request on the `development` branch of this repository. Once approved and merged to main, your template will be live on Buildable, for the entire community!
+Once you've tested and finished your template, create a pull request on the `development` branch of this repository from your forked repository's branch. Once approved and merged to main, your template will be live on Buildable, for the entire community!
 
 ---
 
