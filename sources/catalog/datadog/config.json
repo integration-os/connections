@@ -1,0 +1,82 @@
+{
+  "title": "Datadog",
+  "description": "An observability service for cloud-scale applications, providing monitoring of servers, databases, tools, and services.",
+  "apiVersion": "NA",
+  "platform": "datadog",
+  "category": "monitoring",
+  "image": "https://assets.buildable.dev/catalog/node-templates/datadog.svg",
+  "tags": [
+    "metrics",
+    "observability"
+  ],
+  "authentication": [
+    {
+      "name": "DATADOG_API_KEY",
+      "label": "Enter your Datadog API key",
+      "placeholder": "09db593063b435d8b1c4d0e256b23846"
+    },
+    {
+      "name": "DATADOG_APP_KEY",
+      "label": "Enter your Datadog Application key",
+      "placeholder": "c8014f35g5a22324956129176e8cb22975ba10f6"
+    },
+    {
+      "name": "DATADOG_REGION",
+      "type": "select",
+      "options": [
+        {
+          "name": "us1",
+          "value": "us1"
+        },
+        {
+          "name": "us3",
+          "value": "us3"
+        },
+        {
+          "name": "us5",
+          "value": "us5"
+        },
+        {
+          "name": "eu",
+          "value": "eu"
+        },
+        {
+          "name": "us1-fed",
+          "value": "us1-fed"
+        }
+      ],
+        "label": "Select your Datadog server region"
+    }
+  ],
+  "eventSchema": {
+    "body": "$EVENT_MSG",
+    "last_updated": "$LAST_UPDATED",
+    "event_type": "$EVENT_TYPE",
+    "title": "$EVENT_TITLE",
+    "date": "$DATE",
+    "org": {
+      "id": "$ORG_ID",
+      "name": "$ORG_NAME"
+    },
+    "id": "$ID"
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
+  "paths": {
+    "id": "_.body.name",
+    "event": "_.body.event_type",
+    "payload": "_.body",
+    "secret": null,
+    "signature": "_.headers.x-hub-signature-256"
+  },
+  "events": [
+    {
+      "name": "any",
+      "description": "Subscribe to all events (default behavior)",
+      "group": ""
+    }
+  ]
+}
