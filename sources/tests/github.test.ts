@@ -4,7 +4,7 @@ import { createHmac } from "crypto";
 const github = new GitHubIntegration({
   GITHUB_ACCOUNT_ID: "buildable-dev",
   GITHUB_REPOSITORY: "test",
-  GITHUB_ACCESS_TOKEN: "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",
+  GITHUB_ACCESS_TOKEN: "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",
 });
 
 describe("GitHub Integration", () => {
