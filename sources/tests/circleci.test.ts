@@ -1,9 +1,11 @@
+require("dotenv").config();
+
 import CircleCIIntegration from "../catalog/circleci/CircleCI";
 import { createHmac } from "crypto";
 
 const circleci = new CircleCIIntegration({
-  CIRCLECI_PROJECT_ID: "e17b5b48-3814-445f-a943-158425e7a7e8",
-  CIRCLECI_PERSONAL_API_KEY: "c39ae2d434e855bd4dfe6392baca8544835ed060",
+  CIRCLECI_PROJECT_ID: process.env.CIRCLECI_PROJECT_ID as string,
+  CIRCLECI_PERSONAL_API_KEY: process.env.CIRCLECI_PERSONAL_API_KEY as string,
 });
 
 const mockCircleCi = mockFailingIntegration();

@@ -1,10 +1,12 @@
+require("dotenv").config();
+
 import GitHubIntegration from "../catalog/github/GitHub";
 import { createHmac } from "crypto";
 
 const github = new GitHubIntegration({
-  GITHUB_ACCOUNT_ID: "buildable-dev",
-  GITHUB_REPOSITORY: "test",
-  GITHUB_ACCESS_TOKEN: "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",
+  GITHUB_ACCOUNT_ID: process.env.GITHUB_ACCOUNT_ID as string,
+  GITHUB_REPOSITORY: process.env.GITHUB_REPOSITORY as string,
+  GITHUB_ACCESS_TOKEN: process.env.GITHUB_ACCESS_TOKEN as string,
 });
 
 describe("GitHub Integration", () => {
