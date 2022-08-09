@@ -46,19 +46,19 @@ export default class GitLabIntegration implements IntegrationClassI {
   GITLAB_PROJECT_ID: string; // Can either be GitLab-assigned ID or URL-encoded path
   GITLAB_BASE_URL: string = "https://gitlab.com";
 
-  readonly GITLAB_WEBHOOK_AUTH_KEY;
+  readonly GITLAB_WEBHOOK_SECRET;
 
   readonly client: AxiosInstance;
 
   constructor({
-    GITLAB_ACCESS_TOKEN,
-    GITLAB_PROJECT_ID,
-    GITLAB_WEBHOOK_AUTH_KEY,
-    GITLAB_BASE_URL,
-  }: {
+                GITLAB_ACCESS_TOKEN,
+                GITLAB_PROJECT_ID,
+                GITLAB_WEBHOOK_SECRET,
+                GITLAB_BASE_URL,
+              }: {
     GITLAB_ACCESS_TOKEN: string;
     GITLAB_PROJECT_ID: string;
-    GITLAB_WEBHOOK_AUTH_KEY: string;
+    GITLAB_WEBHOOK_SECRET: string;
     GITLAB_BASE_URL?: string;
   }) {
     this.GITLAB_BASE_URL = GITLAB_BASE_URL || this.GITLAB_BASE_URL;
@@ -74,7 +74,7 @@ export default class GitLabIntegration implements IntegrationClassI {
 
     this.GITLAB_ACCESS_TOKEN = GITLAB_ACCESS_TOKEN;
     this.GITLAB_PROJECT_ID = GITLAB_PROJECT_ID;
-    this.GITLAB_WEBHOOK_AUTH_KEY = GITLAB_WEBHOOK_AUTH_KEY;
+    this.GITLAB_WEBHOOK_SECRET = GITLAB_WEBHOOK_SECRET;
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
@@ -82,7 +82,7 @@ export default class GitLabIntegration implements IntegrationClassI {
 
     const response = await this.client.post(`/projects/${this.GITLAB_PROJECT_ID}/hooks`, {
       url: webhookUrl,
-      token: this.GITLAB_WEBHOOK_AUTH_KEY,
+      token: this.GITLAB_WEBHOOK_SECRET,
       ...eventsObject,
     });
 
@@ -95,8 +95,8 @@ export default class GitLabIntegration implements IntegrationClassI {
   verifyWebhookSignature({ signature: signature }: VerifyWebhookSignatureProps): Truthy {
     // GitLab does not sign its webhook payloads.
     // Instead, it resends the token set during the webhook creation process.
-    // Thus, we can verify the signature by comparing "signature" with GITLAB_WEBHOOK_AUTH_KEY.
-    if (signature !== this.GITLAB_WEBHOOK_AUTH_KEY) {
+    // Thus, we can verify the signature by comparing "signature" with GITLAB_WEBHOOK_SECRET.
+    if (signature !== this.GITLAB_WEBHOOK_SECRET) {
       throw Error("Invalid webhook signature");
     }
 
@@ -176,7 +176,7 @@ export default class GitLabIntegration implements IntegrationClassI {
 
     return {
       success: true,
-      message: "Connection to GitLab Webhooks API is healthy",
+      message: "Connection tested successfully!",
     };
   }
 

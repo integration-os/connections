@@ -1,9 +1,10 @@
+
 import GitLabIntegration from "../catalog/gitlab/GitLab";
 
 const gitlab = new GitLabIntegration({
-  GITLAB_PROJECT_ID: "38449140",
-  GITLAB_WEBHOOK_AUTH_KEY: "abcd1234",
-  GITLAB_ACCESS_TOKEN: "glpat-MDsSCit_wit61jf2bJgv",
+  GITLAB_PROJECT_ID: process.env.GITLAB_PROJECT_ID as string,
+  GITLAB_WEBHOOK_SECRET: process.env.GITLAB_WEBHOOK_SECRET as string,
+  GITLAB_ACCESS_TOKEN: process.env.GITLAB_ACCESS_TOKEN as string,
 });
 
 async function createTestWebhook(testWebhookUrl: string): Promise<string> {
@@ -53,7 +54,7 @@ describe("GitLab Integration", () => {
         await gitlab.verifyWebhookSignature({
           request: { body: "", headers: undefined },
           secret: "",
-          signature: gitlab.GITLAB_WEBHOOK_AUTH_KEY,
+          signature: gitlab.GITLAB_WEBHOOK_SECRET,
         }),
       ).toBeTruthy();
     });
@@ -254,7 +255,7 @@ describe("GitLab Integration", () => {
         GITLAB_PROJECT_ID: "",
         GITLAB_BASE_URL: "http://someurl.net",
         GITLAB_ACCESS_TOKEN: "",
-        GITLAB_WEBHOOK_AUTH_KEY: "",
+        GITLAB_WEBHOOK_SECRET: "",
       });
       await expect(badGitlab.testConnection()).rejects.toThrow();
     });

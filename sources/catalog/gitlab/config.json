@@ -1,12 +1,13 @@
 {
   "title": "GitLab",
-  "description": "GitLab Repository Webhooks Management",
+  "description": "A DevOps software package that combines the ability to develop, secure, and operate software in a single application",
   "apiVersion": "NA",
-  "platform": "gitlab-repos",
-  "category": "version-control",
+  "platform": "gitlab",
+  "category": "devops",
   "image": "https://assets.buildable.dev/catalog/node-templates/gitlab.svg",
   "tags": [
     "git",
+    "devops",
     "version-control"
   ],
   "authentication": [
@@ -16,9 +17,14 @@
       "placeholder": "glpat-MDsSCit_wit61jf2bJgv"
     },
     {
-      "name": "GitLab_PROJECT_ID",
+      "name": "GITLAB_PROJECT_ID",
       "label": "Enter your GitLab Project ID",
       "placeholder": "39811640"
+    },
+    {
+      "name": "GITLAB_WEBHOOK_SECRET",
+      "label": "Enter your GitLab Webhook Secret",
+      "placeholder": "some-secret-value"
     }
   ],
   "eventSchema": {
