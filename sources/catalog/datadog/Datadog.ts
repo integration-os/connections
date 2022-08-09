@@ -167,7 +167,7 @@ export default class DatadogIntegration implements IntegrationClassI {
     switch (region) {
       case "us1":
       default:
-        return "datadoghq.com";
+        return "api.datadoghq.com";
       case "us3":
         return "us3.datadoghq.com";
       case "us5":
