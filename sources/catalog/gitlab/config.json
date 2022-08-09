@@ -1,0 +1,161 @@
+{
+  "title": "GitLab",
+  "description": "GitLab Repository Webhooks Management",
+  "apiVersion": "NA",
+  "platform": "gitlab-repos",
+  "category": "version-control",
+  "image": "https://assets.buildable.dev/catalog/node-templates/gitlab.svg",
+  "tags": [
+    "git",
+    "version-control"
+  ],
+  "authentication": [
+    {
+      "name": "GITLAB_ACCESS_TOKEN",
+      "label": "Enter your GitLab Personal API Key",
+      "placeholder": "glpat-MDsSCit_wit61jf2bJgv"
+    },
+    {
+      "name": "GitLab_PROJECT_ID",
+      "label": "Enter your GitLab Project ID",
+      "placeholder": "39811640"
+    }
+  ],
+  "eventSchema": {
+    "object_kind": "push",
+    "event_name": "push",
+    "before": "04b313cae1b737f001e9706988f8abd2aeee4663",
+    "after": "04b313cae1b737f001e9706988f8abd2aeee4663",
+    "ref": "refs/heads/main",
+    "checkout_sha": "04b313cae1b737f001e9706988f8abd2aeee4663",
+    "message": null,
+    "user_id": 12258219,
+    "user_name": "Michael Schofield",
+    "user_username": "mike.onbike",
+    "user_email": null,
+    "user_avatar": "https://secure.gravatar.com/avatar/7fc156ca309234333a82c25b63574fb8?s=80&d=identicon",
+    "project_id": 38449140,
+    "project": {
+      "id": 38449140,
+      "name": "myproj",
+      "description": null,
+      "web_url": "https://gitlab.com/schoff1/myproj",
+      "avatar_url": null,
+      "git_ssh_url": "git@gitlab.com:schoff1/myproj.git",
+      "git_http_url": "https://gitlab.com/schoff1/myproj.git",
+      "namespace": "schoff",
+      "visibility_level": 0,
+      "path_with_namespace": "schoff1/myproj",
+      "default_branch": "main",
+      "ci_config_path": "",
+      "homepage": "https://gitlab.com/schoff1/myproj",
+      "url": "git@gitlab.com:schoff1/myproj.git",
+      "ssh_url": "git@gitlab.com:schoff1/myproj.git",
+      "http_url": "https://gitlab.com/schoff1/myproj.git"
+    },
+    "commits": [
+      {
+        "id": "04b313cae1b737f001e9706988f8abd2aeee4663",
+        "message": "Initial commit",
+        "title": "Initial commit",
+        "timestamp": "2022-08-09T10:25:08+00:00",
+        "url": "https://gitlab.com/schoff1/myproj/-/commit/04b313cae1b737f001e9706988f8abd2aeee4663",
+        "author": { "name": "Michael Schofield", "email": "mike.schoff@somemail.com" },
+        "added": [ "README.md" ],
+        "modified": [],
+        "removed": []
+      }
+    ],
+    "total_commits_count": 1,
+    "push_options": {},
+    "repository": {
+      "name": "myproj",
+      "url": "git@gitlab.com:schoff1/myproj.git",
+      "description": null,
+      "homepage": "https://gitlab.com/schoff1/myproj",
+      "git_http_url": "https://gitlab.com/schoff1/myproj.git",
+      "git_ssh_url": "git@gitlab.com:schoff1/myproj.git",
+      "visibility_level": 0
+    }
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
+  "paths": {
+    "id": "_.headers.x-gitlab-event-uuid",
+    "event": "_.headers.x-gitlab-event",
+    "payload": "_.body",
+    "secret": "_.headers.x-gitlab-token",
+    "signature": "_.headers.x-gitlab-token"
+  },
+  "connectionTypes": ["source"],
+  "events": [
+    {
+      "name": "confidential_issues_events",
+      "description": "A new confidential issue is created or an existing issue is updated, closed, or reopened.",
+      "group": ""
+    },
+    {
+      "name": "confidential_note_events",
+      "description": "A confidential note/comment is made or an existing note is updated, closed, or reopened.",
+      "group": ""
+    },
+    {
+      "name": "deployment_events",
+      "description": "A deployment starts, succeeds, fails, or is canceled.\n",
+      "group": ""
+    },
+    {
+      "name": "issues_events",
+      "description": "A new issue is created or an existing issue is updated, closed, or reopened.",
+      "group": ""
+    },
+    {
+      "name": "job_events",
+      "description": "A job status changes.",
+      "group": ""
+    },
+    {
+      "name": "merge_requests_events",
+      "description": "A merge request is created, updated, merged, or closed, or a commit is added in the source branch.",
+      "group": ""
+    },
+    {
+      "name": "note_events",
+      "description": "A note/comment is made or an existing note is updated, closed, or reopened.",
+      "group": ""
+    },
+    {
+      "name": "pipeline_events",
+      "description": "A pipeline status changes.",
+      "group": ""
+    },
+    {
+      "name": "push_events_branch_filter",
+      "description": "A push, filtered by branch, is made to the repository",
+      "group": ""
+    },
+    {
+      "name": "push_events",
+      "description": "A push is made to the repository.",
+      "group": ""
+    },
+    {
+      "name": "releases_events",
+      "description": "A release is created or updated",
+      "group": ""
+    },
+    {
+      "name": "tag_push_events",
+      "description": "Tags are created or deleted in the repository.",
+      "group": ""
+    },
+    {
+      "name": "wiki_page_events",
+      "description": "A wiki page is created, updated, or deleted.",
+      "group": ""
+    }
+  ]
+}
