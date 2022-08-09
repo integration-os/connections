@@ -1,3 +1,4 @@
+require("dotenv").config();
 
 import GitLabIntegration from "../catalog/gitlab/GitLab";
 
