@@ -139,11 +139,6 @@
       "group": ""
     },
     {
-      "name": "push_events_branch_filter",
-      "description": "A push, filtered by branch, is made to the repository",
-      "group": ""
-    },
-    {
       "name": "push_events",
       "description": "A push is made to the repository.",
       "group": ""
