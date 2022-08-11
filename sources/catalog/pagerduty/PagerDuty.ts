@@ -172,7 +172,7 @@ export default class PagerDutyIntegration implements IntegrationClassI {
 
       return {
         success: true,
-        message: "Connection to PagerDuty API is healthy",
+        message: "Connection tested successfully!",
       };
     } catch (err) {
       throw new Error(`Could not connect to PagerDuty: ${err.message}`);

@@ -4,7 +4,7 @@
   "apiVersion": "Webhooks v3",
   "platform": "pagerduty",
   "category": "monitoring",
-  "image": "",
+  "image": "https://assets.buildable.dev/catalog/node-templates/pagerduty.svg",
   "tags": [],
   "authentication": [
     {
@@ -13,13 +13,27 @@
       "placeholder": "y_NbAkKc66ryYTWUXYEu"
     },
     {
-      "name": "PAGERYDUTY_FILTER_TYPE",
-      "label": "The type of object being used as the filter. Possible values: account_reference, service_reference, team_reference.",
-      "placeholder": "account_reference"
+      "name": "PAGERDUTY_FILTER_TYPE",
+      "type": "select",
+      "options": [
+        {
+          "name": "Account Reference",
+          "value": "account_reference"
+        },
+        {
+          "name": "Service Reference",
+          "value": "service_reference"
+        },
+        {
+          "name": "Team Reference",
+          "value": "team_reference"
+        }
+      ],
+      "label": "Select the Filter Type"
     },
     {
-      "name": "PAGERYDUTY_FILTER_ID",
-      "label": "The id of the object being used as the filter. This field is required for all filter types except account_reference.",
+      "name": "PAGERDUTY_FILTER_ID",
+      "label": "Enter your PagerDuty Filter ID. This field is not required for Account Reference filters",
       "placeholder": "P393ZNQ"
     }
   ],
@@ -103,7 +117,7 @@
     "subscriptionDelayMultiplier": 0.0
   },
   "paths": {
-    "id": "_.body.event.id",
+    "id": "_.body.id",
     "event": "_.body.event.event_type",
     "payload": "_.body.event.data",
     "secret": "_.body.delivery_method.secret",
