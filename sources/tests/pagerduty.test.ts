@@ -9,6 +9,18 @@ const pagerduty = new PagerDutyIntegration({
   PAGERDUTY_FILTER_ID: process.env.PAGERDUTY_FILTER_ID as string,
 });
 
+// getWebhooks works
+const pagerdutyMockPartialFail = mockFailingIntegration();
+pagerdutyMockPartialFail.getWebhooks = async ({ webhookId }: { webhookId: string }) => {
+  return {
+    id: webhookId,
+    events: ["incident.acknowledged"],
+  };
+};
+
+// Everything fails
+const pagerdutyMockFail = mockFailingIntegration();
+
 describe("PagerDuty Integration", () => {
   describe("init", () => {
     let webhookId: string | undefined;
@@ -35,6 +47,23 @@ describe("PagerDuty Integration", () => {
       expect(events).toEqual(["incident.resolved"]);
 
       webhookId = webhookData.id;
+    });
+
+    it("should throw an error if PagerDuty does not return 200", async () => {
+      let errorMessage = "no error message";
+
+      try {
+        await pagerdutyMockPartialFail?.init?.({
+          webhookUrl: "https://example.com/webhook",
+          events: ["incident.resolved"],
+        });
+      } catch (e) {
+        errorMessage = e.message;
+      }
+
+      expect(errorMessage).toMatch(
+        /Could not initialize PagerDuty integration: Request failed with status code 400/g,
+      );
     });
   });
 
@@ -133,7 +162,7 @@ describe("PagerDuty Integration", () => {
       expect(result).toBeTruthy();
     });
 
-    it("should raise an error if the signature is invalid", async () => {
+    it("should throw an error if the signature is invalid", async () => {
       const invalidSignature = `v1=${createHmac("sha256", "invalid_secret")
         .update(JSON.stringify(testPayload))
         .digest("hex")}`;
@@ -188,6 +217,23 @@ describe("PagerDuty Integration", () => {
 
       expect(result.events).toEqual(["incident.resolved"]);
     });
+
+    it("should throw an error if PagerDuty does not return 200", async () => {
+      let errorMessage = "no error message";
+
+      try {
+        await pagerdutyMockPartialFail?.subscribe?.({
+          webhookId,
+          events: ["incident.resolved"],
+        });
+      } catch (e) {
+        errorMessage = e.message;
+      }
+
+      expect(errorMessage).toMatch(
+        /Could not subscribe to new PagerDuty events: Request failed with status code 400/g,
+      );
+    });
   });
 
   describe("unsubscribe", () => {
@@ -230,6 +276,23 @@ describe("PagerDuty Integration", () => {
 
       expect(errorMessage).toMatch(/Not Found/g);
     });
+
+    it("should throw an error if PagerDuty does not return 200", async () => {
+      let errorMessage = "no error message";
+
+      try {
+        await pagerdutyMockPartialFail?.unsubscribe?.({
+          webhookId,
+          events: [],
+        });
+      } catch (e) {
+        errorMessage = e.message;
+      }
+
+      expect(errorMessage).toMatch(
+        /Could not unsubscribe from PagerDuty events: Request failed with status code 400/g,
+      );
+    });
   });
 
   describe("getWebhooks", () => {
@@ -261,6 +324,20 @@ describe("PagerDuty Integration", () => {
       const result = await pagerduty.getWebhooks({});
       expect((result as any).map((x) => x.id).sort()).toEqual(webhookIds.sort());
     });
+
+    it("should throw an error if PagerDuty does not return 200", async () => {
+      let errorMessage = "no error message";
+
+      try {
+        await pagerdutyMockFail?.getWebhooks?.({});
+      } catch (e) {
+        errorMessage = e.message;
+      }
+
+      expect(errorMessage).toMatch(
+        /Could not get PagerDuty webhooks: Request failed with status code 400/g,
+      );
+    });
   });
 
   describe("getSubscribedEvents", () => {
@@ -278,6 +355,20 @@ describe("PagerDuty Integration", () => {
     it("should get subscribed events", async () => {
       const events = await pagerduty.getSubscribedEvents({ webhookId });
       expect(events.sort()).toEqual(["incident.acknowledged", "incident.escalated"].sort());
+    });
+
+    it("should throw an error if PagerDuty does not return 200", async () => {
+      let errorMessage = "no error message";
+
+      try {
+        await pagerdutyMockFail?.getSubscribedEvents?.({ webhookId });
+      } catch (e) {
+        errorMessage = e.message;
+      }
+
+      expect(errorMessage).toMatch(
+        /Could not get PagerDuty webhooks: Request failed with status code 400/g,
+      );
     });
   });
 
@@ -310,8 +401,20 @@ describe("PagerDuty Integration", () => {
         errorMessage = err.message;
       }
 
+      expect(errorMessage).toMatch(/Request failed with status code 404/g);
+    });
+
+    it("should throw an error if PagerDuty does not return 200", async () => {
+      let errorMessage = "no error message";
+
+      try {
+        await pagerdutyMockPartialFail?.deleteWebhookEndpoint?.({ webhookId });
+      } catch (e) {
+        errorMessage = e.message;
+      }
+
       expect(errorMessage).toMatch(
-        /Could not delete PagerDuty webhook: Request failed with status code 404/g,
+        /Could not delete PagerDuty webhook: Request failed with status code 400/g,
       );
     });
   });
@@ -320,6 +423,18 @@ describe("PagerDuty Integration", () => {
     it("should return true if the connection is successful", async () => {
       const result = await pagerduty.testConnection();
       expect(result).toBeTruthy();
+    });
+
+    it("should throw an error if PagerDuty does not return 200", async () => {
+      let errorMessage = "no error message";
+
+      try {
+        await pagerdutyMockFail?.testConnection?.();
+      } catch (e) {
+        errorMessage = e.message;
+      }
+
+      expect(errorMessage).toMatch(/Could not connect to PagerDuty/g);
     });
   });
 });
@@ -352,4 +467,56 @@ async function deleteWebhook(webhookId) {
   if (webhookId) {
     await pagerduty.deleteWebhookEndpoint({ webhookId });
   }
+}
+
+// Mock Integrations
+function mockFailingIntegration(): Partial<PagerDutyIntegration> {
+  return new (class extends PagerDutyIntegration {
+    public client;
+
+    constructor() {
+      super({
+        PAGERDUTY_API_TOKEN: "arbitrary_api_token",
+        PAGERDUTY_FILTER_TYPE: "account_reference",
+      });
+
+      this.client = {
+        get: jest.fn(() => {
+          return Promise.resolve({
+            status: 400,
+            data: {
+              message: "Request failed with status code 400",
+            },
+          });
+        }),
+
+        post: jest.fn(() => {
+          return Promise.resolve({
+            status: 400,
+            data: {
+              message: "Request failed with status code 400",
+            },
+          });
+        }),
+
+        put: jest.fn(() => {
+          return Promise.resolve({
+            status: 400,
+            data: {
+              message: "Request failed with status code 400",
+            },
+          });
+        }),
+
+        delete: jest.fn(() => {
+          return Promise.resolve({
+            status: 400,
+            data: {
+              message: "Request failed with status code 400",
+            },
+          });
+        }),
+      };
+    }
+  })();
 }

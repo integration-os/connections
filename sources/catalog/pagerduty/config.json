@@ -1,9 +1,9 @@
 {
   "title": "PagerDuty",
-  "description": "",
-  "apiVersion": "",
+  "description": "Automate, orchestrate, and accelerate responses across your digital infrastructure.",
+  "apiVersion": "Webhooks v3",
   "platform": "pagerduty",
-  "category": "",
+  "category": "monitoring",
   "image": "",
   "tags": [],
   "authentication": [
@@ -14,8 +14,8 @@
     },
     {
       "name": "PAGERYDUTY_FILTER_TYPE",
-      "label": "The type of object being used as the filter. Possible values: account_reference, service_reference, team_reference",
-      "placeholder": "service_reference"
+      "label": "The type of object being used as the filter. Possible values: account_reference, service_reference, team_reference.",
+      "placeholder": "account_reference"
     },
     {
       "name": "PAGERYDUTY_FILTER_ID",

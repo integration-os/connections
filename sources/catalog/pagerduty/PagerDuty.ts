@@ -28,7 +28,7 @@ export default class PagerDutyIntegration implements IntegrationClassI {
   }: {
     PAGERDUTY_API_TOKEN: string;
     PAGERDUTY_FILTER_TYPE: string;
-    PAGERDUTY_FILTER_ID: string;
+    PAGERDUTY_FILTER_ID?: string;
   }) {
     this.PAGERDUTY_API_TOKEN = PAGERDUTY_API_TOKEN;
     this.PAGERDUTY_FILTER_TYPE = PAGERDUTY_FILTER_TYPE;
@@ -66,7 +66,7 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     });
 
     if (response.status !== 200) {
-      throw new Error(`Could not initialize PagerDuty integration: ${response.status}`);
+      throw new Error(`Could not initialize PagerDuty integration: ${response?.data?.message}`);
     }
 
     return {
@@ -107,7 +107,7 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     });
 
     if (response.status !== 200) {
-      throw new Error(`Could not subscribe to new PagerDuty events: ${response.status}`);
+      throw new Error(`Could not subscribe to new PagerDuty events: ${response?.data?.message}`);
     }
 
     return { webhook: response.data, events: response.data.webhook_subscription.events };
@@ -131,7 +131,7 @@ export default class PagerDutyIntegration implements IntegrationClassI {
       });
 
       if (response.status !== 200) {
-        throw new Error(`Could not unsubscribe from PagerDuty events: ${response.status}`);
+        throw new Error(`Could not unsubscribe from PagerDuty events: ${response?.data?.message}`);
       }
 
       return { webhook: response.data, events: response.data.webhook_subscription.events };
@@ -142,7 +142,7 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     const webhookResponse = await this.client.get(webhookId ? `/${webhookId}` : "");
 
     if (webhookResponse.status !== 200) {
-      throw new Error(`Could not get PagerDuty webhooks: ${webhookResponse.status}`);
+      throw new Error(`Could not get PagerDuty webhooks: ${webhookResponse?.data?.message}`);
     }
 
     return webhookId
@@ -157,13 +157,13 @@ export default class PagerDutyIntegration implements IntegrationClassI {
   }
 
   async deleteWebhookEndpoint({ webhookId }: WebhooksProps): Promise<Truthy> {
-    try {
-      await this.client.delete(`/${webhookId}`);
+    const response = await this.client.delete(`/${webhookId}`);
 
-      return true;
-    } catch (e) {
-      throw new Error(`Could not delete PagerDuty webhook: ${e.message}`);
+    if (response.status !== 204) {
+      throw new Error(`Could not delete PagerDuty webhook: ${response?.data?.message}`);
     }
+
+    return true;
   }
 
   async testConnection(): Promise<Truthy> {
