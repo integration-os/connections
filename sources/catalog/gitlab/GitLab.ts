@@ -63,6 +63,9 @@ export default class GitLabIntegration implements IntegrationClassI {
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const eventsObject = GitLabIntegration.extractEventsObject(events);
 
+    console.log("events: ", events);
+    console.log("eventsObject: ", eventsObject);
+
     const response = await this.client.post(`/projects/${this.GITLAB_PROJECT_ID}/hooks`, {
       url: webhookUrl,
       token: this.GITLAB_WEBHOOK_SECRET,
@@ -169,6 +172,10 @@ export default class GitLabIntegration implements IntegrationClassI {
 
     for (const event of events) {
       eventObject[event] = !unsubscribe;
+    }
+
+    if (!events.includes("push_events")) {
+      eventObject["push_events"] = false;
     }
 
     return eventObject;

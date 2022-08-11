@@ -90,7 +90,7 @@
     "subscriptionDelayMultiplier": 0.0
   },
   "paths": {
-    "id": "_.headers.x-gitlab-event-uuid",
+    "id": "_.body.id",
     "event": "_.headers.x-gitlab-event",
     "payload": "_.body",
     "secret": "_.headers.x-gitlab-token",
