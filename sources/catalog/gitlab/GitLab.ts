@@ -14,24 +14,7 @@ import {
 
 import axios, { AxiosInstance } from "axios";
 
-interface GitLabEvents {
-  confidential_issues_events?: boolean;
-  confidential_note_events?: boolean;
-  deployment_events?: boolean;
-  enable_ssl_verification?: boolean;
-  issues_events?: boolean;
-  job_events?: boolean;
-  merge_requests_events?: boolean;
-  note_events?: boolean;
-  pipeline_events?: boolean;
-  push_events_branch_filter?: boolean;
-  push_events?: boolean;
-  releases_events?: boolean;
-  tag_push_events?: boolean;
-  wiki_page_events?: boolean;
-}
-
-interface GitLabWebhook extends GitLabEvents {
+interface GitLabWebhook {
   id: number;
   url: string;
   created_at: string;
@@ -51,11 +34,11 @@ export default class GitLabIntegration implements IntegrationClassI {
   readonly client: AxiosInstance;
 
   constructor({
-                GITLAB_ACCESS_TOKEN,
-                GITLAB_PROJECT_ID,
-                GITLAB_WEBHOOK_SECRET,
-                GITLAB_BASE_URL,
-              }: {
+    GITLAB_ACCESS_TOKEN,
+    GITLAB_PROJECT_ID,
+    GITLAB_WEBHOOK_SECRET,
+    GITLAB_BASE_URL,
+  }: {
     GITLAB_ACCESS_TOKEN: string;
     GITLAB_PROJECT_ID: string;
     GITLAB_WEBHOOK_SECRET: string;
@@ -181,7 +164,7 @@ export default class GitLabIntegration implements IntegrationClassI {
   }
 
   // helper methods
-  private static extractEventsObject(events: string[], unsubscribe: boolean = false): GitLabEvents {
+  private static extractEventsObject(events: string[], unsubscribe: boolean = false) {
     const eventObject = {};
 
     for (const event of events) {
@@ -191,7 +174,7 @@ export default class GitLabIntegration implements IntegrationClassI {
     return eventObject;
   }
 
-  private static extractEventsArray(events: GitLabEvents): string[] {
+  private static extractEventsArray(events: any): string[] {
     const eventArray = [];
 
     for (const event in events) {
