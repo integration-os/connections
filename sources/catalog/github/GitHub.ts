@@ -70,7 +70,6 @@ export default class GitHubIntegration implements IntegrationClassI {
     const hash = crypto.createHmac("sha256", secret).update(request.body, "utf8").digest("hex");
 
     if (`sha256=${hash}` !== signature) {
-      ``;
       throw new Error(`Invalid signature`);
     }
 

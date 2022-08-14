@@ -71,7 +71,11 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
     const hash = crypto.createHmac("sha256", secret).update(request.body, "utf8").digest("base64");
 
-    return hash === signature;
+    if (hash !== signature) {
+      throw new Error(`Invalid signature`);
+    }
+
+    return true;
   }
 
   async subscribe({ webhookIds, events }: SubscriptionProps): Promise<SubscribeReturns> {
