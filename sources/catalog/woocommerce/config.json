@@ -130,63 +130,63 @@
   "connectionTypes": ["source", "action"],
   "events": [
     {
-      "name": "branch_protection_rule",
-      "description": "Branch protection rule created, deleted or edited.",
+      "name": "coupon.created",
+      "description": "A coupon has been created",
       "group": ""
     },
     {
-      "name": "check_run",
-      "description": "Check run is created, requested, rerequested, or completed.",
+      "name": "coupon.updated",
+      "description": "A coupon has been updated",
       "group": ""
     },
     {
-      "name": "check_suite",
-      "description": "Check suite is requested, rerequested, or completed.",
+      "name": "coupon.deleted",
+      "description": "A coupon has been deleted",
       "group": ""
     },
     {
-      "name": "code_scanning_alert",
-      "description": "Code Scanning alert created, fixed in branch, or closed",
+      "name": "customer.created",
+      "description": "A customer has been created",
       "group": ""
     },
     {
-      "name": "commit_comment",
-      "description": "Commit or diff commented on.",
+      "name": "customer.updated",
+      "description": "A customer has been updated",
       "group": ""
     },
     {
-      "name": "create",
-      "description": "Branch or tag created.",
+      "name": "customer.deleted",
+      "description": "A customer has been deleted",
       "group": ""
     },
     {
-      "name": "delete",
-      "description": "Branch or tag deleted.",
+      "name": "order.created",
+      "description": "An order has been created",
       "group": ""
     },
     {
-      "name": "deployment",
-      "description": "Repository was deployed or a deployment was deleted.",
+      "name": "order.updated",
+      "description": "An order has been updated",
       "group": ""
     },
     {
-      "name": "deployment_status",
-      "description": "Deployment status updated from the API.",
+      "name": "order.deleted",
+      "description": "An order has been deleted",
       "group": ""
     },
     {
-      "name": "deploy_key",
-      "description": "A deploy key is created or deleted from a repository",
+      "name": "product.created",
+      "description": "A product has been created",
       "group": ""
     },
     {
-      "name": "discussion",
-      "description": "Discussion created, edited, pinned, unpinned, locked, unlocked, transferred, answered, unanswered, labeled, unlabeled, had its category changed, or was deleted.",
+      "name": "product.updated",
+      "description": "A product has been updated",
       "group": ""
     },
     {
-      "name": "discussion_comment",
-      "description": "Discussion comment created, edited, or deleted.",
+      "name": "product.deleted",
+      "description": "A product has been deleted",
       "group": ""
     },
     {
