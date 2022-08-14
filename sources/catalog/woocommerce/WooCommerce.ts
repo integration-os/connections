@@ -23,8 +23,8 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
   constructor({
     WOOCOMMERCE_WP_URL,
-    WOOCOMMERCE_CUSTOMER_SECRET,
     WOOCOMMERCE_CUSTOMER_KEY,
+    WOOCOMMERCE_CUSTOMER_SECRET,
   }: {
     WOOCOMMERCE_WP_URL: string;
     WOOCOMMERCE_CUSTOMER_KEY: string;
@@ -32,23 +32,24 @@ export default class WooCommerceIntegration implements IntegrationClassI {
   }) {
     this.client = axios.create({
       url: WOOCOMMERCE_WP_URL,
-      auth: {
-        username: WOOCOMMERCE_CUSTOMER_KEY,
-        password: WOOCOMMERCE_CUSTOMER_SECRET,
-      },
       headers: {
         "Content-Type": "application/json",
         "User-Agent": "buildable",
+        Authorization: Buffer.from(
+          `${WOOCOMMERCE_CUSTOMER_KEY.trim()}:${WOOCOMMERCE_CUSTOMER_SECRET.trim()}`,
+        )
+          .toString("base64")
+          .trim(),
       },
     });
 
-    this.WOOCOMMERCE_CUSTOMER_SECRET = WOOCOMMERCE_CUSTOMER_KEY;
+    this.WOOCOMMERCE_CUSTOMER_SECRET = WOOCOMMERCE_CUSTOMER_SECRET;
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const webhookData: AnyObject[] = await Promise.all(
       events.map(async (event) => {
-        const response = await this.client.post("/wp-json/wc/v3/webhooks", {
+        const response = await this.client.post("https://mysite.local/wp-json/wc/v3/webhooks", {
           topic: event,
           delivery_url: webhookUrl,
           secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
@@ -67,7 +68,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
   verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Truthy {
     // WooCommerce sends the signed body in X-WC-Webhook-Signature header
     // it uses SHA256-HMAC hash encoded in base64
-    secret = this.WOOCOMMERCE_CUSTOMER_SECRET;
+    // We're using the Rest API secret key for encryption, which is the default key used by WooCommerce
 
     const hash = crypto.createHmac("sha256", secret).update(request.body, "utf8").digest("base64");
 
@@ -81,7 +82,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
   async subscribe({ webhookIds, events }: SubscriptionProps): Promise<SubscribeReturns> {
     const webhooks: AnyObject[] = (await this.getWebhooks({ webhookIds })) as AnyObject[];
 
-    const subscribedEvents = webhooks.map((webhook) => webhook.event);
+    const subscribedEvents = webhooks.map((webhook) => webhook.topic);
 
     const eventsToSubscribe = events.filter((event) => !subscribedEvents.includes(event));
 
@@ -92,11 +93,15 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
       newWebhooks = await Promise.all(
         eventsToSubscribe.map(async (event) => {
-          const response = await this.client.post("/wp-json/wc/v3/webhooks", {
-            topic: event,
-            delivery_url,
-            secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
-          });
+          const response = await this.client.post(
+            "/wp-json/wc/v3/webhooks",
+            {
+              topic: event,
+              delivery_url,
+              secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
+            },
+            {},
+          );
 
           return response.data;
         }),
@@ -116,14 +121,13 @@ export default class WooCommerceIntegration implements IntegrationClassI {
     webhooks?: any;
   }> {
     const webhooks = (await this.getWebhooks({ webhookIds })) as AnyObject[];
-    const subscribedEvents = webhooks.map((webhook) => webhook.event);
-    const eventsToUnsubscribe = events.filter((event) => subscribedEvents.includes(event));
 
-    let webhooksToDelete = [];
+    const subscribedEvents = webhooks.map((webhook) => webhook.topic);
+    const eventsToUnsubscribe = events.filter((event) => subscribedEvents.includes(event));
 
     if (eventsToUnsubscribe.length !== 0) {
       const webhooksToDelete = webhooks.filter((webhook) =>
-        eventsToUnsubscribe.includes(webhook.event),
+        eventsToUnsubscribe.includes(webhook.topic),
       );
 
       for (const webhook of webhooksToDelete) {
@@ -133,10 +137,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
     // return new webhooks
     return {
-      webhooks: webhooks.filter(
-        (webhook) =>
-          !webhooksToDelete.map((deletedWebhook) => deletedWebhook.id).includes(webhook.id),
-      ),
+      webhooks: webhooks.filter((webhook) => !eventsToUnsubscribe.includes(webhook.topic)),
       events: subscribedEvents.filter((event) => !eventsToUnsubscribe.includes(event)),
     };
   }
@@ -144,9 +145,16 @@ export default class WooCommerceIntegration implements IntegrationClassI {
   async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
     return await Promise.all(
       webhookIds.map(async (webhookId: string) => {
-        const response = await this.client.get(`/wp-json/wc/v3/webhooks/${webhookId}`);
+        try {
+          const response = await this.client.get(`/wp-json/wc/v3/webhooks/${webhookId}`);
+          return response.data;
+        } catch (error) {
+          if (error.response.status === 404) {
+            throw new Error(`Webhook with ID ${webhookId} not found`);
+          }
 
-        return response.data;
+          throw error;
+        }
       }),
     );
   }
@@ -156,17 +164,25 @@ export default class WooCommerceIntegration implements IntegrationClassI {
       webhookIds.map(async (webhookId) => {
         const response = await this.client.get(`/wp-json/wc/v3/webhooks/${webhookId}`);
 
-        return response.data.event;
+        return response.data.topic;
       }),
     );
 
+    // Deduplicate events
     return Array.from(new Set(events));
   }
 
   async deleteWebhookEndpoint({ webhookId }: DeleteWebhookEndpointProps): Promise<Truthy> {
-    await this.client.delete(`/wp-json/wc/v3/webhooks/${webhookId}`);
+    try {
+      await this.client.delete(`/wp-json/wc/v3/webhooks/${webhookId}?force=true`);
+      return true;
+    } catch (error) {
+      if (error.response.status === 404) {
+        throw new Error(`Webhook with ID ${webhookId} not found`);
+      }
 
-    return true;
+      throw error;
+    }
   }
 
   async testConnection(): Promise<Truthy> {
@@ -174,7 +190,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
     return {
       success: true,
-      message: "Connection to GitHub Webhooks API is healthy",
+      message: "Connection tested successfully!",
     };
   }
 }

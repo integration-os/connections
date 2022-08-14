@@ -1,35 +1,11 @@
-import { AnyObject } from "../types/classDefinition";
-
 require("dotenv").config();
 
+import axios, { AxiosInstance } from "axios";
+import * as https from "https";
+
 import WooCommerceIntegration from "../catalog/woocommerce/WooCommerce";
-import crypto from "crypto";
-
-const woocommerce = new WooCommerceIntegration({
-  WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL,
-  WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET,
-  WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY,
-});
-
-async function createWebhooks(webhookIds: string[], events: string[] = ["order.created"]) {
-  for (const event of events) {
-    const response = await woocommerce.client.post(`/wp-json/wc/v3/webhooks`, {
-      topic: event,
-      delivery_url: "https://example.com/webhook",
-      secret: "secret",
-    });
-
-    webhookIds.push(response.data.id);
-  }
-}
-
-async function dropWebhooks(webhookIds: string[]) {
-  if (webhookIds.length !== 0) {
-    for (const webhookId of webhookIds) {
-      await woocommerce.client.delete(`/wp-json/wc/v3/webhooks`);
-    }
-  }
-}
+import { AnyObject } from "../types/classDefinition";
+import { createHmac } from "crypto";
 
 describe("WooCommerce Integration", () => {
   describe("init", () => {
@@ -37,10 +13,11 @@ describe("WooCommerce Integration", () => {
 
     afterEach(async () => {
       await dropWebhooks(webhookIds);
+      webhookIds = [];
     });
 
     it("should create a webhook", async () => {
-      const initReturns = await woocommerce.init({
+      const initReturns = await noSSLWooCommerce.init({
         webhookUrl: "https://example.com/webhook",
         events: ["order.created"],
       });
@@ -53,7 +30,7 @@ describe("WooCommerce Integration", () => {
     });
 
     it("should create a webhook with multiple events", async () => {
-      const initReturns = await woocommerce.init({
+      const initReturns = await noSSLWooCommerce.init({
         webhookUrl: "https://example.com/webhook",
         events: ["order.created", "order.updated"],
       });
@@ -93,13 +70,12 @@ describe("WooCommerce Integration", () => {
       },
     };
 
-    const testSignature = crypto
-      .createHmac("sha256", secret)
+    const testSignature = createHmac("sha256", secret)
       .update(JSON.stringify(body), "utf8")
       .digest("base64");
 
     it("should return true if the signature is valid", async () => {
-      const result = woocommerce.verifyWebhookSignature({
+      const result = noSSLWooCommerce.verifyWebhookSignature({
         request: {
           body: JSON.stringify(body),
           headers: { "X-WC-Webhook-Signature": testSignature },
@@ -112,16 +88,21 @@ describe("WooCommerce Integration", () => {
     });
 
     it("should raise an error if the signature is invalid", async () => {
-      await expect(
-        woocommerce.verifyWebhookSignature({
+      let errorMessage = "no error thrown";
+
+      try {
+        await noSSLWooCommerce.verifyWebhookSignature({
           request: {
             body: JSON.stringify({ id: 13 }),
             headers: { "X-WC-Webhook-Signature": testSignature },
           },
           signature: testSignature,
           secret,
-        }),
-      ).rejects.toThrow("/Invalid signature/g");
+        });
+      } catch (error) {
+        errorMessage = error.message;
+      }
+      await expect(errorMessage).toMatch(/Invalid signature/g);
     });
   });
 
@@ -129,23 +110,24 @@ describe("WooCommerce Integration", () => {
     let webhookIds: string[] = [];
 
     beforeEach(async () => {
-      await createWebhooks(webhookIds);
+      webhookIds = await createWebhooks();
     });
 
     afterEach(async () => {
       await dropWebhooks(webhookIds);
+      webhookIds = [];
     });
 
     it("should subscribe to the event", async () => {
-      const response = await woocommerce.subscribe({
-        webhookId: webhookIds[0],
+      const response = await noSSLWooCommerce.subscribe({
+        webhookIds: webhookIds,
         events: ["product.created"],
       });
 
       expect(response).toBeTruthy();
       expect(response.webhooks).toBeDefined();
       expect(response.webhooks).toHaveLength(2);
-      expect(response.events).toEqual(["order.created", "products.created"]);
+      expect(response.events).toEqual(["order.created", "product.created"]);
 
       for (const webhook of response.webhooks as AnyObject[]) {
         webhookIds.push(webhook.id);
@@ -153,15 +135,15 @@ describe("WooCommerce Integration", () => {
     });
 
     it("should handle subscription of an existing event", async () => {
-      const response = await woocommerce.subscribe({
-        webhookId: webhookIds[0],
+      const response = await noSSLWooCommerce.subscribe({
+        webhookIds: webhookIds,
         events: ["product.created", "product.deleted"],
       });
 
       expect(response).toBeTruthy();
       expect(response.webhooks).toBeDefined();
       expect(response.webhooks).toHaveLength(3);
-      expect(response.events).toEqual(["order.created", "products.created", "products.deleted"]);
+      expect(response.events).toEqual(["order.created", "product.created", "product.deleted"]);
 
       for (const webhook of response.webhooks as AnyObject[]) {
         webhookIds.push(webhook.id);
@@ -173,16 +155,17 @@ describe("WooCommerce Integration", () => {
     let webhookIds: string[] = [];
 
     beforeEach(async () => {
-      await createWebhooks(webhookIds, ["order.created", "order.updated"]);
+      webhookIds = await createWebhooks(["order.created", "order.updated"]);
     });
 
     afterEach(async () => {
       await dropWebhooks(webhookIds);
+      webhookIds = [];
     });
 
     it("should unsubscribe from the event(s)", async () => {
-      const response = await woocommerce.unsubscribe({
-        webhookId: webhookIds[0],
+      const response = await noSSLWooCommerce.unsubscribe({
+        webhookIds: webhookIds,
         events: ["order.created"],
       });
 
@@ -191,14 +174,14 @@ describe("WooCommerce Integration", () => {
       expect(response.webhooks).toHaveLength(1);
       expect(response.events).toEqual(["order.updated"]);
 
-      for (const webhook of response.webhooks as AnyObject[]) {
-        webhookIds.push(webhook.id);
-      }
+      webhookIds = webhookIds.filter(
+        (wid) => !response.webhooks.filter((webhook) => webhook.id).includes(wid),
+      );
     });
 
     it("should delete webhook if no events remain", async () => {
-      const response = await woocommerce.unsubscribe({
-        webhookId: webhookIds[0],
+      const response = await noSSLWooCommerce.unsubscribe({
+        webhookIds: webhookIds,
         events: ["order.created", "order.updated"],
       });
 
@@ -207,9 +190,9 @@ describe("WooCommerce Integration", () => {
       expect(response.webhooks).toHaveLength(0);
       expect(response.events).toEqual([]);
 
-      for (const webhook of response.webhooks as AnyObject[]) {
-        webhookIds.push(webhook.id);
-      }
+      webhookIds = webhookIds.filter(
+        (wid) => !response.webhooks.filter((webhook) => webhook.id).includes(wid),
+      );
     });
   });
 
@@ -217,16 +200,17 @@ describe("WooCommerce Integration", () => {
     let webhookIds: string[] = [];
 
     beforeEach(async () => {
-      await createWebhooks(webhookIds);
+      webhookIds = await createWebhooks();
     });
 
     afterEach(async () => {
       await dropWebhooks(webhookIds);
+      webhookIds = [];
     });
 
     it("should return the webhook", async () => {
-      const webhooks = await woocommerce.getWebhooks({
-        webhookId: webhookIds[0],
+      const webhooks = await noSSLWooCommerce.getWebhooks({
+        webhookIds: webhookIds,
       });
 
       expect(webhooks).toBeDefined();
@@ -235,7 +219,27 @@ describe("WooCommerce Integration", () => {
     });
 
     it("should raise an error if the webhook does not exist", async () => {
-      await expect(woocommerce.getWebhooks({ webhookIds: ["1"] })).rejects.toThrow();
+      let errorMessage = "no error thrown";
+
+      try {
+        await noSSLWooCommerce.getWebhooks({ webhookIds: ["0"] });
+      } catch (error) {
+        errorMessage = error.message;
+      }
+
+      await expect(errorMessage).toMatch(/Webhook with ID 0 not found/g);
+    });
+
+    it("should raise an error if the webhook returns a non-404 HTTP response", async () => {
+      let errorMessage = "no error thrown";
+
+      try {
+        await mockClientWooCommerce.getWebhooks({ webhookIds: ["0"] });
+      } catch (error) {
+        errorMessage = error.message;
+      }
+
+      expect(errorMessage).toMatch(/Request failed with status code 500/g);
     });
   });
 
@@ -243,15 +247,16 @@ describe("WooCommerce Integration", () => {
     let webhookIds: string[] = [];
 
     beforeEach(async () => {
-      await createWebhooks(webhookIds, ["order.created", "order.updated", "order.deleted"]);
+      webhookIds = await createWebhooks(["order.created", "order.updated", "order.deleted"]);
     });
 
     afterEach(async () => {
       await dropWebhooks(webhookIds);
+      webhookIds = [];
     });
 
     it("should return the subscribed events", async () => {
-      const events = await woocommerce.getSubscribedEvents({ webhookId: webhookIds[0] });
+      const events = await noSSLWooCommerce.getSubscribedEvents({ webhookIds: webhookIds });
 
       expect(events).toBeDefined();
       expect(events).toHaveLength(3);
@@ -263,31 +268,167 @@ describe("WooCommerce Integration", () => {
     let webhookIds: string[] = [];
 
     beforeEach(async () => {
-      await createWebhooks(webhookIds, ["order.created", "order.updated", "order.deleted"]);
+      webhookIds = await createWebhooks();
     });
 
     afterEach(async () => {
       await dropWebhooks(webhookIds);
+      webhookIds = [];
     });
 
     it("should delete the webhook", async () => {
-      const response = await woocommerce.deleteWebhookEndpoint({ webhookId: webhookIds[0] });
+      const response = await noSSLWooCommerce.deleteWebhookEndpoint({ webhookId: webhookIds[0] });
 
       expect(response).toBeTruthy();
 
-      webhookIds = webhookIds.filter((webhookId) => webhookId !== webhookIds[0]);
+      webhookIds = webhookIds.filter((webhookId) => webhookId !== webhookIds[0]) || [];
     });
 
     it("should throw an error if the webhook does not exist", async () => {
-      await expect(woocommerce.deleteWebhookEndpoint({ webhookId: "1" })).rejects.toThrow();
+      let errorMessage = "no error thrown";
+
+      try {
+        await noSSLWooCommerce.deleteWebhookEndpoint({ webhookId: "0" });
+      } catch (error) {
+        errorMessage = error.message;
+      }
+
+      expect(errorMessage).toMatch(/Webhook with ID 0 not found/g);
+    });
+
+    it("should throw an error if the request fails with a non-404 HTTP status code", async () => {
+      let errorMessage = "no error thrown";
+
+      try {
+        await mockClientWooCommerce.deleteWebhookEndpoint({ webhookId: "0" });
+      } catch (error) {
+        errorMessage = error.message;
+      }
+
+      expect(errorMessage).toMatch(/Request failed with status code 500/g);
     });
   });
 
   describe("testConnection", () => {
     it("should return true if the connection is valid", async () => {
-      const response = await woocommerce.testConnection();
+      const response = await noSSLWooCommerce.testConnection();
 
       expect(response).toBeTruthy();
     });
   });
 });
+
+// helpers
+const noSSLWooCommerce = new (class extends WooCommerceIntegration {
+  public client: AxiosInstance;
+
+  constructor({
+    WOOCOMMERCE_WP_URL,
+    WOOCOMMERCE_CUSTOMER_SECRET,
+    WOOCOMMERCE_CUSTOMER_KEY,
+  }: {
+    WOOCOMMERCE_WP_URL: string;
+    WOOCOMMERCE_CUSTOMER_KEY: string;
+    WOOCOMMERCE_CUSTOMER_SECRET: string;
+  }) {
+    super({
+      WOOCOMMERCE_WP_URL,
+      WOOCOMMERCE_CUSTOMER_SECRET,
+      WOOCOMMERCE_CUSTOMER_KEY,
+    });
+
+    this.client = axios.create({
+      baseURL: WOOCOMMERCE_WP_URL,
+      auth: {
+        username: WOOCOMMERCE_CUSTOMER_KEY,
+        password: WOOCOMMERCE_CUSTOMER_SECRET,
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": "buildable",
+      },
+      httpsAgent: new https.Agent({
+        rejectUnauthorized: false,
+      }),
+    });
+  }
+})({
+  WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
+  WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
+  WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
+});
+
+const mockClientWooCommerce = new (class extends WooCommerceIntegration {
+  public client;
+
+  constructor({
+    WOOCOMMERCE_WP_URL,
+    WOOCOMMERCE_CUSTOMER_SECRET,
+    WOOCOMMERCE_CUSTOMER_KEY,
+  }: {
+    WOOCOMMERCE_WP_URL: string;
+    WOOCOMMERCE_CUSTOMER_KEY: string;
+    WOOCOMMERCE_CUSTOMER_SECRET: string;
+  }) {
+    super({
+      WOOCOMMERCE_WP_URL,
+      WOOCOMMERCE_CUSTOMER_SECRET,
+      WOOCOMMERCE_CUSTOMER_KEY,
+    });
+
+    this.client = {
+      get: jest.fn(() => {
+        return Promise.reject({
+          response: {
+            status: 500,
+          },
+          message: "Request failed with status code 500",
+        });
+      }),
+      delete: jest.fn(() => {
+        return Promise.reject({
+          response: {
+            status: 500,
+          },
+          message: "Request failed with status code 500",
+        });
+      }),
+    };
+  }
+})({
+  WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
+  WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
+  WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
+});
+
+async function createWebhooks(events: string[] = ["order.created"]) {
+  const webhookIds: string[] = [];
+
+  for (const event of events) {
+    const response = await noSSLWooCommerce.client.post(`/wp-json/wc/v3/webhooks`, {
+      topic: event,
+      delivery_url: "https://example.com/webhook",
+      secret: "secret",
+    });
+
+    webhookIds.push(response.data.id);
+  }
+
+  return webhookIds;
+}
+
+async function dropWebhooks(webhookIds: string[]) {
+  if (webhookIds && webhookIds.length !== 0) {
+    for (const webhookId of webhookIds) {
+      await noSSLWooCommerce.client
+        .delete(`/wp-json/wc/v3/webhooks/${webhookId}?force=true`)
+        .catch((error) => {
+          if (error.response?.status !== 404) {
+            throw error;
+          }
+        });
+    }
+
+    return [];
+  }
+}
