@@ -1,0 +1,353 @@
+{
+  "title": "WooCommerce",
+  "description": "WooCommerce is a customizable, open-source eCommerce platform built on WordPress.",
+  "apiVersion": "NA",
+  "platform": "woocommerce",
+  "category": "e-commerce",
+  "image": "https://assets.buildable.dev/catalog/node-templates/woocommerce.svg",
+  "tags": [
+    "e-commerce"
+  ],
+  "authentication": [
+    {
+      "name": "WOOCOMMERCE_WP_URL",
+      "label": "Enter your WordPress Website URL",
+      "placeholder": "https://my-website.com"
+    },
+    {
+      "name": "WOOCOMMERCE_CUSTOMER_KEY",
+      "label": "Enter the WooCommerce Customer Key",
+      "placeholder": "ck_13e879fc387333d4bb74e5d6b1fb10ca5bb6f1e1"
+    },
+    {
+      "name": "WOOCOMMERCE_CUSTOMER_SECRET",
+      "label": "Enter your Woocommerce Customer Secret",
+      "placeholder": "cs_d15a728095e5b75779c85197498e9eaa25dda7e9"
+    }
+  ],
+  "eventSchema": {
+    "id": 15,
+    "name": "My Product",
+    "slug": "my-product",
+    "permalink": "https://mysite.local/product/my-product/",
+    "date_created": "2022-08-12T10:04:18",
+    "date_created_gmt": "2022-08-12T10:04:18",
+    "date_modified": "2022-08-12T10:04:18",
+    "date_modified_gmt": "2022-08-12T10:04:18",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+    "short_description": "",
+    "sku": "",
+    "price": "450",
+    "regular_price": "450",
+    "sale_price": "350",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": false,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": true,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 15,
+        "name": "Uncategorized",
+        "slug": "uncategorized"
+      }
+    ],
+    "tags": [],
+    "images": [],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "",
+    "related_ids": [],
+    "meta_data": [],
+    "stock_status": "instock",
+    "has_options": false,
+    "_links": {
+      "self": [
+        {
+          "href": "https://mysite.local/wp-json/wc/v3/webhooks/11"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://mysite.local/wp-json/wc/v3/webhooks"
+        }
+      ] }
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
+  "paths": {
+    "id": "_.headers.x-github-delivery",
+    "event": "_.headers.x-github-event",
+    "payload": "_.body",
+    "secret": "_.body.config.secret",
+    "signature": "_.headers.x-hub-signature-256"
+  },
+  "connectionTypes": ["source", "action"],
+  "events": [
+    {
+      "name": "branch_protection_rule",
+      "description": "Branch protection rule created, deleted or edited.",
+      "group": ""
+    },
+    {
+      "name": "check_run",
+      "description": "Check run is created, requested, rerequested, or completed.",
+      "group": ""
+    },
+    {
+      "name": "check_suite",
+      "description": "Check suite is requested, rerequested, or completed.",
+      "group": ""
+    },
+    {
+      "name": "code_scanning_alert",
+      "description": "Code Scanning alert created, fixed in branch, or closed",
+      "group": ""
+    },
+    {
+      "name": "commit_comment",
+      "description": "Commit or diff commented on.",
+      "group": ""
+    },
+    {
+      "name": "create",
+      "description": "Branch or tag created.",
+      "group": ""
+    },
+    {
+      "name": "delete",
+      "description": "Branch or tag deleted.",
+      "group": ""
+    },
+    {
+      "name": "deployment",
+      "description": "Repository was deployed or a deployment was deleted.",
+      "group": ""
+    },
+    {
+      "name": "deployment_status",
+      "description": "Deployment status updated from the API.",
+      "group": ""
+    },
+    {
+      "name": "deploy_key",
+      "description": "A deploy key is created or deleted from a repository",
+      "group": ""
+    },
+    {
+      "name": "discussion",
+      "description": "Discussion created, edited, pinned, unpinned, locked, unlocked, transferred, answered, unanswered, labeled, unlabeled, had its category changed, or was deleted.",
+      "group": ""
+    },
+    {
+      "name": "discussion_comment",
+      "description": "Discussion comment created, edited, or deleted.",
+      "group": ""
+    },
+    {
+      "name": "fork",
+      "description": "Repository forked.",
+      "group": ""
+    },
+    {
+      "name": "gollum",
+      "description": "Wiki page updated.",
+      "group": ""
+    },
+    {
+      "name": "issues",
+      "description": "Issue opened, edited, deleted, transferred, pinned, unpinned, closed, reopened, assigned, unassigned, labeled, unlabeled, milestoned, demilestoned, locked, or unlocked.",
+      "group": ""
+    },
+    {
+      "name": "issue_comment",
+      "description": "Issue comment created, edited, or deleted.",
+      "group": ""
+    },
+    {
+      "name": "label",
+      "description": "Label created, edited, or deleted.",
+      "group": ""
+    },
+    {
+      "name": "member",
+      "description": "Collaborator added, removed or changed.",
+      "group": ""
+    },
+    {
+      "name": "meta",
+      "description": "This particular hook is deleted.",
+      "group": ""
+    },
+    {
+      "name": "milestone",
+      "description": "Milestone created, closed, opened, edited, or deleted.",
+      "group": ""
+    },
+    {
+      "name": "package",
+      "description": "GitHub Packages published or updated in a repository.",
+      "group": ""
+    },
+    {
+      "name": "page_build",
+      "description": "Pages site built.",
+      "group": ""
+    },
+    {
+      "name": "project",
+      "description": "Project created, updated, or deleted.",
+      "group": ""
+    },
+    {
+      "name": "project_card",
+      "description": "Project card created, updated, or deleted.",
+      "group": ""
+    },
+    {
+      "name": "project_column",
+      "description": "Project column created, updated, moved or deleted.",
+      "group": ""
+    },
+    {
+      "name": "pull_request",
+      "description": "Pull request opened, closed, reopened, edited, assigned, unassigned, review requested, review request removed, labeled, unlabeled, synchronized, ready for review, converted to draft, locked, unlocked, auto merge enabled, auto merge disabled, milestoned, or demilestoned.",
+      "group": ""
+    },
+    {
+      "name": "pull_request_review",
+      "description": "Pull request review submitted, edited, or dismissed.",
+      "group": ""
+    },
+    {
+      "name": "pull_request_review_comment",
+      "description": "Pull request diff comment created, edited, or deleted.",
+      "group": ""
+    },
+    {
+      "name": "pull_request_review_thread",
+      "description": "A pull request review thread was resolved or unresolved.",
+      "group": ""
+    },
+    {
+      "name": "push",
+      "description": "Git push to a repository.",
+      "group": ""
+    },
+    {
+      "name": "registry_package",
+      "description": "Registry package published or updated in a repository.",
+      "group": ""
+    },
+    {
+      "name": "release",
+      "description": "Release created, edited, published, unpublished, or deleted.",
+      "group": ""
+    },
+    {
+      "name": "repository",
+      "description": "Repository created, deleted, archived, unarchived, publicized, privatized, edited, renamed, or transferred.",
+      "group": ""
+    },
+    {
+      "name": "repository_import",
+      "description": "Repository import succeeded, failed, or cancelled.",
+      "group": ""
+    },
+    {
+      "name": "repository_vulnerability_alert",
+      "description": "Dependabot alert (aka dependency vulnerability alert) created, resolved, or dismissed on a repository.",
+      "group": ""
+    },
+    {
+      "name": "secret_scanning_alert",
+      "description": "Secrets scanning alert created, resolved, or reopened",
+      "group": ""
+    },
+    {
+      "name": "secret_scanning_alert_location",
+      "description": "Secrets scanning alert location created",
+      "group": ""
+    },
+    {
+      "name": "star",
+      "description": "A star is created or deleted from a repository.",
+      "group": ""
+    },
+    {
+      "name": "status",
+      "description": "Commit status updated from the API.",
+      "group": ""
+    },
+    {
+      "name": "team_add",
+      "description": "Team added or modified on a repository.",
+      "group": ""
+    },
+    {
+      "name": "public",
+      "description": "Repository changes from private to public.",
+      "group": ""
+    },
+    {
+      "name": "watch",
+      "description": "User stars a repository.",
+      "group": ""
+    },
+    {
+      "name": "workflow_job",
+      "description": "Workflow job queued, requested or completed on a repository.",
+      "group": ""
+    },
+    {
+      "name": "workflow_run",
+      "description": "Workflow run requested or completed on a repository.",
+      "group": ""
+    }
+  ]
+}
