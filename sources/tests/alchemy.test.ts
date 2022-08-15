@@ -159,12 +159,7 @@ describe("Alchemy Integration", () => {
 
       expect(webhook).toHaveProperty("id");
       expect(webhook.id).toEqual(webhookId);
-      expect(webhook).toHaveProperty("app_id");
-      expect(webhook.app_id).toEqual(process.env.ALCHEMY_APP_ID as string);
-      expect(webhook).toHaveProperty("network");
-      expect(webhook).toHaveProperty("webhook_type");
-      expect(webhook.webhook_type).toEqual(MINED_TRANSACTION);
-      expect(webhook.webhook_url).toEqual("https://example.com/webhook");
+
       expect(events).toEqual([MINED_TRANSACTION]);
     });
 
@@ -199,10 +194,13 @@ describe("Alchemy Integration", () => {
     });
 
     it("should not delete the webhook if events does not include MINED_TRANSACTION", async () => {
-      const { events } = <{ webhook: any; events: [] }>await alchemy.unsubscribe({
+      const { webhook, events } = <{ webhook: any; events: [] }>await alchemy.unsubscribe({
         webhookId,
         events: ["non-existent event"],
       });
+
+      expect(webhook).toHaveProperty("id");
+      expect(webhook.id).toEqual(webhookId);
 
       expect(events).toEqual([MINED_TRANSACTION]);
     });

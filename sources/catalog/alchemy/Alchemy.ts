@@ -89,7 +89,10 @@ export default class AlchemyIntegration implements IntegrationClassI {
     }
   }
 
-  async unsubscribe({ webhookId, events }: SubscriptionProps): Promise<{ events: Events }> {
+  async unsubscribe({
+    webhookId,
+    events,
+  }: SubscriptionProps): Promise<{ events: Events; webhook?: AnyObject }> {
     // If unsubscribing from MINED_TRANSACTION, delete the webhook. Otherwise do nothing.
     if (events.includes(MINED_TRANSACTION)) {
       try {
@@ -100,7 +103,9 @@ export default class AlchemyIntegration implements IntegrationClassI {
         throw new Error(`Could not unsubscribe from Alchemy events: ${e.message}`);
       }
     } else {
-      return { events: [MINED_TRANSACTION] };
+      const webhook: AnyObject = await this.getWebhooks({ webhookId });
+
+      return { webhook, events: [MINED_TRANSACTION] };
     }
   }
 
