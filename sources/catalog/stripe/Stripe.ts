@@ -1,16 +1,15 @@
+/**
+ * Stripe.ts
+ *
+ * @description - Stripe integration for Buildable
+ *
+ * @author    Buildable Technologies Inc.
+ * @license   MIT
+ * @docs      https://stripe.com/docs/webhooks
+ */
+
 import Stripe from "stripe";
-import {
-  IntegrationClassI,
-  InitProps,
-  InitReturns,
-  VerifyWebhookSignatureProps,
-  SubscriptionProps,
-  SubscribeReturns,
-  WebhooksProps,
-  Events,
-  AnyObject,
-  Truthy,
-} from "../../types/classDefinition";
+import { IntegrationClassI } from "../../types/classDefinition";
 
 export default class StripeIntegration implements IntegrationClassI {
   id = "intg_627aceaf971c67182d1d76ca";
@@ -23,7 +22,7 @@ export default class StripeIntegration implements IntegrationClassI {
     });
   }
 
-  async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
+  async init({ webhookUrl, events }) {
     const webhook = await this.stripe.webhookEndpoints.create({
       url: webhookUrl,
       enabled_events: events as any,
@@ -35,59 +34,38 @@ export default class StripeIntegration implements IntegrationClassI {
     };
   }
 
-  verifyWebhookSignature({
-    request,
-    signature,
-    secret,
-  }: VerifyWebhookSignatureProps): Truthy {
+  verifyWebhookSignature({ request, signature, secret }) {
     try {
-      return this.stripe.webhooks.constructEvent(
-        request.body,
-        signature,
-        secret
-      );
+      return this.stripe.webhooks.constructEvent(request.body, signature, secret);
     } catch (err) {
       throw new Error("Unable to verify signature.");
     }
   }
 
-  async subscribe({
-    webhookId,
-    events,
-  }: SubscriptionProps): Promise<SubscribeReturns> {
+  async subscribe({ webhookId, events }) {
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });
 
     const eventsAfterSubscribe = subscribedEvents.concat(events);
 
-    const updatedWebhook = await this.stripe.webhookEndpoints.update(
-      webhookId,
-      {
-        enabled_events: eventsAfterSubscribe as any,
-      }
-    );
+    const updatedWebhook = await this.stripe.webhookEndpoints.update(webhookId, {
+      enabled_events: eventsAfterSubscribe as any,
+    });
 
     return {
       webhook: updatedWebhook,
-      events: updatedWebhook.enabled_events as string[],
+      events: updatedWebhook.enabled_events,
     };
   }
 
-  async unsubscribe({
-    webhookId,
-    events,
-  }: SubscriptionProps): Promise<{
-    events: Events;
-    webhook?: any;
-    webhooks?: any;
-  }> {
+  async unsubscribe({ webhookId, events }) {
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });
 
     const eventsAfterUnsubscribe = subscribedEvents.filter(
-      (event: string) => !events.includes(event)
+      (event: string) => !events.includes(event),
     );
 
     // If there are no events left, delete the webhook
@@ -99,12 +77,9 @@ export default class StripeIntegration implements IntegrationClassI {
       };
     }
 
-    const updatedWebhook = await this.stripe.webhookEndpoints.update(
-      webhookId,
-      {
-        enabled_events: eventsAfterUnsubscribe as any,
-      }
-    );
+    const updatedWebhook = await this.stripe.webhookEndpoints.update(webhookId, {
+      enabled_events: eventsAfterUnsubscribe as any,
+    });
 
     return {
       events: updatedWebhook.enabled_events,
@@ -112,25 +87,23 @@ export default class StripeIntegration implements IntegrationClassI {
     };
   }
 
-  async getWebhooks(): Promise<AnyObject | AnyObject[]> {
+  async getWebhooks() {
     const webhookEndpoint = await this.stripe.webhookEndpoints.list();
 
     return webhookEndpoint?.data;
   }
 
-  async getSubscribedEvents({ webhookId }: WebhooksProps): Promise<Events> {
-    const webhookEndpoint = await this.stripe.webhookEndpoints.retrieve(
-      webhookId
-    );
+  async getSubscribedEvents({ webhookId }) {
+    const webhookEndpoint = await this.stripe.webhookEndpoints.retrieve(webhookId);
 
     return webhookEndpoint.enabled_events;
   }
 
-  async deleteWebhookEndpoint({ webhookId }: WebhooksProps): Promise<Truthy> {
+  async deleteWebhookEndpoint({ webhookId }) {
     return await this.stripe.webhookEndpoints.del(webhookId);
   }
 
-  async testConnection(): Promise<Truthy> {
+  async testConnection() {
     try {
       // Test the connection by trying to list a charge
       await this.stripe.charges.list({ limit: 1 });
@@ -140,7 +113,10 @@ export default class StripeIntegration implements IntegrationClassI {
         message: "Connection tested successfully!",
       };
     } catch (err) {
-      throw new Error("Unable to establish a connection with Stripe.");
+      console.log((err as Error).message);
+      throw new Error(
+        "Unable to establish a connection with Stripe: " + (err as Error).message
+      );
     }
   }
 }

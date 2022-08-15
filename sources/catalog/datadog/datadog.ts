@@ -45,7 +45,7 @@ export default class DatadogIntegration implements IntegrationClassI {
     this.datadogClient = new v1.WebhooksIntegrationApi(configuration);
   }
 
-  async init({ webhookUrl }: InitProps): Promise<InitReturns> {
+  async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const response = await this.datadogClient.createWebhooksIntegration({
       body: {
         name: `buildable-${this.randomHex()}`,
@@ -57,7 +57,7 @@ export default class DatadogIntegration implements IntegrationClassI {
 
     return {
       webhookData: response,
-      events: ["any"],
+      events,
     };
   }
 
@@ -145,7 +145,7 @@ export default class DatadogIntegration implements IntegrationClassI {
     } catch (error) {
       if (error.code !== 404) {
         throw new Error(
-          `Unable to establish a connection with Datadog: ${error.message}`
+          `Unable to connect to Datadog Webhooks API: ${error.message}`
         );
       }
     }
