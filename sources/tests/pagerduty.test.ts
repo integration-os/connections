@@ -2,6 +2,7 @@ require("dotenv").config();
 
 import { createHmac } from "crypto";
 import PagerDutyIntegration from "../catalog/pagerduty/PagerDuty";
+import { AnyObject } from "../types/classDefinition";
 
 const pagerduty = new PagerDutyIntegration({
   PAGERDUTY_API_TOKEN: process.env.PAGERDUTY_API_TOKEN as string,
@@ -199,23 +200,33 @@ describe("PagerDuty Integration", () => {
     });
 
     it("should subscribe to new events", async () => {
-      const result = await pagerduty.subscribe({
-        webhookId,
-        events: ["incident.acknowledged", "incident.escalated"],
-      });
+      const { webhook, events } = <{ webhook: AnyObject; events: string[] }>(
+        await pagerduty.subscribe({
+          webhookId,
+          events: ["incident.acknowledged", "incident.escalated"],
+        })
+      );
 
-      expect(result.events.sort()).toEqual(
+      expect(webhook).toHaveProperty("id");
+      expect(webhook.id).toEqual(webhookId);
+
+      expect(events.sort()).toEqual(
         ["incident.resolved", "incident.acknowledged", "incident.escalated"].sort(),
       );
     });
 
     it("should handle subscription of an existing event", async () => {
-      const result = await pagerduty.subscribe({
-        webhookId,
-        events: ["incident.resolved"],
-      });
+      const { webhook, events } = <{ webhook: AnyObject; events: string[] }>(
+        await pagerduty.subscribe({
+          webhookId,
+          events: ["incident.resolved"],
+        })
+      );
 
-      expect(result.events).toEqual(["incident.resolved"]);
+      expect(webhook).toHaveProperty("id");
+      expect(webhook.id).toEqual(webhookId);
+
+      expect(events).toEqual(["incident.resolved"]);
     });
 
     it("should throw an error if PagerDuty does not return 200", async () => {
@@ -249,21 +260,26 @@ describe("PagerDuty Integration", () => {
     });
 
     it("should unsubscribe from events", async () => {
-      const result = await pagerduty.unsubscribe({
-        webhookId,
-        events: ["incident.acknowledged"],
-      });
+      const { webhook, events } = <{ webhook: AnyObject; events: string[] }>(
+        await pagerduty.unsubscribe({
+          webhookId,
+          events: ["incident.acknowledged"],
+        })
+      );
 
-      expect(result.events).toEqual(["incident.escalated"]);
+      expect(webhook).toHaveProperty("id");
+      expect(webhook.id).toEqual(webhookId);
+
+      expect(events).toEqual(["incident.escalated"]);
     });
 
     it("should delete webhook if no events remain", async () => {
-      const result = await pagerduty.unsubscribe({
+      const { events } = await pagerduty.unsubscribe({
         webhookId,
         events: ["incident.acknowledged", "incident.escalated"],
       });
 
-      expect(result.events).toEqual([]);
+      expect(events).toEqual([]);
 
       let errorMessage = "no error";
 

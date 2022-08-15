@@ -110,7 +110,10 @@ export default class PagerDutyIntegration implements IntegrationClassI {
       throw new Error(`Could not subscribe to new PagerDuty events: ${response?.data?.message}`);
     }
 
-    return { webhook: response.data, events: response.data.webhook_subscription.events };
+    return {
+      webhook: response.data.webhook_subscription,
+      events: response.data.webhook_subscription.events,
+    };
   }
 
   async unsubscribe({ webhookId, events }: SubscriptionProps): Promise<{
@@ -134,20 +137,21 @@ export default class PagerDutyIntegration implements IntegrationClassI {
         throw new Error(`Could not unsubscribe from PagerDuty events: ${response?.data?.message}`);
       }
 
-      return { webhook: response.data, events: response.data.webhook_subscription.events };
+      return {
+        webhook: response.data.webhook_subscription,
+        events: response.data.webhook_subscription.events,
+      };
     }
   }
 
   async getWebhooks({ webhookId }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
-    const webhookResponse = await this.client.get(webhookId ? `/${webhookId}` : "");
+    const response = await this.client.get(webhookId ? `/${webhookId}` : "");
 
-    if (webhookResponse.status !== 200) {
-      throw new Error(`Could not get PagerDuty webhooks: ${webhookResponse?.data?.message}`);
+    if (response.status !== 200) {
+      throw new Error(`Could not get PagerDuty webhooks: ${response?.data?.message}`);
     }
 
-    return webhookId
-      ? webhookResponse.data.webhook_subscription
-      : webhookResponse.data.webhook_subscriptions;
+    return webhookId ? response.data.webhook_subscription : response.data.webhook_subscriptions;
   }
 
   async getSubscribedEvents({ webhookId }: WebhooksProps): Promise<Events> {
