@@ -1,0 +1,45 @@
+{
+  "title": "Jira",
+  "description": "Jira is a proprietary issue tracking product developed by Atlassian that allows bug tracking and agile project management.",
+  "apiVersion": "3",
+  "platform": "jira",
+  "category": "bug-tracker",
+  "image": "https://assets.buildable.dev/catalog/node-templates/jira.svg",
+  "tags": ["jira"],
+  "authentication": [
+    {
+      "name": "JIRA_OAUTH2_ACCESS_TOKEN",
+      "label": "jira OAuth2 access token",
+      "placeholder": "1234567890abc"
+    },
+    {
+      "name": "JIRA_PROJECT_ID",
+      "label": "jira project ID",
+      "placeholder": "my-project-123"
+    }
+  ],
+  "eventSchema": {
+    "webhookRegistrationResult": [{
+        "createdWebhookId": 1000,
+        "errors": [
+          "The clause watchCount is unsupported"
+        ]
+      },
+      {
+        "createdWebhookId": 1001
+      }
+    ]
+  },
+  "events": [
+    {
+      "name": "jira:issue_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:issue_updated",
+      "description": "",
+      "group": ""
+    }
+  ]
+}
