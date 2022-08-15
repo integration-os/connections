@@ -27,12 +27,10 @@ export default class CircleCIIntegration implements IntegrationClassI {
 
   constructor({
     CIRCLECI_PERSONAL_API_KEY,
-    CIRCLECI_PROJECT_ID,
-    CIRCLECI_WEBHOOK_NAME,
+    CIRCLECI_PROJECT_ID
   }: {
     CIRCLECI_PERSONAL_API_KEY: string;
     CIRCLECI_PROJECT_ID: string;
-    CIRCLECI_WEBHOOK_NAME?: string;
   }) {
     this.client = axios.create({
       baseURL: "https://circleci.com/api/v2/webhook",
@@ -45,8 +43,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
 
     this.CIRCLECI_API_KEY = CIRCLECI_PERSONAL_API_KEY;
     this.CIRCLECI_PROJECT_ID = CIRCLECI_PROJECT_ID;
-    this.CIRCLECI_WEBHOOK_NAME =
-      CIRCLECI_WEBHOOK_NAME || `buildable-${this.randomHex()}`;
+    this.CIRCLECI_WEBHOOK_NAME = `buildable-${this.randomHex()}`;
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
@@ -213,7 +210,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
 
       return {
         success: true,
-        message: "Connection to CircleCI API is healthy",
+        message: "Connection tested successfully!",
       };
     } catch (err) {
       throw new Error(`Could not connect to CircleCI: ${err.message}`);

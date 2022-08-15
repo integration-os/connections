@@ -1,18 +1,16 @@
+/**
+ * Shopify.ts
+ *
+ * @description - Shopify integration for Buildable
+ *
+ * @author    Buildable Technologies Inc.
+ * @license   MIT
+ * @docs      https://shopify.dev/api/admin-rest/2022-04/resources/webhook
+ */
+
 import { Shopify, ApiVersion, DataType } from "@shopify/shopify-api";
 import crypto from "crypto";
-import {
-  IntegrationClassI,
-  InitProps,
-  InitReturns,
-  VerifyWebhookSignatureProps,
-  SubscriptionProps,
-  SubscribeReturns,
-  WebhooksProps,
-  Events,
-  AnyObject,
-  Truthy,
-  DeleteWebhookEndpointProps,
-} from "../../types/classDefinition";
+import { IntegrationClassI } from "../../types/classDefinition";
 
 const sleep = (n) => new Promise((resolve) => setTimeout(resolve, n));
 
@@ -32,16 +30,13 @@ export default class ShopifyIntegration implements IntegrationClassI {
     SHOPIFY_ACCESS_TOKEN: string;
     SHOPIFY_API_SECRET_KEY: string;
   }) {
-    this.shopify = new Shopify.Clients.Rest(
-      SHOPIFY_STORE_URL,
-      SHOPIFY_ACCESS_TOKEN
-    );
+    this.shopify = new Shopify.Clients.Rest(SHOPIFY_STORE_URL, SHOPIFY_ACCESS_TOKEN);
 
     this.SHOPIFY_API_SECRET_KEY = SHOPIFY_API_SECRET_KEY;
     this.API_BASE_PATH = `/admin/api/${ApiVersion.April22}`;
   }
 
-  async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
+  async init({ webhookUrl, events }) {
     const webhooks = [];
 
     for (const event of events) {
@@ -83,17 +78,10 @@ export default class ShopifyIntegration implements IntegrationClassI {
     };
   }
 
-  verifyWebhookSignature({
-    request,
-    signature,
-    secret,
-  }: VerifyWebhookSignatureProps): Truthy {
+  verifyWebhookSignature({ request, signature, secret }) {
     secret = this.SHOPIFY_API_SECRET_KEY;
 
-    const hash = crypto
-      .createHmac("sha256", secret)
-      .update(request.body, "utf8")
-      .digest("base64");
+    const hash = crypto.createHmac("sha256", secret).update(request.body, "utf8").digest("base64");
 
     if (hash !== signature) {
       throw new Error("Unable to verify signature.");
@@ -102,11 +90,7 @@ export default class ShopifyIntegration implements IntegrationClassI {
     return true;
   }
 
-  async subscribe({
-    webhookIds,
-    events,
-    webhookUrl,
-  }: SubscriptionProps): Promise<SubscribeReturns> {
+  async subscribe({ webhookUrl, webhookIds, events }) {
     const webhooks = await this.getWebhooks({
       webhookIds,
     });
@@ -119,19 +103,12 @@ export default class ShopifyIntegration implements IntegrationClassI {
     const updatedWebhooks = webhooks.concat(createdWebhooks.webhookData);
 
     return {
-      webhooks: updatedWebhooks as AnyObject[],
-      events: updatedWebhooks.map((webhook) => webhook.topic) as string[],
+      webhooks: updatedWebhooks,
+      events: updatedWebhooks.map((webhook) => webhook.topic),
     };
   }
 
-  async unsubscribe({
-    webhookIds,
-    events,
-  }: SubscriptionProps): Promise<{
-    events: Events;
-    webhook?: any;
-    webhooks?: any;
-  }> {
+  async unsubscribe({ webhookIds, events }) {
     const webhooks = await this.getWebhooks({
       webhookIds,
     });
@@ -155,9 +132,7 @@ export default class ShopifyIntegration implements IntegrationClassI {
       }
     }
 
-    const updatedWebhooks = webhooks.filter(
-      (webhook) => !webhooksIdsToDelete.includes(webhook.id)
-    );
+    const updatedWebhooks = webhooks.filter((webhook) => !webhooksIdsToDelete.includes(webhook.id));
 
     return {
       webhooks: updatedWebhooks,
@@ -165,9 +140,7 @@ export default class ShopifyIntegration implements IntegrationClassI {
     };
   }
 
-  async getWebhooks({
-    webhookIds,
-  }: WebhooksProps): Promise<AnyObject | AnyObject[]> {
+  async getWebhooks({ webhookIds }) {
     const getAllWebhooks = async (nextPageInfo, webhooks) => {
       const query: {
         limit: number;
@@ -198,7 +171,7 @@ export default class ShopifyIntegration implements IntegrationClassI {
 
       return await getAllWebhooks(
         data.pageInfo.nextPage.query.page_info,
-        webhooks.concat(data.body.webhooks)
+        webhooks.concat(data.body.webhooks),
       );
     };
 
@@ -207,7 +180,7 @@ export default class ShopifyIntegration implements IntegrationClassI {
     return webhooks.filter((webhook) => webhookIds.includes(webhook.id));
   }
 
-  async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {
+  async getSubscribedEvents({ webhookIds }) {
     const webhooks = await this.getWebhooks({
       webhookIds,
     });
@@ -217,9 +190,7 @@ export default class ShopifyIntegration implements IntegrationClassI {
     return events;
   }
 
-  async deleteWebhookEndpoint({
-    webhookId,
-  }: DeleteWebhookEndpointProps): Promise<Truthy> {
+  async deleteWebhookEndpoint({ webhookId }) {
     const startTime = Date.now();
 
     await this.shopify.delete({
@@ -240,7 +211,7 @@ export default class ShopifyIntegration implements IntegrationClassI {
     return true;
   }
 
-  async testConnection(): Promise<Truthy> {
+  async testConnection() {
     try {
       // Test the connection by trying to list webhooks
       await this.shopify.get({
@@ -252,7 +223,10 @@ export default class ShopifyIntegration implements IntegrationClassI {
         message: "Connection tested successfully!",
       };
     } catch (err) {
-      throw new Error("Unable to establish a connection with Shopify.");
+      console.log((err as Error).message);
+      throw new Error(
+        "Unable to establish a connection with Shopify: " + (err as Error).message
+      );
     }
   }
 }
