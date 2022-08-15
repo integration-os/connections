@@ -1,5 +1,6 @@
 {
   "title": "CircleCI",
+  "name": "circleci",
   "description": "CircleCI Projects Management",
   "apiVersion": "NA",
   "platform": "circleci",

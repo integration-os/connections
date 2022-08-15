@@ -1,5 +1,6 @@
 {
   "title": "GitHub",
+  "name": "github-repos",
   "description": "GitHub Repository Management",
   "apiVersion": "NA",
   "platform": "github-repos",

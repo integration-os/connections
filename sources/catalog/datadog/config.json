@@ -1,5 +1,6 @@
 {
   "title": "Datadog",
+  "name": "datadog",
   "description": "An observability service for cloud-scale applications, providing monitoring of servers, databases, tools, and services.",
   "apiVersion": "NA",
   "platform": "datadog",

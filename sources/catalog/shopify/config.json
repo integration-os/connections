@@ -1,5 +1,6 @@
 {
   "_v": "1.0.0",
+  "name": "shopify",
   "title": "Shopify",
   "description": "Helps you create and manage eCommerce websites of all product types",
   "apiVersion": "2022-04",
