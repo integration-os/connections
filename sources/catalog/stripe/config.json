@@ -1,6 +1,5 @@
 {
   "title": "Stripe",
-  "name": "stripe",
   "description": "Payment processing and ecommerce",
   "apiVersion": "2020-03-02",
   "platform": "stripe",
