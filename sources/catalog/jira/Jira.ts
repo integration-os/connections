@@ -18,11 +18,11 @@ export default class JiraIntegration implements IntegrationClassI {
   id: string;
   name: string;
 
-  readonly jira: Version3Client;
+  readonly jiraClient: Version3Client;
   private webhookUrl: string | undefined = undefined;
   JIRA_PROJECT_ID: string;
 
-  constructor({ 
+  constructor({
     JIRA_PROJECT_ID,
     JIRA_HOST,
     JIRA_OAUTH2_ACCESS_TOKEN,
@@ -31,7 +31,7 @@ export default class JiraIntegration implements IntegrationClassI {
     JIRA_HOST: string;
     JIRA_OAUTH2_ACCESS_TOKEN: string;
   }) {
-    this.jira = new Version3Client({
+    this.jiraClient = new Version3Client({
       host: JIRA_HOST,
       authentication: {
         oauth2: {
@@ -57,7 +57,7 @@ export default class JiraIntegration implements IntegrationClassI {
       events: events
     };
 
-    const webhookResp = await this.jira.webhooks.registerDynamicWebhooks({
+    const webhookResp = await this.jiraClient.webhooks.registerDynamicWebhooks({
       webhooks: [req],
       url: webhookUrl,
     });
@@ -202,7 +202,7 @@ export default class JiraIntegration implements IntegrationClassI {
     //one will have to increase this number if need be
     const maxResults = 100;
 
-    const webhooks = await this.jira.webhooks.getDynamicWebhooksForApp({
+    const webhooks = await this.jiraClient.webhooks.getDynamicWebhooksForApp({
       startAt: startAt,
       maxResults: maxResults,
     });
@@ -225,7 +225,7 @@ export default class JiraIntegration implements IntegrationClassI {
   }: DeleteWebhookEndpointProps): Promise<Truthy> {
     const webhookIdAsNum = Number(webhookId);
     try {
-      await this.jira.webhooks.deleteWebhookById({
+      await this.jiraClient.webhooks.deleteWebhookById({
         webhookIds: [webhookIdAsNum]
       });
       return true;
@@ -238,7 +238,7 @@ export default class JiraIntegration implements IntegrationClassI {
   async testConnection(): Promise<Truthy> {
     try {
       // Test the connection by trying to list all the projects
-      await this.jira.projects.getAllProjects();
+      await this.jiraClient.projects.getAllProjects();
 
       return {
         success: true,
