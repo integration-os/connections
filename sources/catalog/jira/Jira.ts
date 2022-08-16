@@ -93,7 +93,7 @@ export default class JiraIntegration implements IntegrationClassI {
           events: events,
         };
       } else {
-        throw new Error(`Jira should've returned 1 result, but it's returned ${webhookResp.webhookRegistrationResult.length} ones`);
+        throw new Error(`${webhookResp.webhookRegistrationResult.length} items have been returned instead of 1`);
       }
     }
   }
@@ -305,7 +305,7 @@ export default class JiraIntegration implements IntegrationClassI {
       return true;
     } catch (e) {
       console.log((e as Error).message);
-      throw new Error("(not found) unable to delete webhook: " + (e as Error).message);
+      throw new Error(`Unable to delete webhook ${webhookId}: not found; message: ${(e as Error).message}`);
     }
   }
 
@@ -319,7 +319,7 @@ export default class JiraIntegration implements IntegrationClassI {
         message: "Connection tested successfully!",
       };
     } catch (err) {
-      throw new Error("Unable to establish a connection with Jira.");
+      throw new Error("Unable to establish a connection to Jira");
     }
   }
 }

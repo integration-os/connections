@@ -128,6 +128,29 @@ describe("Jira Integration", () => {
       const result = await jira.testConnection();
       expect((result as any).success).toBe(true);
     });
+
+
+
+    it("should throw an error if connection fails", async () => {
+      let invalidJira = new JiraIntegration({
+        JIRA_PROJECT_ID: "?___?",
+        JIRA_HOST: "?___?",
+        JIRA_OAUTH2_ACCESS_TOKEN: "?___?",
+      });
+
+      let errorMessage = "all well";
+      try {
+        await invalidJira.testConnection();
+      } catch (err) {
+        errorMessage = err.message;
+      }
+
+      expect(errorMessage).toMatch(
+        /(Unable to establish a connection to Jira)/g
+      );
+    });
+
+
   });
 })
 
