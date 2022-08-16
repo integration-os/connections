@@ -18,11 +18,11 @@ export default class JiraIntegration implements IntegrationClassI {
   id: string;
   name: string;
 
-  readonly jiraClient: Version3Client;
+  readonly jira: Version3Client;
   private webhookUrl: string | undefined = undefined;
   JIRA_PROJECT_ID: string;
 
-  constructor({
+  constructor({ 
     JIRA_PROJECT_ID,
     JIRA_HOST,
     JIRA_OAUTH2_ACCESS_TOKEN,
@@ -31,7 +31,7 @@ export default class JiraIntegration implements IntegrationClassI {
     JIRA_HOST: string;
     JIRA_OAUTH2_ACCESS_TOKEN: string;
   }) {
-    this.jiraClient = new Version3Client({
+    this.jira = new Version3Client({
       host: JIRA_HOST,
       authentication: {
         oauth2: {
@@ -57,7 +57,7 @@ export default class JiraIntegration implements IntegrationClassI {
       events: events
     };
 
-    const webhookResp = await this.jiraClient.webhooks.registerDynamicWebhooks({
+    const webhookResp = await this.jira.webhooks.registerDynamicWebhooks({
       webhooks: [req],
       url: webhookUrl,
     });
@@ -118,17 +118,33 @@ export default class JiraIntegration implements IntegrationClassI {
     webhookId,
     events,
   }: SubscriptionProps): Promise<SubscribeReturns> {
+    //check if it exists at all
+    const webhook = this.getWebhooks({ webhookId });
+    if (webhook === undefined) {
+      return {
+        events: [],
+      };
+    }
+
     //as it's been found out so far, API of Jira doesn't support updating webhooks;
     //therefore, the only way to update events of a webhook is
     //to recreate a webhook
-
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });
-
     const eventsAfterSubscribe = subscribedEvents.concat(events);
+
     try {
       await this.deleteWebhookEndpoint({ webhookId });
+    } catch {
+      //return the original webhook with the original events
+      return {
+        webhook: webhook,
+        events: subscribedEvents,
+      };
+    }
+
+    try {
       const updatedWebhook = await this.init({
         webhookUrl: this.webhookUrl,
         events: eventsAfterSubscribe,
@@ -139,7 +155,15 @@ export default class JiraIntegration implements IntegrationClassI {
         events: eventsAfterSubscribe,
       };
     } catch {
-      throw new Error("Error updating a webhook (delete/create); Note that Jira doesn't support updating webhooks.");
+      const originalWebhook = await this.init({
+        webhookUrl: this.webhookUrl,
+        events: subscribedEvents,
+      });
+
+      return {
+        webhook: originalWebhook.webhookData,
+        events: subscribedEvents,
+      };
     }
   }
 
@@ -151,10 +175,17 @@ export default class JiraIntegration implements IntegrationClassI {
     webhook?: any;
     webhooks?: any;
   }> {
+    //check if it exists at all
+    const webhook = this.getWebhooks({ webhookId });
+    if (webhook === undefined) {
+      return {
+        events: [],
+      };
+    }
+
     //as it's been found out so far, API of Jira doesn't support updating webhooks;
     //therefore, the only way to update events of a webhook is
     //to recreate a webhook
-
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });
@@ -166,10 +197,14 @@ export default class JiraIntegration implements IntegrationClassI {
     try {
       await this.deleteWebhookEndpoint({ webhookId });
     } catch {
-      throw new Error("Error updating a webhook (delete); Note that Jira doesn't support updating webhooks.");
+      //return the original webhook with the original events
+      return {
+        webhook: webhook,
+        events: subscribedEvents,
+      };
     }
 
-    if (eventsAfterUnsubscribe.length === 0) {
+    if (eventsAfterUnsubscribe.length == 0) {
       return {
         events: [],
       };
@@ -193,30 +228,65 @@ export default class JiraIntegration implements IntegrationClassI {
   async getWebhooks({
     webhookId,
   }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+    const startAt = 0;
     //mind the max amount of the returned items;
     //theoretically it may return less values than necessary; however, on practise it probably won't happen
     //
     //however, this function signature doesn't support additional parameters
     //through which a page number could've been passed,
     //one will have to increase this number if need be
-    const maxResults = 1000;
+    const maxResults = 100;
 
-    const webhooks = await this.jiraClient.webhooks.getDynamicWebhooksForApp({
-      startAt: 0,
+    const webhooks = await this.jira.webhooks.getDynamicWebhooksForApp({
+      startAt: startAt,
       maxResults: maxResults,
     });
 
+    /*
+    https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-webhooks/#api-rest-api-3-webhook-get
+    example:
+      {
+        "maxResults": 3,
+        "startAt": 0,
+        "total": 3,
+        "isLast": true,
+        "values": [
+          {
+            "id": 10000,
+            "jqlFilter": "project = PRJ",
+            "fieldIdsFilter": [
+              "summary",
+              "customfield_10029"
+            ],
+            "events": [
+              "jira:issue_updated",
+              "jira:issue_created"
+            ],
+            "expirationDate": "2019-06-01T12:42:30.000+0000"
+          },
+          { ....
+    */
+
+    if (webhookId == undefined) {
+      return webhooks.values;
+    }
+
     //There's no way to retrieve a single webhook by its Id from Jira via API
     //therefore, all the webhooks will have to be retrieved first
-    //and then filtered on the client
+    //to be filtered out on the client
     const webhookIdAsNum = Number(webhookId);
-    const webhook = webhooks.values.filter(x => x.id === webhookIdAsNum);
+    const webhook = webhooks.values.find(x => x.id === webhookIdAsNum);
     return webhook;
   }
 
   async getSubscribedEvents({ webhookId }: WebhooksProps): Promise<Events> {
     const webhook: AnyObject = this.getWebhooks({ webhookId });
-    return webhook.events;
+    if (webhook !== undefined) {
+      return webhook.events;
+    }
+
+    const emptyEvents: Events = [];
+    return emptyEvents;
   }
 
   async deleteWebhookEndpoint({
@@ -224,9 +294,10 @@ export default class JiraIntegration implements IntegrationClassI {
   }: DeleteWebhookEndpointProps): Promise<Truthy> {
     const webhookIdAsNum = Number(webhookId);
     try {
-      await this.jiraClient.webhooks.deleteWebhookById({
+      await this.jira.webhooks.deleteWebhookById({
         webhookIds: [webhookIdAsNum]
       });
+
       return true;
     } catch (e) {
       console.log((e as Error).message);
@@ -237,7 +308,7 @@ export default class JiraIntegration implements IntegrationClassI {
   async testConnection(): Promise<Truthy> {
     try {
       // Test the connection by trying to list all the projects
-      await this.jiraClient.projects.getAllProjects();
+      await this.jira.projects.getAllProjects();
 
       return {
         success: true,
