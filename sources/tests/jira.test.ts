@@ -49,6 +49,81 @@ describe("Jira Integration", () => {
     });
   });
 
+  describe("subscribe", () => {
+    let webhookId: string | undefined;
+
+    beforeEach(async () => {
+      const testWebhookUrl = "https://example.com/webhook";
+      const testEvents = ["jira:issue_created"];
+
+      webhookId = await createTestWebhook(testWebhookUrl, testEvents);
+    });
+
+    afterEach(async () => {
+      if (webhookId) {
+        await deleteTestWebhook(webhookId);
+        webhookId = undefined;
+      }
+    });
+
+    it("should subscribe to the event", async () => {
+      const result = await jira.subscribe({
+        webhookId,
+        events: ["jira:issue_updated"],
+      });
+
+      expect(result.events).toEqual(["jira:issue_created", "jira:issue_updated"]);
+    });
+
+    it("should handle subscription of an existing event", async () => {
+      const result = await jira.subscribe({
+        webhookId,
+        events: ["issue_created"],
+      });
+
+      expect(result.events).toEqual(["issue_created"]);
+    });
+  });
+
+  describe("unsubscribe", () => {
+    let webhookId: string | undefined;
+
+    beforeEach(async () => {
+      const testWebhookUrl = "https://example.com/webhook";
+      const testEvents = ["jira:issue_created", "jira:issue_updated"];
+
+      webhookId = await createTestWebhook(testWebhookUrl, testEvents);
+    });
+
+    afterEach(async () => {
+      if (webhookId) {
+        await deleteTestWebhook(webhookId);
+        webhookId = undefined;
+      }
+    });
+
+    it("should unsubscribe from the event(s)", async () => {
+      const result = await jira.unsubscribe({
+        webhookId,
+        events: ["jira:issue_created"],
+      });
+
+      expect(result.events).toEqual(["jira:issue_updated"]);
+    });
+
+    it("should delete webhook if no events remain", async () => {
+      const result = await jira.unsubscribe({
+        webhookId,
+        events: ["jira:issue_created", "jira:issue_updated"],
+      });
+
+      expect(result.events).toEqual([]);
+
+      const noWebhook = await jira.getWebhooks({ webhookId });
+      expect(noWebhook === undefined).toBe(true);
+    });
+  });
+
   describe("getWebhooks", () => {
     let webhookId: string | undefined;
 
@@ -79,6 +154,31 @@ describe("Jira Integration", () => {
           webhookId: "not-found",
         }),
       ).rejects.toThrow();
+    });
+  });
+
+  describe("getSubscribedEvents", () => {
+    let webhookId: string | undefined;
+
+    beforeEach(async () => {
+      const testWebhookUrl = "https://example.com/webhook";
+      const testEvents = ["jira:issue_created", "jira:issue_updated"];
+
+      webhookId = await createTestWebhook(testWebhookUrl, testEvents);
+    });
+
+    afterEach(async () => {
+      await deleteTestWebhook(webhookId);
+      webhookId = undefined;
+    });
+
+    it("should return the subscribed events", async () => {
+      const events = await jira.getSubscribedEvents({
+        webhookId,
+      });
+
+      expect(events).toBeDefined();
+      expect(events.length).toBe(2);
     });
   });
 
@@ -129,8 +229,6 @@ describe("Jira Integration", () => {
       expect((result as any).success).toBe(true);
     });
 
-
-
     it("should throw an error if connection fails", async () => {
       let invalidJira = new JiraIntegration({
         JIRA_PROJECT_ID: "?___?",
@@ -149,10 +247,13 @@ describe("Jira Integration", () => {
         /(Unable to establish a connection to Jira)/g
       );
     });
-
-
   });
 })
+
+
+//
+// helper functions
+//
 
 function mockTestConnectionIntegration(): Partial<JiraIntegration> {
   return new (class extends JiraIntegration {
@@ -196,10 +297,6 @@ function mockTestConnectionIntegration(): Partial<JiraIntegration> {
   })();
 }
 
-
-//
-// helper functions
-//
 async function createTestWebhook(webhookUrl: string, events: string[]): Promise<string> {
     const req = {
       jqlFilter: "project = proj-test-1" ,

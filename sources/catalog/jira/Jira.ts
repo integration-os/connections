@@ -201,6 +201,7 @@ export default class JiraIntegration implements IntegrationClassI {
     try {
       await this.deleteWebhookEndpoint({ webhookId });
     } catch {
+      //failure of deleting a webhook;
       //return the original webhook with the original events
       return {
         webhook: webhook,
@@ -208,6 +209,7 @@ export default class JiraIntegration implements IntegrationClassI {
       };
     }
 
+    //if there're no more events left, don't recreate a webhook
     if (eventsAfterUnsubscribe.length == 0) {
       return {
         events: [],
