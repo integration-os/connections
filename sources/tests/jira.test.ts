@@ -82,6 +82,53 @@ describe("Jira Integration", () => {
     });
   });
 
+  describe("deleteWebhookEndpoint", () => {
+    let webhookId: string | undefined;
+
+    beforeEach(async () => {
+      const testWebhookUrl = "https://example.com/webhook";
+      const testEvents = ["jira:issue_created"];
+
+      webhookId = await createTestWebhook(testWebhookUrl, testEvents);
+    });
+
+    afterEach(async () => {
+      if (webhookId) {
+        await deleteTestWebhook(webhookId);
+      }
+    });
+
+    it("should delete the webhook", async () => {
+      const result = await jira.deleteWebhookEndpoint({
+        webhookId: webhookId,
+      });
+
+      expect(result).toBeTruthy();
+
+      webhookId = undefined;
+    });
+
+    it("should throw an error if the webhook does not exist", async () => {
+      let errorMessage = "all well";
+
+      try {
+        await jira.deleteWebhookEndpoint({
+          webhookId: "-666",
+        });
+      } catch (err) {
+        errorMessage = err.message;
+      }
+
+      expect(errorMessage).toMatch(/(not found)/g);
+    });
+  });
+
+  describe("testConnection", () => {
+    it("should return true if the connection is successful", async () => {
+      const result = await jira.testConnection();
+      expect((result as any).success).toBe(true);
+    });
+  });
 })
 
 function mockTestConnectionIntegration(): Partial<JiraIntegration> {

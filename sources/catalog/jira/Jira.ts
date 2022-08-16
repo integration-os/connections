@@ -305,7 +305,7 @@ export default class JiraIntegration implements IntegrationClassI {
       return true;
     } catch (e) {
       console.log((e as Error).message);
-      throw new Error("Unable to delete webhook: " + (e as Error).message);
+      throw new Error("(not found) unable to delete webhook: " + (e as Error).message);
     }
   }
 
