@@ -18,7 +18,7 @@ export default class JiraIntegration implements IntegrationClassI {
   id: string;
   name: string;
 
-  readonly jira: Version3Client;
+  readonly v3Client: Version3Client;
   private webhookUrl: string | undefined = undefined;
   JIRA_PROJECT_ID: string;
 
@@ -31,7 +31,7 @@ export default class JiraIntegration implements IntegrationClassI {
     JIRA_HOST: string;
     JIRA_OAUTH2_ACCESS_TOKEN: string;
   }) {
-    this.jira = new Version3Client({
+    this.v3Client = new Version3Client({
       host: JIRA_HOST,
       authentication: {
         oauth2: {
@@ -57,7 +57,7 @@ export default class JiraIntegration implements IntegrationClassI {
       events: events
     };
 
-    const webhookResp = await this.jira.webhooks.registerDynamicWebhooks({
+    const webhookResp = await this.v3Client.webhooks.registerDynamicWebhooks({
       webhooks: [req],
       url: webhookUrl,
     });
@@ -79,18 +79,22 @@ export default class JiraIntegration implements IntegrationClassI {
       }
     */
 
-    //response will contain a single webhook too
+    //response should contain a single webhook too
     if (webhookResp.webhookRegistrationResult.length == 0) {
       return {
         webhookData: {} as AnyObject,
         events: [],
       };
     } else {
-      const webhook = webhookResp.webhookRegistrationResult[0];
-      return {
-        webhookData: webhook,
-        events: events,
-      };
+      if (webhookResp.webhookRegistrationResult.length == 1) {
+        const webhook = webhookResp.webhookRegistrationResult[0];
+        return {
+          webhookData: webhook,
+          events: events,
+        };
+      } else {
+        throw new Error(`Jira should've returned 1 result, but it's returned ${webhookResp.webhookRegistrationResult.length} ones`);
+      }
     }
   }
 
@@ -237,7 +241,7 @@ export default class JiraIntegration implements IntegrationClassI {
     //one will have to increase this number if need be
     const maxResults = 100;
 
-    const webhooks = await this.jira.webhooks.getDynamicWebhooksForApp({
+    const webhooks = await this.v3Client.webhooks.getDynamicWebhooksForApp({
       startAt: startAt,
       maxResults: maxResults,
     });
@@ -294,7 +298,7 @@ export default class JiraIntegration implements IntegrationClassI {
   }: DeleteWebhookEndpointProps): Promise<Truthy> {
     const webhookIdAsNum = Number(webhookId);
     try {
-      await this.jira.webhooks.deleteWebhookById({
+      await this.v3Client.webhooks.deleteWebhookById({
         webhookIds: [webhookIdAsNum]
       });
 
@@ -308,7 +312,7 @@ export default class JiraIntegration implements IntegrationClassI {
   async testConnection(): Promise<Truthy> {
     try {
       // Test the connection by trying to list all the projects
-      await this.jira.projects.getAllProjects();
+      await this.v3Client.projects.getAllProjects();
 
       return {
         success: true,

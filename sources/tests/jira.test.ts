@@ -2,7 +2,7 @@ require("dotenv").config();
 
 import JiraIntegration from "../catalog/jira/Jira";
 
-const jiraIntegr = new JiraIntegration({
+const jira = new JiraIntegration({
   JIRA_PROJECT_ID: process.env.JIRA_PROJECT_ID as string,
   JIRA_HOST: process.env.JIRA_HOST as string,
   JIRA_OAUTH2_ACCESS_TOKEN: process.env.JIRA_OAUTH2_ACCESS_TOKEN as string,
@@ -13,7 +13,7 @@ describe("Jira Integration", () => {
     let webhookId: string | undefined;
 
     afterEach(async () => {
-      await jiraIntegr.deleteWebhookEndpoint({ webhookId });
+      await jira.deleteWebhookEndpoint({ webhookId });
       webhookId = undefined;
     });
 
@@ -21,7 +21,7 @@ describe("Jira Integration", () => {
       const testWebhookUrl = "https://example.com/webhook";
       const testEvents = ["jira:issue_created"];
 
-      const { webhookData, events } = await jiraIntegr.init({
+      const { webhookData, events } = await jira.init({
         webhookUrl: testWebhookUrl,
         events: testEvents,
       });
@@ -34,10 +34,9 @@ describe("Jira Integration", () => {
     });
   });
 
-
   describe("verifyWebhookSignature", () => {
     it("should return true because it'll never verify it", async () => {
-      const result = await jiraIntegr.verifyWebhookSignature({
+      const result = await jira.verifyWebhookSignature({
         signature: "any_signature",
         secret: "any_secret",
         request: {
@@ -49,6 +48,40 @@ describe("Jira Integration", () => {
       expect(result).toBeTruthy();
     });
   });
+
+  describe("getWebhooks", () => {
+    let webhookId: string | undefined;
+
+    beforeEach(async () => {
+      const testWebhookUrl = "https://example.com/webhook";
+      const testEvents = ["jira:issue_created", "jira:issue_updated"];
+
+      webhookId = await createTestWebhook(testWebhookUrl, testEvents);
+    });
+
+    afterEach(async () => {
+      await deleteTestWebhook(webhookId);
+      webhookId = undefined;
+    });
+
+    it("should return the webhook", async () => {
+      const result = await jira.getWebhooks({
+        webhookId: webhookId,
+      });
+
+      expect(result).toBeDefined();
+      expect((result as any).id).toEqual(webhookId);
+    });
+
+    it("should raise an error if the webhook does not exist", async () => {
+      await expect(
+        jira.getWebhooks({
+          webhookId: "not-found",
+        }),
+      ).rejects.toThrow();
+    });
+  });
+
 })
 
 function mockTestConnectionIntegration(): Partial<JiraIntegration> {
@@ -91,4 +124,31 @@ function mockTestConnectionIntegration(): Partial<JiraIntegration> {
     }
 
   })();
+}
+
+
+//
+// helper functions
+//
+async function createTestWebhook(webhookUrl: string, events: string[]): Promise<string> {
+    const req = {
+      jqlFilter: "project = proj-test-1" ,
+      events: events
+    };
+
+    const webhookResp = await jira.v3Client.webhooks.registerDynamicWebhooks({
+      webhooks: [req],
+      url: webhookUrl,
+    });
+
+    const webhook = webhookResp.webhookRegistrationResult[0];
+    return webhook.createdWebhookId.toString();
+}
+
+async function deleteTestWebhook(webhookId: string | undefined) {
+  if (webhookId) {
+    await jira.deleteWebhookEndpoint({
+      webhookId,
+    });
+  }
 }
