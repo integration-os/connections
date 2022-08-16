@@ -193,17 +193,16 @@ export default class JiraIntegration implements IntegrationClassI {
   async getWebhooks({
     webhookId,
   }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
-    const startAt = 0;
     //mind the max amount of the returned items;
     //theoretically it may return less values than necessary; however, on practise it probably won't happen
     //
     //however, this function signature doesn't support additional parameters
     //through which a page number could've been passed,
     //one will have to increase this number if need be
-    const maxResults = 100;
+    const maxResults = 1000;
 
     const webhooks = await this.jiraClient.webhooks.getDynamicWebhooksForApp({
-      startAt: startAt,
+      startAt: 0,
       maxResults: maxResults,
     });
 
