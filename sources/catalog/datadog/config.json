@@ -72,6 +72,7 @@
     "secret": null,
     "signature": "_.headers.x-hub-signature-256"
   },
+  "connectionTypes": ["source"],
   "events": [
     {
       "name": "any",
