@@ -109,14 +109,20 @@ export default class WebflowIntegration implements IntegrationClassI {
       (webhook) => webhook.triggerType as string,
     );
     const newEvents = events.filter((e) => !subscribedEvents.includes(e));
-    const newWebhooks = await this.init({ webhookUrl, events: newEvents });
 
-    const updateWebhoks = webhooks.concat(newWebhooks.webhookData as AnyObject[]);
-    const updateEvents = subscribedEvents.concat(newWebhooks.events);
+    const updatedWebhoks = webhooks;
+    const updatedEvents = subscribedEvents;
+
+    if (newEvents.length) {
+      const newWebhooks = await this.init({ webhookUrl, events: newEvents });
+
+      updatedWebhoks.push(...(newWebhooks.webhookData as AnyObject[]));
+      updatedEvents.push(...newWebhooks.events);
+    }
 
     return {
-      webhooks: updateWebhoks,
-      events: updateEvents,
+      webhooks: updatedWebhoks,
+      events: updatedEvents,
     };
   }
 

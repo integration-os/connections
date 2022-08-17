@@ -100,7 +100,7 @@ describe("Webflow Integration", () => {
       expect(webhooks).toHaveLength(2);
       expect(events).toEqual(["form_submission", "site_publish"]);
 
-      webhookIds.push((webhooks as AnyObject[])[1]._id);
+      webhookIds = (webhooks as AnyObject[]).map((wb) => wb._id);
     });
 
     it("should handle subscription of an existing event", async () => {
@@ -178,6 +178,15 @@ describe("Webflow Integration", () => {
     it("should return webhooks", async () => {
       const webhooks = await webflow.getWebhooks({
         webhookIds: [webhookId as string],
+      });
+
+      expect(webhooks).toBeDefined();
+      expect(webhooks).toHaveLength(1);
+    });
+
+    it("should return all webhooks if webhookIds not provided", async () => {
+      const webhooks = await webflow.getWebhooks({
+        webhookIds: undefined,
       });
 
       expect(webhooks).toBeDefined();
