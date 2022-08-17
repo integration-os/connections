@@ -228,7 +228,7 @@
     "secret": "_.body.config.secret",
     "signature": "_.headers.x-hub-signature-256"
   },
-  "connectionTypes": ["source", "action"],
+  "connectionTypes": ["source"],
   "events": [
     {
       "name": "branch_protection_rule",
