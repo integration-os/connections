@@ -53,7 +53,7 @@ describe("GitLab Integration", () => {
     it("should return true if the signature is valid", async () => {
       expect(
         await gitlab.verifyWebhookSignature({
-          request: { body: "", headers: undefined },
+          request: { body: "", headers: {} },
           secret: "",
           signature: gitlab.GITLAB_WEBHOOK_SECRET,
         }),
@@ -65,7 +65,7 @@ describe("GitLab Integration", () => {
 
       try {
         gitlab.verifyWebhookSignature({
-          request: { body: "", headers: undefined },
+          request: { body: "", headers: {} },
           secret: "",
           signature: "",
         });
