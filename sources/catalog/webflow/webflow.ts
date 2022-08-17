@@ -175,14 +175,13 @@ export default class WebflowIntegration implements IntegrationClassI {
   }
 
   async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {
-    const webhooks = await this.getWebhooks({ webhookIds });
-    const webflowWebooks = webhooks as WebflowWebook[];
+    const webhooks = (await this.getWebhooks({ webhookIds })) as WebflowWebook[];
 
-    if (!webflowWebooks?.length) {
+    if (!webhooks.length) {
       return [];
     }
 
-    return webflowWebooks.map((webhook) => webhook.triggerType);
+    return webhooks.map((webhook) => webhook.triggerType);
   }
 
   async deleteWebhookEndpoint({ webhookId }: WebhooksProps): Promise<Truthy> {
