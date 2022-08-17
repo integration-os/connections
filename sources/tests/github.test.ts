@@ -4,9 +4,9 @@ import GitHubIntegration from "../catalog/github/GitHub";
 import { createHmac } from "crypto";
 
 const github = new GitHubIntegration({
-  GITHUB_ACCOUNT_ID: process.env.GITHUB_ACCOUNT_ID as string,
-  GITHUB_REPOSITORY: process.env.GITHUB_REPOSITORY as string,
-  GITHUB_ACCESS_TOKEN: process.env.GITHUB_ACCESS_TOKEN as string,
+  GITHUB_REPOS_ACCOUNT_USERNAME: process.env.GITHUB_REPOS_ACCOUNT_USERNAME as string,
+  GITHUB_REPOS_REPOSITORY: process.env.GITHUB_REPOS_REPOSITORY as string,
+  GITHUB_REPOS_ACCESS_TOKEN: process.env.GITHUB_REPOS_ACCESS_TOKEN as string,
 });
 
 describe("GitHub Integration", () => {
@@ -15,8 +15,8 @@ describe("GitHub Integration", () => {
 
     afterEach(async () => {
       await github.octokit.request("DELETE /repos/{owner}/{repo}/hooks/{id}", {
-        owner: github.GITHUB_ACCOUNT_ID,
-        repo: github.GITHUB_REPOSITORY,
+        owner: github.GITHUB_REPOS_ACCOUNT_USERNAME,
+        repo: github.GITHUB_REPOS_REPOSITORY,
         id: webhookId,
       });
     });
@@ -66,7 +66,7 @@ describe("GitHub Integration", () => {
 
     const testSignature = `sha256=${createHmac(
       "sha256",
-      github.GITHUB_ACCESS_TOKEN
+      github.GITHUB_REPOS_ACCESS_TOKEN
     )
       .update(JSON.stringify(testPayload))
       .digest("hex")}`;
@@ -80,7 +80,7 @@ describe("GitHub Integration", () => {
           },
         },
         signature: testSignature,
-        secret: github.GITHUB_ACCESS_TOKEN,
+        secret: github.GITHUB_REPOS_ACCESS_TOKEN,
       });
 
       expect(result).toBeTruthy();
@@ -102,7 +102,7 @@ describe("GitHub Integration", () => {
             },
           },
           signature: invalidSignature,
-          secret: github.GITHUB_ACCESS_TOKEN,
+          secret: github.GITHUB_REPOS_ACCESS_TOKEN,
         });
       } catch (err) {
         errorMessage = err.message;
@@ -191,8 +191,8 @@ describe("GitHub Integration", () => {
 
       try {
         await github.octokit.request("GET /repos/{owner}/{repo}/hooks/{id}", {
-          owner: github.GITHUB_ACCOUNT_ID,
-          repo: github.GITHUB_REPOSITORY,
+          owner: github.GITHUB_REPOS_ACCOUNT_USERNAME,
+          repo: github.GITHUB_REPOS_REPOSITORY,
           id: webhookId,
         });
       } catch (err) {
@@ -318,9 +318,9 @@ describe("GitHub Integration", () => {
 
     it("should throw an error if connection fails", async () => {
       let badGithub = new GitHubIntegration({
-        GITHUB_ACCOUNT_ID: "a-wrong-user",
-        GITHUB_REPOSITORY: "wrong-repo",
-        GITHUB_ACCESS_TOKEN: "ghp_5PqohxaQWid2WnTOLRN64oQ01aQ5BO34pkuy",
+        GITHUB_REPOS_ACCOUNT_USERNAME: "a-wrong-user",
+        GITHUB_REPOS_REPOSITORY: "wrong-repo",
+        GITHUB_REPOS_ACCESS_TOKEN: "ghp_5PqohxaQWid2WnTOLRN64oQ01aQ5BO34pkuy",
       });
 
       let errorMessage = "no error thrown";
@@ -361,8 +361,8 @@ async function createTestWebhook(
   const webhookData = await github.octokit.request(
     "POST /repos/{owner}/{repo}/hooks",
     {
-      owner: github.GITHUB_ACCOUNT_ID,
-      repo: github.GITHUB_REPOSITORY,
+      owner: github.GITHUB_REPOS_ACCOUNT_USERNAME,
+      repo: github.GITHUB_REPOS_REPOSITORY,
       name: "web", // "web" stands for "webhook"
       active: true,
       events: events,
@@ -379,8 +379,8 @@ async function createTestWebhook(
 
 async function deleteTestWebhook(webhookId: number | string) {
   await github.octokit.request("DELETE /repos/{owner}/{repo}/hooks/{id}", {
-    owner: github.GITHUB_ACCOUNT_ID,
-    repo: github.GITHUB_REPOSITORY,
+    owner: github.GITHUB_REPOS_ACCOUNT_USERNAME,
+    repo: github.GITHUB_REPOS_REPOSITORY,
     id: webhookId,
   });
 }
@@ -391,9 +391,9 @@ function mockTestConnectionIntegration(): Partial<GitHubIntegration> {
 
     constructor() {
       super({
-        GITHUB_ACCOUNT_ID: "a-wrong-user",
-        GITHUB_REPOSITORY: "wrong-repo",
-        GITHUB_ACCESS_TOKEN: "ghp_5PqohxaQWid2WnTOLRN64oQ01aQ5BO34pkuy",
+        GITHUB_REPOS_ACCOUNT_USERNAME: "a-wrong-user",
+        GITHUB_REPOS_REPOSITORY: "wrong-repo",
+        GITHUB_REPOS_ACCESS_TOKEN: "ghp_5PqohxaQWid2WnTOLRN64oQ01aQ5BO34pkuy",
       });
 
       this.octokit = {
