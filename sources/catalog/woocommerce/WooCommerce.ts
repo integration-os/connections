@@ -31,15 +31,15 @@ export default class WooCommerceIntegration implements IntegrationClassI {
     WOOCOMMERCE_CUSTOMER_SECRET: string;
   }) {
     this.client = axios.create({
-      url: WOOCOMMERCE_WP_URL,
+      baseURL: WOOCOMMERCE_WP_URL,
       headers: {
         "Content-Type": "application/json",
         "User-Agent": "buildable",
-        Authorization: Buffer.from(
+        Authorization: `Basic ${Buffer.from(
           `${WOOCOMMERCE_CUSTOMER_KEY.trim()}:${WOOCOMMERCE_CUSTOMER_SECRET.trim()}`,
         )
           .toString("base64")
-          .trim(),
+          .trim()}`,
       },
     });
 
@@ -49,7 +49,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const webhookData: AnyObject[] = await Promise.all(
       events.map(async (event) => {
-        const response = await this.client.post("https://mysite.local/wp-json/wc/v3/webhooks", {
+        const response = await this.client.post("/wp-json/wc/v3/webhooks", {
           topic: event,
           delivery_url: webhookUrl,
           secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
