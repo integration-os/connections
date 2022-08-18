@@ -204,7 +204,7 @@ describe("Datadog Integration", () => {
   describe("getRegionUrl", () => {
     it("should return the correct region url", async () => {
       let result = DatadogIntegration.getRegionUrl("us1");
-      expect(result).toEqual("datadoghq.com");
+      expect(result).toEqual("api.datadoghq.com");
 
       result = DatadogIntegration.getRegionUrl("us3");
       expect(result).toEqual("us3.datadoghq.com");
