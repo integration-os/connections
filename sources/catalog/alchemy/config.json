@@ -9,11 +9,26 @@
   "authentication": [
     {
       "name": "ALCHEMY_API_TOKEN",
-      "label": "Enter your Alchemy Notify Auth Token"
+      "label": "Enter your Alchemy Notify Auth Token."
     },
     {
       "name": "ALCHEMY_APP_ID",
-      "label": "Enter your Alchemy App ID"
+      "label": "Enter your Alchemy App ID. Required for mined and dropped webhooks."
+    },
+    {
+      "name": "ALCHEMY_NETWORK",
+      "label": "Enter the network of webhook.",
+      "placeholder": "ETH_KOVAN"
+    },
+    {
+      "name": "ALCHEMY_ADDRESSES",
+      "label": "Enter a comma seperated list of address you want to track. Required for the address activity webhook.",
+      "placeholder": "address_1, address_2, ..."
+    },
+    {
+      "name": "ALCHEMY_TOKEN_IDS",
+      "label": "Enter a comma seperated list of pairs to track nft activity: contract_address and token_id. Required for the nft activity webhook.",
+      "placeholder": "contract_address_1, token_id_1, contract_address_2, token_id_2, ..."
     }
   ],
   "eventSchema": {
@@ -52,7 +67,7 @@
     "id": "_.body.id",
     "event": "_.body.type",
     "payload": "_.body.event",
-    "secret": null,
+    "secret": "_.body.signing_key",
     "signature": "_.headers.X-Alchemy-Signature"
   },
   "connectionTypes": ["source"],
@@ -60,6 +75,21 @@
     {
       "name": "MINED_TRANSACTION",
       "description": "When your app's transactions are mined",
+      "group": ""
+    },
+    {
+      "name": "DROPPED_TRANSACTION",
+      "description": "When your app's transactions are dropped from the mempool",
+      "group": ""
+    },
+    {
+      "name": "ADDRESS_ACTIVITY",
+      "description": "When an address sends/recieves a token",
+      "group": ""
+    },
+    {
+      "name": "NFT_ACTIVITY",
+      "description": "When an NFT is transferred",
       "group": ""
     }
   ]

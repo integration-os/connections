@@ -6,17 +6,25 @@ import AlchemyIntegration from "../catalog/alchemy/Alchemy";
 const alchemy = new AlchemyIntegration({
   ALCHEMY_API_TOKEN: process.env.ALCHEMY_API_TOKEN as string,
   ALCHEMY_APP_ID: process.env.ALCHEMY_APP_ID as string,
+  ALCHEMY_ADDRESSES: process.env.ALCHEMY_ADDRESSES as string,
+  ALCHEMY_TOKEN_IDS: process.env.ALCHEMY_TOKEN_IDS as string,
+  ALCHEMY_NETWORK: process.env.ALCHEMY_NETWORK as string,
 });
 
-const MINED_TRANSACTION = "MINED_TRANSACTION";
+const EVENTS = {
+  MINED_TRANSACTION: "MINED_TRANSACTION",
+  DROPPED_TRANSACTION: "DROPPED_TRANSACTION",
+  ADDRESS_ACTIVITY: "ADDRESS_ACTIVITY",
+  NFT_ACTIVITY: "NFT_ACTIVITY",
+};
 
 // getWebhooks works
 const alchemyMockPartialFail = mockFailingIntegration();
-alchemyMockPartialFail.getWebhooks = async ({ webhookId }: { webhookId: string }) => {
-  return {
-    id: webhookId,
-    events: [MINED_TRANSACTION],
-  };
+alchemyMockPartialFail.getWebhooks = async ({ webhookIds }: { webhookIds: string[] }) => {
+  return webhookIds.map((id) => ({
+    id,
+    webhook_type: EVENTS.MINED_TRANSACTION,
+  }));
 };
 
 // Everything fails
@@ -24,29 +32,31 @@ const alchemyMockFail = mockFailingIntegration();
 
 describe("Alchemy Integration", () => {
   describe("init", () => {
-    let webhookId: string | undefined;
+    let webhookIds: string[] = [];
 
     afterEach(async () => {
-      await deleteWebhook(webhookId);
-      webhookId = undefined;
+      await deleteWebhooks(webhookIds);
+      webhookIds = [];
     });
 
     it("should create a webhook", async () => {
       const { webhookData, events } = <{ webhookData: any; events: [] }>await alchemy.init({
         webhookUrl: "https://example.com/webhook",
-        events: [],
+        events: Object.values(EVENTS),
       });
 
-      expect(webhookData).toHaveProperty("id");
-      expect(webhookData).toHaveProperty("app_id");
-      expect(webhookData.app_id).toEqual(process.env.ALCHEMY_APP_ID as string);
-      expect(webhookData).toHaveProperty("network");
-      expect(webhookData).toHaveProperty("webhook_type");
-      expect(webhookData.webhook_type).toEqual(MINED_TRANSACTION);
-      expect(webhookData.webhook_url).toEqual("https://example.com/webhook");
-      expect(events).toEqual([MINED_TRANSACTION]);
+      expect(webhookData.length).toBe(4);
 
-      webhookId = webhookData.id;
+      webhookData.forEach((webhook, i) => {
+        expect(webhook).toHaveProperty("id");
+        expect(webhook).toHaveProperty("webhook_type");
+        expect(webhook.webhook_type).toEqual(events[i]);
+        expect(webhook.webhook_url).toEqual("https://example.com/webhook");
+      });
+
+      expect(events).toEqual(Object.values(EVENTS));
+
+      webhookIds = webhookData.map((w) => w.id);
     });
 
     it("should throw an error if Alchemy does not return 200", async () => {
@@ -55,7 +65,7 @@ describe("Alchemy Integration", () => {
       try {
         await alchemyMockPartialFail?.init?.({
           webhookUrl: "https://example.com/webhook",
-          events: [MINED_TRANSACTION],
+          events: [EVENTS.MINED_TRANSACTION],
         });
       } catch (e) {
         errorMessage = e.message;
@@ -140,27 +150,46 @@ describe("Alchemy Integration", () => {
   });
 
   describe("subscribe", () => {
-    let webhookId: string | undefined;
+    let webhookIds: string[] = [];
 
     beforeEach(async () => {
-      webhookId = await createWebhook();
+      webhookIds = await createWebhooks();
     });
 
     afterEach(async () => {
-      await deleteWebhook(webhookId);
-      webhookId = undefined;
+      await deleteWebhooks(webhookIds);
+      webhookIds = [];
     });
 
-    it("should not subscribe to any new events", async () => {
-      const { webhook, events } = <{ webhook: any; events: [] }>await alchemy.subscribe({
-        webhookId,
-        events: ["non-existent event"],
+    it("should subscribe to new events", async () => {
+      const { webhooks, events } = <{ webhooks: any; events: [] }>await alchemy.subscribe({
+        webhookIds,
+        events: [EVENTS.MINED_TRANSACTION, EVENTS.DROPPED_TRANSACTION, EVENTS.ADDRESS_ACTIVITY],
+        webhookUrl: "https://example.com/webhook",
       });
 
-      expect(webhook).toHaveProperty("id");
-      expect(webhook.id).toEqual(webhookId);
+      expect(webhooks.length).toBe(4);
 
-      expect(events).toEqual([MINED_TRANSACTION]);
+      expect(events).toEqual([
+        EVENTS.MINED_TRANSACTION,
+        EVENTS.MINED_TRANSACTION,
+        EVENTS.DROPPED_TRANSACTION,
+        EVENTS.ADDRESS_ACTIVITY,
+      ]);
+
+      webhookIds = webhooks.map((x) => x.id);
+    });
+
+    it("should do nothing if events is empty", async () => {
+      const { webhooks, events } = <{ webhooks: any; events: [] }>await alchemy.subscribe({
+        webhookIds,
+        events: [],
+        webhookUrl: "https://example.com/webhook",
+      });
+
+      expect(webhooks.length).toBe(1);
+
+      expect(events).toEqual([EVENTS.MINED_TRANSACTION]);
     });
 
     it("should throw an error if Alchemy does not return 200", async () => {
@@ -168,56 +197,62 @@ describe("Alchemy Integration", () => {
 
       try {
         await alchemyMockFail?.subscribe?.({
-          webhookId,
-          events: [MINED_TRANSACTION],
+          webhookIds,
+          events: [EVENTS.MINED_TRANSACTION],
         });
       } catch (e) {
         errorMessage = e.message;
       }
 
       expect(errorMessage).toMatch(
-        /Could not subscribe to new Alchemy events: Could not get Alchemy webhooks: Request failed with status code 400/g,
+        /Could not get Alchemy webhooks: Request failed with status code 400/g,
       );
     });
   });
 
   describe("unsubscribe", () => {
-    let webhookId: string | undefined;
+    let webhookIds: string[] = [];
 
     beforeEach(async () => {
-      webhookId = await createWebhook();
+      webhookIds = await createWebhooks([
+        EVENTS.MINED_TRANSACTION,
+        EVENTS.DROPPED_TRANSACTION,
+        EVENTS.DROPPED_TRANSACTION,
+        EVENTS.ADDRESS_ACTIVITY,
+      ]);
     });
 
     afterEach(async () => {
-      await deleteWebhook(webhookId);
-      webhookId = undefined;
+      await deleteWebhooks(webhookIds);
+      webhookIds = [];
     });
 
-    it("should not delete the webhook if events does not include MINED_TRANSACTION", async () => {
-      const { webhook, events } = <{ webhook: any; events: [] }>await alchemy.unsubscribe({
-        webhookId,
-        events: ["non-existent event"],
+    it("should delete webhooks if included in events", async () => {
+      const { webhooks, events } = <{ webhooks: any; events: [] }>await alchemy.unsubscribe({
+        webhookIds,
+        events: [EVENTS.DROPPED_TRANSACTION],
       });
 
-      expect(webhook).toHaveProperty("id");
-      expect(webhook.id).toEqual(webhookId);
+      expect(webhooks.length).toBe(2);
+      expect(webhooks[0].webhook_type).toEqual(EVENTS.MINED_TRANSACTION);
+      expect(events).toEqual([EVENTS.MINED_TRANSACTION, EVENTS.ADDRESS_ACTIVITY]);
 
-      expect(events).toEqual([MINED_TRANSACTION]);
+      webhookIds = webhooks.map((x) => x.id);
     });
 
-    it("should delete the webhook if events includes MINED_TRANSACTION", async () => {
-      const { events } = <{ webhook: any; events: [] }>await alchemy.unsubscribe({
-        webhookId,
-        events: [MINED_TRANSACTION],
+    it("shouldn't delete webhooks if no events", async () => {
+      const { webhooks, events } = <{ webhooks: any; events: [] }>await alchemy.unsubscribe({
+        webhookIds,
+        events: [EVENTS.NFT_ACTIVITY],
       });
 
-      expect(events).toEqual([]);
-
-      const response = await alchemy.client.get("/team-webhooks");
-
-      expect(response.data.data).toEqual([]);
-
-      webhookId = undefined;
+      expect(webhooks.length).toBe(4);
+      expect(events).toEqual([
+        EVENTS.MINED_TRANSACTION,
+        EVENTS.DROPPED_TRANSACTION,
+        EVENTS.DROPPED_TRANSACTION,
+        EVENTS.ADDRESS_ACTIVITY,
+      ]);
     });
 
     it("should throw an error if Alchemy does not return 200", async () => {
@@ -225,15 +260,15 @@ describe("Alchemy Integration", () => {
 
       try {
         await alchemyMockPartialFail?.unsubscribe?.({
-          webhookId,
-          events: [MINED_TRANSACTION],
+          webhookIds,
+          events: [EVENTS.MINED_TRANSACTION],
         });
       } catch (e) {
         errorMessage = e.message;
       }
 
       expect(errorMessage).toMatch(
-        /Could not unsubscribe from Alchemy events: Could not delete Alchemy webhook: Request failed with status code 400/g,
+        /Could not delete Alchemy webhook: Request failed with status code 400/g,
       );
     });
   });
@@ -242,26 +277,21 @@ describe("Alchemy Integration", () => {
     let webhookIds: string[] = [];
 
     beforeEach(async () => {
-      webhookIds.push(await createWebhook());
-      webhookIds.push(await createWebhook());
+      webhookIds = await createWebhooks([EVENTS.MINED_TRANSACTION, EVENTS.DROPPED_TRANSACTION]);
     });
 
     afterEach(async () => {
-      webhookIds.forEach(async (id) => await deleteWebhook(id));
+      await deleteWebhooks(webhookIds);
       webhookIds = [];
     });
 
     it("should get a single webhook if a webhookId is passed", async () => {
-      const webhook = <any>await alchemy.getWebhooks({ webhookId: webhookIds[0] });
+      const webhooks = <any>await alchemy.getWebhooks({ webhookIds: [webhookIds[0]] });
 
+      expect(webhooks.length).toBe(1);
+      const webhook = webhooks[0];
       expect(webhook).toHaveProperty("id");
       expect(webhook.id).toEqual(webhookIds[0]);
-      expect(webhook).toHaveProperty("app_id");
-      expect(webhook.app_id).toEqual(process.env.ALCHEMY_APP_ID as string);
-      expect(webhook).toHaveProperty("network");
-      expect(webhook).toHaveProperty("webhook_type");
-      expect(webhook.webhook_type).toEqual(MINED_TRANSACTION);
-      expect(webhook.webhook_url).toEqual("https://example.com/webhook");
     });
 
     it("should get all webhooks if no webhookId is passed", async () => {
@@ -286,28 +316,28 @@ describe("Alchemy Integration", () => {
   });
 
   describe("getSubscribedEvents", () => {
-    let webhookId: string | undefined;
+    let webhookIds: string[] = [];
 
     beforeEach(async () => {
-      webhookId = await createWebhook();
+      webhookIds = await createWebhooks([EVENTS.MINED_TRANSACTION, EVENTS.DROPPED_TRANSACTION]);
     });
 
     afterEach(async () => {
-      await deleteWebhook(webhookId);
-      webhookId = undefined;
+      await deleteWebhooks(webhookIds);
+      webhookIds = [];
     });
 
-    it("should always be MINED_TRANSACTION", async () => {
-      const events = <string[]>await alchemy.getSubscribedEvents({ webhookId });
+    it("should get subcribed events", async () => {
+      const events = <string[]>await alchemy.getSubscribedEvents({ webhookIds });
 
-      expect(events).toEqual([MINED_TRANSACTION]);
+      expect(events).toEqual([EVENTS.MINED_TRANSACTION, EVENTS.DROPPED_TRANSACTION]);
     });
 
     it("should throw an error if Alchemy does not return 200", async () => {
       let errorMessage = "no error message";
 
       try {
-        await alchemyMockFail?.getSubscribedEvents?.({ webhookId });
+        await alchemyMockFail?.getSubscribedEvents?.({ webhookIds });
       } catch (e) {
         errorMessage = e.message;
       }
@@ -319,21 +349,33 @@ describe("Alchemy Integration", () => {
   });
 
   describe("deleteWebhookEndpoint", () => {
-    let webhookId: string | undefined;
+    let webhookIds: string[] = [];
 
     beforeEach(async () => {
-      webhookId = await createWebhook();
+      webhookIds = await createWebhooks([EVENTS.MINED_TRANSACTION, EVENTS.DROPPED_TRANSACTION]);
     });
 
     afterEach(async () => {
-      await deleteWebhook(webhookId);
-      webhookId = undefined;
+      await deleteWebhooks(webhookIds);
+      webhookIds = [];
     });
 
-    it("should delete a webhook", async () => {
-      const result = await alchemy.deleteWebhookEndpoint({ webhookId });
+    it("should delete a single webhook if webhookId is passed", async () => {
+      const result = await alchemy.deleteWebhookEndpoint({ webhookId: webhookIds[0] });
       expect(result).toBeTruthy();
-      webhookId = undefined;
+
+      const webhooks = await alchemy.getWebhooks({});
+      expect(webhooks.length).toBe(1);
+      webhookIds = webhooks.map((x) => x.id);
+    });
+
+    it("should delete multiple webhooks if webhookIds is passed", async () => {
+      const result = await alchemy.deleteWebhookEndpoint({ webhookIds });
+      expect(result).toBeTruthy();
+
+      const webhooks = await alchemy.getWebhooks({});
+      expect(webhooks.length).toBe(0);
+      webhookIds = [];
     });
 
     it("should throw an error if the webhook does not exist", async () => {
@@ -352,7 +394,7 @@ describe("Alchemy Integration", () => {
       let errorMessage = "no error message";
 
       try {
-        await alchemyMockPartialFail?.deleteWebhookEndpoint?.({ webhookId });
+        await alchemyMockPartialFail?.deleteWebhookEndpoint?.({ webhookIds });
       } catch (e) {
         errorMessage = e.message;
       }
@@ -383,19 +425,18 @@ describe("Alchemy Integration", () => {
   });
 });
 
-async function createWebhook() {
-  const response = await alchemy.client.post("/create-webhook", {
-    webhook_type: MINED_TRANSACTION,
-    app_id: alchemy.ALCHEMY_APP_ID,
-    webhook_url: "https://example.com/webhook",
+async function createWebhooks(events: string[] = [EVENTS.MINED_TRANSACTION]): Promise<string[]> {
+  const { webhookData } = await alchemy.init({
+    events,
+    webhookUrl: "https://example.com/webhook",
   });
 
-  return response.data.data.id;
+  return webhookData.map((x) => x.id);
 }
 
-async function deleteWebhook(webhookId) {
-  if (webhookId) {
-    await alchemy.deleteWebhookEndpoint({ webhookId });
+async function deleteWebhooks(webhookIds) {
+  if (webhookIds && webhookIds.length > 0) {
+    await alchemy.deleteWebhookEndpoint({ webhookIds });
   }
 }
 
