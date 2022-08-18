@@ -136,7 +136,22 @@ export default class JiraIntegration implements IntegrationClassI {
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });
-    const eventsAfterSubscribe = subscribedEvents.concat(events);
+
+    //get only new events
+    const newEvents = events.filter(
+      (event: string) => !subscribedEvents.includes(event)
+    );
+
+    //if there're no new events to subscribe to,
+    //return the original webhook with the original events
+    if (newEvents.length == 0) {
+      return {
+        webhook: webhook,
+        events: subscribedEvents,
+      };
+    }
+
+    const eventsAfterSubscribe = subscribedEvents.concat(newEvents);
 
     try {
       await this.deleteWebhookEndpoint({ webhookId });
@@ -286,7 +301,7 @@ export default class JiraIntegration implements IntegrationClassI {
   }
 
   async getSubscribedEvents({ webhookId }: WebhooksProps): Promise<Events> {
-    const webhook: AnyObject = this.getWebhooks({ webhookId });
+    const webhook: AnyObject = await this.getWebhooks({ webhookId });
     if (webhook !== undefined) {
       return webhook.events;
     }
@@ -300,13 +315,13 @@ export default class JiraIntegration implements IntegrationClassI {
   }: DeleteWebhookEndpointProps): Promise<Truthy> {
     const webhookIdAsNum = Number(webhookId);
     try {
+      //it won't throw an exception, even if a webhook doesn't exist
       await this.v3Client.webhooks.deleteWebhookById({
-        webhookIds: [webhookIdAsNum]
+        webhookIds: [webhookIdAsNum],
       });
 
       return true;
     } catch (e) {
-      console.log((e as Error).message);
       throw new Error(`Unable to delete webhook ${webhookId}: not found; message: ${(e as Error).message}`);
     }
   }
