@@ -44,6 +44,34 @@ describe("WooCommerce Integration", () => {
         webhookIds.push(webhook.id);
       }
     });
+
+    it("should raise an error if webhook creation fails", async () => {
+      await expect(
+        failingWooCommerce.init({
+          webhookUrl: "https://example.com/webhook",
+          events: ["order.created"],
+        }),
+      ).rejects.toThrowError(/Unable to create webhook/);
+    });
+
+    it("should raise an error if a non-axios related error occurs", async () => {
+      const customFailingWooCommerce = new FailingWooCommerceIntegration({
+        WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
+        WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
+        WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
+      });
+
+      customFailingWooCommerce.client.post = jest
+        .fn()
+        .mockReturnValue(Promise.reject(new Error("Something went wrong")));
+
+      await expect(
+        customFailingWooCommerce.init({
+          webhookUrl: "https://example.com/webhook",
+          events: ["order.created"],
+        }),
+      ).rejects.toThrowError(/Something went wrong/);
+    });
   });
 
   describe("verifyWebhookSignature", () => {
@@ -149,6 +177,56 @@ describe("WooCommerce Integration", () => {
         webhookIds.push(webhook.id);
       }
     });
+
+    it("should raise an error if subscription fails", async () => {
+      const failingPostWooCommerce = new FailingWooCommerceIntegration({
+        WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
+        WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
+        WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
+      });
+
+      // Allow webhooks retrieval to pass
+      failingPostWooCommerce.client.get = jest.fn().mockReturnValue(
+        Promise.resolve({
+          status: 200,
+          data: [{ id: "1", topic: "order.created" }],
+        }),
+      );
+
+      await expect(
+        failingPostWooCommerce.subscribe({
+          webhookIds: webhookIds,
+          events: ["product.created"],
+        }),
+      ).rejects.toThrowError(/Unable to create webhook for event/);
+    });
+
+    it("should raise an error if a non-axios related error occurs", async () => {
+      const customFailingWooCommerce = new FailingWooCommerceIntegration({
+        WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
+        WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
+        WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
+      });
+
+      // Allow webhooks retrieval to pass
+      customFailingWooCommerce.client.get = jest.fn().mockReturnValue(
+        Promise.resolve({
+          status: 200,
+          data: [{ id: "1", topic: "order.created" }],
+        }),
+      );
+
+      customFailingWooCommerce.client.post = jest
+        .fn()
+        .mockReturnValue(Promise.reject(new Error("Something went wrong")));
+
+      await expect(
+        customFailingWooCommerce.subscribe({
+          webhookIds: ["1"],
+          events: ["order.created"],
+        }),
+      ).rejects.toThrowError(/Something went wrong/);
+    });
   });
 
   describe("unsubscribe", () => {
@@ -227,19 +305,37 @@ describe("WooCommerce Integration", () => {
         errorMessage = error.message;
       }
 
-      await expect(errorMessage).toMatch(/Webhook with ID 0 not found/g);
+      await expect(errorMessage).toMatch(/webhook not found/g);
     });
 
     it("should raise an error if the webhook returns a non-404 HTTP response", async () => {
       let errorMessage = "no error thrown";
 
       try {
-        await mockClientWooCommerce.getWebhooks({ webhookIds: ["0"] });
+        await failingWooCommerce.getWebhooks({ webhookIds: ["0"] });
       } catch (error) {
         errorMessage = error.message;
       }
 
-      expect(errorMessage).toMatch(/Request failed with status code 500/g);
+      expect(errorMessage).toMatch(/Server responded with 500 Internal Server Error/g);
+    });
+
+    it("should raise an error if a non-axios related error occurs", async () => {
+      const customFailingWooCommerce = new FailingWooCommerceIntegration({
+        WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
+        WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
+        WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
+      });
+
+      customFailingWooCommerce.client.get = jest
+        .fn()
+        .mockReturnValue(Promise.reject(new Error("Something went wrong")));
+
+      await expect(
+        customFailingWooCommerce.getWebhooks({
+          webhookIds: ["0"],
+        }),
+      ).rejects.toThrowError(/Something went wrong/);
     });
   });
 
@@ -300,7 +396,7 @@ describe("WooCommerce Integration", () => {
       let errorMessage = "no error thrown";
 
       try {
-        await mockClientWooCommerce.deleteWebhookEndpoint({ webhookId: "0" });
+        await failingWooCommerce.deleteWebhookEndpoint({ webhookId: "0" });
       } catch (error) {
         errorMessage = error.message;
       }
@@ -319,6 +415,7 @@ describe("WooCommerce Integration", () => {
 });
 
 // helpers
+
 const noSSLWooCommerce = new (class extends WooCommerceIntegration {
   public client: AxiosInstance;
 
@@ -358,7 +455,7 @@ const noSSLWooCommerce = new (class extends WooCommerceIntegration {
   WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
 });
 
-const mockClientWooCommerce = new (class extends WooCommerceIntegration {
+class FailingWooCommerceIntegration extends WooCommerceIntegration {
   public client;
 
   constructor({
@@ -381,6 +478,25 @@ const mockClientWooCommerce = new (class extends WooCommerceIntegration {
         return Promise.reject({
           response: {
             status: 500,
+            statusText: "Internal Server Error",
+          },
+          message: "Request failed with status code 500",
+        });
+      }),
+      post: jest.fn(() => {
+        return Promise.reject({
+          response: {
+            status: 500,
+            statusText: "Internal Server Error",
+          },
+          message: "Request failed with status code 500",
+        });
+      }),
+      put: jest.fn(() => {
+        return Promise.reject({
+          response: {
+            status: 500,
+            statusText: "Internal Server Error",
           },
           message: "Request failed with status code 500",
         });
@@ -389,13 +505,16 @@ const mockClientWooCommerce = new (class extends WooCommerceIntegration {
         return Promise.reject({
           response: {
             status: 500,
+            statusText: "Internal Server Error",
           },
           message: "Request failed with status code 500",
         });
       }),
     };
   }
-})({
+}
+
+const failingWooCommerce = new FailingWooCommerceIntegration({
   WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
   WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
   WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,

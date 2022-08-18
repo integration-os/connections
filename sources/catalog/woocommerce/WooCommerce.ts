@@ -49,11 +49,21 @@ export default class WooCommerceIntegration implements IntegrationClassI {
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const webhookData: AnyObject[] = await Promise.all(
       events.map(async (event) => {
-        const response = await this.client.post("/wp-json/wc/v3/webhooks", {
-          topic: event,
-          delivery_url: webhookUrl,
-          secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
-        });
+        const response = await this.client
+          .post("/wp-json/wc/v3/webhooks", {
+            topic: event,
+            delivery_url: webhookUrl,
+            secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
+          })
+          .catch((error) => {
+            throw new Error(
+              `Unable to create webhook for event ${event}: ${
+                error.response
+                  ? `Server responded with ${error.response.status} ${error.response.statusText}`
+                  : error.message
+              }`,
+            );
+          });
 
         return response.data;
       }),
@@ -93,15 +103,25 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
       newWebhooks = await Promise.all(
         eventsToSubscribe.map(async (event) => {
-          const response = await this.client.post(
-            "/wp-json/wc/v3/webhooks",
-            {
-              topic: event,
-              delivery_url,
-              secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
-            },
-            {},
-          );
+          const response = await this.client
+            .post(
+              "/wp-json/wc/v3/webhooks",
+              {
+                topic: event,
+                delivery_url,
+                secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
+              },
+              {},
+            )
+            .catch((error) => {
+              throw new Error(
+                `Unable to create webhook for event ${event}: ${
+                  error.response
+                    ? `Server responded with ${error.response.status} ${error.response.statusText}`
+                    : error.message
+                }`,
+              );
+            });
 
           return response.data;
         }),
@@ -149,24 +169,26 @@ export default class WooCommerceIntegration implements IntegrationClassI {
           const response = await this.client.get(`/wp-json/wc/v3/webhooks/${webhookId}`);
           return response.data;
         } catch (error) {
-          if (error.response.status === 404) {
-            throw new Error(`Webhook with ID ${webhookId} not found`);
+          const baseMessage = `Unable to retrieve webhook with ID ${webhookId}`;
+          if (error.response?.status === 404) {
+            throw new Error(`${baseMessage}: webhook not found`);
           }
 
-          throw error;
+          throw new Error(
+            `${baseMessage}: ${
+              error.response
+                ? `Server responded with ${error.response.status} ${error.response.statusText}`
+                : error.message
+            }`,
+          );
         }
       }),
     );
   }
 
   async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {
-    const events: string[] = await Promise.all(
-      webhookIds.map(async (webhookId) => {
-        const response = await this.client.get(`/wp-json/wc/v3/webhooks/${webhookId}`);
-
-        return response.data.topic;
-      }),
-    );
+    const webhooks = (await this.getWebhooks({ webhookIds })) as AnyObject[];
+    const events = webhooks.map((webhook) => webhook.topic);
 
     // Deduplicate events
     return Array.from(new Set(events));
