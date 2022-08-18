@@ -6,7 +6,7 @@
   "platform": "shopify",
   "category": "ecommerce",
   "image": "https://assets.buildable.dev/catalog/node-templates/shopify.svg",
-  "tags": ["sales", "business"],
+  "tags": ["sales", "business", "ecommerce"],
   "authentication": [
     {
       "name": "SHOPIFY_STORE_URL",
