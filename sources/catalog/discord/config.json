@@ -1,0 +1,184 @@
+{
+  "title": "Discord",
+  "description": "Discord",
+  "apiVersion": "NA",
+  "platform": "discord",
+  "category": "version-control",
+  "image": "https://assets.buildable.dev/catalog/node-templates/discord.svg",
+  "tags": [
+    "chat"
+  ],
+  "authentication": [
+    {
+      "name": "DISCORD_PUBLIC_KEY",
+      "label": "Enter your Discord Public Key",
+      "placeholder": "5ef3f3d9a6fc382574f262eac907ed2a6da388b09ef88da9182745f3b94029b"
+    }
+  ],
+  "eventSchema": {
+    "app_permissions": "442368",
+    "application_id": "845027738276462632",
+    "channel_id": "772908445358620702",
+    "guild_id": "772904309264089089",
+    "guild_locale": "en-US",
+    "id": "847587388497854464",
+    "locale": "en-US",
+    "token": "UNIQUE_TOKEN",
+    "type": 3,
+    "version": 1,
+    "data": {
+      "component_type": 3,
+      "custom_id": "class_select_1",
+      "id": "866818195033292851",
+      "name": "context-menu-message-2",
+      "options": [
+        {
+          "name": "cardname",
+          "type": 3,
+          "value": "The Gitrog Monster"
+        }
+      ],
+      "resolved": {
+        "members": [],
+        "messages": [],
+        "users": []
+      },
+      "target_id": "867793854505943041",
+      "type": 3,
+      "values": [
+        "mage",
+        "rogue"
+      ]
+    },
+    "member": {
+      "avatar": null,
+      "deaf": false,
+      "is_pending": false,
+      "joined_at": "2020-11-02T19:25:47.248000+00:00",
+      "mute": false,
+      "nick": "Bot Man",
+      "pending": false,
+      "permissions": "17179869183",
+      "premium_since": null,
+      "roles": [
+        "785609923542777878"
+      ],
+      "user": {
+        "avatar": "a_d5efa99b3eeaa7dd43acca82f5692432",
+        "discriminator": "1337",
+        "id": "53908232506183680",
+        "public_flags": 131141,
+        "username": "Mason"
+      }
+    },
+    "message": {
+      "application_id": "845027738276462632",
+      "attachments": [],
+      "author": {
+        "avatar": null,
+        "bot": true,
+        "discriminator": "5284",
+        "id": "845027738276462632",
+        "public_flags": 0,
+        "username": "Interactions Test"
+      },
+      "channel_id": "772908445358620702",
+      "components": [
+        {
+          "components": [
+            {
+              "custom_id": "class_select_1",
+              "label": "Click me!",
+              "max_values": 1,
+              "min_values": 1,
+              "options": [
+                {
+                  "description": "Sneak n stab",
+                  "emoji": {
+                    "id": "625891304148303894",
+                    "name": "rogue"
+                  },
+                  "label": "Rogue",
+                  "value": "rogue"
+                },
+                {
+                  "description": "Turn 'em into a sheep",
+                  "emoji": {
+                    "id": "625891304081063986",
+                    "name": "mage"
+                  },
+                  "label": "Mage",
+                  "value": "mage"
+                },
+                {
+                  "description": "You get heals when I'm done doing damage",
+                  "emoji": {
+                    "id": "625891303795982337",
+                    "name": "priest"
+                  },
+                  "label": "Priest",
+                  "value": "priest"
+                }
+              ],
+              "placeholder": "Choose a class",
+              "style": 1,
+              "type": 3
+            }
+          ],
+          "type": 1
+        }
+      ],
+      "content": "Mason is looking for new arena partners. What classes do you play?",
+      "edited_timestamp": null,
+      "embeds": [],
+      "flags": 0,
+      "id": "847587334500646933",
+      "interaction": {
+        "id": "847587333942935632",
+        "name": "dropdown",
+        "type": 2,
+        "user": {
+          "avatar": "a_d5efa99b3eeaa7dd43acca82f5692432",
+          "discriminator": "1337",
+          "id": "53908232506183680",
+          "public_flags": 131141,
+          "username": "Mason"
+        }
+      },
+      "mention_everyone": false,
+      "mention_roles": [],
+      "mentions": [],
+      "pinned": false,
+      "timestamp": "2021-05-27T21:29:27.956000+00:00",
+      "tts": false,
+      "type": 20,
+      "webhook_id": "845027738276462632"
+    }
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
+  "paths": {
+    "id": "_.body.id",
+    "event": "_.body.type",
+    "payload": "_.body",
+    "secret": "_.body.config.secret",
+    "signature": "_.headers.X-Signature-Ed25519",
+    "timestamp": "_.headers.X-Signature-Timestamp"
+  },
+  "connectionTypes": ["source"],
+  "events": [
+    {
+      "name": "workflow-completed",
+      "description": "A workflow has reached a terminal state",
+      "group": ""
+    },
+    {
+      "name": "job-completed",
+      "description": "A job has reached a terminal state",
+      "group": ""
+    }
+  ]
+}
