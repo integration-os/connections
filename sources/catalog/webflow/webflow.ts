@@ -97,9 +97,7 @@ export default class WebflowIntegration implements IntegrationClassI {
   }: SubscriptionProps): Promise<SubscribeReturns> {
     const webhooks = (await this.getWebhooks({ webhookIds })) as AnyObject[];
 
-    const subscribedEvents = (webhooks as WebflowWebook[]).map(
-      (webhook) => webhook.triggerType as string,
-    );
+    const subscribedEvents = (webhooks as WebflowWebook[]).map((webhook) => webhook.triggerType);
     const newEvents = events.filter((e) => !subscribedEvents.includes(e));
 
     const updatedWebhoks = webhooks;
@@ -133,14 +131,17 @@ export default class WebflowIntegration implements IntegrationClassI {
     const webhooksIdsToDelete = webhooks
       .filter((webhook) => events.includes(webhook.triggerType))
       .map((webhook) => webhook._id);
-    const webhooksIdsToDeleteRequests = webhooksIdsToDelete.map((id) =>
-      this.deleteWebhookEndpoint({ webhookId: id }),
-    );
-    await Promise.all(webhooksIdsToDeleteRequests);
+    const webhooksIdsToDeleteRequests = webhooksIdsToDelete.map(async (id) => {
+      await this.deleteWebhookEndpoint({ webhookId: id });
 
-    const updatedWebhooks = webhooks.filter(
-      (webhook) => !webhooksIdsToDelete.includes(webhook._id),
-    );
+      return id;
+    });
+    const webhooksIdsToDeleteResults = await Promise.allSettled(webhooksIdsToDeleteRequests);
+    const deletedWebhookIds = webhooksIdsToDeleteResults
+      .filter((result) => result.status === "fulfilled")
+      .map((result) => (result as PromiseFulfilledResult<string>).value);
+
+    const updatedWebhooks = webhooks.filter((webhook) => !deletedWebhookIds.includes(webhook._id));
     const updatedEvents = updatedWebhooks.map((webhook) => webhook.triggerType);
 
     return {
@@ -151,10 +152,10 @@ export default class WebflowIntegration implements IntegrationClassI {
 
   async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
     try {
-      const response = await this.client.get<null, AxiosResponse<WebflowWebook[]>>(
+      const { data } = await this.client.get<null, AxiosResponse<WebflowWebook[]>>(
         `/sites/${this.WEBFLOW_SITE_ID}/webhooks`,
       );
-      const webhooks = response?.data || [];
+      const webhooks = data || [];
 
       if (!webhookIds?.length) {
         return webhooks;
