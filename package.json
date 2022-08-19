@@ -46,6 +46,7 @@
     "@octokit/core": "^4.0.4",
     "@shopify/shopify-api": "^4.1.0",
     "axios": "^0.27.2",
+    "discord-interactions": "^3.2.0",
     "dotenv": "^16.0.0",
     "stripe": "^9.13.0"
   }
