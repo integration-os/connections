@@ -45,16 +45,19 @@ describe("Webflow Integration", () => {
       expect(webhookData).toHaveLength(1);
       expect(events).toEqual(["form_submission"]);
 
-      webhookId = (webhookData as AnyObject[])[0]._id;
+      webhookId = (webhookData as AnyObject[]).pop()?._id;
     });
 
-    it("should throw an exception when passing in unknown event", async () => {
-      await expect(
-        webflow.init({
-          webhookUrl: "https://example.com/webhook",
-          events: ["form_submission1"],
-        }),
-      ).rejects.toThrow();
+    it("should not register a webhook when passing in unknown event", async () => {
+      const { webhookData, events } = await webflow.init({
+        webhookUrl: "https://example.com/webhook",
+        events: ["form_submission1"],
+      });
+
+      expect(webhookData).toBeDefined();
+      expect(webhookData).toHaveLength(0);
+      expect(events).toBeDefined();
+      expect(events).toHaveLength(0);
     });
   });
 
@@ -162,10 +165,10 @@ describe("Webflow Integration", () => {
   describe("getWebhooks", () => {
     let webhookId: string | undefined;
 
-    beforeEach(async () => {
-      const testWebhookUrl = "https://example.com/webhook";
-      const testEvents = ["form_submission"];
+    const testWebhookUrl = "https://example.com/webhook?event=form_submission";
+    const testEvents = ["form_submission"];
 
+    beforeEach(async () => {
       webhookId = await createTestWebhook(testWebhookUrl, testEvents);
     });
 
@@ -182,6 +185,20 @@ describe("Webflow Integration", () => {
 
       expect(webhooks).toBeDefined();
       expect(webhooks).toHaveLength(1);
+    });
+
+    it("should return a webhook with event type registered as a query string", async () => {
+      const webhooks = await webflow.getWebhooks({
+        webhookIds: [webhookId as string],
+      });
+
+      expect(webhooks).toBeDefined();
+      expect(webhooks).toHaveLength(1);
+
+      const webhook = webhooks.pop();
+
+      expect(webhook.url).toBe(testWebhookUrl);
+      expect(webhook.triggerType).toBe(testEvents[0]);
     });
 
     it("should return all webhooks if webhookIds not provided", async () => {

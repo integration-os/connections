@@ -13,22 +13,9 @@ import {
   VerifyWebhookSignatureProps,
 } from "../../types/classDefinition";
 
-type WebFlowTriggerType =
-  | "form_submission"
-  | "site_publish"
-  | "ecomm_new_order"
-  | "ecomm_order_changed"
-  | "ecomm_inventory_changed"
-  | "memberships_user_account_added"
-  | "memberships_user_account_updated"
-  | "collection_item_created"
-  | "collection_item_changed"
-  | "collection_item_deleted"
-  | "collection_item_unpublished";
-
 type WebflowWebook = {
   _id: string;
-  triggerType: WebFlowTriggerType;
+  triggerType: string;
   triggerId: string;
   site: string;
   filter?: Record<string, any>;
@@ -78,18 +65,23 @@ export default class WebflowIntegration implements IntegrationClassI {
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
-    const webhookCreateRequests = events.map((e) =>
-      this.client.post(`/sites/${this.WEBFLOW_SITE_ID}/webhooks`, {
-        triggerType: e,
+    const webhookCreateRequests = events.map((event) =>
+      this.client.post(`/sites/${this.WEBFLOW_SITE_ID}/webhooks?event=${event}`, {
+        triggerType: event,
         url: webhookUrl,
       }),
     );
-    const webhookCreateResponses = await Promise.all(webhookCreateRequests);
-    const webhooks = webhookCreateResponses.map((r) => r.data);
+    const webhookCreateResponses = await Promise.allSettled(webhookCreateRequests);
+    const webhooks = webhookCreateResponses
+      .filter((response) => response.status === "fulfilled")
+      .map(
+        (response) => (response as PromiseFulfilledResult<AxiosResponse<WebflowWebook>>).value.data,
+      );
+    const registeredEvents = webhooks.map((webhook) => webhook.triggerType);
 
     return {
       webhookData: webhooks,
-      events,
+      events: registeredEvents,
     };
   }
 

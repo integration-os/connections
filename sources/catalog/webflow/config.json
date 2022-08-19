@@ -41,7 +41,7 @@
   },
   "paths": {
     "id": "_._id",
-    "event": null,
+    "event": "_.query.event",
     "payload": "_.data",
     "secret": null,
     "signature": null
