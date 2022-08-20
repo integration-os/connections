@@ -15,7 +15,8 @@ import {
 import {
   ShipStationWebhook,
   ShipStationWebhookList,
-  ShipStationWebhookSubscribe,
+  ShipStationWebhookSubscribeRequest,
+  ShipStationWebhookSubscribeResponse,
 } from "./types/shipStation-webhook-types";
 
 export default class ShipStationIntegration implements IntegrationClassI {
@@ -59,11 +60,8 @@ export default class ShipStationIntegration implements IntegrationClassI {
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const webhookCreateRequests = events.map(async (event) =>
       this.client.post<
-        {
-          target_url: string;
-          event: string;
-        },
-        AxiosResponse<ShipStationWebhookSubscribe>
+        ShipStationWebhookSubscribeRequest,
+        AxiosResponse<ShipStationWebhookSubscribeResponse>
       >(`/webhooks/subscribe`, {
         target_url: webhookUrl,
         event: event,
@@ -75,8 +73,8 @@ export default class ShipStationIntegration implements IntegrationClassI {
       .filter((response) => response.status === "fulfilled")
       .map(
         (response) =>
-          (response as PromiseFulfilledResult<AxiosResponse<ShipStationWebhookSubscribe>>).value
-            .data,
+          (response as PromiseFulfilledResult<AxiosResponse<ShipStationWebhookSubscribeResponse>>)
+            .value.data,
       );
     const createdWebhookIds = createdWebhooks.map((createdWebhook) => `${createdWebhook.id}`);
 

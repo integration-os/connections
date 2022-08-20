@@ -1,4 +1,8 @@
-export type ShipStationWebhookSubscribe = { id: number };
+export type ShipStationWebhookSubscribeResponse = { id: number };
+export type ShipStationWebhookSubscribeRequest = {
+  target_url: string;
+  event: string;
+};
 
 export type ShipStationWebhook = {
   IsLabelAPIHook: boolean;
