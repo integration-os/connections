@@ -12,29 +12,14 @@ import {
   WebhooksProps,
 } from "../../types/classDefinition";
 
-type ShipStationWebhook = {
-  IsLabelAPIHook: boolean;
-  WebHookID: number;
-  SellerID: number;
-  StoreID?: number;
-  HookType: string;
-  MessageFormat: string;
-  Url: string;
-  Name?: string;
-  BulkCopyBatchID?: number;
-  BulkCopyRecordID?: number;
-  Active: boolean;
-  WebhookLogs?: any[];
-  Seller?: string;
-  Store?: string;
-};
+import {
+  ShipStationWebhook,
+  ShipStationWebhookList,
+  ShipStationWebhookSubscribe,
+} from "./types/shipStation-webhook-types";
 
-type ShipStationWehbookList = {
-  webhooks: ShipStationWebhook[];
-};
-
-export default class StripeIntegration implements IntegrationClassI {
-  id = "intg_627aceaf971c67182d1d76ca";
+export default class ShipStationIntegration implements IntegrationClassI {
+  id = "123456";
   name = "ShipStation";
 
   private readonly SHIP_STATION_URL: string;
@@ -72,20 +57,38 @@ export default class StripeIntegration implements IntegrationClassI {
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
-    const webhookCreateRequests = events.map((event) =>
-      this.client.post(`/webhooks/subscribe`, {
+    const webhookCreateRequests = events.map(async (event) =>
+      this.client.post<
+        {
+          target_url: string;
+          event: string;
+        },
+        AxiosResponse<ShipStationWebhookSubscribe>
+      >(`/webhooks/subscribe`, {
         target_url: webhookUrl,
         event: event,
       }),
     );
-    const webhookCreateResponses = await Promise.allSettled(webhookCreateRequests);
-    const webhooks = webhookCreateResponses
+    const webhookCreateResults = await Promise.allSettled(webhookCreateRequests);
+
+    const createdWebhooks = webhookCreateResults
       .filter((response) => response.status === "fulfilled")
-      .map((response) => (response as PromiseFulfilledResult<AxiosResponse>).value.data);
-    const registeredEvents = webhooks.map((webhook) => webhook.triggerType);
+      .map(
+        (response) =>
+          (response as PromiseFulfilledResult<AxiosResponse<ShipStationWebhookSubscribe>>).value
+            .data,
+      );
+    const createdWebhookIds = createdWebhooks.map((createdWebhook) => `${createdWebhook.id}`);
+
+    // Get created webhooks data coz return modules from `subscribe` and `getWebhoks` aren't the same
+    // So the have a unified structure
+    const webhooksData = (await this.getWebhooks({
+      webhookIds: createdWebhookIds,
+    })) as ShipStationWebhook[];
+    const registeredEvents = webhooksData.map((webhook) => webhook.HookType);
 
     return {
-      webhookData: webhooks,
+      webhookData: webhooksData,
       events: registeredEvents,
     };
   }
@@ -102,7 +105,7 @@ export default class StripeIntegration implements IntegrationClassI {
   }: SubscriptionProps): Promise<SubscribeReturns> {
     const webhooks = (await this.getWebhooks({ webhookIds })) as AnyObject[];
 
-    const subscribedEvents = ((webhooks as unknown as ShipStationWehbookList)?.webhooks).map(
+    const subscribedEvents = (webhooks as unknown as ShipStationWebhook[]).map(
       (webhook) => webhook.HookType,
     );
     const newEvents = events.filter((e) => !subscribedEvents.includes(e));
@@ -127,9 +130,9 @@ export default class StripeIntegration implements IntegrationClassI {
     webhookIds,
     events,
   }: SubscriptionProps): Promise<{ events: Events; webhooks: any }> {
-    const { webhooks } = (await this.getWebhooks({
+    const webhooks = (await this.getWebhooks({
       webhookIds,
-    })) as ShipStationWehbookList;
+    })) as ShipStationWebhook[];
 
     if (!webhooks?.length) {
       return { events: [], webhooks: [] };
@@ -138,13 +141,18 @@ export default class StripeIntegration implements IntegrationClassI {
     const webhooksIdsToDelete = webhooks
       .filter((webhook) => events.includes(webhook.HookType))
       .map((webhook) => `${webhook.WebHookID}`);
-    const webhooksIdsToDeleteRequests = webhooksIdsToDelete.map((id) =>
-      this.deleteWebhookEndpoint({ webhookId: id }),
-    );
-    await Promise.all(webhooksIdsToDeleteRequests);
+    const webhooksIdsToDeleteRequests = webhooksIdsToDelete.map(async (id) => {
+      await this.deleteWebhookEndpoint({ webhookId: id });
+
+      return id;
+    });
+    const webHooksDeleteResults = await Promise.allSettled(webhooksIdsToDeleteRequests);
+    const deletedWebhooksIds = webHooksDeleteResults
+      .filter((result) => result.status === "fulfilled")
+      .map((result) => (result as PromiseFulfilledResult<string>).value);
 
     const updatedWebhooks = webhooks.filter(
-      (webhook) => !webhooksIdsToDelete.includes(`${webhook.WebHookID}`),
+      (webhook) => !deletedWebhooksIds.includes(`${webhook.WebHookID}`),
     );
     const updatedEvents = updatedWebhooks.map((webhook) => webhook.HookType);
 
@@ -156,7 +164,7 @@ export default class StripeIntegration implements IntegrationClassI {
 
   async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
     try {
-      const { data } = await this.client.get<null, AxiosResponse<ShipStationWehbookList>>(
+      const { data } = await this.client.get<null, AxiosResponse<ShipStationWebhookList>>(
         `/webhooks`,
       );
       const webhooks = data?.webhooks || [];
@@ -167,12 +175,12 @@ export default class StripeIntegration implements IntegrationClassI {
 
       return webhooks.filter((webhook) => webhookIds.includes(`${webhook.WebHookID}`));
     } catch (error) {
-      throw new Error(`Could not get Webflow webhooks: ${error.message}`);
+      throw new Error(`Could not get ShipStation webhooks: ${error.message}`);
     }
   }
 
   async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {
-    const { webhooks } = (await this.getWebhooks({ webhookIds })) as ShipStationWehbookList;
+    const webhooks = (await this.getWebhooks({ webhookIds })) as ShipStationWebhook[];
 
     if (!webhooks.length) {
       return [];
@@ -186,7 +194,11 @@ export default class StripeIntegration implements IntegrationClassI {
       await this.client.delete(`/webhooks/${webhookId}`);
       return true;
     } catch (error) {
-      throw new Error(`Could not delete ShipStation webhook: ${error.message}`);
+      throw new Error(
+        `Could not delete ShipStation webhook: ${
+          error.response?.data ? JSON.stringify(error.response?.data) : error.message
+        }`,
+      );
     }
   }
 

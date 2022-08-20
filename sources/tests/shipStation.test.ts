@@ -3,6 +3,8 @@ require("dotenv").config();
 import ShipStationIntegration from "../catalog/shipStation/shipStation";
 import { AnyObject } from "../types/classDefinition";
 
+jest.setTimeout(30_000);
+
 const shipStation = new ShipStationIntegration({
   SHIP_STATION_URL: process.env.SHIP_STATION_URL as string,
   SHIP_STATION_API_KEY: process.env.SHIP_STATION_API_KEY as string,
@@ -11,7 +13,7 @@ const shipStation = new ShipStationIntegration({
 
 async function createTestWebhook(testWebhookUrl: string, events: string[]): Promise<string> {
   const webhooks = await shipStation.init({ webhookUrl: testWebhookUrl, events });
-  return webhooks.webhookData[0]._id;
+  return `${webhooks.webhookData[0].WebHookID}`;
 }
 
 async function deleteTestWebhook(webhookId: string) {
@@ -25,7 +27,7 @@ async function deleteTestWebhooks(webhookIds: string[]) {
   await Promise.all(webhooksDeleteRequest);
 }
 
-describe("Webflow Integration", () => {
+describe("ShipStation Integration", () => {
   describe("init", () => {
     let webhookId: string | undefined;
 
@@ -38,26 +40,14 @@ describe("Webflow Integration", () => {
     it("should create a webhook", async () => {
       const { webhookData, events } = await shipStation.init({
         webhookUrl: "https://webhook.site/30bf4e85-64b8-48ec-a1d2-1bb357a8a017",
-        events: ["form_submission"],
+        events: ["ORDER_NOTIFY"],
       });
 
       expect(webhookData).toBeDefined();
       expect(webhookData).toHaveLength(1);
-      expect(events).toEqual(["form_submission"]);
+      expect(events).toEqual(["ORDER_NOTIFY"]);
 
-      webhookId = (webhookData as AnyObject[]).pop()?._id;
-    });
-
-    it("should not register a webhook when passing in unknown event", async () => {
-      const { webhookData, events } = await shipStation.init({
-        webhookUrl: "https://example.com/webhook",
-        events: ["form_submission1"],
-      });
-
-      expect(webhookData).toBeDefined();
-      expect(webhookData).toHaveLength(0);
-      expect(events).toBeDefined();
-      expect(events).toHaveLength(0);
+      webhookId = `${(webhookData as AnyObject[]).pop()?.WebHookID}`;
     });
   });
 
@@ -78,7 +68,7 @@ describe("Webflow Integration", () => {
 
     beforeEach(async () => {
       const testWebhookUrl = "https://example.com/webhook";
-      const testEvents = ["form_submission"];
+      const testEvents = ["ORDER_NOTIFY"];
 
       const webhookId = await createTestWebhook(testWebhookUrl, testEvents);
       webhookIds.push(webhookId);
@@ -88,34 +78,34 @@ describe("Webflow Integration", () => {
       if (webhookIds.length) {
         await deleteTestWebhooks(webhookIds);
 
-        webhookIds = [];
+        webhookIds = new Array<string>();
       }
     });
 
     it("should subscribe to the new event by creating a new webhook", async () => {
       const { webhooks, events } = await shipStation.subscribe({
-        events: ["site_publish"],
+        events: ["ITEM_SHIP_NOTIFY"],
         webhookIds: [webhookIds[0]],
         webhookUrl: "https://example.com/webhook",
       });
 
       expect(webhooks).toBeDefined();
       expect(webhooks).toHaveLength(2);
-      expect(events).toEqual(["form_submission", "site_publish"]);
+      expect(events).toEqual(["ORDER_NOTIFY", "ITEM_SHIP_NOTIFY"]);
 
-      webhookIds = (webhooks as AnyObject[]).map((wb) => wb._id);
+      webhookIds = (webhooks as AnyObject[]).map((wb) => `${wb.WebHookID}`);
     });
 
     it("should handle subscription of an existing event", async () => {
       const { webhooks, events } = await shipStation.subscribe({
-        events: ["form_submission"],
+        events: ["ORDER_NOTIFY"],
         webhookIds: [webhookIds[0]],
         webhookUrl: "https://example.com/webhook",
       });
 
       expect(webhooks).toBeDefined();
       expect(webhooks).toHaveLength(1);
-      expect(events).toEqual(["form_submission"]);
+      expect(events).toEqual(["ORDER_NOTIFY"]);
     });
   });
 
@@ -124,7 +114,7 @@ describe("Webflow Integration", () => {
 
     beforeEach(async () => {
       const testWebhookUrl = "https://example.com/webhook";
-      const testEvents = ["form_submission"];
+      const testEvents = ["ORDER_NOTIFY"];
 
       webhookId = await createTestWebhook(testWebhookUrl, testEvents);
     });
@@ -137,7 +127,7 @@ describe("Webflow Integration", () => {
 
     it("should unsubscribe from the event(s)", async () => {
       const { webhooks, events } = await shipStation.unsubscribe({
-        events: ["form_submission"],
+        events: ["ORDER_NOTIFY"],
         webhookIds: [webhookId as string],
       });
 
@@ -147,9 +137,19 @@ describe("Webflow Integration", () => {
       expect(events).toHaveLength(0);
     });
 
-    it("should delete webhook if no events remain", async () => {
+    it("should delete all webhooks if no events remain", async () => {
+      const newWebhook = await shipStation.subscribe({
+        webhookIds: [webhookId as string],
+        events: ["SHIP_NOTIFY"],
+      });
+
+      expect(newWebhook.webhooks).toBeDefined();
+      expect(newWebhook.webhooks).toHaveLength(2);
+      expect(newWebhook.events).toBeDefined();
+      expect(newWebhook.events).toHaveLength(2);
+
       const { webhooks, events } = await shipStation.unsubscribe({
-        events: ["form_submission", "site_publish"],
+        events: ["ORDER_NOTIFY", "SHIP_NOTIFY"],
         webhookIds: [webhookId as string],
       });
 
@@ -158,6 +158,7 @@ describe("Webflow Integration", () => {
       expect(events).toBeDefined();
       expect(events).toHaveLength(0);
 
+      await deleteTestWebhook((newWebhook.webhooks as AnyObject[]).pop()?.WebHookID);
       webhookId = undefined;
     });
   });
@@ -165,8 +166,8 @@ describe("Webflow Integration", () => {
   describe("getWebhooks", () => {
     let webhookId: string | undefined;
 
-    const testWebhookUrl = "https://example.com/webhook?event=form_submission";
-    const testEvents = ["form_submission"];
+    const testWebhookUrl = "https://example.com/webhook";
+    const testEvents = ["ORDER_NOTIFY"];
 
     beforeEach(async () => {
       webhookId = await createTestWebhook(testWebhookUrl, testEvents);
@@ -185,20 +186,6 @@ describe("Webflow Integration", () => {
 
       expect(webhooks).toBeDefined();
       expect(webhooks).toHaveLength(1);
-    });
-
-    it("should return a webhook with event type registered as a query string", async () => {
-      const webhooks = await shipStation.getWebhooks({
-        webhookIds: [webhookId as string],
-      });
-
-      expect(webhooks).toBeDefined();
-      expect(webhooks).toHaveLength(1);
-
-      const webhook = webhooks.pop();
-
-      expect(webhook.url).toBe(testWebhookUrl);
-      expect(webhook.triggerType).toBe(testEvents[0]);
     });
 
     it("should return all webhooks if webhookIds not provided", async () => {
@@ -224,7 +211,7 @@ describe("Webflow Integration", () => {
 
     beforeEach(async () => {
       const testWebhookUrl = "https://example.com/webhook";
-      const testEvents = ["form_submission"];
+      const testEvents = ["ORDER_NOTIFY"];
 
       webhookId = await createTestWebhook(testWebhookUrl, testEvents);
     });
@@ -240,7 +227,7 @@ describe("Webflow Integration", () => {
         webhookIds: [webhookId as string],
       });
 
-      expect(events).toEqual(["form_submission"]);
+      expect(events).toEqual(["ORDER_NOTIFY"]);
     });
   });
 
@@ -249,7 +236,7 @@ describe("Webflow Integration", () => {
 
     beforeEach(async () => {
       const testWebhookUrl = "https://example.com/webhook";
-      const testEvents = ["form_submission"];
+      const testEvents = ["ORDER_NOTIFY"];
 
       webhookId = await createTestWebhook(testWebhookUrl, testEvents);
     });
@@ -272,10 +259,18 @@ describe("Webflow Integration", () => {
 
     it("should not throw an error if the webhook does not exist", async () => {
       const result = await shipStation.deleteWebhookEndpoint({
-        webhookId: webhookId as string,
+        webhookId: "123456",
       });
 
       expect(result).toBeTruthy();
+    });
+
+    it("should not throw an error if the webhook id is not a number string value", async () => {
+      await expect(
+        shipStation.deleteWebhookEndpoint({
+          webhookId: "fdsfasd",
+        }),
+      ).rejects.toThrow();
     });
   });
 
