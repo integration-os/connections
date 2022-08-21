@@ -15,19 +15,6 @@ import {
 import crypto from "crypto";
 import axios from "axios";
 
-type ZendeskWebhook = {
-  id: string;
-  name: string;
-  status: string;
-  subscriptions: Array<string>;
-  created_at: string;
-  created_by: string;
-  endpoint: string;
-  http_method: string;
-  request_format: string;
-};
-
-
 export default class ZendeskIntegration implements IntegrationClassI {
   id: string;
   name: string;
@@ -178,7 +165,7 @@ export default class ZendeskIntegration implements IntegrationClassI {
   }
 
 //  API call to retrieve signing secret for a webhook (Only needed if signing_secret was not defined in app requirements)
- private async getSigningSecret({ webhookId }: WebhooksProps): Promise<String> {
+private async getSigningSecret({ webhookId }: WebhooksProps): Promise<String> {
   const response = await this.client.get(`/${webhookId}/signing_secret`);
     
   if (response.status !== 200) {

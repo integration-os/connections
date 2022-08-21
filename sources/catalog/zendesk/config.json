@@ -6,18 +6,18 @@
   "category": "crm",
   "image": "https://assets.buildable.dev/catalog/node-templates/zendesk.svg",
   "tags": [],
-	"authentication": [
-		{
-			"name": "ZENDESK_SUBDOMAIN_NAME",
-			"label": "Enter your Zendesk Subdomain Name",
-			"placeholder": "yourOrgName123"
-		},
+  "authentication": [
+    {
+      "name": "ZENDESK_SUBDOMAIN_NAME",
+      "label": "Enter your Zendesk Subdomain Name",
+      "placeholder": "yourOrgName123"
+    },
     {
       "name": "ZENDESK_ACCESS_TOKEN",
-			"label": "Enter your Zendesk OAuth Access Token",
-			"placeholder": "52d7ef4ee01e2c2c75bff572f957cd4f12d6225eee07ea2f01d01a"
+      "label": "Enter your Zendesk OAuth Access Token",
+      "placeholder": "52d7ef4ee01e2c2c75bff572f957cd4f12d6225eee07ea2f01d01a"
     }
-	],
+  ],
   "eventSchema": {
     "version": "0",
     "id": "5cabfa42-9882-4f86-9a13-be7097e63171",
@@ -58,9 +58,7 @@
           "brand_id": 123,
           "form_id": 6876543,
           "external_id": "TEST1234",
-          "tags": [
-            "enterprise"
-          ],
+          "tags": ["enterprise"],
           "via": {
             "channel": "web"
           }
@@ -68,11 +66,11 @@
       }
     }
   },
-	"settings": {
-		"parseWebhookBody" : false, 
-		"hasSubscriptionDelay" : false,
-		"subscriptionDelayMultiplier" : 0.0
-	},
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
   "paths": {
     "id": "_.headers.x-zendesk-webhook-id",
     "event": "_.body",
