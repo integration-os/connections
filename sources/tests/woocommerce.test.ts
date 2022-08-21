@@ -38,39 +38,21 @@ describe("WooCommerce Integration", () => {
       expect(initReturns).toBeDefined();
       expect(initReturns.webhookData).toBeDefined();
       expect(initReturns.webhookData).toHaveLength(2);
-      expect(initReturns.events).toEqual(["order.created", "order.updated"]);
+      expect(initReturns.events.sort()).toEqual(["order.created", "order.updated"].sort());
 
       for (const webhook of initReturns.webhookData as AnyObject[]) {
         webhookIds.push(webhook.id);
       }
     });
 
-    it("should raise an error if webhook creation fails", async () => {
-      await expect(
-        failingWooCommerce.init({
-          webhookUrl: "https://example.com/webhook",
-          events: ["order.created"],
-        }),
-      ).rejects.toThrowError(/Unable to create webhook/);
-    });
-
-    it("should raise an error if a non-axios related error occurs", async () => {
-      const customFailingWooCommerce = new FailingWooCommerceIntegration({
-        WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
-        WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
-        WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
+    it("should only return created webhooks", async () => {
+      const response = await noSSLWooCommerce.init({
+        webhookUrl: "https://example.com/webhook",
+        events: ["order.created", "order.updated", "wrongevent.deleted"],
       });
 
-      customFailingWooCommerce.client.post = jest
-        .fn()
-        .mockReturnValue(Promise.reject(new Error("Something went wrong")));
-
-      await expect(
-        customFailingWooCommerce.init({
-          webhookUrl: "https://example.com/webhook",
-          events: ["order.created"],
-        }),
-      ).rejects.toThrowError(/Something went wrong/);
+      expect(response.webhookData).toHaveLength(2);
+      expect(response.events.sort()).toEqual(["order.created", "order.updated"].sort());
     });
   });
 
@@ -171,61 +153,23 @@ describe("WooCommerce Integration", () => {
       expect(response).toBeTruthy();
       expect(response.webhooks).toBeDefined();
       expect(response.webhooks).toHaveLength(3);
-      expect(response.events).toEqual(["order.created", "product.created", "product.deleted"]);
+      expect(response.events.sort()).toEqual(
+        ["order.created", "product.created", "product.deleted"].sort(),
+      );
 
       for (const webhook of response.webhooks as AnyObject[]) {
         webhookIds.push(webhook.id);
       }
     });
 
-    it("should raise an error if subscription fails", async () => {
-      const failingPostWooCommerce = new FailingWooCommerceIntegration({
-        WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
-        WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
-        WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
+    it("should only subscribe to valid events", async () => {
+      const response = await noSSLWooCommerce.subscribe({
+        webhookIds: webhookIds,
+        events: ["wrongevent.created"],
       });
 
-      // Allow webhooks retrieval to pass
-      failingPostWooCommerce.client.get = jest.fn().mockReturnValue(
-        Promise.resolve({
-          status: 200,
-          data: [{ id: "1", topic: "order.created" }],
-        }),
-      );
-
-      await expect(
-        failingPostWooCommerce.subscribe({
-          webhookIds: webhookIds,
-          events: ["product.created"],
-        }),
-      ).rejects.toThrowError(/Unable to create webhook for event/);
-    });
-
-    it("should raise an error if a non-axios related error occurs", async () => {
-      const customFailingWooCommerce = new FailingWooCommerceIntegration({
-        WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
-        WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
-        WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
-      });
-
-      // Allow webhooks retrieval to pass
-      customFailingWooCommerce.client.get = jest.fn().mockReturnValue(
-        Promise.resolve({
-          status: 200,
-          data: [{ id: "1", topic: "order.created" }],
-        }),
-      );
-
-      customFailingWooCommerce.client.post = jest
-        .fn()
-        .mockReturnValue(Promise.reject(new Error("Something went wrong")));
-
-      await expect(
-        customFailingWooCommerce.subscribe({
-          webhookIds: ["1"],
-          events: ["order.created"],
-        }),
-      ).rejects.toThrowError(/Something went wrong/);
+      expect(response.webhooks).toHaveLength(1);
+      expect(response.events).toEqual(["order.created"]);
     });
   });
 
@@ -272,6 +216,16 @@ describe("WooCommerce Integration", () => {
         (wid) => !response.webhooks.filter((webhook) => webhook.id).includes(wid),
       );
     });
+
+    it("should only remove existing webhooks/events", async () => {
+      const response = await noSSLWooCommerce.unsubscribe({
+        webhookIds: webhookIds,
+        events: ["wrongevent.updated", "order.created"],
+      });
+
+      expect(response.webhooks).toHaveLength(1);
+      expect(response.events).toEqual(["order.updated"]);
+    });
   });
 
   describe("getWebhooks", () => {
@@ -296,46 +250,10 @@ describe("WooCommerce Integration", () => {
       expect(webhooks[0].id).toBe(webhookIds[0]);
     });
 
-    it("should raise an error if the webhook does not exist", async () => {
-      let errorMessage = "no error thrown";
+    it("should only return existing webhooks", async () => {
+      const response = await noSSLWooCommerce.getWebhooks({ webhookIds: ["0", ...webhookIds] });
 
-      try {
-        await noSSLWooCommerce.getWebhooks({ webhookIds: ["0"] });
-      } catch (error) {
-        errorMessage = error.message;
-      }
-
-      await expect(errorMessage).toMatch(/webhook not found/g);
-    });
-
-    it("should raise an error if the webhook returns a non-404 HTTP response", async () => {
-      let errorMessage = "no error thrown";
-
-      try {
-        await failingWooCommerce.getWebhooks({ webhookIds: ["0"] });
-      } catch (error) {
-        errorMessage = error.message;
-      }
-
-      expect(errorMessage).toMatch(/Server responded with 500 Internal Server Error/g);
-    });
-
-    it("should raise an error if a non-axios related error occurs", async () => {
-      const customFailingWooCommerce = new FailingWooCommerceIntegration({
-        WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
-        WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
-        WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
-      });
-
-      customFailingWooCommerce.client.get = jest
-        .fn()
-        .mockReturnValue(Promise.reject(new Error("Something went wrong")));
-
-      await expect(
-        customFailingWooCommerce.getWebhooks({
-          webhookIds: ["0"],
-        }),
-      ).rejects.toThrowError(/Something went wrong/);
+      expect(response).toHaveLength(1);
     });
   });
 
