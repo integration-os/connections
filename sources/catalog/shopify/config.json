@@ -20,7 +20,7 @@
     },
     {
       "name": "SHOPIFY_API_SECRET_KEY",
-      "label": "Enter your Shopify API Key",
+      "label": "Enter your Shopify API Secret Key",
       "placeholder": "sk_test_Hrs6SAopgFPF0bZXSN3f6ELN"
     }
   ],
