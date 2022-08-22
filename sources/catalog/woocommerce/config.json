@@ -15,13 +15,13 @@
       "placeholder": "https://my-website.com"
     },
     {
-      "name": "WOOCOMMERCE_CUSTOMER_KEY",
-      "label": "Enter the WooCommerce Customer Key",
+      "name": "WOOCOMMERCE_CONSUMER_KEY",
+      "label": "Enter the WooCommerce Consumer Key",
       "placeholder": "ck_13e879fc387333d4bb74e5d6b1fb10ca5bb6f1e1"
     },
     {
-      "name": "WOOCOMMERCE_CUSTOMER_SECRET",
-      "label": "Enter your Woocommerce Customer Secret",
+      "name": "WOOCOMMERCE_CONSUMER_SECRET",
+      "label": "Enter your Woocommerce Consumer Secret",
       "placeholder": "cs_d15a728095e5b75779c85197498e9eaa25dda7e9"
     }
   ],
