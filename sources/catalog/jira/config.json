@@ -10,12 +10,12 @@
     {
       "name": "JIRA_OAUTH2_ACCESS_TOKEN",
       "label": "jira OAuth2 access token",
-      "placeholder": "1234567890abc"
+      "placeholder": "2l4IQtZXbn5WBJdL6EF7uenOWRsi<......>naAKel4fz7_lMRuJmAjiQgwOlrx72bUwPSIg"
     },
     {
       "name": "JIRA_PROJECT_ID",
       "label": "jira project ID",
-      "placeholder": "PROJ-1"
+      "placeholder": "PROJ-123"
     }
   ],
   "eventSchema": {
