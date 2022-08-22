@@ -37,7 +37,7 @@
     "verb": "confirmed"
   },
   "settings": {
-    "parseWebhookBody": true,
+    "parseWebhookBody": false,
     "hasSubscriptionDelay": true,
     "subscriptionDelayMultiplier": 0.5
   },
