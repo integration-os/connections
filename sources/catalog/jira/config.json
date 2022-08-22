@@ -18,6 +18,14 @@
       "placeholder": "PROJ-123"
     }
   ],
+  "paths": {
+    "id": "_.body.values.id",
+    "event": "_.body.values.events",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "connectionTypes": ["source"],
   "eventSchema": {
     "timestamp": 1536083559131,
     "webhookEvent": "jira:issue_updated",
