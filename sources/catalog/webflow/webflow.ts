@@ -13,7 +13,15 @@ import {
   VerifyWebhookSignatureProps,
 } from "../../types/classDefinition";
 
-import { WebflowWebook } from "./types";
+type WebflowWebook = {
+  _id: string;
+  triggerType: string;
+  triggerId: string;
+  site: string;
+  filter?: Record<string, any>;
+  lastUsed: string;
+  createdOn: string;
+};
 
 export default class WebflowIntegration implements IntegrationClassI {
   id = "159753";
