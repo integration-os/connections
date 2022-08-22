@@ -336,7 +336,9 @@ export default class JiraIntegration implements IntegrationClassI {
         message: "Connection tested successfully!",
       };
     } catch (err) {
-      throw new Error("Unable to establish a connection to Jira");
+      throw new Error(
+        "Unable to establish a connection to Jira: " + (err as Error).message
+      );
     }
   }
 }

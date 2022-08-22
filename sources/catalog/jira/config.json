@@ -15,7 +15,7 @@
     {
       "name": "JIRA_PROJECT_ID",
       "label": "jira project ID",
-      "placeholder": "my-project-123"
+      "placeholder": "PROJ-1"
     }
   ],
   "eventSchema": {
