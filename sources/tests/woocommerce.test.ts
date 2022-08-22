@@ -339,24 +339,24 @@ const noSSLWooCommerce = new (class extends WooCommerceIntegration {
 
   constructor({
     WOOCOMMERCE_WP_URL,
-    WOOCOMMERCE_CUSTOMER_SECRET,
-    WOOCOMMERCE_CUSTOMER_KEY,
+    WOOCOMMERCE_CONSUMER_SECRET,
+    WOOCOMMERCE_CONSUMER_KEY,
   }: {
     WOOCOMMERCE_WP_URL: string;
-    WOOCOMMERCE_CUSTOMER_KEY: string;
-    WOOCOMMERCE_CUSTOMER_SECRET: string;
+    WOOCOMMERCE_CONSUMER_KEY: string;
+    WOOCOMMERCE_CONSUMER_SECRET: string;
   }) {
     super({
       WOOCOMMERCE_WP_URL,
-      WOOCOMMERCE_CUSTOMER_SECRET,
-      WOOCOMMERCE_CUSTOMER_KEY,
+      WOOCOMMERCE_CONSUMER_SECRET: WOOCOMMERCE_CONSUMER_SECRET,
+      WOOCOMMERCE_CONSUMER_KEY: WOOCOMMERCE_CONSUMER_KEY,
     });
 
     this.client = axios.create({
       baseURL: WOOCOMMERCE_WP_URL,
       auth: {
-        username: WOOCOMMERCE_CUSTOMER_KEY,
-        password: WOOCOMMERCE_CUSTOMER_SECRET,
+        username: WOOCOMMERCE_CONSUMER_KEY,
+        password: WOOCOMMERCE_CONSUMER_SECRET,
       },
       headers: {
         "Content-Type": "application/json",
@@ -369,8 +369,8 @@ const noSSLWooCommerce = new (class extends WooCommerceIntegration {
   }
 })({
   WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
-  WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
-  WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
+  WOOCOMMERCE_CONSUMER_KEY: process.env.WOOCOMMERCE_CONSUMER_KEY!,
+  WOOCOMMERCE_CONSUMER_SECRET: process.env.WOOCOMMERCE_CONSUMER_SECRET!,
 });
 
 class FailingWooCommerceIntegration extends WooCommerceIntegration {
@@ -378,17 +378,17 @@ class FailingWooCommerceIntegration extends WooCommerceIntegration {
 
   constructor({
     WOOCOMMERCE_WP_URL,
-    WOOCOMMERCE_CUSTOMER_SECRET,
-    WOOCOMMERCE_CUSTOMER_KEY,
+    WOOCOMMERCE_CONSUMER_SECRET,
+    WOOCOMMERCE_CONSUMER_KEY,
   }: {
     WOOCOMMERCE_WP_URL: string;
-    WOOCOMMERCE_CUSTOMER_KEY: string;
-    WOOCOMMERCE_CUSTOMER_SECRET: string;
+    WOOCOMMERCE_CONSUMER_KEY: string;
+    WOOCOMMERCE_CONSUMER_SECRET: string;
   }) {
     super({
       WOOCOMMERCE_WP_URL,
-      WOOCOMMERCE_CUSTOMER_SECRET,
-      WOOCOMMERCE_CUSTOMER_KEY,
+      WOOCOMMERCE_CONSUMER_SECRET: WOOCOMMERCE_CONSUMER_SECRET,
+      WOOCOMMERCE_CONSUMER_KEY: WOOCOMMERCE_CONSUMER_KEY,
     });
 
     this.client = {
@@ -434,8 +434,8 @@ class FailingWooCommerceIntegration extends WooCommerceIntegration {
 
 const failingWooCommerce = new FailingWooCommerceIntegration({
   WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
-  WOOCOMMERCE_CUSTOMER_KEY: process.env.WOOCOMMERCE_CUSTOMER_KEY!,
-  WOOCOMMERCE_CUSTOMER_SECRET: process.env.WOOCOMMERCE_CUSTOMER_SECRET!,
+  WOOCOMMERCE_CONSUMER_KEY: process.env.WOOCOMMERCE_CONSUMER_KEY!,
+  WOOCOMMERCE_CONSUMER_SECRET: process.env.WOOCOMMERCE_CONSUMER_SECRET!,
 });
 
 async function createWebhooks(events: string[] = ["order.created"]) {

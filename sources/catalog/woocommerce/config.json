@@ -121,11 +121,11 @@
     "subscriptionDelayMultiplier": 0.0
   },
   "paths": {
-    "id": "_.headers.x-github-delivery",
-    "event": "_.headers.x-github-event",
+    "id": "_.body.id",
+    "event": "_.body.topic",
     "payload": "_.body",
-    "secret": "_.body.config.secret",
-    "signature": "_.headers.x-hub-signature-256"
+    "secret": "_.body.secret",
+    "signature": "_.header.x-wc-webhook-signature"
   },
   "connectionTypes": ["source"],
   "events": [

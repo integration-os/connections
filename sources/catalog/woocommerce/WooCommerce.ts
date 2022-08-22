@@ -23,12 +23,12 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
   constructor({
     WOOCOMMERCE_WP_URL,
-    WOOCOMMERCE_CUSTOMER_KEY,
-    WOOCOMMERCE_CUSTOMER_SECRET,
+    WOOCOMMERCE_CONSUMER_KEY,
+    WOOCOMMERCE_CONSUMER_SECRET,
   }: {
     WOOCOMMERCE_WP_URL: string;
-    WOOCOMMERCE_CUSTOMER_KEY: string;
-    WOOCOMMERCE_CUSTOMER_SECRET: string;
+    WOOCOMMERCE_CONSUMER_KEY: string;
+    WOOCOMMERCE_CONSUMER_SECRET: string;
   }) {
     this.client = axios.create({
       baseURL: WOOCOMMERCE_WP_URL,
@@ -36,14 +36,14 @@ export default class WooCommerceIntegration implements IntegrationClassI {
         "Content-Type": "application/json",
         "User-Agent": "buildable",
         Authorization: `Basic ${Buffer.from(
-          `${WOOCOMMERCE_CUSTOMER_KEY.trim()}:${WOOCOMMERCE_CUSTOMER_SECRET.trim()}`,
+          `${WOOCOMMERCE_CONSUMER_KEY.trim()}:${WOOCOMMERCE_CONSUMER_SECRET.trim()}`,
         )
           .toString("base64")
           .trim()}`,
       },
     });
 
-    this.WOOCOMMERCE_CUSTOMER_SECRET = WOOCOMMERCE_CUSTOMER_SECRET;
+    this.WOOCOMMERCE_CUSTOMER_SECRET = WOOCOMMERCE_CONSUMER_SECRET;
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
