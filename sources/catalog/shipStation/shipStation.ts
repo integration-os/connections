@@ -17,7 +17,7 @@ import {
   ShipStationWebhookList,
   ShipStationWebhookSubscribeRequest,
   ShipStationWebhookSubscribeResponse,
-} from "./types/shipStation-webhook-types";
+} from "./types";
 
 export default class ShipStationIntegration implements IntegrationClassI {
   id = "123456";
