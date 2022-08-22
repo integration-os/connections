@@ -12,12 +12,33 @@ import {
   WebhooksProps,
 } from "../../types/classDefinition";
 
-import {
-  ShipStationWebhook,
-  ShipStationWebhookList,
-  ShipStationWebhookSubscribeRequest,
-  ShipStationWebhookSubscribeResponse,
-} from "./types";
+type ShipStationWebhookSubscribeResponse = { id: number };
+
+type ShipStationWebhookSubscribeRequest = {
+  target_url: string;
+  event: string;
+};
+
+type ShipStationWebhook = {
+  IsLabelAPIHook: boolean;
+  WebHookID: number;
+  SellerID: number;
+  StoreID?: number;
+  HookType: string;
+  MessageFormat: string;
+  Url: string;
+  Name?: string;
+  BulkCopyBatchID?: number;
+  BulkCopyRecordID?: number;
+  Active: boolean;
+  WebhookLogs?: any[];
+  Seller?: string;
+  Store?: string;
+};
+
+type ShipStationWebhookList = {
+  webhooks: ShipStationWebhook[];
+};
 
 export default class ShipStationIntegration implements IntegrationClassI {
   id = "123456";
