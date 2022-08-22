@@ -222,6 +222,191 @@
       "name": "jira:issue_updated",
       "description": "",
       "group": ""
+    },
+    {
+      "name": "jira:issue_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:worklog_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "issuelink_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "issuelink_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "worklog_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "worklog_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "worklog_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "comment_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "comment_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "comment_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "project_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "project_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "project_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_released",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_unreleased",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_moved",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_deleted",
+      "description": "merging as well as deleting",
+      "group": ""
+    },
+    {
+      "name": "user_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "user_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "user_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_voting_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_watching_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_unassigned_issues_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_subtasks_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_attachments_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_issuelinks_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_timetracking_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "sprint_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "sprint_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "sprint_updated",
+      "description": "sprint_started",
+      "group": ""
+    },
+    {
+      "name": "sprint_closed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "board_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "board_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "board_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "board_configuration_changed",
+      "description": "",
+      "group": ""
     }
   ]
 }
