@@ -21,9 +21,9 @@ const WEBHOOK_TEST_BODY = `[{
 
 describe("HubspotIntegration", () => {
   const hubspotIntegration = new HubspotIntegration({
-    developerApiKey: process.env.HUBSPOT_APP_DEVELOPER_API_KEY,
-    appId: Number.parseInt(process.env.HUBSPOT_APP_ID),
-    clientSecret: process.env.HUBSPOT_APP_CLIENT_SECRET,
+    HUBSPOT_DEVELOPER_API_KEY: process.env.HUBSPOT_DEVELOPER_API_KEY,
+    HUBSPOT_APP_ID: Number.parseInt(process.env.HUBSPOT_APP_ID),
+    HUBSPOT_CLIENT_SECRET: process.env.HUBSPOT_CLIENT_SECRET,
   });
   const WEBHOOK_URL_PLACEHOLDER = "https://www.example.com/webhook";
 
@@ -322,9 +322,9 @@ describe("HubspotIntegration", () => {
   describe("testConnection", () => {
     it("should return truthy value if valid credentials are passed", async () => {
       const hubspotIntegration = new HubspotIntegration({
-        developerApiKey: process.env.HUBSPOT_APP_DEVELOPER_API_KEY,
-        appId: Number.parseInt(process.env.HUBSPOT_APP_ID),
-        clientSecret: process.env.HUBSPOT_APP_CLIENT_SECRET,
+        HUBSPOT_DEVELOPER_API_KEY: process.env.HUBSPOT_DEVELOPER_API_KEY,
+        HUBSPOT_APP_ID: Number.parseInt(process.env.HUBSPOT_APP_ID),
+        HUBSPOT_CLIENT_SECRET: process.env.HUBSPOT_CLIENT_SECRET,
       });
 
       await expect(hubspotIntegration.testConnection()).resolves.toBeTruthy();
@@ -332,9 +332,9 @@ describe("HubspotIntegration", () => {
 
     it("should throw an error if invalid credentials are passed", async () => {
       const hubspotIntegration = new HubspotIntegration({
-        developerApiKey: "0",
-        appId: 0,
-        clientSecret: "0",
+        HUBSPOT_DEVELOPER_API_KEY: "0",
+        HUBSPOT_APP_ID: 0,
+        HUBSPOT_CLIENT_SECRET: "0",
       });
 
       await expect(hubspotIntegration.testConnection()).rejects.toThrow();
@@ -343,7 +343,7 @@ describe("HubspotIntegration", () => {
 
   describe("verifyWebhookSignature", () => {
     it("should return truthy value if webhook signature is valid", async () => {
-      const clientSecret = process.env.HUBSPOT_APP_CLIENT_SECRET;
+      const clientSecret = process.env.HUBSPOT_CLIENT_SECRET;
       const hash = generateReqHash(clientSecret);
       const result = hubspotIntegration.verifyWebhookSignature({
         signature: hash,
@@ -358,10 +358,5 @@ describe("HubspotIntegration", () => {
 });
 
 function generateReqHash(secret: string): string {
-  return crypto
-    .createHash("sha256")
-    .update(
-      `${secret}${WEBHOOK_TEST_BODY}`,
-    )
-    .digest("hex");
+  return crypto.createHash("sha256").update(`${secret}${WEBHOOK_TEST_BODY}`).digest("hex");
 }

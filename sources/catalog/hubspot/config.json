@@ -8,7 +8,7 @@
   "tags": ["hubspot", "crm"],
   "authentication": [
     {
-      "name": "HUBSPOT_APP_DEVELOPER_API_KEY",
+      "name": "HUBSPOT_DEVELOPER_API_KEY",
       "label": "Enter your Hubspot app developer API key",
       "placeholder": "eu1-dca2-5e71-45cd-8a21-020dd3bb563d"
     },
@@ -18,7 +18,7 @@
       "placeholder": 1057888
     },
     {
-      "name": "HUBSPOT_APP_CLIENT_SECRET",
+      "name": "HUBSPOT_CLIENT_SECRET",
       "label": "Enter your Hubspot app client secret",
       "placeholder": "1158bbe7-1203-43ac-af0c-369f99228013"
     }

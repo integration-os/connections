@@ -1,17 +1,16 @@
+import _ from "lodash";
 import * as hubspot from "@hubspot/api-client";
+import { SubscriptionCreateRequestEventTypeEnum } from "@hubspot/api-client/lib/codegen/webhooks/models/SubscriptionCreateRequest";
+import { SubscriptionResponse } from "@hubspot/api-client/lib/codegen/webhooks";
+import { SubscriptionResponseEventTypeEnum } from "@hubspot/api-client/lib/codegen/webhooks/models/SubscriptionResponse";
+import { SettingsResponse } from "@hubspot/api-client/lib/codegen/webhooks/models/SettingsResponse";
 import {
   DeleteWebhookEndpointProps,
   Events,
-  InitProps,
   IntegrationClassI,
   Truthy,
   VerifyWebhookSignatureProps,
 } from "../../types/classDefinition";
-import { SubscriptionCreateRequestEventTypeEnum } from "@hubspot/api-client/lib/codegen/webhooks/models/SubscriptionCreateRequest";
-import { SubscriptionResponse } from "@hubspot/api-client/lib/codegen/webhooks";
-import { SubscriptionResponseEventTypeEnum } from "@hubspot/api-client/lib/codegen/webhooks/models/SubscriptionResponse";
-import { executeWithRateLimit } from "./helpers";
-import { SettingsResponse } from "@hubspot/api-client/lib/codegen/webhooks/models/SettingsResponse";
 
 export class HubspotIntegration implements IntegrationClassI {
   id = "intg_65c33a5b6e1286b561a83bc0";
@@ -24,23 +23,20 @@ export class HubspotIntegration implements IntegrationClassI {
   private readonly CLIENT_SECRET: string;
   private readonly REQUESTS_QTY_PER_SEC = 10;
   private readonly RATE_LIMIT_TIMEOUT = 1000;
-  private readonly MAX_CONCURRENT_REQUESTS: number;
+  private readonly MAX_CONCURRENT_REQUESTS: number = 10;
 
   constructor({
-    developerApiKey,
-    appId,
-    clientSecret,
-    maxConcurrentRequests = 10,
+    HUBSPOT_APP_ID,
+    HUBSPOT_CLIENT_SECRET,
+    HUBSPOT_DEVELOPER_API_KEY,
   }: {
-    developerApiKey: string;
-    appId: number;
-    clientSecret: string;
-    maxConcurrentRequests?: number;
+    HUBSPOT_APP_ID: number;
+    HUBSPOT_CLIENT_SECRET: string;
+    HUBSPOT_DEVELOPER_API_KEY: string;
   }) {
-    this.DEVELOPER_API_KEY = developerApiKey;
-    this.CLIENT_SECRET = clientSecret;
-    this.APP_ID = appId;
-    this.MAX_CONCURRENT_REQUESTS = maxConcurrentRequests;
+    this.DEVELOPER_API_KEY = HUBSPOT_DEVELOPER_API_KEY;
+    this.CLIENT_SECRET = HUBSPOT_CLIENT_SECRET;
+    this.APP_ID = HUBSPOT_APP_ID;
     this.client = new hubspot.Client({
       developerApiKey: this.DEVELOPER_API_KEY,
     });
@@ -61,7 +57,7 @@ export class HubspotIntegration implements IntegrationClassI {
     await this.client.webhooks.settingsApi.configure(this.APP_ID, {
       targetUrl: props.webhookUrl,
       throttling: {
-        maxConcurrentRequests: 10,
+        maxConcurrentRequests: this.MAX_CONCURRENT_REQUESTS,
         period: "SECONDLY",
       },
     });
@@ -198,4 +194,33 @@ export class HubspotIntegration implements IntegrationClassI {
       throw new Error(`An error occurred on test connection`);
     }
   }
+}
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export async function executeWithRateLimit<FetchCallback extends () => Promise<unknown>>({
+  fetchCallbacks,
+  requestsLimit,
+  timeout,
+}: {
+  fetchCallbacks: FetchCallback[];
+  requestsLimit: number;
+  timeout: number;
+}): Promise<Awaited<ReturnType<FetchCallback>>[]> {
+  const cbChunks = _.chunk(fetchCallbacks, requestsLimit);
+  const result: Awaited<ReturnType<FetchCallback>>[] = [];
+
+  for (let i = 0; i < cbChunks.length; i++) {
+    const cbChunk = cbChunks[i];
+    const startTime = Date.now();
+
+    const callbacksResults = await Promise.all(cbChunk.map((cb) => cb()));
+    result.push(...(callbacksResults as Awaited<ReturnType<FetchCallback>>[]));
+
+    const remainingTime = timeout - (Date.now() - startTime);
+
+    await sleep(remainingTime);
+  }
+
+  return result;
 }
