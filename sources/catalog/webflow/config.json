@@ -40,9 +40,9 @@
     "subscriptionDelayMultiplier": 0.0
   },
   "paths": {
-    "id": "_._id",
+    "id": "_.body._id",
     "event": "_.query.event",
-    "payload": "_.data",
+    "payload": "_.body.data",
     "secret": null,
     "signature": null
   },
