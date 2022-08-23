@@ -28,9 +28,9 @@
     "subscriptionDelayMultiplier": 0.0
   },
   "paths": {
-    "id": "_.resource_url",
-    "event": "_.resource_type",
-    "payload": "_",
+    "id": "_.body.resource_url",
+    "event": "_.body.resource_type",
+    "payload": "_.body",
     "secret": null,
     "signature": null
   },
