@@ -48,22 +48,19 @@ export default class GitHubReposIntegration implements IntegrationClassI {
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
-    const webhook = await this.octokit.request(
-      "POST /repos/{owner}/{repo}/hooks",
-      {
-        owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
-        repo: this.GITHUB_REPOS_REPOSITORY,
-        name: "web", // "web" stands for "webhook"
-        active: true,
-        events: events,
-        config: {
-          url: webhookUrl,
-          secret: this.GITHUB_REPOS_ACCESS_TOKEN,
-          content_type: "json",
-          insecure_ssl: "0",
-        },
-      }
-    );
+    const webhook = await this.octokit.request("POST /repos/{owner}/{repo}/hooks", {
+      owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
+      repo: this.GITHUB_REPOS_REPOSITORY,
+      name: "web", // "web" stands for "webhook"
+      active: true,
+      events: events,
+      config: {
+        url: webhookUrl,
+        secret: this.GITHUB_REPOS_ACCESS_TOKEN,
+        content_type: "json",
+        insecure_ssl: "0",
+      },
+    });
 
     return { webhookData: webhook.data, events };
   }
@@ -86,18 +83,15 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     const webhook: any = await this.getWebhooks({ webhookId });
 
     // update existing webhook events
-    const newWebhook = await this.octokit.request(
-      "PATCH /repos/{owner}/{repo}/hooks/{hook_id}",
-      {
-        owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
-        repo: this.GITHUB_REPOS_REPOSITORY,
-        hook_id: webhook.id,
-        add_events: events,
-        config: {
-          ...webhook.config,
-        },
-      }
-    );
+    const newWebhook = await this.octokit.request("PATCH /repos/{owner}/{repo}/hooks/{hook_id}", {
+      owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
+      repo: this.GITHUB_REPOS_REPOSITORY,
+      hook_id: webhook.id,
+      add_events: events,
+      config: {
+        ...webhook.config,
+      },
+    });
 
     // return new webhooks
     return {
@@ -114,20 +108,19 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     const webhook: any = await this.getWebhooks({ webhookId });
 
     // update existing webhook events
-    let newWebhook = await this.octokit.request(
-      "PATCH /repos/{owner}/{repo}/hooks/{hook_id}",
-      {
-        owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
-        repo: this.GITHUB_REPOS_REPOSITORY,
-        hook_id: webhook.id,
-        remove_events: events,
-        config: {
-          ...webhook.config,
-        },
-      }
-    );
+    const response = await this.octokit.request("PATCH /repos/{owner}/{repo}/hooks/{hook_id}", {
+      owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
+      repo: this.GITHUB_REPOS_REPOSITORY,
+      hook_id: webhook.id,
+      remove_events: events,
+      config: {
+        ...webhook.config,
+      },
+    });
 
-    if (!newWebhook.data.events) {
+    const newWebhook = response.data;
+
+    if (newWebhook.events.length === 0) {
       // delete webhook if no events left
       await this.deleteWebhookEndpoint({ webhookId: webhook.id });
     }
@@ -135,21 +128,16 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     // return new webhooks
     return {
       webhook: newWebhook,
-      events: events,
+      events: newWebhook.events,
     };
   }
 
-  async getWebhooks({
-    webhookId,
-  }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
-    const webhook = await this.octokit.request(
-      "GET /repos/{owner}/{repo}/hooks/{hook_id}",
-      {
-        owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
-        repo: this.GITHUB_REPOS_REPOSITORY,
-        hook_id: Number(webhookId),
-      }
-    );
+  async getWebhooks({ webhookId }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+    const webhook = await this.octokit.request("GET /repos/{owner}/{repo}/hooks/{hook_id}", {
+      owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
+      repo: this.GITHUB_REPOS_REPOSITORY,
+      hook_id: Number(webhookId),
+    });
 
     return webhook.data;
   }
@@ -160,9 +148,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     return webhook.events;
   }
 
-  async deleteWebhookEndpoint({
-    webhookId,
-  }: DeleteWebhookEndpointProps): Promise<Truthy> {
+  async deleteWebhookEndpoint({ webhookId }: DeleteWebhookEndpointProps): Promise<Truthy> {
     try {
       await this.octokit.request("DELETE /repos/{owner}/{repo}/hooks/{id}", {
         owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,

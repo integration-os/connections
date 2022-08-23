@@ -172,7 +172,7 @@ describe("GitHub Integration", () => {
       });
 
       expect(result).toBeTruthy();
-      expect((result as any).webhook.events).toEqual(["push"]);
+      expect((result as any).events).toEqual(["push"]);
     });
 
     it("should delete webhook if no events remain", async () => {
