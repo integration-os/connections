@@ -73,7 +73,7 @@
   },
   "paths": {
     "id": "_.headers.x-zendesk-webhook-id",
-    "event": "_.body",
+    "event": "_.headers.x-zendesk-webhook-invocation-id",
     "payload": "_.body",
     "secret": null,
     "signature": "_.headers.x-zendesk-webhook-signature"
