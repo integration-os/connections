@@ -1,6 +1,6 @@
-const nodeInput = ({ $body, $headers, $env, $actions }) => {
+const nodeInput = ({ $body, $headers, $env, $data }) => {
   return {
-    BUILDABLE_STRIPE_API_KEY: $env.BUILDABLE_STRIPE_API_KEY, // Required
+    BUILDABLE_STRIPE_SECRET_KEY: $env.BUILDABLE_STRIPE_SECRET_KEY, // Required
     charge: "string", // Required
 
     // evidence: {
