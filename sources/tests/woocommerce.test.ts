@@ -54,10 +54,21 @@ describe("WooCommerce Integration", () => {
       expect(response.webhookData).toHaveLength(2);
       expect(response.events.sort()).toEqual(["order.created", "order.updated"].sort());
     });
+
+    it("should back off when requests are fast", async () => {
+      const startTime = Date.now();
+      await fastWooCommerce.init({
+        webhookUrl: "https://example.com/webhook",
+        events: ["order.created"],
+      });
+
+      const elapsedTime = Date.now() - startTime;
+
+      expect(elapsedTime).toBeGreaterThanOrEqual(500);
+    });
   });
 
   describe("verifyWebhookSignature", () => {
-    const secret = "secret";
     const body = {
       id: "1",
       created_at: "2020-01-01T00:00:00",
@@ -80,7 +91,7 @@ describe("WooCommerce Integration", () => {
       },
     };
 
-    const testSignature = createHmac("sha256", secret)
+    const testSignature = createHmac("sha256", process.env.WOOCOMMERCE_CONSUMER_SECRET!)
       .update(JSON.stringify(body), "utf8")
       .digest("base64");
 
@@ -91,7 +102,7 @@ describe("WooCommerce Integration", () => {
           headers: { "X-WC-Webhook-Signature": testSignature },
         },
         signature: testSignature,
-        secret,
+        secret: process.env.WOOCOMMERCE_CONSUMER_SECRET!,
       });
 
       expect(result).toBeTruthy();
@@ -107,7 +118,7 @@ describe("WooCommerce Integration", () => {
             headers: { "X-WC-Webhook-Signature": testSignature },
           },
           signature: testSignature,
-          secret,
+          secret: process.env.WOOCOMMERCE_CONSUMER_SECRET!,
         });
       } catch (error) {
         errorMessage = error.message;
@@ -171,6 +182,28 @@ describe("WooCommerce Integration", () => {
       expect(response.webhooks).toHaveLength(1);
       expect(response.events).toEqual(["order.created"]);
     });
+
+    it("should raise an error if no webhook could be retrieved", async () => {
+      await expect(
+        noSSLWooCommerce.subscribe({
+          webhookIds: ["0"],
+          events: ["order.created"],
+        }),
+      ).rejects.toThrow(/No webhook found/g);
+    });
+
+    it("should back off when requests are fast", async () => {
+      const startTime = Date.now();
+
+      await fastWooCommerce.subscribe({
+        webhookIds: webhookIds,
+        events: ["product.created"],
+      });
+
+      const elapsedTime = Date.now() - startTime;
+
+      expect(elapsedTime).toBeGreaterThanOrEqual(500);
+    });
   });
 
   describe("unsubscribe", () => {
@@ -221,6 +254,16 @@ describe("WooCommerce Integration", () => {
       const response = await noSSLWooCommerce.unsubscribe({
         webhookIds: webhookIds,
         events: ["wrongevent.updated", "order.created"],
+      });
+
+      expect(response.webhooks).toHaveLength(1);
+      expect(response.events).toEqual(["order.updated"]);
+    });
+
+    it("should neglect non-existing webhook ids", async () => {
+      const response = await noSSLWooCommerce.unsubscribe({
+        webhookIds: ["0", ...webhookIds],
+        events: ["order.created"],
       });
 
       expect(response.webhooks).toHaveLength(1);
@@ -366,6 +409,77 @@ const noSSLWooCommerce = new (class extends WooCommerceIntegration {
         rejectUnauthorized: false,
       }),
     });
+  }
+})({
+  WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,
+  WOOCOMMERCE_CONSUMER_KEY: process.env.WOOCOMMERCE_CONSUMER_KEY!,
+  WOOCOMMERCE_CONSUMER_SECRET: process.env.WOOCOMMERCE_CONSUMER_SECRET!,
+});
+
+const fastWooCommerce = new (class extends WooCommerceIntegration {
+  public client;
+
+  constructor({
+    WOOCOMMERCE_WP_URL,
+    WOOCOMMERCE_CONSUMER_SECRET,
+    WOOCOMMERCE_CONSUMER_KEY,
+  }: {
+    WOOCOMMERCE_WP_URL: string;
+    WOOCOMMERCE_CONSUMER_KEY: string;
+    WOOCOMMERCE_CONSUMER_SECRET: string;
+  }) {
+    super({
+      WOOCOMMERCE_WP_URL,
+      WOOCOMMERCE_CONSUMER_SECRET: WOOCOMMERCE_CONSUMER_SECRET,
+      WOOCOMMERCE_CONSUMER_KEY: WOOCOMMERCE_CONSUMER_KEY,
+    });
+
+    this.client = {
+      get: jest.fn(() => {
+        return Promise.resolve({
+          response: {
+            status: 200,
+            statusText: "OK",
+          },
+          data: {
+            topic: "order.created",
+          },
+        });
+      }),
+      post: jest.fn(() => {
+        return Promise.resolve({
+          response: {
+            status: 200,
+            statusText: "OK",
+          },
+          data: {
+            topic: "order.created",
+          },
+        });
+      }),
+      put: jest.fn(() => {
+        return Promise.resolve({
+          response: {
+            status: 200,
+            statusText: "OK",
+          },
+          data: {
+            topic: "order.created",
+          },
+        });
+      }),
+      delete: jest.fn(() => {
+        return Promise.resolve({
+          response: {
+            status: 200,
+            statusText: "OK",
+          },
+          data: {
+            topic: "order.created",
+          },
+        });
+      }),
+    };
   }
 })({
   WOOCOMMERCE_WP_URL: process.env.WOOCOMMERCE_WP_URL!,

@@ -101,7 +101,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
     // fail if no webhook is returned, as there is no way to extract the URL
     if (!webhooks.length) {
-      throw new Error("No webhooks found");
+      throw new Error("No webhook found");
     }
 
     // find events to subscribe to
@@ -160,21 +160,17 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
     // delete webhooks
     for (const webhook of webhooksToDelete) {
-      try {
-        const startTime = Date.now();
+      const startTime = Date.now();
 
-        await this.deleteWebhookEndpoint({ webhookId: webhook.id });
+      await this.deleteWebhookEndpoint({ webhookId: webhook.id });
 
-        const elapsedTime = Date.now() - startTime;
+      const elapsedTime = Date.now() - startTime;
 
-        if (elapsedTime < 500) {
-          await sleep(500 - elapsedTime);
-        }
-
-        webhooks = webhooks.filter((wh) => wh.id !== webhook.id);
-      } catch (error) {
-        console.log(error.message);
+      if (elapsedTime < 500) {
+        await sleep(500 - elapsedTime);
       }
+
+      webhooks = webhooks.filter((wh) => wh.id !== webhook.id);
     }
 
     return {
