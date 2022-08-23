@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import GitHubIntegration from "../catalog/github/GitHub";
+import GitHubIntegration from "../catalog/github-repos/github-repos";
 import { createHmac } from "crypto";
 
 const github = new GitHubIntegration({
@@ -64,10 +64,7 @@ describe("GitHub Integration", () => {
       },
     };
 
-    const testSignature = `sha256=${createHmac(
-      "sha256",
-      github.GITHUB_REPOS_ACCESS_TOKEN
-    )
+    const testSignature = `sha256=${createHmac("sha256", github.GITHUB_REPOS_ACCESS_TOKEN)
       .update(JSON.stringify(testPayload))
       .digest("hex")}`;
 
@@ -175,7 +172,7 @@ describe("GitHub Integration", () => {
       });
 
       expect(result).toBeTruthy();
-      expect((result as any).webhook.events).toEqual(["push"]);
+      expect((result as any).events).toEqual(["push"]);
     });
 
     it("should delete webhook if no events remain", async () => {
@@ -287,7 +284,7 @@ describe("GitHub Integration", () => {
 
     it("should delete the webhook", async () => {
       const result = await github.deleteWebhookEndpoint({
-        webhookId: (webhookId as string),
+        webhookId: webhookId as string,
       });
 
       expect(result).toBeTruthy();
@@ -331,14 +328,11 @@ describe("GitHub Integration", () => {
         errorMessage = err.message;
       }
 
-      expect(errorMessage).toMatch(
-        /(Unable to establish a connection with GitHub)/g
-      );
+      expect(errorMessage).toMatch(/(Unable to establish a connection with GitHub)/g);
     });
 
     it("should throw an error if GitHub response code is non-2xx", async () => {
-      let badGitHub: GitHubIntegration =
-        mockTestConnectionIntegration() as GitHubIntegration;
+      let badGitHub: GitHubIntegration = mockTestConnectionIntegration() as GitHubIntegration;
 
       let errorMessage = "no error thrown";
 
@@ -354,25 +348,19 @@ describe("GitHub Integration", () => {
 });
 
 // helper functions
-async function createTestWebhook(
-  webhookUrl: string,
-  events: string[]
-): Promise<string> {
-  const webhookData = await github.octokit.request(
-    "POST /repos/{owner}/{repo}/hooks",
-    {
-      owner: github.GITHUB_REPOS_ACCOUNT_USERNAME,
-      repo: github.GITHUB_REPOS_REPOSITORY,
-      name: "web", // "web" stands for "webhook"
-      active: true,
-      events: events,
-      config: {
-        url: webhookUrl,
-        content_type: "json",
-        insecure_ssl: "0",
-      },
-    }
-  );
+async function createTestWebhook(webhookUrl: string, events: string[]): Promise<string> {
+  const webhookData = await github.octokit.request("POST /repos/{owner}/{repo}/hooks", {
+    owner: github.GITHUB_REPOS_ACCOUNT_USERNAME,
+    repo: github.GITHUB_REPOS_REPOSITORY,
+    name: "web", // "web" stands for "webhook"
+    active: true,
+    events: events,
+    config: {
+      url: webhookUrl,
+      content_type: "json",
+      insecure_ssl: "0",
+    },
+  });
 
   return webhookData.data.id.toString();
 }
