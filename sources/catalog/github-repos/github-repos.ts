@@ -48,39 +48,29 @@ export default class GitHubReposIntegration implements IntegrationClassI {
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
-    const webhook = await this.octokit.request(
-      "POST /repos/{owner}/{repo}/hooks",
-      {
-        owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
-        repo: this.GITHUB_REPOS_REPOSITORY,
-        name: "web", // "web" stands for "webhook"
-        active: true,
-        events: events,
-        config: {
-          url: webhookUrl,
-          secret: this.GITHUB_REPOS_ACCESS_TOKEN,
-          content_type: "json",
-          insecure_ssl: "0",
-        },
-      }
-    );
+    const webhook = await this.octokit.request("POST /repos/{owner}/{repo}/hooks", {
+      owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
+      repo: this.GITHUB_REPOS_REPOSITORY,
+      name: "web", // "web" stands for "webhook"
+      active: true,
+      events: events,
+      config: {
+        url: webhookUrl,
+        secret: this.GITHUB_REPOS_ACCESS_TOKEN,
+        content_type: "json",
+        insecure_ssl: "0",
+      },
+    });
 
     return { webhookData: webhook.data, events };
   }
 
-  verifyWebhookSignature({
-    request,
-    signature,
-    secret,
-  }: VerifyWebhookSignatureProps): Truthy {
+  verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Truthy {
     // Override secret because the webhook creation
     // returns "******" as the secret value
     secret = this.GITHUB_REPOS_ACCESS_TOKEN;
 
-    const hash = crypto
-      .createHmac("sha256", secret)
-      .update(request.body, "utf8")
-      .digest("hex");
+    const hash = crypto.createHmac("sha256", secret).update(request.body, "utf8").digest("hex");
 
     if (`sha256=${hash}` !== signature) {
       throw new Error(`Invalid signature`);
@@ -89,25 +79,19 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     return true;
   }
 
-  async subscribe({
-    webhookId,
-    events,
-  }: SubscriptionProps): Promise<SubscribeReturns> {
+  async subscribe({ webhookId, events }: SubscriptionProps): Promise<SubscribeReturns> {
     const webhook: any = await this.getWebhooks({ webhookId });
 
     // update existing webhook events
-    const newWebhook = await this.octokit.request(
-      "PATCH /repos/{owner}/{repo}/hooks/{hook_id}",
-      {
-        owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
-        repo: this.GITHUB_REPOS_REPOSITORY,
-        hook_id: webhook.id,
-        add_events: events,
-        config: {
-          ...webhook.config,
-        },
-      }
-    );
+    const newWebhook = await this.octokit.request("PATCH /repos/{owner}/{repo}/hooks/{hook_id}", {
+      owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
+      repo: this.GITHUB_REPOS_REPOSITORY,
+      hook_id: webhook.id,
+      add_events: events,
+      config: {
+        ...webhook.config,
+      },
+    });
 
     // return new webhooks
     return {
@@ -124,20 +108,19 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     const webhook: any = await this.getWebhooks({ webhookId });
 
     // update existing webhook events
-    let newWebhook = await this.octokit.request(
-      "PATCH /repos/{owner}/{repo}/hooks/{hook_id}",
-      {
-        owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
-        repo: this.GITHUB_REPOS_REPOSITORY,
-        hook_id: webhook.id,
-        remove_events: events,
-        config: {
-          ...webhook.config,
-        },
-      }
-    );
+    const response = await this.octokit.request("PATCH /repos/{owner}/{repo}/hooks/{hook_id}", {
+      owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
+      repo: this.GITHUB_REPOS_REPOSITORY,
+      hook_id: webhook.id,
+      remove_events: events,
+      config: {
+        ...webhook.config,
+      },
+    });
 
-    if (!newWebhook.data.events) {
+    const newWebhook = response.data;
+
+    if (newWebhook.events.length === 0) {
       // delete webhook if no events left
       await this.deleteWebhookEndpoint({ webhookId: webhook.id });
     }
@@ -145,21 +128,16 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     // return new webhooks
     return {
       webhook: newWebhook,
-      events: events,
+      events: newWebhook.events,
     };
   }
 
-  async getWebhooks({
-    webhookId,
-  }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
-    const webhook = await this.octokit.request(
-      "GET /repos/{owner}/{repo}/hooks/{hook_id}",
-      {
-        owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
-        repo: this.GITHUB_REPOS_REPOSITORY,
-        hook_id: Number(webhookId),
-      }
-    );
+  async getWebhooks({ webhookId }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+    const webhook = await this.octokit.request("GET /repos/{owner}/{repo}/hooks/{hook_id}", {
+      owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
+      repo: this.GITHUB_REPOS_REPOSITORY,
+      hook_id: Number(webhookId),
+    });
 
     return webhook.data;
   }
@@ -170,9 +148,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     return webhook.events;
   }
 
-  async deleteWebhookEndpoint({
-    webhookId,
-  }: DeleteWebhookEndpointProps): Promise<Truthy> {
+  async deleteWebhookEndpoint({ webhookId }: DeleteWebhookEndpointProps): Promise<Truthy> {
     try {
       await this.octokit.request("DELETE /repos/{owner}/{repo}/hooks/{id}", {
         owner: this.GITHUB_REPOS_ACCOUNT_USERNAME,
@@ -201,9 +177,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
       };
     } catch (e) {
       console.log((e as Error).message);
-      throw new Error(
-        "Unable to establish a connection with GitHub: " + (e as Error).message
-      );
+      throw new Error("Unable to establish a connection with GitHub: " + (e as Error).message);
     }
   }
 }
