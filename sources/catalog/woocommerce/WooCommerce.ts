@@ -14,6 +14,8 @@ import {
 import axios, { AxiosInstance } from "axios";
 import crypto from "crypto";
 
+const sleep = (n) => new Promise((resolve) => setTimeout(resolve, n));
+
 export default class WooCommerceIntegration implements IntegrationClassI {
   id: string;
   name: string;
@@ -47,31 +49,35 @@ export default class WooCommerceIntegration implements IntegrationClassI {
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
-    const registeredEvents: string[] = [];
+    const webhooks: AnyObject[] = [];
 
-    let webhookData: AnyObject[] = await Promise.all(
-      events.map((event) =>
-        this.client
+    for (const event of events) {
+      try {
+        const startTime = Date.now();
+
+        const webhook = await this.client
           .post("/wp-json/wc/v3/webhooks", {
             topic: event,
             delivery_url: webhookUrl,
             secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
           })
-          .then((response) => {
-            registeredEvents.push(event);
-            return response.data;
-          })
-          .catch((error) => {
-            console.log(`Unable to create webhook for event ${event}: ${error.message}`);
+          .then((response) => response.data);
 
-            return null;
-          }),
-      ),
-    );
+        const elapsedTime = Date.now() - startTime;
+
+        if (elapsedTime < 500) {
+          await sleep(500 - elapsedTime);
+        }
+
+        webhooks.push(webhook);
+      } catch (error) {
+        console.log(`Unable to create webhook for event ${event}: ${error.message}`);
+      }
+    }
 
     return {
-      webhookData: webhookData.filter((webhook) => webhook !== null),
-      events: registeredEvents,
+      webhookData: webhooks,
+      events: webhooks.map((webhook) => webhook.topic),
     };
   }
 
@@ -79,6 +85,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
     // WooCommerce sends the signed body in X-WC-Webhook-Signature header
     // it uses SHA256-HMAC hash encoded in base64
     // We're using the Rest API secret key for encryption, which is the default key used by WooCommerce
+    secret = this.WOOCOMMERCE_CUSTOMER_SECRET;
 
     const hash = crypto.createHmac("sha256", secret).update(request.body, "utf8").digest("base64");
 
@@ -92,41 +99,45 @@ export default class WooCommerceIntegration implements IntegrationClassI {
   async subscribe({ webhookIds, events }: SubscriptionProps): Promise<SubscribeReturns> {
     const webhooks: AnyObject[] = (await this.getWebhooks({ webhookIds })) as AnyObject[];
 
-    const eventList = webhooks.map((webhook) => webhook.topic);
+    // fail if no webhook is returned, as there is no way to extract the URL
+    if (!webhooks.length) {
+      throw new Error("No webhooks found");
+    }
 
+    // find events to subscribe to
+    const eventList = webhooks.map((webhook) => webhook.topic);
     const eventsToSubscribe = events.filter((event) => !eventList.includes(event));
 
-    let newWebhooks: AnyObject[];
-    let subscribedEvents: string[] = [];
+    const { delivery_url } = webhooks[0];
 
-    if (eventsToSubscribe.length !== 0) {
-      const { delivery_url } = webhooks[0];
+    for (const event of eventsToSubscribe) {
+      try {
+        const startTime = Date.now();
 
-      newWebhooks = await Promise.all(
-        eventsToSubscribe.map((event) =>
-          this.client
-            .post("/wp-json/wc/v3/webhooks", {
-              topic: event,
-              delivery_url,
-              secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
-            })
-            .then((response) => {
-              subscribedEvents.push(event);
-              return response.data;
-            })
-            .catch((error) => {
-              console.log(`Unable to create webhook for event ${event}: ${error.message}`);
+        const webhook = await this.client
+          .post("/wp-json/wc/v3/webhooks", {
+            topic: event,
+            delivery_url: delivery_url,
+            secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
+          })
+          .then((response) => response.data);
 
-              return null;
-            }),
-        ),
-      );
+        const elapsedTime = Date.now() - startTime;
+
+        if (elapsedTime < 500) {
+          await sleep(500 - elapsedTime);
+        }
+
+        webhooks.push(webhook);
+      } catch (error) {
+        console.log(`Unable to create webhook for event ${event}: ${error.message}`);
+      }
     }
 
     // return new webhooks
     return {
-      webhooks: [...webhooks, ...newWebhooks.filter((webhook) => webhook !== null)],
-      events: [...eventList, ...subscribedEvents],
+      webhooks: webhooks,
+      events: webhooks.map((webhook) => webhook.topic),
     };
   }
 
@@ -136,7 +147,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
     webhooks?: any;
   }> {
     // retrieve webhooks
-    const webhooks = (await this.getWebhooks({ webhookIds })) as AnyObject[];
+    let webhooks = (await this.getWebhooks({ webhookIds })) as AnyObject[];
 
     // find events to unsubscribe from
     const subscribedEvents = webhooks.map((webhook) => webhook.topic);
@@ -147,48 +158,49 @@ export default class WooCommerceIntegration implements IntegrationClassI {
       eventsToUnsubscribe.includes(webhook.topic),
     );
 
-    // delete webhooks (unsubscribe)
-    return await Promise.all(
-      webhooksToDelete.map((webhook) => {
-        return this.deleteWebhookEndpoint({ webhookId: webhook.id }).then(() => {
-          return {
-            webhook: webhook,
-            event: webhook.topic,
-          };
-        });
-      }),
-    ).then((results) => {
-      const unsubscribedWebhooks = results
-        .map((result) => result.webhook)
-        .filter((webhook) => webhook !== undefined);
+    // delete webhooks
+    for (const webhook of webhooksToDelete) {
+      try {
+        const startTime = Date.now();
 
-      const unsubscribedEvents = results
-        .map((result) => result.event)
-        .filter((event) => event !== undefined);
+        await this.deleteWebhookEndpoint({ webhookId: webhook.id });
 
-      return {
-        webhooks: webhooks.filter((webhook) => !unsubscribedWebhooks.includes(webhook)),
-        events: subscribedEvents.filter((event) => !unsubscribedEvents.includes(event)),
-      };
-    });
+        const elapsedTime = Date.now() - startTime;
+
+        if (elapsedTime < 500) {
+          await sleep(500 - elapsedTime);
+        }
+
+        webhooks = webhooks.filter((wh) => wh.id !== webhook.id);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+
+    return {
+      webhooks: webhooks,
+      events: webhooks.map((webhook) => webhook.topic),
+    };
   }
 
-  getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
-    return Promise.all(
-      webhookIds.map((webhookId: string) =>
-        this.client
+  async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+    const webhooks: AnyObject[] = [];
+
+    for (const webhookId of webhookIds) {
+      try {
+        const webhook = await this.client
           .get(`/wp-json/wc/v3/webhooks/${webhookId}`)
           .then((response) => {
             return response.data;
-          })
-          .catch((error) => {
-            const baseMessage = `Unable to retrieve webhook with ID ${webhookId}`;
-            console.log(`${baseMessage}: ${error.message}`);
+          });
 
-            return null;
-          }),
-      ),
-    ).then((webhooks) => webhooks.filter((webhook) => webhook !== null));
+        webhooks.push(webhook);
+      } catch (error) {
+        console.log(`Unable to retrieve webhook ${webhookId}: ${error.message}`);
+      }
+    }
+
+    return webhooks;
   }
 
   async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {

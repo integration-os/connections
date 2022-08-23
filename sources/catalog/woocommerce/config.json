@@ -122,10 +122,10 @@
   },
   "paths": {
     "id": "_.body.id",
-    "event": "_.body.topic",
+    "event": "_.headers.x-wc-webhook-topic",
     "payload": "_.body",
-    "secret": "_.body.secret",
-    "signature": "_.header.x-wc-webhook-signature"
+    "secret": null,
+    "signature": "_.headers.x-wc-webhook-signature"
   },
   "connectionTypes": ["source"],
   "events": [
