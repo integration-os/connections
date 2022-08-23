@@ -1,14 +1,11 @@
 {
-  "title": "GitHub",
+  "title": "GitHub Repos",
   "description": "GitHub Repository Management",
   "apiVersion": "NA",
   "platform": "github-repos",
   "category": "version-control",
   "image": "https://assets.buildable.dev/catalog/node-templates/github-repos.svg",
-  "tags": [
-    "git",
-    "version-control"
-  ],
+  "tags": ["git", "version-control"],
   "authentication": [
     {
       "name": "GITHUB_REPOS_REPOSITORY",
@@ -124,8 +121,7 @@
       "allow_forking": true,
       "is_template": false,
       "web_commit_signoff_required": false,
-      "topics": [
-      ],
+      "topics": [],
       "visibility": "public",
       "forks": 0,
       "open_issues": 0,
@@ -181,13 +177,9 @@
           "email": "noreply@github.com",
           "username": "web-flow"
         },
-        "added": [
-        ],
-        "removed": [
-        ],
-        "modified": [
-          "README.md"
-        ]
+        "added": [],
+        "removed": [],
+        "modified": ["README.md"]
       }
     ],
     "head_commit": {
@@ -207,13 +199,9 @@
         "email": "noreply@github.com",
         "username": "web-flow"
       },
-      "added": [
-      ],
-      "removed": [
-      ],
-      "modified": [
-        "README.md"
-      ]
+      "added": [],
+      "removed": [],
+      "modified": ["README.md"]
     }
   },
   "settings": {
@@ -222,7 +210,7 @@
     "subscriptionDelayMultiplier": 0.0
   },
   "paths": {
-    "id": "_.headers.x-github-delivery",
+    "id": "_.body.id",
     "event": "_.headers.x-github-event",
     "payload": "_.body",
     "secret": "_.body.config.secret",
