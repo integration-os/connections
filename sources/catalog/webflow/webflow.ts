@@ -19,7 +19,7 @@ type WebflowWebook = {
   triggerId: string;
   site: string;
   filter?: Record<string, any>;
-  lastUsed: string;
+  lastUsed?: string;
   createdOn: string;
 };
 
