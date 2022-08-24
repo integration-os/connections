@@ -1,7 +1,7 @@
 {
   "name": "getBalanceHistoryIdResult",
   "title": "Retrieves the Balance Transaction with the Given ID",
-  "description": "Retrieves the balance transaction with the given id.Note that this endpoint previously used the path /v1/balance/history/:id",
+  "description": "Retrieves the balance transaction with the given id. Note that this endpoint previously used the path /v1/balance/history/:id",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
