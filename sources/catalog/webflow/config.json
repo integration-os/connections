@@ -37,7 +37,7 @@
   "paths": {
     "id": "_.body._id",
     "event": "_.query.event",
-    "payload": "_.body.data",
+    "payload": "_.body",
     "secret": null,
     "signature": null
   },
