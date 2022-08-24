@@ -7,7 +7,8 @@
   "image": "https://assets.buildable.dev/catalog/node-templates/circleci.svg",
   "tags": [
     "ci",
-    "cicd"
+    "cicd",
+    "devops"
   ],
   "authentication": [
     {

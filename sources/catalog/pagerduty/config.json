@@ -34,7 +34,8 @@
     {
       "name": "PAGERDUTY_FILTER_ID",
       "label": "Enter your PagerDuty Filter ID. This field is not required for Account Reference filters",
-      "placeholder": "P393ZNQ"
+      "placeholder": "P393ZNQ",
+      "required": false
     }
   ],
   "eventSchema": {
