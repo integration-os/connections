@@ -7,7 +7,8 @@
   "image": "https://assets.buildable.dev/catalog/node-templates/datadog.svg",
   "tags": [
     "metrics",
-    "observability"
+    "observability",
+    "monitoring"
   ],
   "authentication": [
     {
@@ -72,6 +73,7 @@
     "secret": null,
     "signature": "_.headers.x-hub-signature-256"
   },
+  "connectionTypes": ["source"],
   "events": [
     {
       "name": "any",
