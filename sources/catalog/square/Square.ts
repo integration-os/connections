@@ -19,11 +19,15 @@ export default class SquareIntegration implements IntegrationClassI {
   name = "Square";
   square: Client;
 
+  readonly SQUARE_SECRET_KEY: string;
+
   constructor({ SQUARE_SECRET_KEY }: { SQUARE_SECRET_KEY: string }) {
     this.square = new Client({
       accessToken: SQUARE_SECRET_KEY,
-      environment: Environment.Sandbox,
+      environment: Environment.Production,
     });
+
+    this.SQUARE_SECRET_KEY =  SQUARE_SECRET_KEY;
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {

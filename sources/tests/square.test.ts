@@ -25,6 +25,42 @@ describe("Square Integration", () => {
     });
   });
 
+  describe("verifyWebhookSignature", () => {
+    const SQUARE_SIGNATURE_KEY = "SignatureReceivedWhenWebhookIsCreated";
+    const SQUARE_SIGNATURE = "b7XWjja7BmM/Fd6vlApFWYjyThMbgc2VZAs3UFOqA7Y=";
+
+    const testRequest = {
+      headers: {
+        "x-forwarded-proto": "https",
+        "x-forwarded-host": "connect.demodomain.com",
+        "x-matched-path": "/api",
+        "x-square-hmacsha256-signature": SQUARE_SIGNATURE
+      },
+      body: ""
+    }
+
+    it("should return true if the signature is valid", async () => {
+      expect(
+        await square.verifyWebhookSignature({
+          request: testRequest,
+          secret: SQUARE_SIGNATURE_KEY,
+          signature: SQUARE_SIGNATURE,
+        })
+      ).toBeTruthy();
+    });
+
+    it("Should return false if the signature is invalid", async () => {
+      expect(
+        await square.verifyWebhookSignature({
+          request: testRequest,
+          secret: SQUARE_SIGNATURE_KEY,
+          signature: "InvalidSignature",
+        })
+      ).toBeFalsy();
+    })
+
+  })
+
   describe("getWebhooks", () => {
     it("should return the webhook", async () => {
       const webhook = await square.getWebhooks();
