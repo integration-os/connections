@@ -1,6 +1,6 @@
 {
   "name": "retrieveACouponResult",
-  "title": "",
+  "title": "Retrieve a Coupon",
   "description": "Retrieve a coupon",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnAccountCapabilityResult",
-  "title": "",
+  "title": "Retrieve an Account Capability",
   "description": "Retrieve an account capability",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

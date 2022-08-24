@@ -1,6 +1,6 @@
 {
   "name": "updateACashBalanceSSettingsResult",
-  "title": "",
+  "title": "Update a Cash Balance's Settings",
   "description": "Update a cash balance's settings",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

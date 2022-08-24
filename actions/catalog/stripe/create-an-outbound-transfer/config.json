@@ -1,6 +1,6 @@
 {
   "name": "createAnOutboundTransferResult",
-  "title": "",
+  "title": "Create an OutboundTransfer",
   "description": "Create an outboundtransfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

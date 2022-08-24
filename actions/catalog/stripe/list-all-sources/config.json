@@ -1,6 +1,6 @@
 {
   "name": "listAllSourcesResult",
-  "title": "",
+  "title": "List All Sources",
   "description": "List all sources",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

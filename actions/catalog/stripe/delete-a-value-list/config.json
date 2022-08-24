@@ -1,6 +1,6 @@
 {
   "name": "deleteAValueListResult",
-  "title": "",
+  "title": "Delete a Value List",
   "description": "Delete a value list",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "createAReportRunResult",
-  "title": "",
+  "title": "Create a Report Run",
   "description": "Create a report run",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

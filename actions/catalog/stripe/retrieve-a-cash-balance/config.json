@@ -1,6 +1,6 @@
 {
   "name": "retrieveACashBalanceResult",
-  "title": "",
+  "title": "Retrieve a Cash Balance",
   "description": "Retrieve a cash balance",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "testModeFailAnOutboundPaymentResult",
-  "title": "",
+  "title": "Test Mode: Fail an OutboundPayment",
   "description": "Test mode: fail an outboundpayment",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

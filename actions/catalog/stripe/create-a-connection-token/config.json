@@ -1,6 +1,6 @@
 {
   "name": "createAConnectionTokenResult",
-  "title": "",
+  "title": "Create a Connection Token",
   "description": "Create a connection token",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

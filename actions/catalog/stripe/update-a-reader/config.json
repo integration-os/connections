@@ -1,6 +1,6 @@
 {
   "name": "updateAReaderResult",
-  "title": "",
+  "title": "Update a Reader",
   "description": "Update a reader",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

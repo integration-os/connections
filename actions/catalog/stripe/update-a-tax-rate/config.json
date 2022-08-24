@@ -1,6 +1,6 @@
 {
   "name": "updateATaxRateResult",
-  "title": "",
+  "title": "Update a Tax Rate",
   "description": "Update a tax rate",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

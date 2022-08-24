@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnAccountResult",
-  "title": "",
+  "title": "Retrieve an Account",
   "description": "Retrieve an account",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

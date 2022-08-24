@@ -1,6 +1,6 @@
 {
   "name": "deleteATestClockResult",
-  "title": "",
+  "title": "Delete a Test Clock",
   "description": "Delete a test clock",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

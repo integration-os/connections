@@ -1,6 +1,6 @@
 {
   "name": "updateAScheduleResult",
-  "title": "",
+  "title": "Update a Schedule",
   "description": "Update a schedule",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

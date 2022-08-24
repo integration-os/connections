@@ -1,6 +1,6 @@
 {
   "name": "createALocationResult",
-  "title": "",
+  "title": "Create a Location",
   "description": "Create a location",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

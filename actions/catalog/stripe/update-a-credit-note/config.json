@@ -1,6 +1,6 @@
 {
   "name": "updateACreditNoteResult",
-  "title": "",
+  "title": "Update a Credit Note",
   "description": "Update a credit note",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

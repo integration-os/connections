@@ -1,6 +1,6 @@
 {
   "name": "listAllLocationsResult",
-  "title": "",
+  "title": "List All Locations",
   "description": "List all locations",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

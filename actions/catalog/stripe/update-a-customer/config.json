@@ -1,6 +1,6 @@
 {
   "name": "updateACustomerResult",
-  "title": "",
+  "title": "Update a Customer",
   "description": "Update a customer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

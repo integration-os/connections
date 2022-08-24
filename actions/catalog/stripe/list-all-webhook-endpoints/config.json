@@ -1,6 +1,6 @@
 {
   "name": "listAllWebhookEndpointsResult",
-  "title": "",
+  "title": "List All Webhook Endpoints",
   "description": "List all webhook endpoints",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

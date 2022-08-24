@@ -1,6 +1,6 @@
 {
   "name": "createAFileLinkResult",
-  "title": "",
+  "title": "Create a File Link",
   "description": "Create a file link",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

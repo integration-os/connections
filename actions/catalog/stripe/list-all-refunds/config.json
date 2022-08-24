@@ -1,6 +1,6 @@
 {
   "name": "listAllRefundsResult",
-  "title": "",
+  "title": "List All Refunds",
   "description": "List all refunds",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

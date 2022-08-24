@@ -1,6 +1,6 @@
 {
   "name": "retrieveATransactionEntryResult",
-  "title": "",
+  "title": "Retrieve a TransactionEntry",
   "description": "Retrieve a transactionentry",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

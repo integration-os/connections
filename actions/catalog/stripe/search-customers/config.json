@@ -1,6 +1,6 @@
 {
   "name": "searchCustomersResult",
-  "title": "",
+  "title": "Search Customers",
   "description": "Search customers",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

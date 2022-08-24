@@ -1,6 +1,6 @@
 {
   "name": "listAllPromotionCodesResult",
-  "title": "",
+  "title": "List All Promotion Codes",
   "description": "List all promotion codes",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

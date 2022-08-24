@@ -1,6 +1,6 @@
 {
   "name": "listAllSetupAttemptsResult",
-  "title": "",
+  "title": "List All SetupAttempts",
   "description": "List all setupattempts",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

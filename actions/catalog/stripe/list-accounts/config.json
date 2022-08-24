@@ -1,6 +1,6 @@
 {
   "name": "listAccountsResult",
-  "title": "",
+  "title": "List Accounts",
   "description": "List accounts",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

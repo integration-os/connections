@@ -1,6 +1,6 @@
 {
   "name": "retrieveASetupIntentResult",
-  "title": "",
+  "title": "Retrieve a SetupIntent",
   "description": "Retrieve a setupintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

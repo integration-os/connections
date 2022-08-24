@@ -1,6 +1,6 @@
 {
   "name": "deleteALocationResult",
-  "title": "",
+  "title": "Delete a Location",
   "description": "Delete a location",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

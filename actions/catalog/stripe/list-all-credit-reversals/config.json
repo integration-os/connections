@@ -1,6 +1,6 @@
 {
   "name": "listAllCreditReversalsResult",
-  "title": "",
+  "title": "List All CreditReversals",
   "description": "List all creditreversals",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

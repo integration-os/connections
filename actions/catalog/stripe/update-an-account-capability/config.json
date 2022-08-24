@@ -1,6 +1,6 @@
 {
   "name": "updateAnAccountCapabilityResult",
-  "title": "",
+  "title": "Update an Account Capability",
   "description": "Update an account capability",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

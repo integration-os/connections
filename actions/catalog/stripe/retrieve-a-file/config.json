@@ -1,6 +1,6 @@
 {
   "name": "retrieveAFileResult",
-  "title": "",
+  "title": "Retrieve a File",
   "description": "Retrieve a file",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

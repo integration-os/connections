@@ -1,6 +1,6 @@
 {
   "name": "retrieveeACreditNoteSPreviewItemsResult",
-  "title": "",
+  "title": "Retrievee a Credit Note's Preview Items",
   "description": "Retrievee a credit note's preview items",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

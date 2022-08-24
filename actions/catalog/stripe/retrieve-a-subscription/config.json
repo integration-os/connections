@@ -1,6 +1,6 @@
 {
   "name": "retrieveASubscriptionResult",
-  "title": "",
+  "title": "Retrieve a Subscription",
   "description": "Retrieve a subscription",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

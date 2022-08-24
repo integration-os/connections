@@ -1,6 +1,6 @@
 {
   "name": "deleteACustomerResult",
-  "title": "",
+  "title": "Delete a Customer",
   "description": "Delete a customer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

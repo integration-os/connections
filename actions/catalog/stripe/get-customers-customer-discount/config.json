@@ -1,6 +1,6 @@
 {
   "name": "getCustomersCustomerDiscountResult",
-  "title": "",
+  "title": "Get Customers Customer Discount",
   "description": "Get customers customer discount",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

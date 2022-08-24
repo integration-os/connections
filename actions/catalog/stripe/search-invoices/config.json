@@ -1,6 +1,6 @@
 {
   "name": "searchInvoicesResult",
-  "title": "",
+  "title": "Search Invoices",
   "description": "Search invoices",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

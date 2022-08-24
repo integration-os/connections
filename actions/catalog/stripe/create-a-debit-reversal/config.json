@@ -1,6 +1,6 @@
 {
   "name": "createADebitReversalResult",
-  "title": "",
+  "title": "Create a DebitReversal",
   "description": "Create a debitreversal",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

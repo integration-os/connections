@@ -1,6 +1,6 @@
 {
   "name": "result",
-  "title": "",
+  "title": "Create an Incoming Testmode Bank Transfer",
   "description": "Create an incoming testmode bank transfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

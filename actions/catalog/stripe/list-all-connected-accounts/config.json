@@ -1,6 +1,6 @@
 {
   "name": "listAllConnectedAccountsResult",
-  "title": "",
+  "title": "List All Connected Accounts",
   "description": "List all connected accounts",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

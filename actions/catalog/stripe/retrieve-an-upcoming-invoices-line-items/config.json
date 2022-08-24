@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnUpcomingInvoiceSLineItemsResult",
-  "title": "",
+  "title": "Retrieve an Upcoming Invoice's Line Items",
   "description": "Retrieve an upcoming invoice's line items",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

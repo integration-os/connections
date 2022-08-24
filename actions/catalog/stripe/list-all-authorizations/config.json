@@ -1,6 +1,6 @@
 {
   "name": "listAllAuthorizationsResult",
-  "title": "",
+  "title": "List All Authorizations",
   "description": "List all authorizations",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "updateFinancialAccountFeaturesResult",
-  "title": "",
+  "title": "Update FinancialAccount Features",
   "description": "Update financialaccount features",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "verifyMicrodepositsOnASetupIntentResult",
-  "title": "",
+  "title": "Verify Microdeposits on a SetupIntent",
   "description": "Verify microdeposits on a setupintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

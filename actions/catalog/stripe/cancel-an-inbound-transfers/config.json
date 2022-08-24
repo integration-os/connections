@@ -1,6 +1,6 @@
 {
   "name": "cancelAnInboundTransfersResult",
-  "title": "",
+  "title": "Cancel an InboundTransfers",
   "description": "Cancel an inboundtransfers",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

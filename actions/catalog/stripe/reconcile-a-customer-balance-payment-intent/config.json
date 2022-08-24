@@ -1,6 +1,6 @@
 {
   "name": "reconcileACustomer_balancePaymentIntentResult",
-  "title": "",
+  "title": "Reconcile a Customer_balance PaymentIntent",
   "description": "Reconcile a customer_balance paymentintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

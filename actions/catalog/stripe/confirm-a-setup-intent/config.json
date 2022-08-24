@@ -1,6 +1,6 @@
 {
   "name": "confirmASetupIntentResult",
-  "title": "",
+  "title": "Confirm a SetupIntent",
   "description": "Confirm a setupintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

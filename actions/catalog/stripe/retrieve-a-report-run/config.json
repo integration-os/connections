@@ -1,6 +1,6 @@
 {
   "name": "retrieveAReportRunResult",
-  "title": "",
+  "title": "Retrieve a Report Run",
   "description": "Retrieve a report run",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

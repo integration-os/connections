@@ -1,6 +1,6 @@
 {
   "name": "listAllTaxIDsResult",
-  "title": "",
+  "title": "List All Tax IDs",
   "description": "List all tax ids",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

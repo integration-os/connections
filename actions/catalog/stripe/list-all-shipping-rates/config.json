@@ -1,6 +1,6 @@
 {
   "name": "listAllShippingRatesResult",
-  "title": "",
+  "title": "List All Shipping Rates",
   "description": "List all shipping rates",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

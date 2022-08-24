@@ -1,6 +1,6 @@
 {
   "name": "listAllFinancialAccountsResult",
-  "title": "",
+  "title": "List All FinancialAccounts",
   "description": "List all financialaccounts",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

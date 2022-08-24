@@ -1,6 +1,6 @@
 {
   "name": "handOffAPaymentIntentToAReaderResult",
-  "title": "",
+  "title": "Hand-Off a PaymentIntent to a Reader",
   "description": "Hand-off a paymentintent to a reader",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "createAnInvoiceItemResult",
-  "title": "",
+  "title": "Create an Invoice Item",
   "description": "Create an invoice item",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

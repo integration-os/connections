@@ -1,6 +1,6 @@
 {
   "name": "verifyMicrodepositsOnAPaymentIntentResult",
-  "title": "",
+  "title": "Verify Microdeposits on a PaymentIntent",
   "description": "Verify microdeposits on a paymentintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

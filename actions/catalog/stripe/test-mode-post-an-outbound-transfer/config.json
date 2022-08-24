@@ -1,6 +1,6 @@
 {
   "name": "testModePostAnOutboundTransferResult",
-  "title": "",
+  "title": "Test Mode: Post an OutboundTransfer",
   "description": "Test mode: post an outboundtransfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

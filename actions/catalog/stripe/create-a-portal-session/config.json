@@ -1,6 +1,6 @@
 {
   "name": "createAPortalSessionResult",
-  "title": "",
+  "title": "Create a Portal Session",
   "description": "Create a portal session",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

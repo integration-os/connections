@@ -1,6 +1,6 @@
 {
   "name": "listAllTestClocksResult",
-  "title": "",
+  "title": "List All Test Clocks",
   "description": "List all test clocks",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

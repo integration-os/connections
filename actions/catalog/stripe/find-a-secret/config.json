@@ -1,6 +1,6 @@
 {
   "name": "findASecretResult",
-  "title": "",
+  "title": "Find a Secret",
   "description": "Find a secret",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

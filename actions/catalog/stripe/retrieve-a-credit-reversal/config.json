@@ -1,6 +1,6 @@
 {
   "name": "retrieveACreditReversalResult",
-  "title": "",
+  "title": "Retrieve a CreditReversal",
   "description": "Retrieve a creditreversal",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

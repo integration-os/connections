@@ -1,6 +1,6 @@
 {
   "name": "retrieveAVerificationReportResult",
-  "title": "",
+  "title": "Retrieve a VerificationReport",
   "description": "Retrieve a verificationreport",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "listAllTaxRatesResult",
-  "title": "",
+  "title": "List All Tax Rates",
   "description": "List all tax rates",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "retrieveATokenResult",
-  "title": "",
+  "title": "Retrieve a Token",
   "description": "Retrieve a token",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

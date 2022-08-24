@@ -1,6 +1,6 @@
 {
   "name": "listAllReadersResult",
-  "title": "",
+  "title": "List All Readers",
   "description": "List all readers",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

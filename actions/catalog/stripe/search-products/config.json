@@ -1,6 +1,6 @@
 {
   "name": "searchProductsResult",
-  "title": "",
+  "title": "Search Products",
   "description": "Search products",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

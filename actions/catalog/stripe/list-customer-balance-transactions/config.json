@@ -1,6 +1,6 @@
 {
   "name": "listCustomerBalanceTransactionsResult",
-  "title": "",
+  "title": "List Customer Balance Transactions",
   "description": "List customer balance transactions",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

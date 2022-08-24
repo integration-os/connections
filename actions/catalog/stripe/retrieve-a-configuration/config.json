@@ -1,6 +1,6 @@
 {
   "name": "retrieveAConfigurationResult",
-  "title": "",
+  "title": "Retrieve a Configuration",
   "description": "Retrieve a configuration",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

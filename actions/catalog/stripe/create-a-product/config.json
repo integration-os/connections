@@ -1,6 +1,6 @@
 {
   "name": "createAProductResult",
-  "title": "",
+  "title": "Create a Product",
   "description": "Create a product",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

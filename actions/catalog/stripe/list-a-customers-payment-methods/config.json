@@ -1,6 +1,6 @@
 {
   "name": "listACustomerSPaymentMethodsResult",
-  "title": "",
+  "title": "List a Customer's PaymentMethods",
   "description": "List a customer's paymentmethods",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

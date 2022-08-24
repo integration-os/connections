@@ -1,6 +1,6 @@
 {
   "name": "listAllScheduledQueryRunsResult",
-  "title": "",
+  "title": "List All Scheduled Query Runs",
   "description": "List all scheduled query runs",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

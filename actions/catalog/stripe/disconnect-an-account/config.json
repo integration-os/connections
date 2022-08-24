@@ -1,6 +1,6 @@
 {
   "name": "disconnectAnAccountResult",
-  "title": "",
+  "title": "Disconnect an Account",
   "description": "Disconnect an account",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

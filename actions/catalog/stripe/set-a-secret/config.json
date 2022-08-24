@@ -1,6 +1,6 @@
 {
   "name": "setASecretResult",
-  "title": "",
+  "title": "Set a Secret",
   "description": "Set a secret",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

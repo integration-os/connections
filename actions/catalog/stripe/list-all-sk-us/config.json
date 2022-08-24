@@ -1,6 +1,6 @@
 {
   "name": "listAllSKUsResult",
-  "title": "",
+  "title": "List All SKUs",
   "description": "List all skus",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

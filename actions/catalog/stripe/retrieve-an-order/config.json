@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnOrderResult",
-  "title": "",
+  "title": "Retrieve an Order",
   "description": "Retrieve an order",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

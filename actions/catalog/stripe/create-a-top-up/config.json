@@ -1,6 +1,6 @@
 {
   "name": "createATopUpResult",
-  "title": "",
+  "title": "Create a Top-Up",
   "description": "Create a top-up",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

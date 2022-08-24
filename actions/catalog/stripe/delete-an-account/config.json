@@ -1,6 +1,6 @@
 {
   "name": "deleteAnAccountResult",
-  "title": "",
+  "title": "Delete an Account",
   "description": "Delete an account",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

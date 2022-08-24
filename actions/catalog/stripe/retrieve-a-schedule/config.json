@@ -1,6 +1,6 @@
 {
   "name": "retrieveAScheduleResult",
-  "title": "",
+  "title": "Retrieve a Schedule",
   "description": "Retrieve a schedule",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

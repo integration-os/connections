@@ -1,6 +1,6 @@
 {
   "name": "listAllReportTypesResult",
-  "title": "",
+  "title": "List All Report Types",
   "description": "List all report types",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

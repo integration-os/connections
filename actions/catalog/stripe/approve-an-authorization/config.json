@@ -1,6 +1,6 @@
 {
   "name": "approveAnAuthorizationResult",
-  "title": "",
+  "title": "Approve an Authorization",
   "description": "Approve an authorization",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

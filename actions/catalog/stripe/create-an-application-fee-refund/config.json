@@ -1,6 +1,6 @@
 {
   "name": "createAnApplicationFeeRefundResult",
-  "title": "",
+  "title": "Create an Application Fee Refund",
   "description": "Create an application fee refund",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

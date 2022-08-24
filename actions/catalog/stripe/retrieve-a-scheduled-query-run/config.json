@@ -1,6 +1,6 @@
 {
   "name": "retrieveAScheduledQueryRunResult",
-  "title": "",
+  "title": "Retrieve a Scheduled Query Run",
   "description": "Retrieve a scheduled query run",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "retrieveAFileLinkResult",
-  "title": "",
+  "title": "Retrieve a File Link",
   "description": "Retrieve a file link",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

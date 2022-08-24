@@ -1,6 +1,6 @@
 {
   "name": "listAllCustomersResult",
-  "title": "",
+  "title": "List All Customers",
   "description": "List all customers",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

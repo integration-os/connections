@@ -1,6 +1,6 @@
 {
   "name": "createABankAccountOrCardResult",
-  "title": "",
+  "title": "Create a Bank Account or Card",
   "description": "Create a bank account or card",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

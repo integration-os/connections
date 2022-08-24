@@ -1,6 +1,6 @@
 {
   "name": "updateARefundResult",
-  "title": "",
+  "title": "Update a Refund",
   "description": "Update a refund",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

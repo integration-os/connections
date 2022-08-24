@@ -1,6 +1,6 @@
 {
   "name": "createACardholderResult",
-  "title": "",
+  "title": "Create a Cardholder",
   "description": "Create a cardholder",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "createAWebhookEndpointResult",
-  "title": "",
+  "title": "Create a Webhook Endpoint",
   "description": "Create a webhook endpoint",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

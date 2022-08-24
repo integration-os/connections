@@ -1,6 +1,6 @@
 {
   "name": "createACreditNoteResult",
-  "title": "",
+  "title": "Create a Credit Note",
   "description": "Create a credit note",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

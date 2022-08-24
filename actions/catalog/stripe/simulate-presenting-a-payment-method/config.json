@@ -1,6 +1,6 @@
 {
   "name": "simulatePresentingAPaymentMethodResult",
-  "title": "",
+  "title": "Simulate Presenting a Payment Method",
   "description": "Simulate presenting a payment method",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

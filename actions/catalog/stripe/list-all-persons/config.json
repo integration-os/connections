@@ -1,6 +1,6 @@
 {
   "name": "listAllPersonsResult",
-  "title": "",
+  "title": "List All Persons",
   "description": "List all persons",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

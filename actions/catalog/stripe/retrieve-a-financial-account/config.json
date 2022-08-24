@@ -1,6 +1,6 @@
 {
   "name": "retrieveAFinancialAccountResult",
-  "title": "",
+  "title": "Retrieve a FinancialAccount",
   "description": "Retrieve a financialaccount",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

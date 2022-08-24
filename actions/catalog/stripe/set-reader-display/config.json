@@ -1,6 +1,6 @@
 {
   "name": "setReaderDisplayResult",
-  "title": "",
+  "title": "Set Reader Display",
   "description": "Set reader display",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

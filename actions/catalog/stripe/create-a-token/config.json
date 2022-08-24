@@ -1,6 +1,6 @@
 {
   "name": "createATokenResult",
-  "title": "",
+  "title": "Create a Token",
   "description": "Create a token",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

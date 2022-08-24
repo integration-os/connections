@@ -1,6 +1,6 @@
 {
   "name": "updateAPortalConfigurationResult",
-  "title": "",
+  "title": "Update a Portal Configuration",
   "description": "Update a portal configuration",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

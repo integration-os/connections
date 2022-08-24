@@ -1,6 +1,6 @@
 {
   "name": "retrieveABalanceTransactionResult",
-  "title": "",
+  "title": "Retrieve a Balance Transaction",
   "description": "Retrieve a balance transaction",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "updateASetupIntentResult",
-  "title": "",
+  "title": "Update a SetupIntent",
   "description": "Update a setupintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

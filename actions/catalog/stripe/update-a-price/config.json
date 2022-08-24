@@ -1,6 +1,6 @@
 {
   "name": "updateAPriceResult",
-  "title": "",
+  "title": "Update a Price",
   "description": "Update a price",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

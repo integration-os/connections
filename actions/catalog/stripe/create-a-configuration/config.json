@@ -1,6 +1,6 @@
 {
   "name": "createAConfigurationResult",
-  "title": "",
+  "title": "Create a Configuration",
   "description": "Create a configuration",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

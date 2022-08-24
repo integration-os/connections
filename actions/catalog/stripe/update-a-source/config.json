@@ -1,6 +1,6 @@
 {
   "name": "updateASourceResult",
-  "title": "",
+  "title": "Update a Source",
   "description": "Update a source",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

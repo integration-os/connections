@@ -1,6 +1,6 @@
 {
   "name": "updateAPaymentIntentResult",
-  "title": "",
+  "title": "Update a PaymentIntent",
   "description": "Update a paymentintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

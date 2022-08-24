@@ -1,6 +1,6 @@
 {
   "name": "createACustomerBalanceTransactionResult",
-  "title": "",
+  "title": "Create a Customer Balance Transaction",
   "description": "Create a customer balance transaction",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

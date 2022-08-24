@@ -1,6 +1,6 @@
 {
   "name": "createAPaymentMethodResult",
-  "title": "",
+  "title": "Create a PaymentMethod",
   "description": "Create a paymentmethod",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

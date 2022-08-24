@@ -1,6 +1,6 @@
 {
   "name": "retrieveFinancialAccountFeaturesResult",
-  "title": "",
+  "title": "Retrieve FinancialAccount Features",
   "description": "Retrieve financialaccount features",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

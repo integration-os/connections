@@ -1,6 +1,6 @@
 {
   "name": "searchSubscriptionsResult",
-  "title": "",
+  "title": "Search Subscriptions",
   "description": "Search subscriptions",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

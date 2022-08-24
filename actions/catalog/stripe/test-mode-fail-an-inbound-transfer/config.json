@@ -1,6 +1,6 @@
 {
   "name": "testModeFailAnInboundTransferResult",
-  "title": "",
+  "title": "Test Mode: Fail an InboundTransfer",
   "description": "Test mode: fail an inboundtransfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

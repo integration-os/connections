@@ -1,6 +1,6 @@
 {
   "name": "deleteASubscriptionDiscountResult",
-  "title": "",
+  "title": "Delete a Subscription Discount",
   "description": "Delete a subscription discount",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "createATransferReversalResult",
-  "title": "",
+  "title": "Create a Transfer Reversal",
   "description": "Create a transfer reversal",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

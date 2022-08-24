@@ -1,6 +1,6 @@
 {
   "name": "createATestClockResult",
-  "title": "",
+  "title": "Create a Test Clock",
   "description": "Create a test clock",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

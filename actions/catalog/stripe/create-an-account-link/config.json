@@ -1,6 +1,6 @@
 {
   "name": "createAnAccountLinkResult",
-  "title": "",
+  "title": "Create an Account Link",
   "description": "Create an account link",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "deleteAPersonResult",
-  "title": "",
+  "title": "Delete a Person",
   "description": "Delete a person",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

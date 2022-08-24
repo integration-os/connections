@@ -1,6 +1,6 @@
 {
   "name": "createAPersonResult",
-  "title": "",
+  "title": "Create a Person",
   "description": "Create a person",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

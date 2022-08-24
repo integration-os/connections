@@ -1,6 +1,6 @@
 {
   "name": "deleteASKUResult",
-  "title": "",
+  "title": "Delete a SKU",
   "description": "Delete a sku",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

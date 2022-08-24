@@ -1,6 +1,6 @@
 {
   "name": "detachAPaymentMethodResult",
-  "title": "",
+  "title": "Detach a PaymentMethod",
   "description": "Detach a paymentmethod",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

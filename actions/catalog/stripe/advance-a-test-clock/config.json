@@ -1,6 +1,6 @@
 {
   "name": "advanceATestClockResult",
-  "title": "",
+  "title": "Advance a Test Clock",
   "description": "Advance a test clock",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "captureAPaymentIntentResult",
-  "title": "",
+  "title": "Capture a PaymentIntent",
   "description": "Capture a paymentintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

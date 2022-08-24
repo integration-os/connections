@@ -1,6 +1,6 @@
 {
   "name": "createASessionResult",
-  "title": "",
+  "title": "Create a Session",
   "description": "Create a session",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

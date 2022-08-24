@@ -1,6 +1,6 @@
 {
   "name": "updateAWebhookEndpointResult",
-  "title": "",
+  "title": "Update a Webhook Endpoint",
   "description": "Update a webhook endpoint",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

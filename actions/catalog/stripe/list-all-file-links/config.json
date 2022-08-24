@@ -1,6 +1,6 @@
 {
   "name": "listAllFileLinksResult",
-  "title": "",
+  "title": "List All File Links",
   "description": "List all file links",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

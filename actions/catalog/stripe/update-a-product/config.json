@@ -1,6 +1,6 @@
 {
   "name": "updateAProductResult",
-  "title": "",
+  "title": "Update a Product",
   "description": "Update a product",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

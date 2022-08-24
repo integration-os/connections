@@ -1,6 +1,6 @@
 {
   "name": "confirmAPaymentIntentResult",
-  "title": "",
+  "title": "Confirm a PaymentIntent",
   "description": "Confirm a paymentintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "redactAVerificationSessionResult",
-  "title": "",
+  "title": "Redact a VerificationSession",
   "description": "Redact a verificationsession",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

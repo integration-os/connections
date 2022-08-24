@@ -1,6 +1,6 @@
 {
   "name": "retrieveAPromotionCodeResult",
-  "title": "",
+  "title": "Retrieve a Promotion Code",
   "description": "Retrieve a promotion code",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

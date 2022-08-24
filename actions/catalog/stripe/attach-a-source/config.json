@@ -1,6 +1,6 @@
 {
   "name": "attachASourceResult",
-  "title": "",
+  "title": "Attach a Source",
   "description": "Attach a source",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

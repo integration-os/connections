@@ -1,6 +1,6 @@
 {
   "name": "deleteAnInvoiceItemResult",
-  "title": "",
+  "title": "Delete an Invoice Item",
   "description": "Delete an invoice item",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

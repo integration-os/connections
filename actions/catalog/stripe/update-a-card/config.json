@@ -1,6 +1,6 @@
 {
   "name": "updateACardResult",
-  "title": "",
+  "title": "Update a Card",
   "description": "Update a card",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

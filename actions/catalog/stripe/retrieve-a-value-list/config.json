@@ -1,6 +1,6 @@
 {
   "name": "retrieveAValueListResult",
-  "title": "",
+  "title": "Retrieve a Value List",
   "description": "Retrieve a value list",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

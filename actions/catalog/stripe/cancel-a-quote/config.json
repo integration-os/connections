@@ -1,6 +1,6 @@
 {
   "name": "cancelAQuoteResult",
-  "title": "",
+  "title": "Cancel a Quote",
   "description": "Cancel a quote",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

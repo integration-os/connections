@@ -1,6 +1,6 @@
 {
   "name": "listAllSetupIntentsResult",
-  "title": "",
+  "title": "List All SetupIntents",
   "description": "List all setupintents",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

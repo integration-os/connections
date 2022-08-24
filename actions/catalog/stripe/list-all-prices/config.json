@@ -1,6 +1,6 @@
 {
   "name": "listAllPricesResult",
-  "title": "",
+  "title": "List All Prices",
   "description": "List all prices",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

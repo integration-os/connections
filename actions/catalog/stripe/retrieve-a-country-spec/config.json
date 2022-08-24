@@ -1,6 +1,6 @@
 {
   "name": "retrieveACountrySpecResult",
-  "title": "",
+  "title": "Retrieve a Country Spec",
   "description": "Retrieve a country spec",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "detachASourceResult",
-  "title": "",
+  "title": "Detach a Source",
   "description": "Detach a source",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "listAllCheckoutSessionsResult",
-  "title": "",
+  "title": "List All Checkout Sessions",
   "description": "List all checkout sessions",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

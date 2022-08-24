@@ -1,6 +1,6 @@
 {
   "name": "retrieveAQuoteSUpfrontLineItemsResult",
-  "title": "",
+  "title": "Retrieve a Quote's Upfront Line Items",
   "description": "Retrieve a quote's upfront line items",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

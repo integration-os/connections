@@ -1,6 +1,6 @@
 {
   "name": "updateABankAccountOrCardResult",
-  "title": "",
+  "title": "Update a Bank Account or Card",
   "description": "Update a bank account or card",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

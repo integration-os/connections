@@ -1,6 +1,6 @@
 {
   "name": "listAllPaymentLinksResult",
-  "title": "",
+  "title": "List All Payment Links",
   "description": "List all payment links",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

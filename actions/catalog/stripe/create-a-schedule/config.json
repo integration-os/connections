@@ -1,6 +1,6 @@
 {
   "name": "createAScheduleResult",
-  "title": "",
+  "title": "Create a Schedule",
   "description": "Create a schedule",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

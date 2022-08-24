@@ -1,6 +1,6 @@
 {
   "name": "createAUsageRecordResult",
-  "title": "",
+  "title": "Create a Usage Record",
   "description": "Create a usage record",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

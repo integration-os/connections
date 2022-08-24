@@ -1,6 +1,6 @@
 {
   "name": "cancelTheCurrentReaderActionResult",
-  "title": "",
+  "title": "Cancel the Current Reader Action",
   "description": "Cancel the current reader action",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

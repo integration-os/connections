@@ -1,6 +1,6 @@
 {
   "name": "createAPriceResult",
-  "title": "",
+  "title": "Create a Price",
   "description": "Create a price",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

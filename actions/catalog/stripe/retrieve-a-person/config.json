@@ -1,6 +1,6 @@
 {
   "name": "retrieveAPersonResult",
-  "title": "",
+  "title": "Retrieve a Person",
   "description": "Retrieve a person",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

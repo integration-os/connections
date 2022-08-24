@@ -1,6 +1,6 @@
 {
   "name": "handOffASetupIntentToAReaderResult",
-  "title": "",
+  "title": "Hand-Off a SetupIntent to a Reader",
   "description": "Hand-off a setupintent to a reader",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

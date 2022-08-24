@@ -1,6 +1,6 @@
 {
   "name": "listAllExchangeRatesResult",
-  "title": "",
+  "title": "List All Exchange Rates",
   "description": "List all exchange rates",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

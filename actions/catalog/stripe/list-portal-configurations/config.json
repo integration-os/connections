@@ -1,6 +1,6 @@
 {
   "name": "listPortalConfigurationsResult",
-  "title": "",
+  "title": "List Portal Configurations",
   "description": "List portal configurations",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

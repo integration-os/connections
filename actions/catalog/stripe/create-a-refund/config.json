@@ -1,6 +1,6 @@
 {
   "name": "createARefundResult",
-  "title": "",
+  "title": "Create a Refund",
   "description": "Create a refund",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

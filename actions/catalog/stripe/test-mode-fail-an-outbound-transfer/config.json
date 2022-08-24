@@ -1,6 +1,6 @@
 {
   "name": "testModeFailAnOutboundTransferResult",
-  "title": "",
+  "title": "Test Mode: Fail an OutboundTransfer",
   "description": "Test mode: fail an outboundtransfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

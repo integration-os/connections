@@ -1,6 +1,6 @@
 {
   "name": "createAPromotionCodeResult",
-  "title": "",
+  "title": "Create a Promotion Code",
   "description": "Create a promotion code",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

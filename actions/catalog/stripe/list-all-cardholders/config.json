@@ -1,6 +1,6 @@
 {
   "name": "listAllCardholdersResult",
-  "title": "",
+  "title": "List All Cardholders",
   "description": "List all cardholders",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

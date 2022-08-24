@@ -1,6 +1,6 @@
 {
   "name": "incrementAnAuthorizationResult",
-  "title": "",
+  "title": "Increment an Authorization",
   "description": "Increment an authorization",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

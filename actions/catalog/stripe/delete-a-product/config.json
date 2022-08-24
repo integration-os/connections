@@ -1,6 +1,6 @@
 {
   "name": "deleteAProductResult",
-  "title": "",
+  "title": "Delete a Product",
   "description": "Delete a product",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

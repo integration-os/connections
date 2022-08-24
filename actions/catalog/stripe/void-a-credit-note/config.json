@@ -1,6 +1,6 @@
 {
   "name": "voidACreditNoteResult",
-  "title": "",
+  "title": "Void a Credit Note",
   "description": "Void a credit note",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

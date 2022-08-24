@@ -1,6 +1,6 @@
 {
   "name": "createAReaderResult",
-  "title": "",
+  "title": "Create a Reader",
   "description": "Create a reader",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

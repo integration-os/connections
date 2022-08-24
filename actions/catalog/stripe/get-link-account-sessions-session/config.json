@@ -1,6 +1,6 @@
 {
   "name": "getLinkAccountSessionsSessionResult",
-  "title": "",
+  "title": "Retrieves the Details of a Financial Connections Session",
   "description": "Retrieves the details of a financial connections session",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

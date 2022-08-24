@@ -1,6 +1,6 @@
 {
   "name": "listAllCreditNotesResult",
-  "title": "",
+  "title": "List All Credit Notes",
   "description": "List all credit notes",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

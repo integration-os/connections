@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnExchangeRateResult",
-  "title": "",
+  "title": "Retrieve an Exchange Rate",
   "description": "Retrieve an exchange rate",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

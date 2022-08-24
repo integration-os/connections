@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnAuthorizationResult",
-  "title": "",
+  "title": "Retrieve an Authorization",
   "description": "Retrieve an authorization",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

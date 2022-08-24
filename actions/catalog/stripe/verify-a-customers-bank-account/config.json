@@ -1,6 +1,6 @@
 {
   "name": "verifyACustomerSBankAccountResult",
-  "title": "",
+  "title": "Verify a Customer's Bank Account",
   "description": "Verify a customer's bank account",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

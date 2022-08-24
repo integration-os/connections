@@ -1,6 +1,6 @@
 {
   "name": "createACardResult",
-  "title": "",
+  "title": "Create a Card",
   "description": "Create a card",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "retrieveAReaderResult",
-  "title": "",
+  "title": "Retrieve a Reader",
   "description": "Retrieve a reader",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

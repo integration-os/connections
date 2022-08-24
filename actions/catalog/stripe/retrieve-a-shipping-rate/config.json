@@ -1,6 +1,6 @@
 {
   "name": "retrieveAShippingRateResult",
-  "title": "",
+  "title": "Retrieve a Shipping Rate",
   "description": "Retrieve a shipping rate",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

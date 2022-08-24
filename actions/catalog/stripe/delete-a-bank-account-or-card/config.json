@@ -1,6 +1,6 @@
 {
   "name": "deleteABankAccountOrCardResult",
-  "title": "",
+  "title": "Delete a Bank Account or Card",
   "description": "Delete a bank account or card",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

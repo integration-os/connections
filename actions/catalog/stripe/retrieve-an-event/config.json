@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnEventResult",
-  "title": "",
+  "title": "Retrieve an Event",
   "description": "Retrieve an event",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

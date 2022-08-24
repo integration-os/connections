@@ -1,6 +1,6 @@
 {
   "name": "createATaxRateResult",
-  "title": "",
+  "title": "Create a Tax Rate",
   "description": "Create a tax rate",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "updateASubscriptionItemResult",
-  "title": "",
+  "title": "Update a Subscription Item",
   "description": "Update a subscription item",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

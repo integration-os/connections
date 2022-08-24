@@ -1,6 +1,6 @@
 {
   "name": "listAllReportRunsResult",
-  "title": "",
+  "title": "List All Report Runs",
   "description": "List all report runs",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

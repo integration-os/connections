@@ -1,6 +1,6 @@
 {
   "name": "listAllDebitReversalsResult",
-  "title": "",
+  "title": "List All DebitReversals",
   "description": "List all debitreversals",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

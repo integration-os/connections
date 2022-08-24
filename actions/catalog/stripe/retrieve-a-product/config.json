@@ -1,6 +1,6 @@
 {
   "name": "retrieveAProductResult",
-  "title": "",
+  "title": "Retrieve a Product",
   "description": "Retrieve a product",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "updateAPromotionCodeResult",
-  "title": "",
+  "title": "Update a Promotion Code",
   "description": "Update a promotion code",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

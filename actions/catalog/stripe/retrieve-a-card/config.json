@@ -1,6 +1,6 @@
 {
   "name": "retrieveACardResult",
-  "title": "",
+  "title": "Retrieve a Card",
   "description": "Retrieve a card",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

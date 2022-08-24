@@ -1,6 +1,6 @@
 {
   "name": "retrieveADisputeResult",
-  "title": "",
+  "title": "Retrieve a Dispute",
   "description": "Retrieve a dispute",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

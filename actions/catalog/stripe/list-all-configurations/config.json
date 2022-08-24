@@ -1,6 +1,6 @@
 {
   "name": "listAllConfigurationsResult",
-  "title": "",
+  "title": "List All Configurations",
   "description": "List all configurations",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

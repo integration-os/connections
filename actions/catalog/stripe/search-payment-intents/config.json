@@ -1,6 +1,6 @@
 {
   "name": "searchPaymentIntentsResult",
-  "title": "",
+  "title": "Search PaymentIntents",
   "description": "Search paymentintents",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

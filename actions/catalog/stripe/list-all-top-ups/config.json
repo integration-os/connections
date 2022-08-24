@@ -1,6 +1,6 @@
 {
   "name": "listAllTopUpsResult",
-  "title": "",
+  "title": "List All Top-Ups",
   "description": "List all top-ups",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

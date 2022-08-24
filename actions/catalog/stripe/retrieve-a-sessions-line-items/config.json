@@ -1,6 +1,6 @@
 {
   "name": "retrieveASessionSLineItemsResult",
-  "title": "",
+  "title": "Retrieve a Session's Line Items",
   "description": "Retrieve a session's line items",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

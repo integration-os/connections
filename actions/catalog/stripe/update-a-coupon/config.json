@@ -1,6 +1,6 @@
 {
   "name": "updateACouponResult",
-  "title": "",
+  "title": "Update a Coupon",
   "description": "Update a coupon",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

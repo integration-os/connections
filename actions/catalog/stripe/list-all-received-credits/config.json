@@ -1,6 +1,6 @@
 {
   "name": "listAllReceivedCreditsResult",
-  "title": "",
+  "title": "List All ReceivedCredits",
   "description": "List all receivedcredits",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

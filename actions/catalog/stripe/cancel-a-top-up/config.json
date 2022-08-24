@@ -1,6 +1,6 @@
 {
   "name": "cancelATopUpResult",
-  "title": "",
+  "title": "Cancel a Top-Up",
   "description": "Cancel a top-up",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "deleteASecretResult",
-  "title": "",
+  "title": "Delete a Secret",
   "description": "Delete a secret",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnOutboundPaymentResult",
-  "title": "",
+  "title": "Retrieve an OutboundPayment",
   "description": "Retrieve an outboundpayment",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

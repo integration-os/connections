@@ -1,6 +1,6 @@
 {
   "name": "cancelAScheduleResult",
-  "title": "",
+  "title": "Cancel a Schedule",
   "description": "Cancel a schedule",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

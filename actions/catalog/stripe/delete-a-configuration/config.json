@@ -1,6 +1,6 @@
 {
   "name": "deleteAConfigurationResult",
-  "title": "",
+  "title": "Delete a Configuration",
   "description": "Delete a configuration",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "testModeReturnAnOutboundPaymentResult",
-  "title": "",
+  "title": "Test Mode: Return an OutboundPayment",
   "description": "Test mode: return an outboundpayment",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

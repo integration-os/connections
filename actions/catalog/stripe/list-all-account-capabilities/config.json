@@ -1,6 +1,6 @@
 {
   "name": "listAllAccountCapabilitiesResult",
-  "title": "",
+  "title": "List All Account Capabilities",
   "description": "List all account capabilities",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

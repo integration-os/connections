@@ -1,6 +1,6 @@
 {
   "name": "updateAPaymentLinkResult",
-  "title": "",
+  "title": "Update a Payment Link",
   "description": "Update a payment link",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

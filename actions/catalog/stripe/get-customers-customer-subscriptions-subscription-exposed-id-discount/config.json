@@ -1,6 +1,6 @@
 {
   "name": "result",
-  "title": "",
+  "title": "Get Customers Customer Subscriptions Subscription Exposed Id Discount",
   "description": "Get customers customer subscriptions subscription exposed id discount",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

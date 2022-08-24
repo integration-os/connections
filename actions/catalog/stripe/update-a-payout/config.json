@@ -1,6 +1,6 @@
 {
   "name": "updateAPayoutResult",
-  "title": "",
+  "title": "Update a Payout",
   "description": "Update a payout",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

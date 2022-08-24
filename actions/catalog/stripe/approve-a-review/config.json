@@ -1,6 +1,6 @@
 {
   "name": "approveAReviewResult",
-  "title": "",
+  "title": "Approve a Review",
   "description": "Approve a review",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "listAllChargesResult",
-  "title": "",
+  "title": "List All Charges",
   "description": "List all charges",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

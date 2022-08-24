@@ -1,6 +1,6 @@
 {
   "name": "retrieveAMandateResult",
-  "title": "",
+  "title": "Retrieve a Mandate",
   "description": "Retrieve a mandate",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

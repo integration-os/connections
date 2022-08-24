@@ -1,6 +1,6 @@
 {
   "name": "listAllSubscriptionItemsResult",
-  "title": "",
+  "title": "List All Subscription Items",
   "description": "List all subscription items",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

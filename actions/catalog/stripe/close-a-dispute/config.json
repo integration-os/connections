@@ -1,6 +1,6 @@
 {
   "name": "closeADisputeResult",
-  "title": "",
+  "title": "Close a Dispute",
   "description": "Close a dispute",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

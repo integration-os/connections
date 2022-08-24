@@ -1,6 +1,6 @@
 {
   "name": "createAnOrderResult",
-  "title": "",
+  "title": "Create an Order",
   "description": "Create an order",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

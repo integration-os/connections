@@ -1,6 +1,6 @@
 {
   "name": "retrieveATaxRateResult",
-  "title": "",
+  "title": "Retrieve a Tax Rate",
   "description": "Retrieve a tax rate",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

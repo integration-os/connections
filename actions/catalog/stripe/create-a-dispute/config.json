@@ -1,6 +1,6 @@
 {
   "name": "createADisputeResult",
-  "title": "",
+  "title": "Create a Dispute",
   "description": "Create a dispute",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

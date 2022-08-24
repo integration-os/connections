@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnInvoiceItemResult",
-  "title": "",
+  "title": "Retrieve an Invoice Item",
   "description": "Retrieve an invoice item",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

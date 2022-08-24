@@ -1,6 +1,6 @@
 {
   "name": "retrieveACreditNoteResult",
-  "title": "",
+  "title": "Retrieve a Credit Note",
   "description": "Retrieve a credit note",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "listAllTransferReversalsResult",
-  "title": "",
+  "title": "List All Transfer Reversals",
   "description": "List all transfer reversals",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

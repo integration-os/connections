@@ -1,6 +1,6 @@
 {
   "name": "postChargesChargeDisputeCloseResult",
-  "title": "",
+  "title": "Post Charges Charge Dispute Close",
   "description": "Post charges charge dispute close",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "listAllQuotesResult",
-  "title": "",
+  "title": "List All Quotes",
   "description": "List all quotes",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

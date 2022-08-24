@@ -1,6 +1,6 @@
 {
   "name": "listAllOutboundTransfersResult",
-  "title": "",
+  "title": "List All OutboundTransfers",
   "description": "List all outboundtransfers",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

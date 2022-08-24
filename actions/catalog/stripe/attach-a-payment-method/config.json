@@ -1,6 +1,6 @@
 {
   "name": "attachAPaymentMethodResult",
-  "title": "",
+  "title": "Attach a PaymentMethod",
   "description": "Attach a paymentmethod",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

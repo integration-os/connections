@@ -1,6 +1,6 @@
 {
   "name": "payAnInvoiceResult",
-  "title": "",
+  "title": "Pay an Invoice",
   "description": "Pay an invoice",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

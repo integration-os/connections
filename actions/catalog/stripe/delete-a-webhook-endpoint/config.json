@@ -1,6 +1,6 @@
 {
   "name": "deleteAWebhookEndpointResult",
-  "title": "",
+  "title": "Delete a Webhook Endpoint",
   "description": "Delete a webhook endpoint",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

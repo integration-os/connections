@@ -1,6 +1,6 @@
 {
   "name": "createACouponResult",
-  "title": "",
+  "title": "Create a Coupon",
   "description": "Create a coupon",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

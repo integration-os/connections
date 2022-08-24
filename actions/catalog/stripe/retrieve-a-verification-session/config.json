@@ -1,6 +1,6 @@
 {
   "name": "retrieveAVerificationSessionResult",
-  "title": "",
+  "title": "Retrieve a VerificationSession",
   "description": "Retrieve a verificationsession",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

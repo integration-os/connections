@@ -1,6 +1,6 @@
 {
   "name": "updateASKUResult",
-  "title": "",
+  "title": "Update a SKU",
   "description": "Update a sku",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

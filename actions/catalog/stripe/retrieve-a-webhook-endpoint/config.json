@@ -1,6 +1,6 @@
 {
   "name": "retrieveAWebhookEndpointResult",
-  "title": "",
+  "title": "Retrieve a Webhook Endpoint",
   "description": "Retrieve a webhook endpoint",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

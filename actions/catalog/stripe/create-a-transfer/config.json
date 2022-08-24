@@ -1,6 +1,6 @@
 {
   "name": "createATransferResult",
-  "title": "",
+  "title": "Create a Transfer",
   "description": "Create a transfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

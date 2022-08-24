@@ -1,6 +1,6 @@
 {
   "name": "expireASessionResult",
-  "title": "",
+  "title": "Expire a Session",
   "description": "Expire a session",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

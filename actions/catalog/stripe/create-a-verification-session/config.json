@@ -1,6 +1,6 @@
 {
   "name": "createAVerificationSessionResult",
-  "title": "",
+  "title": "Create a VerificationSession",
   "description": "Create a verificationsession",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

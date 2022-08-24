@@ -1,6 +1,6 @@
 {
   "name": "updateATopUpResult",
-  "title": "",
+  "title": "Update a Top-Up",
   "description": "Update a top-up",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

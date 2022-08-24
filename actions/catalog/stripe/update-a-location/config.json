@@ -1,6 +1,6 @@
 {
   "name": "updateALocationResult",
-  "title": "",
+  "title": "Update a Location",
   "description": "Update a location",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

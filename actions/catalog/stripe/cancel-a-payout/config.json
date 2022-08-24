@@ -1,6 +1,6 @@
 {
   "name": "cancelAPayoutResult",
-  "title": "",
+  "title": "Cancel a Payout",
   "description": "Cancel a payout",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

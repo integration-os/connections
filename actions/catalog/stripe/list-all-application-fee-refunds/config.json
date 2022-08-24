@@ -1,6 +1,6 @@
 {
   "name": "listAllApplicationFeeRefundsResult",
-  "title": "",
+  "title": "List All Application Fee Refunds",
   "description": "List all application fee refunds",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

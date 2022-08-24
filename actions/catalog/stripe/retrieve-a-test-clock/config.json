@@ -1,6 +1,6 @@
 {
   "name": "retrieveATestClockResult",
-  "title": "",
+  "title": "Retrieve a Test Clock",
   "description": "Retrieve a test clock",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

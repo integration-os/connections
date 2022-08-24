@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnOutboundTransferResult",
-  "title": "",
+  "title": "Retrieve an OutboundTransfer",
   "description": "Retrieve an outboundtransfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

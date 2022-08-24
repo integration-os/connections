@@ -1,6 +1,6 @@
 {
   "name": "listAllSchedulesResult",
-  "title": "",
+  "title": "List All Schedules",
   "description": "List all schedules",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

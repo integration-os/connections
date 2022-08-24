@@ -1,6 +1,6 @@
 {
   "name": "createACustomerResult",
-  "title": "",
+  "title": "Create a Customer",
   "description": "Create a customer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

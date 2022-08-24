@@ -1,6 +1,6 @@
 {
   "name": "listAllPaymentIntentsResult",
-  "title": "",
+  "title": "List All PaymentIntents",
   "description": "List all paymentintents",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

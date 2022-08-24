@@ -1,6 +1,6 @@
 {
   "name": "listAllDisputesResult",
-  "title": "",
+  "title": "List All Disputes",
   "description": "List all disputes",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

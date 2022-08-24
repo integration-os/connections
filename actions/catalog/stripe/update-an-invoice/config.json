@@ -1,6 +1,6 @@
 {
   "name": "updateAnInvoiceResult",
-  "title": "",
+  "title": "Update an Invoice",
   "description": "Update an invoice",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

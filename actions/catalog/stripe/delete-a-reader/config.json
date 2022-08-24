@@ -1,6 +1,6 @@
 {
   "name": "deleteAReaderResult",
-  "title": "",
+  "title": "Delete a Reader",
   "description": "Delete a reader",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

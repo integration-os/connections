@@ -1,6 +1,6 @@
 {
   "name": "updateACustomerBalanceTransactionResult",
-  "title": "",
+  "title": "Update a Customer Balance Transaction",
   "description": "Update a customer balance transaction",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

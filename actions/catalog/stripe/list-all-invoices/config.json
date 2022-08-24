@@ -1,6 +1,6 @@
 {
   "name": "listAllInvoicesResult",
-  "title": "",
+  "title": "List All Invoices",
   "description": "List all invoices",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

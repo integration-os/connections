@@ -1,6 +1,6 @@
 {
   "name": "createAQuoteResult",
-  "title": "",
+  "title": "Create a Quote",
   "description": "Create a quote",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

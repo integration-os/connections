@@ -1,6 +1,6 @@
 {
   "name": "listAllReceivedDebitsResult",
-  "title": "",
+  "title": "List All ReceivedDebits",
   "description": "List all receiveddebits",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "searchChargesResult",
-  "title": "",
+  "title": "Search Charges",
   "description": "Search charges",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

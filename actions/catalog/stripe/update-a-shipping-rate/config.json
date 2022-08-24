@@ -1,6 +1,6 @@
 {
   "name": "updateAShippingRateResult",
-  "title": "",
+  "title": "Update a Shipping Rate",
   "description": "Update a shipping rate",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

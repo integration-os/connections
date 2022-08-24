@@ -1,6 +1,6 @@
 {
   "name": "retrieveAPayoutResult",
-  "title": "",
+  "title": "Retrieve a Payout",
   "description": "Retrieve a payout",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

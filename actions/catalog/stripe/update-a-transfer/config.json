@@ -1,6 +1,6 @@
 {
   "name": "updateATransferResult",
-  "title": "",
+  "title": "Update a Transfer",
   "description": "Update a transfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

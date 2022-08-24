@@ -1,6 +1,6 @@
 {
   "name": "createAValueListItemResult",
-  "title": "",
+  "title": "Create a Value List Item",
   "description": "Create a value list item",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

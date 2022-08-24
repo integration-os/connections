@@ -1,6 +1,6 @@
 {
   "name": "updateAFileLinkResult",
-  "title": "",
+  "title": "Update a File Link",
   "description": "Update a file link",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

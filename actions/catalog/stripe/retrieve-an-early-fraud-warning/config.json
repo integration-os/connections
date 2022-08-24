@@ -1,6 +1,6 @@
 {
   "name": "retrieveAnEarlyFraudWarningResult",
-  "title": "",
+  "title": "Retrieve an Early Fraud Warning",
   "description": "Retrieve an early fraud warning",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

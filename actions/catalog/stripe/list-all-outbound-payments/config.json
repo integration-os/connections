@@ -1,6 +1,6 @@
 {
   "name": "listAllOutboundPaymentsResult",
-  "title": "",
+  "title": "List All OutboundPayments",
   "description": "List all outboundpayments",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

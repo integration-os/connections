@@ -1,6 +1,6 @@
 {
   "name": "updateAnOrderResult",
-  "title": "",
+  "title": "Update an Order",
   "description": "Update an order",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

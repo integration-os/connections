@@ -1,6 +1,6 @@
 {
   "name": "createALoginLinkResult",
-  "title": "",
+  "title": "Create a Login Link",
   "description": "Create a login link",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

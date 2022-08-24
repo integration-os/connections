@@ -1,6 +1,6 @@
 {
   "name": "listCountrySpecsResult",
-  "title": "",
+  "title": "List Country Specs",
   "description": "List country specs",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

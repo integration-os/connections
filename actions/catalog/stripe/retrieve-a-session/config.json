@@ -1,6 +1,6 @@
 {
   "name": "retrieveASessionResult",
-  "title": "",
+  "title": "Retrieve a Session",
   "description": "Retrieve a session",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

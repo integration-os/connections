@@ -1,6 +1,6 @@
 {
   "name": "createAFinancialAccountResult",
-  "title": "",
+  "title": "Create a FinancialAccount",
   "description": "Create a financialaccount",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

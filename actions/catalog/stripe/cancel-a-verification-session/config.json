@@ -1,6 +1,6 @@
 {
   "name": "cancelAVerificationSessionResult",
-  "title": "",
+  "title": "Cancel a VerificationSession",
   "description": "Cancel a verificationsession",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

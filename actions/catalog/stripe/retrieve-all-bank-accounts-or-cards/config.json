@@ -1,6 +1,6 @@
 {
   "name": "retrieveAllBankAccountsOrCardsResult",
-  "title": "",
+  "title": "Retrieve All Bank Accounts or Cards",
   "description": "Retrieve all bank accounts or cards",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "retrieveAChargeResult",
-  "title": "",
+  "title": "Retrieve a Charge",
   "description": "Retrieve a charge",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

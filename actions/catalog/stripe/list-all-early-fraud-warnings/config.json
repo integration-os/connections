@@ -1,6 +1,6 @@
 {
   "name": "listAllEarlyFraudWarningsResult",
-  "title": "",
+  "title": "List All Early Fraud Warnings",
   "description": "List all early fraud warnings",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "retrieveAPriceResult",
-  "title": "",
+  "title": "Retrieve a Price",
   "description": "Retrieve a price",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

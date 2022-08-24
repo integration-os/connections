@@ -1,6 +1,6 @@
 {
   "name": "markAnInvoiceAsUncollectableResult",
-  "title": "",
+  "title": "Mark an Invoice as Uncollectable",
   "description": "Mark an invoice as uncollectable",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

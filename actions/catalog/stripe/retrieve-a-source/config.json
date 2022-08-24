@@ -1,6 +1,6 @@
 {
   "name": "retrieveASourceResult",
-  "title": "",
+  "title": "Retrieve a Source",
   "description": "Retrieve a source",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

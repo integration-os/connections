@@ -1,6 +1,6 @@
 {
   "name": "listAllOpenReviewsResult",
-  "title": "",
+  "title": "List All Open Reviews",
   "description": "List all open reviews",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

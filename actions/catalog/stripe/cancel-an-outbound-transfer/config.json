@@ -1,6 +1,6 @@
 {
   "name": "cancelAnOutboundTransferResult",
-  "title": "",
+  "title": "Cancel an OutboundTransfer",
   "description": "Cancel an outboundtransfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

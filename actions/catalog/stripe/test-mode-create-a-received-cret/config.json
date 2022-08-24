@@ -1,6 +1,6 @@
 {
   "name": "testModeCreateAReceivedCretResult",
-  "title": "",
+  "title": "Test Mode: Create a ReceivedCret",
   "description": "Test mode: create a receivedcret",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

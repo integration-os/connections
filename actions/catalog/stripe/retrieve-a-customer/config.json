@@ -1,6 +1,6 @@
 {
   "name": "retrieveACustomerResult",
-  "title": "",
+  "title": "Retrieve a Customer",
   "description": "Retrieve a customer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

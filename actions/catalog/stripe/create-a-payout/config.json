@@ -1,6 +1,6 @@
 {
   "name": "createAPayoutResult",
-  "title": "",
+  "title": "Create a Payout",
   "description": "Create a payout",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "listAllSubscriptionItemPeriodSummariesResult",
-  "title": "",
+  "title": "List All Subscription Item Period Summaries",
   "description": "List all subscription item period summaries",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

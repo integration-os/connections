@@ -1,6 +1,6 @@
 {
   "name": "retrieveAQuoteResult",
-  "title": "",
+  "title": "Retrieve a Quote",
   "description": "Retrieve a quote",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

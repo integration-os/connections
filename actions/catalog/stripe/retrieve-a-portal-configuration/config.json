@@ -1,6 +1,6 @@
 {
   "name": "retrieveAPortalConfigurationResult",
-  "title": "",
+  "title": "Retrieve a Portal Configuration",
   "description": "Retrieve a portal configuration",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

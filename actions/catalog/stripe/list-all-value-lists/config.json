@@ -1,6 +1,6 @@
 {
   "name": "listAllValueListsResult",
-  "title": "",
+  "title": "List All Value Lists",
   "description": "List all value lists",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

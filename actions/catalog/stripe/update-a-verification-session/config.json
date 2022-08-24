@@ -1,6 +1,6 @@
 {
   "name": "updateAVerificationSessionResult",
-  "title": "",
+  "title": "Update a VerificationSession",
   "description": "Update a verificationsession",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

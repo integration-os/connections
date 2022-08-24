@@ -1,6 +1,6 @@
 {
   "name": "updateATransactionResult",
-  "title": "",
+  "title": "Update a Transaction",
   "description": "Update a transaction",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

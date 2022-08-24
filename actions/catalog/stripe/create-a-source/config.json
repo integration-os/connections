@@ -1,6 +1,6 @@
 {
   "name": "createASourceResult",
-  "title": "",
+  "title": "Create a Source",
   "description": "Create a source",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

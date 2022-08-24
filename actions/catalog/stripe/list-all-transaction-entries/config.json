@@ -1,6 +1,6 @@
 {
   "name": "listAllTransactionEntriesResult",
-  "title": "",
+  "title": "List All TransactionEntries",
   "description": "List all transactionentries",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "cancelASetupIntentResult",
-  "title": "",
+  "title": "Cancel a SetupIntent",
   "description": "Cancel a setupintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

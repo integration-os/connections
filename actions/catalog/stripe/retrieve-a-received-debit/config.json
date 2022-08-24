@@ -1,6 +1,6 @@
 {
   "name": "retrieveAReceivedDebitResult",
-  "title": "",
+  "title": "Retrieve a ReceivedDebit",
   "description": "Retrieve a receiveddebit",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

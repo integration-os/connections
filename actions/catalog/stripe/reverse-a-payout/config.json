@@ -1,6 +1,6 @@
 {
   "name": "reverseAPayoutResult",
-  "title": "",
+  "title": "Reverse a Payout",
   "description": "Reverse a payout",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

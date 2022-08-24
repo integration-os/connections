@@ -1,6 +1,6 @@
 {
   "name": "refreshAccountDataResult",
-  "title": "",
+  "title": "Refresh Account Data",
   "description": "Refresh account data",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "releaseAScheduleResult",
-  "title": "",
+  "title": "Release a Schedule",
   "description": "Release a schedule",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

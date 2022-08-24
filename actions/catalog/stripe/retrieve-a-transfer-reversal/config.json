@@ -1,6 +1,6 @@
 {
   "name": "retrieveATransferReversalResult",
-  "title": "",
+  "title": "Retrieve a Transfer Reversal",
   "description": "Retrieve a transfer reversal",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "listAllEventsResult",
-  "title": "",
+  "title": "List All Events",
   "description": "List all events",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "finalizeAQuoteResult",
-  "title": "",
+  "title": "Finalize a Quote",
   "description": "Finalize a quote",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "deleteACouponResult",
-  "title": "",
+  "title": "Delete a Coupon",
   "description": "Delete a coupon",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",

@@ -1,6 +1,6 @@
 {
   "name": "updateAnAuthorizationResult",
-  "title": "",
+  "title": "Update an Authorization",
   "description": "Update an authorization",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
