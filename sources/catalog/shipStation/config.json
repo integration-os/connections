@@ -28,7 +28,7 @@
     "subscriptionDelayMultiplier": 0.0
   },
   "paths": {
-    "id": "_.body.resource_url",
+    "id": "_.body.WebHookID",
     "event": "_.body.resource_type",
     "payload": "_.body",
     "secret": null,
