@@ -1,7 +1,7 @@
 {
   "title": "Webflow",
   "description": "CMS and ecommerce",
-  "apiVersion": "2020-03-02",
+  "apiVersion": "1.0.0",
   "platform": "webflow",
   "category": "cms",
   "image": "https://assets.buildable.dev/catalog/node-templates/webflow.svg",
@@ -16,11 +16,6 @@
       "name": "WEBFLOW_API_TOKEN",
       "label": "Enter your Webflow Api Token",
       "placeholder": "38ba5a4236bd26a4244qfcd1ejf7l9v0"
-    },
-    {
-      "name": "WEBFLOW_SITE_ID",
-      "label": "Enter your Webflow site ID",
-      "placeholder": "62fc82dcec97af368452d158"
     }
   ],
   "eventSchema": {
