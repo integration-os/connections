@@ -1,0 +1,524 @@
+{
+  "title": "Square",
+  "description": "Payment processing and ecommerce",
+  "apiVersion": "2022-08-23",
+  "platform": "square",
+  "category": "payments",
+  "image": "https://assets.buildable.dev/catalog/node-templates/square.svg",
+  "tags": [
+    "payments",
+    "square",
+    "ecommerce"
+  ],
+  "authentication": [
+    {
+      "name": "SQUARE_SECRET_KEY",
+      "label": "Enter your Square Secret Key",
+      "placeholder": "EAAAEBnbGWD5-ybNoEetUqm4ByyLLO4bNzfwnMx2v7skIBcaXVRsmUgWcvyb-tV7"
+    }
+  ],
+  "eventSchema": {
+    "merchant_id": "L602VB6EWFCV",
+    "type": "payment.updated",
+    "event_id": "1690c6ed-bf78-43b2-b15e-00bb9f324796",
+    "created_at": "2022-08-24T22:33:46.051Z",
+    "data": {
+      "type": "payment",
+      "id": "fnU8SnpNCZ3nyJXAW2ZMa9lVfMeZY",
+      "object": {}
+    }
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
+  "paths": {
+    "id": "_.body.event_id",
+    "event": "_.body.type",
+    "payload": "_.body",
+    "secret": "_.body.subscription.signature_key",
+    "signature": "_.headers.x-square-hmacsha256-signature"
+  },
+  "connectionTypes": [
+    "source",
+    "action"
+  ],
+  "events": [
+    {
+      "name": "bank_account.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "bank_account.disabled",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "bank_account.verified",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "booking.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "booking.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "card.automatically_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "card.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "card.disabled",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "card.forgotten",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "card.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "catalog.version.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute.owned.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute.owned.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute.public.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute.public.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute.visible.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute.visible.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.owned.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.owned.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.owned.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.public.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.public.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.public.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.visible.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.visible.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.custom_attribute_definition.visible.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "customer.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "device.code.paired",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "dispute.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "dispute.evidence.added",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "dispute.evidence.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "dispute.evidence.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "dispute.evidence.removed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "dispute.state.changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "dispute.state.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "gift_card.activity.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "gift_card.activity.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "gift_card.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "gift_card.customer_linked",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "gift_card.customer_unlinked",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "gift_card.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "inventory.count.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "invoice.canceled",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "invoice.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "invoice.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "invoice.payment_made",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "invoice.published",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "invoice.refunded",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "invoice.scheduled_charge_failed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "invoice.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "labor.shift.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "labor.shift.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "labor.shift.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "location.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "location.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "loyalty.account.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "loyalty.account.deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "loyalty.account.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "loyalty.event.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "loyalty.program.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "loyalty.program.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "loyalty.promotion.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "loyalty.promotion.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "oauth.authorization.revoked",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "order.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "order.fulfillment.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "order.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "payment.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "payment.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "payment_method_enrollment.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "payout.failed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "payout.paid",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "payout.sent",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "refund.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "refund.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "subscription.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "subscription.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "team_member.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "team_member.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "team_member.wage_setting.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "terminal.action.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "terminal.action.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "terminal.checkout.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "terminal.checkout.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "terminal.refund.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "terminal.refund.updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "vendor.created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "vendor.updated",
+      "description": "",
+      "group": ""
+    }
+  ]
+}
