@@ -23,14 +23,26 @@ type WebflowWebook = {
   createdOn: string;
 };
 
+type WebflowSite = {
+  _id: string;
+  createdOn: string;
+  name: string;
+  shortName: string;
+  lastPublished?: string;
+  previewUrl?: string;
+  timezone: string;
+  database: string;
+};
+
 export default class WebflowIntegration implements IntegrationClassI {
   id = "159753";
   name = "Webflow";
 
   private readonly WEBFLOW_BASE_URL = null;
   private readonly WEBFLOW_API_TOKEN = null;
-  private readonly WEBFLOW_SITE_ID = null;
   private readonly WEBFLOW_VERSION = null;
+
+  private webflowSiteId?: string;
 
   private readonly DEFAULT_WEBFLOW_VERSION = "1.0.0";
 
@@ -39,17 +51,14 @@ export default class WebflowIntegration implements IntegrationClassI {
   constructor({
     WEBFLOW_BASE_URL,
     WEBFLOW_API_TOKEN,
-    WEBFLOW_SITE_ID,
     WEBFLOW_VERSION,
   }: {
     WEBFLOW_BASE_URL: string;
     WEBFLOW_API_TOKEN: string;
-    WEBFLOW_SITE_ID: string;
     WEBFLOW_VERSION?: string;
   }) {
     this.WEBFLOW_BASE_URL = WEBFLOW_BASE_URL;
     this.WEBFLOW_API_TOKEN = WEBFLOW_API_TOKEN;
-    this.WEBFLOW_SITE_ID = WEBFLOW_SITE_ID;
     this.WEBFLOW_VERSION = WEBFLOW_VERSION || this.DEFAULT_WEBFLOW_VERSION;
 
     this.client = axios.create({
@@ -64,9 +73,36 @@ export default class WebflowIntegration implements IntegrationClassI {
     });
   }
 
+  /**
+   * Helper function to get site id for the given API KEY/TOKEN
+   * Each site has it's own generated API Key
+   * Site id is needed for other Webflow API calls
+   * @returns
+   */
+  private async getWebflowSiteId(): Promise<string> {
+    try {
+      if (this.webflowSiteId) {
+        return this.webflowSiteId;
+      }
+
+      const webflowSites = (await this.client.get<WebflowSite[]>(`/sites`)).data;
+
+      if (!webflowSites?.length) {
+        throw new Error(`Can not get Webflow site id`);
+      }
+
+      this.webflowSiteId = webflowSites[0]._id;
+      return this.webflowSiteId;
+    } catch (error) {
+      throw new Error(`Can not get Webflow site id: ${error.message}`);
+    }
+  }
+
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
-    const webhookCreateRequests = events.map((event) =>
-      this.client.post(`/sites/${this.WEBFLOW_SITE_ID}/webhooks?event=${event}`, {
+    const siteId = await this.getWebflowSiteId();
+
+    const webhookCreateRequests = events.map(async (event) =>
+      this.client.post(`/sites/${siteId}/webhooks?event=${event}`, {
         triggerType: event,
         url: webhookUrl,
       }),
@@ -85,8 +121,12 @@ export default class WebflowIntegration implements IntegrationClassI {
     };
   }
 
+  /**
+   * Webflow doesn't have a way to verify the signature so we can just return true
+   * @param props
+   * @returns
+   */
   verifyWebhookSignature(props: VerifyWebhookSignatureProps): Truthy {
-    // Webflow doesn't have a way to verify the signature so we can just return true
     return true;
   }
 
@@ -152,8 +192,9 @@ export default class WebflowIntegration implements IntegrationClassI {
 
   async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
     try {
+      const siteId = await this.getWebflowSiteId();
       const { data } = await this.client.get<null, AxiosResponse<WebflowWebook[]>>(
-        `/sites/${this.WEBFLOW_SITE_ID}/webhooks`,
+        `/sites/${siteId}/webhooks`,
       );
       const webhooks = data || [];
 
@@ -179,7 +220,8 @@ export default class WebflowIntegration implements IntegrationClassI {
 
   async deleteWebhookEndpoint({ webhookId }: WebhooksProps): Promise<Truthy> {
     try {
-      await this.client.delete(`/sites/${this.WEBFLOW_SITE_ID}/webhooks/${webhookId}`);
+      const siteId = await this.getWebflowSiteId();
+      await this.client.delete(`/sites/${siteId}/webhooks/${webhookId}`);
       return true;
     } catch (error) {
       throw new Error(`Could not delete Webflow webhook: ${error.message}`);
