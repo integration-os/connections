@@ -6,7 +6,6 @@ import { AnyObject } from "../types/classDefinition";
 const webflow = new WebflowIntegration({
   WEBFLOW_BASE_URL: process.env.WEBFLOW_BASE_URL as string,
   WEBFLOW_API_TOKEN: process.env.WEBFLOW_API_TOKEN as string,
-  WEBFLOW_SITE_ID: process.env.WEBFLOW_SITE_ID as string,
 });
 
 async function createTestWebhook(testWebhookUrl: string, events: string[]): Promise<string> {
@@ -289,7 +288,6 @@ describe("Webflow Integration", () => {
       const badWebflowIntegration = new WebflowIntegration({
         WEBFLOW_BASE_URL: "",
         WEBFLOW_API_TOKEN: "",
-        WEBFLOW_SITE_ID: "",
       });
       await expect(badWebflowIntegration.testConnection()).rejects.toThrow();
     });
