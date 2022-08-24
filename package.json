@@ -45,8 +45,10 @@
     "@datadog/datadog-api-client": "^1.2.0",
     "@octokit/core": "^4.0.4",
     "@shopify/shopify-api": "^4.1.0",
+    "@types/paypal-rest-sdk": "^1.7.6",
     "axios": "^0.27.2",
     "dotenv": "^16.0.0",
+    "paypal-rest-sdk": "^1.8.1",
     "stripe": "^9.13.0"
   }
 }
