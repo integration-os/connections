@@ -220,6 +220,11 @@
       ]
     }
   },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
   "events": [
     {
       "name": "jira:issue_created",
