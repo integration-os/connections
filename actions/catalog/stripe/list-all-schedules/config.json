@@ -1,7 +1,7 @@
 {
   "name": "listAllSchedulesResult",
-  "title": "List All Schedules",
-  "description": "List all schedules using the Stripe API",
+  "title": "",
+  "description": "List all schedules",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

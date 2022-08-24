@@ -1,7 +1,7 @@
 {
   "name": "retrieveAPaymentIntentResult",
-  "title": "Retrieve a PaymentIntent",
-  "description": "Retrieve a paymentintent using the Stripe API",
+  "title": "",
+  "description": "Retrieve a paymentintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

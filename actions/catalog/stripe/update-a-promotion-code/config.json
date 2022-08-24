@@ -1,7 +1,7 @@
 {
   "name": "updateAPromotionCodeResult",
-  "title": "Update a Promotion Code",
-  "description": "Update a promotion code using the Stripe API",
+  "title": "",
+  "description": "Update a promotion code",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

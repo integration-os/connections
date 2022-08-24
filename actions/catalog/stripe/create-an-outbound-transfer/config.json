@@ -1,7 +1,7 @@
 {
   "name": "createAnOutboundTransferResult",
-  "title": "Create an OutboundTransfer",
-  "description": "Create an outboundtransfer using the Stripe API",
+  "title": "",
+  "description": "Create an outboundtransfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

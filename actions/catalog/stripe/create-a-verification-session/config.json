@@ -1,7 +1,7 @@
 {
   "name": "createAVerificationSessionResult",
-  "title": "Create a VerificationSession",
-  "description": "Create a verificationsession using the Stripe API",
+  "title": "",
+  "description": "Create a verificationsession",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

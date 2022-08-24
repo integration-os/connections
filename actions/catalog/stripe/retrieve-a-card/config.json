@@ -1,7 +1,7 @@
 {
   "name": "retrieveACardResult",
-  "title": "Retrieve a Card",
-  "description": "Retrieve a card using the Stripe API",
+  "title": "",
+  "description": "Retrieve a card",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "cancelAPayoutResult",
-  "title": "Cancel a Payout",
-  "description": "Cancel a payout using the Stripe API",
+  "title": "",
+  "description": "Cancel a payout",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

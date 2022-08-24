@@ -1,7 +1,7 @@
 {
   "name": "retrieveAnAuthorizationResult",
-  "title": "Retrieve an Authorization",
-  "description": "Retrieve an authorization using the Stripe API",
+  "title": "",
+  "description": "Retrieve an authorization",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

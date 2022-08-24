@@ -1,7 +1,7 @@
 {
   "name": "deleteAnInvoiceItemResult",
-  "title": "Delete an Invoice Item",
-  "description": "Delete an invoice item using the Stripe API",
+  "title": "",
+  "description": "Delete an invoice item",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

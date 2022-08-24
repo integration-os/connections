@@ -1,7 +1,7 @@
 {
   "name": "listAllPaymentLinksResult",
-  "title": "List All Payment Links",
-  "description": "List all payment links using the Stripe API",
+  "title": "",
+  "description": "List all payment links",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

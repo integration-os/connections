@@ -1,7 +1,7 @@
 {
   "name": "result",
-  "title": "<p>Removes the Currently Applied Discount on a customer.</p>",
-  "description": "<p>removes the currently applied discount on a customer.</p> using the Stripe API",
+  "title": "Removes the Currently Applied Discount on a Customer",
+  "description": "Removes the currently applied discount on a customer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

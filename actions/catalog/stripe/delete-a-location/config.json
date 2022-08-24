@@ -1,7 +1,7 @@
 {
   "name": "deleteALocationResult",
-  "title": "Delete a Location",
-  "description": "Delete a location using the Stripe API",
+  "title": "",
+  "description": "Delete a location",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

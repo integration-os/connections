@@ -1,7 +1,7 @@
 {
   "name": "finalizeAnInvoiceResult",
-  "title": "Finalize an Invoice",
-  "description": "Finalize an invoice using the Stripe API",
+  "title": "",
+  "description": "Finalize an invoice",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

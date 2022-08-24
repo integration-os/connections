@@ -1,7 +1,7 @@
 {
   "name": "listAllDebitReversalsResult",
-  "title": "List All DebitReversals",
-  "description": "List all debitreversals using the Stripe API",
+  "title": "",
+  "description": "List all debitreversals",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

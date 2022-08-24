@@ -1,7 +1,7 @@
 {
   "name": "createATaxRateResult",
-  "title": "Create a Tax Rate",
-  "description": "Create a tax rate using the Stripe API",
+  "title": "",
+  "description": "Create a tax rate",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

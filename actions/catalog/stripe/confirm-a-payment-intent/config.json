@@ -1,7 +1,7 @@
 {
   "name": "confirmAPaymentIntentResult",
-  "title": "Confirm a PaymentIntent",
-  "description": "Confirm a paymentintent using the Stripe API",
+  "title": "",
+  "description": "Confirm a paymentintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

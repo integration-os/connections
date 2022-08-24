@@ -1,7 +1,7 @@
 {
   "name": "listAccountsResult",
-  "title": "List Accounts",
-  "description": "List accounts using the Stripe API",
+  "title": "",
+  "description": "List accounts",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

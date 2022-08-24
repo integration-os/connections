@@ -1,7 +1,7 @@
 {
   "name": "testModeCreateAReceivedDebitResult",
-  "title": "Test Mode: Create a ReceivedDebit",
-  "description": "Test mode: create a receiveddebit using the Stripe API",
+  "title": "",
+  "description": "Test mode: create a receiveddebit",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

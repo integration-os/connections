@@ -1,7 +1,7 @@
 {
   "name": "retrieveAFileResult",
-  "title": "Retrieve a File",
-  "description": "Retrieve a file using the Stripe API",
+  "title": "",
+  "description": "Retrieve a file",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

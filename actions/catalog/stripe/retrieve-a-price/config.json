@@ -1,7 +1,7 @@
 {
   "name": "retrieveAPriceResult",
-  "title": "Retrieve a Price",
-  "description": "Retrieve a price using the Stripe API",
+  "title": "",
+  "description": "Retrieve a price",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

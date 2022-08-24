@@ -1,7 +1,7 @@
 {
   "name": "createAValueListItemResult",
-  "title": "Create a Value List Item",
-  "description": "Create a value list item using the Stripe API",
+  "title": "",
+  "description": "Create a value list item",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

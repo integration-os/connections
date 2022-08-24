@@ -1,7 +1,7 @@
 {
   "name": "updateASKUResult",
-  "title": "Update a SKU",
-  "description": "Update a sku using the Stripe API",
+  "title": "",
+  "description": "Update a sku",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

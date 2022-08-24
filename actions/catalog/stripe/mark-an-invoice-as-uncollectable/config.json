@@ -1,7 +1,7 @@
 {
   "name": "markAnInvoiceAsUncollectableResult",
-  "title": "Mark an Invoice as Uncollectable",
-  "description": "Mark an invoice as uncollectable using the Stripe API",
+  "title": "",
+  "description": "Mark an invoice as uncollectable",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

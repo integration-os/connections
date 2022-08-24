@@ -1,7 +1,7 @@
 {
   "name": "createAReaderResult",
-  "title": "Create a Reader",
-  "description": "Create a reader using the Stripe API",
+  "title": "",
+  "description": "Create a reader",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

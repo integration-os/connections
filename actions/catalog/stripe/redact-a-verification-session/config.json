@@ -1,7 +1,7 @@
 {
   "name": "redactAVerificationSessionResult",
-  "title": "Redact a VerificationSession",
-  "description": "Redact a verificationsession using the Stripe API",
+  "title": "",
+  "description": "Redact a verificationsession",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

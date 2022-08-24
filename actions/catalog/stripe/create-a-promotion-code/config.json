@@ -1,7 +1,7 @@
 {
   "name": "createAPromotionCodeResult",
-  "title": "Create a Promotion Code",
-  "description": "Create a promotion code using the Stripe API",
+  "title": "",
+  "description": "Create a promotion code",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

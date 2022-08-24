@@ -1,7 +1,7 @@
 {
   "name": "getBalanceHistoryResult",
-  "title": "<p>Returns a List of Transactions that Have Contributed to the Stripe Account Balance (e.g., Charges",
-  "description": "<p>returns a list of transactions that have contributed to the stripe account balance (e.G., charges, transfers, and so forth). The transactions are returned in sorted order, with the most recent transactions appearing first.</p>\n\n<p>note that this endpoint was previously called “balance history” and used the path <code>/v1/balance/history</code>.</p> using the Stripe API",
+  "title": "Returns a List of Transactions that Have Contributed to the Stripe Account Balance (e",
+  "description": "Returns a list of transactions that have contributed to the stripe account balance (e. G., charges, transfers, and so forth). The transactions are returned in sorted order, with the most recent transactions appearing first.Note that this endpoint was previously called “balance history” and used the path /v1/balance/history",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

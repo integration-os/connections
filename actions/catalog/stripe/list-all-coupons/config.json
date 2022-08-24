@@ -1,7 +1,7 @@
 {
   "name": "listAllCouponsResult",
-  "title": "List All Coupons",
-  "description": "List all coupons using the Stripe API",
+  "title": "",
+  "description": "List all coupons",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

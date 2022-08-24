@@ -1,7 +1,7 @@
 {
   "name": "deleteAConfigurationResult",
-  "title": "Delete a Configuration",
-  "description": "Delete a configuration using the Stripe API",
+  "title": "",
+  "description": "Delete a configuration",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

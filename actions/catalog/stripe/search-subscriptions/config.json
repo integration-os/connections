@@ -1,7 +1,7 @@
 {
   "name": "searchSubscriptionsResult",
-  "title": "Search Subscriptions",
-  "description": "Search subscriptions using the Stripe API",
+  "title": "",
+  "description": "Search subscriptions",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

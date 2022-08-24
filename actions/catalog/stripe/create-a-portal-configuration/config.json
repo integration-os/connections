@@ -1,7 +1,7 @@
 {
   "name": "createAPortalConfigurationResult",
-  "title": "Create a Portal Configuration",
-  "description": "Create a portal configuration using the Stripe API",
+  "title": "",
+  "description": "Create a portal configuration",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

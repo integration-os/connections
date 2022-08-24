@@ -1,7 +1,7 @@
 {
   "name": "retrieveAQuoteSLineItemsResult",
-  "title": "Retrieve a Quote's Line Items",
-  "description": "Retrieve a quote's line items using the Stripe API",
+  "title": "",
+  "description": "Retrieve a quote's line items",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

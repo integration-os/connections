@@ -1,7 +1,7 @@
 {
   "name": "listSecretsResult",
-  "title": "List Secrets",
-  "description": "List secrets using the Stripe API",
+  "title": "",
+  "description": "List secrets",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

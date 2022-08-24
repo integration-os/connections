@@ -1,7 +1,7 @@
 {
   "name": "retrieveAReceivedDebitResult",
-  "title": "Retrieve a ReceivedDebit",
-  "description": "Retrieve a receiveddebit using the Stripe API",
+  "title": "",
+  "description": "Retrieve a receiveddebit",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

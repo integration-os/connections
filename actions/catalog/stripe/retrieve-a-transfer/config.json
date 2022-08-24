@@ -1,7 +1,7 @@
 {
   "name": "retrieveATransferResult",
-  "title": "Retrieve a Transfer",
-  "description": "Retrieve a transfer using the Stripe API",
+  "title": "",
+  "description": "Retrieve a transfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

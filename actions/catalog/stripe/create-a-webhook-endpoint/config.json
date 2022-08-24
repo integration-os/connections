@@ -1,7 +1,7 @@
 {
   "name": "createAWebhookEndpointResult",
-  "title": "Create a Webhook Endpoint",
-  "description": "Create a webhook endpoint using the Stripe API",
+  "title": "",
+  "description": "Create a webhook endpoint",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

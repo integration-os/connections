@@ -1,7 +1,7 @@
 {
   "name": "updateAVerificationSessionResult",
-  "title": "Update a VerificationSession",
-  "description": "Update a verificationsession using the Stripe API",
+  "title": "",
+  "description": "Update a verificationsession",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

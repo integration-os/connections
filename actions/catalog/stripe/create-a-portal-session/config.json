@@ -1,7 +1,7 @@
 {
   "name": "createAPortalSessionResult",
-  "title": "Create a Portal Session",
-  "description": "Create a portal session using the Stripe API",
+  "title": "",
+  "description": "Create a portal session",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "createATransferReversalResult",
-  "title": "Create a Transfer Reversal",
-  "description": "Create a transfer reversal using the Stripe API",
+  "title": "",
+  "description": "Create a transfer reversal",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

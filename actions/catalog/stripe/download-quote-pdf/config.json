@@ -1,7 +1,7 @@
 {
   "name": "downloadQuotePDFResult",
-  "title": "Download Quote PDF",
-  "description": "Download quote pdf using the Stripe API",
+  "title": "",
+  "description": "Download quote pdf",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

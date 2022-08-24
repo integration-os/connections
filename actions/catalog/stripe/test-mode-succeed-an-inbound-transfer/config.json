@@ -1,7 +1,7 @@
 {
   "name": "testModeSucceedAnInboundTransferResult",
-  "title": "Test Mode: Succeed an InboundTransfer",
-  "description": "Test mode: succeed an inboundtransfer using the Stripe API",
+  "title": "",
+  "description": "Test mode: succeed an inboundtransfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

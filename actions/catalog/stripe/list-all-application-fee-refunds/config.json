@@ -1,7 +1,7 @@
 {
   "name": "listAllApplicationFeeRefundsResult",
-  "title": "List All Application Fee Refunds",
-  "description": "List all application fee refunds using the Stripe API",
+  "title": "",
+  "description": "List all application fee refunds",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
