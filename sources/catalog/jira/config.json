@@ -1,0 +1,420 @@
+{
+  "title": "Jira",
+  "description": "Jira is a proprietary issue tracking product developed by Atlassian that allows bug tracking and agile project management.",
+  "apiVersion": "3",
+  "platform": "jira",
+  "category": "bug-tracker",
+  "image": "https://assets.buildable.dev/catalog/node-templates/jira.svg",
+  "tags": ["jira"],
+  "authentication": [
+    {
+      "name": "JIRA_OAUTH2_ACCESS_TOKEN",
+      "label": "jira OAuth2 access token",
+      "placeholder": "2l4IQtZXbn5WBJdL6EF7uenOWRsi<......>naAKel4fz7_lMRuJmAjiQgwOlrx72bUwPSIg"
+    },
+    {
+      "name": "JIRA_PROJECT_ID",
+      "label": "jira project ID",
+      "placeholder": "PROJ-123"
+    }
+  ],
+  "paths": {
+    "id": "_.body.values.id",
+    "event": "_.body.values.events",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "connectionTypes": ["source"],
+  "eventSchema": {
+    "timestamp": 1536083559131,
+    "webhookEvent": "jira:issue_updated",
+    "issue_event_type_name": "issue_generic",
+    "user": {
+      "self": "https://paulrothrock.atlassian.net/rest/api/2/user?username=admin",
+      "name": "admin",
+      "key": "admin",
+      "accountId": "557058:c9ebf848-dfac-4c49-9408-dc34bd0e2d85",
+      "emailAddress": "paul@mattermost.com",
+      "avatarUrls": {
+        "48x48": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=48&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D48%26noRedirect%3Dtrue",
+        "24x24": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=24&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D24%26noRedirect%3Dtrue",
+        "16x16": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=16&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D16%26noRedirect%3Dtrue",
+        "32x32": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=32&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D32%26noRedirect%3Dtrue"
+      },
+      "displayName": "Paul Rothrock",
+      "active": true,
+      "timeZone": "America/New_York"
+    },
+    "issue": {
+      "id": "10000",
+      "self": "https://paulrothrock.atlassian.net/rest/api/2/issue/10000",
+      "key": "TP-1",
+      "fields": {
+        "issuetype": {
+          "self": "https://paulrothrock.atlassian.net/rest/api/2/issuetype/10004",
+          "id": "10004",
+          "description": "jira.translation.issuetype.bug.name.desc",
+          "iconUrl": "https://paulrothrock.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10303&avatarType=issuetype",
+          "name": "Bug",
+          "subtask": false,
+          "avatarId": 10303
+        },
+        "timespent": null,
+        "project": {
+          "self": "https://paulrothrock.atlassian.net/rest/api/2/project/10000",
+          "id": "10000",
+          "key": "TP",
+          "name": "Test Project",
+          "projectTypeKey": "software",
+          "avatarUrls": {
+            "48x48": "https://paulrothrock.atlassian.net/secure/projectavatar?avatarId=10324",
+            "24x24": "https://paulrothrock.atlassian.net/secure/projectavatar?size=small&avatarId=10324",
+            "16x16": "https://paulrothrock.atlassian.net/secure/projectavatar?size=xsmall&avatarId=10324",
+            "32x32": "https://paulrothrock.atlassian.net/secure/projectavatar?size=medium&avatarId=10324"
+          }
+        },
+        "fixVersions": [],
+        "aggregatetimespent": null,
+        "resolution": {
+          "self": "https://paulrothrock.atlassian.net/rest/api/2/resolution/10000",
+          "id": "10000",
+          "description": "Work has been completed on this issue.",
+          "name": "Done"
+        },
+        "resolutiondate": "2018-09-04T13:52:39.110-0400",
+        "workratio": -1,
+        "watches": {
+          "self": "https://paulrothrock.atlassian.net/rest/api/2/issue/TP-1/watchers",
+          "watchCount": 1,
+          "isWatching": true
+        },
+        "lastViewed": "2018-09-04T13:52:39.010-0400",
+        "created": "2018-09-04T13:15:49.526-0400",
+        "customfield_10020": null,
+        "customfield_10021": [],
+        "priority": {
+          "self": "https://paulrothrock.atlassian.net/rest/api/2/priority/3",
+          "iconUrl": "https://paulrothrock.atlassian.net/images/icons/priorities/medium.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "customfield_10024": null,
+        "labels": [],
+        "customfield_10016": null,
+        "customfield_10017": "3_*:*_1_*:*_27155_*|*_10000_*:*_2_*:*_2182437_*|*_10002_*:*_1_*:*_0",
+        "customfield_10018": null,
+        "customfield_10019": "0|hzzzzz:",
+        "aggregatetimeoriginalestimate": null,
+        "timeestimate": null,
+        "versions": [],
+        "issuelinks": [],
+        "assignee": null,
+        "updated": "2018-09-04T13:52:39.114-0400",
+        "status": {
+          "self": "https://paulrothrock.atlassian.net/rest/api/2/status/10002",
+          "description": "",
+          "iconUrl": "https://paulrothrock.atlassian.net/",
+          "name": "Done",
+          "id": "10002",
+          "statusCategory": {
+            "self": "https://paulrothrock.atlassian.net/rest/api/2/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Complete"
+          }
+        },
+        "components": [],
+        "timeoriginalestimate": null,
+        "description": "This should send a webhook.\n\n\n\nUpdating the ticket should also send a webhook request.",
+        "customfield_10013": null,
+        "customfield_10014": null,
+        "timetracking": {},
+        "customfield_10015": null,
+        "customfield_10005": null,
+        "customfield_10006": null,
+        "customfield_10007": null,
+        "security": null,
+        "customfield_10008": null,
+        "aggregatetimeestimate": null,
+        "customfield_10009": null,
+        "attachment": [],
+        "summary": "Updating an issue",
+        "creator": {
+          "self": "https://paulrothrock.atlassian.net/rest/api/2/user?username=admin",
+          "name": "admin",
+          "key": "admin",
+          "accountId": "557058:c9ebf848-dfac-4c49-9408-dc34bd0e2d85",
+          "emailAddress": "paul@mattermost.com",
+          "avatarUrls": {
+            "48x48": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=48&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D48%26noRedirect%3Dtrue",
+            "24x24": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=24&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D24%26noRedirect%3Dtrue",
+            "16x16": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=16&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D16%26noRedirect%3Dtrue",
+            "32x32": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=32&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D32%26noRedirect%3Dtrue"
+          },
+          "displayName": "Paul Rothrock",
+          "active": true,
+          "timeZone": "America/New_York"
+        },
+        "subtasks": [],
+        "reporter": {
+          "self": "https://paulrothrock.atlassian.net/rest/api/2/user?username=admin",
+          "name": "admin",
+          "key": "admin",
+          "accountId": "557058:c9ebf848-dfac-4c49-9408-dc34bd0e2d85",
+          "emailAddress": "paul@mattermost.com",
+          "avatarUrls": {
+            "48x48": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=48&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D48%26noRedirect%3Dtrue",
+            "24x24": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=24&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D24%26noRedirect%3Dtrue",
+            "16x16": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=16&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D16%26noRedirect%3Dtrue",
+            "32x32": "https://avatar-cdn.atlassian.com/40ed89778d66d73a8500b93836ce28a2?s=32&d=https%3A%2F%2Fsecure.gravatar.com%2Favatar%2F40ed89778d66d73a8500b93836ce28a2%3Fd%3Dmm%26s%3D32%26noRedirect%3Dtrue"
+          },
+          "displayName": "Paul Rothrock",
+          "active": true,
+          "timeZone": "America/New_York"
+        },
+        "aggregateprogress": {
+          "progress": 0,
+          "total": 0
+        },
+        "customfield_10000": "{}",
+        "customfield_10001": null,
+        "customfield_10002": null,
+        "customfield_10003": null,
+        "customfield_10004": null,
+        "environment": null,
+        "duedate": null,
+        "progress": {
+          "progress": 0,
+          "total": 0
+        },
+        "votes": {
+          "self": "https://paulrothrock.atlassian.net/rest/api/2/issue/TP-1/votes",
+          "votes": 0,
+          "hasVoted": false
+        }
+      }
+    },
+    "changelog": {
+      "id": "10009",
+      "items": [
+        {
+          "field": "resolution",
+          "fieldtype": "jira",
+          "fieldId": "resolution",
+          "from": null,
+          "fromString": null,
+          "to": "10000",
+          "toString": "Done"
+        },
+        {
+          "field": "status",
+          "fieldtype": "jira",
+          "fieldId": "status",
+          "from": "10000",
+          "fromString": "Backlog",
+          "to": "10002",
+          "toString": "Done"
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "name": "jira:issue_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:issue_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:issue_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:worklog_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "issuelink_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "issuelink_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "worklog_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "worklog_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "worklog_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "comment_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "comment_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "comment_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "project_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "project_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "project_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_released",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_unreleased",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_moved",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "jira:version_deleted",
+      "description": "merging as well as deleting",
+      "group": ""
+    },
+    {
+      "name": "user_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "user_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "user_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_voting_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_watching_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_unassigned_issues_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_subtasks_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_attachments_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_issuelinks_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "option_timetracking_changed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "sprint_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "sprint_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "sprint_updated",
+      "description": "sprint_started",
+      "group": ""
+    },
+    {
+      "name": "sprint_closed",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "board_created",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "board_updated",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "board_deleted",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "board_configuration_changed",
+      "description": "",
+      "group": ""
+    }
+  ]
+}
