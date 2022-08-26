@@ -14,5 +14,5 @@
   "tags": ["alerts"],
   "stateType": "stateless",
   "__version": "1.0.0",
-  "connections": [{ "id": "627aceaf971c67182d1d76ca", "type": "integration" }]
+  "connections": [{ "id": "62fd13fbee38e400144999a4", "type": "integration" }]
 }
