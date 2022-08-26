@@ -1,7 +1,7 @@
 {
   "name": "getCustomersCustomerSubscriptionsResult",
-  "title": "<p>You Can See a List of the Customer’s Active Subscriptions. Note that the 10 Most Recent Active Su",
-  "description": "<p>you can see a list of the customer’s active subscriptions. Note that the 10 most recent active subscriptions are always available by default on the customer object. If you need more than those 10, you can use the limit and starting_after parameters to page through additional subscriptions.</p> using the Stripe API",
+  "title": "You Can See a List of the Customer’s Active Subscriptions",
+  "description": "You can see a list of the customer’s active subscriptions. Note that the 10 most recent active subscriptions are always available by default on the customer object. If you need more than those 10, you can use the limit and starting_after parameters to page through additional subscriptions",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

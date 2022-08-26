@@ -1,7 +1,7 @@
 {
   "name": "createAScheduleResult",
   "title": "Create a Schedule",
-  "description": "Create a schedule using the Stripe API",
+  "description": "Create a schedule",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

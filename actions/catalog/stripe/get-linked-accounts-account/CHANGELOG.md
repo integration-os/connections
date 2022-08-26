@@ -5,7 +5,7 @@ The format followed is based on [Keep a Changelog](http://keepachangelog.com/) a
 
 ---
  
-## [1.0.0] - 2022-08-23
+## [1.0.0] - 2022-08-24
  
 ⚡️ Initial Version
  

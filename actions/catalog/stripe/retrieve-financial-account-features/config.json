@@ -1,7 +1,7 @@
 {
   "name": "retrieveFinancialAccountFeaturesResult",
   "title": "Retrieve FinancialAccount Features",
-  "description": "Retrieve financialaccount features using the Stripe API",
+  "description": "Retrieve financialaccount features",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

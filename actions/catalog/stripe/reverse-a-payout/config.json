@@ -1,7 +1,7 @@
 {
   "name": "reverseAPayoutResult",
   "title": "Reverse a Payout",
-  "description": "Reverse a payout using the Stripe API",
+  "description": "Reverse a payout",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

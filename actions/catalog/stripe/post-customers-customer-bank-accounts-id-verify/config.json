@@ -1,7 +1,7 @@
 {
   "name": "postCustomersCustomerBankAccountsIdVerifyResult",
-  "title": "<p>Verify a Specified Bank Account for a Given customer.</p>",
-  "description": "<p>verify a specified bank account for a given customer.</p> using the Stripe API",
+  "title": "Verify a Specified Bank Account for a Given Customer",
+  "description": "Verify a specified bank account for a given customer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

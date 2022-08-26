@@ -1,7 +1,7 @@
 {
   "name": "updateACustomerResult",
   "title": "Update a Customer",
-  "description": "Update a customer using the Stripe API",
+  "description": "Update a customer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

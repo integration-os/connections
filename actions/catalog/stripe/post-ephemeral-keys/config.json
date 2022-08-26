@@ -1,7 +1,7 @@
 {
   "name": "postEphemeralKeysResult",
-  "title": "<p>Creates a Short-Lived API Key for a Given resource.</p>",
-  "description": "<p>creates a short-lived api key for a given resource.</p> using the Stripe API",
+  "title": "Creates a Short-Lived API Key for a Given Resource",
+  "description": "Creates a short-lived api key for a given resource",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

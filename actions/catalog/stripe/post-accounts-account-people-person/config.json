@@ -1,7 +1,7 @@
 {
   "name": "postAccountsAccountPeoplePersonResult",
-  "title": "<p>Updates an Existing person.</p>",
-  "description": "<p>updates an existing person.</p> using the Stripe API",
+  "title": "Updates an Existing Person",
+  "description": "Updates an existing person",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

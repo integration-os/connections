@@ -1,7 +1,7 @@
 {
   "name": "advanceATestClockResult",
   "title": "Advance a Test Clock",
-  "description": "Advance a test clock using the Stripe API",
+  "description": "Advance a test clock",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
