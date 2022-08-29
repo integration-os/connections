@@ -13,6 +13,11 @@
       "placeholder": "2l4IQtZXbn5WBJdL6EF7uenOWRsi<......>naAKel4fz7_lMRuJmAjiQgwOlrx72bUwPSIg"
     },
     {
+      "name": "JIRA_HOST",
+      "label": "jira host",
+      "placeholder": "https://......"
+    },
+    {
       "name": "JIRA_PROJECT_ID",
       "label": "jira project ID",
       "placeholder": "PROJ-123"
