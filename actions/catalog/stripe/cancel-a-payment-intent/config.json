@@ -1,7 +1,7 @@
 {
   "name": "cancelAPaymentIntentResult",
   "title": "Cancel a PaymentIntent",
-  "description": "Cancel a paymentintent using the Stripe API",
+  "description": "Cancel a paymentintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

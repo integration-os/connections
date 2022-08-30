@@ -1,7 +1,7 @@
 {
   "name": "sendAnInvoiceForManualPaymentResult",
   "title": "Send an Invoice for Manual Payment",
-  "description": "Send an invoice for manual payment using the Stripe API",
+  "description": "Send an invoice for manual payment",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

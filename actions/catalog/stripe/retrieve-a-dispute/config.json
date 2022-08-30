@@ -1,7 +1,7 @@
 {
   "name": "retrieveADisputeResult",
   "title": "Retrieve a Dispute",
-  "description": "Retrieve a dispute using the Stripe API",
+  "description": "Retrieve a dispute",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

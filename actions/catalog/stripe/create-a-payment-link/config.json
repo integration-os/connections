@@ -1,7 +1,7 @@
 {
   "name": "createAPaymentLinkResult",
   "title": "Create a Payment Link",
-  "description": "Create a payment link using the Stripe API",
+  "description": "Create a payment link",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

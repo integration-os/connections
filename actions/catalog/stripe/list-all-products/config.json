@@ -1,7 +1,7 @@
 {
   "name": "listAllProductsResult",
   "title": "List All Products",
-  "description": "List all products using the Stripe API",
+  "description": "List all products",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

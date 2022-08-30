@@ -1,7 +1,7 @@
 {
   "name": "retrieveAQuoteResult",
   "title": "Retrieve a Quote",
-  "description": "Retrieve a quote using the Stripe API",
+  "description": "Retrieve a quote",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
