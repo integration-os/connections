@@ -1,7 +1,7 @@
 {
   "name": "setASecretResult",
   "title": "Set a Secret",
-  "description": "Set a secret using the Stripe API",
+  "description": "Set a secret",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

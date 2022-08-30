@@ -1,7 +1,7 @@
 {
   "name": "retrieveAPromotionCodeResult",
   "title": "Retrieve a Promotion Code",
-  "description": "Retrieve a promotion code using the Stripe API",
+  "description": "Retrieve a promotion code",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

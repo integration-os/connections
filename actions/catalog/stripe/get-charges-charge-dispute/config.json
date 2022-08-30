@@ -1,7 +1,7 @@
 {
   "name": "getChargesChargeDisputeResult",
-  "title": "<p>Retrieve a Dispute for a Specified charge.</p>",
-  "description": "<p>retrieve a dispute for a specified charge.</p> using the Stripe API",
+  "title": "Retrieve a Dispute for a Specified Charge",
+  "description": "Retrieve a dispute for a specified charge",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "searchChargesResult",
   "title": "Search Charges",
-  "description": "Search charges using the Stripe API",
+  "description": "Search charges",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "deleteATestClockResult",
   "title": "Delete a Test Clock",
-  "description": "Delete a test clock using the Stripe API",
+  "description": "Delete a test clock",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

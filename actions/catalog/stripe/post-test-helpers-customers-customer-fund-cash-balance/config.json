@@ -1,7 +1,7 @@
 {
   "name": "result",
-  "title": "<p>Create an Incoming Testmode Bank Transfer</p>",
-  "description": "<p>create an incoming testmode bank transfer</p> using the Stripe API",
+  "title": "Create an Incoming Testmode Bank Transfer",
+  "description": "Create an incoming testmode bank transfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

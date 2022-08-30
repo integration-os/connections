@@ -1,7 +1,7 @@
 {
   "name": "cancelASubscriptionResult",
   "title": "Cancel a Subscription",
-  "description": "Cancel a subscription using the Stripe API",
+  "description": "Cancel a subscription",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

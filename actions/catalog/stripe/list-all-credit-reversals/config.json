@@ -1,7 +1,7 @@
 {
   "name": "listAllCreditReversalsResult",
   "title": "List All CreditReversals",
-  "description": "List all creditreversals using the Stripe API",
+  "description": "List all creditreversals",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

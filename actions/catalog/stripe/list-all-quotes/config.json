@@ -1,7 +1,7 @@
 {
   "name": "listAllQuotesResult",
   "title": "List All Quotes",
-  "description": "List all quotes using the Stripe API",
+  "description": "List all quotes",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

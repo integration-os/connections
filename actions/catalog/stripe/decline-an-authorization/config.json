@@ -1,7 +1,7 @@
 {
   "name": "declineAnAuthorizationResult",
   "title": "Decline an Authorization",
-  "description": "Decline an authorization using the Stripe API",
+  "description": "Decline an authorization",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

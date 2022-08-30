@@ -1,7 +1,7 @@
 {
   "name": "listAllReportRunsResult",
   "title": "List All Report Runs",
-  "description": "List all report runs using the Stripe API",
+  "description": "List all report runs",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

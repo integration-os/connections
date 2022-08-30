@@ -1,7 +1,7 @@
 {
   "name": "retrieveAnInboundTransferResult",
   "title": "Retrieve an InboundTransfer",
-  "description": "Retrieve an inboundtransfer using the Stripe API",
+  "description": "Retrieve an inboundtransfer",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

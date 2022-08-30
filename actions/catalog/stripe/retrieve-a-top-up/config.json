@@ -1,7 +1,7 @@
 {
   "name": "retrieveATopUpResult",
   "title": "Retrieve a Top-Up",
-  "description": "Retrieve a top-up using the Stripe API",
+  "description": "Retrieve a top-up",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "postLinkedAccountsAccountRefreshResult",
-  "title": "<p>Refreshes the Data Associated with a Financial Connections <code>Account</code>.</p>",
-  "description": "<p>refreshes the data associated with a financial connections <code>account</code>.</p> using the Stripe API",
+  "title": "Refreshes the Data Associated with a Financial Connections Account",
+  "description": "Refreshes the data associated with a financial connections account",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

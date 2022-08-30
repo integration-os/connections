@@ -1,7 +1,7 @@
 {
   "name": "getPlansPlanResult",
-  "title": "<p>Retrieves the Plan with the Given ID.</p>",
-  "description": "<p>retrieves the plan with the given id.</p> using the Stripe API",
+  "title": "Retrieves the Plan with the Given ID",
+  "description": "Retrieves the plan with the given id",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

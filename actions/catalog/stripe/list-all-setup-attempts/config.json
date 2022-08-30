@@ -1,7 +1,7 @@
 {
   "name": "listAllSetupAttemptsResult",
   "title": "List All SetupAttempts",
-  "description": "List all setupattempts using the Stripe API",
+  "description": "List all setupattempts",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

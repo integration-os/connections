@@ -1,7 +1,7 @@
 {
   "name": "post3dSecureResult",
-  "title": "<p>Initiate 3D Secure authentication.</p>",
-  "description": "<p>initiate 3d secure authentication.</p> using the Stripe API",
+  "title": "Initiate 3D Secure Authentication",
+  "description": "Initiate 3d secure authentication",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

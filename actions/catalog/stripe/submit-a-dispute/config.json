@@ -1,7 +1,7 @@
 {
   "name": "submitADisputeResult",
   "title": "Submit a Dispute",
-  "description": "Submit a dispute using the Stripe API",
+  "description": "Submit a dispute",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

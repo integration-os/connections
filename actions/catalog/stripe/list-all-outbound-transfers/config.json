@@ -1,7 +1,7 @@
 {
   "name": "listAllOutboundTransfersResult",
   "title": "List All OutboundTransfers",
-  "description": "List all outboundtransfers using the Stripe API",
+  "description": "List all outboundtransfers",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
