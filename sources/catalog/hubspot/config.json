@@ -23,6 +23,7 @@
       "placeholder": "1158bbe7-1203-43ac-af0c-369f99228013"
     }
   ],
+  "connectionTypes": ["source"],
   "eventSchema": [
     {
       "eventId": "100",
