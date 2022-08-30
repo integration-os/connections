@@ -1,7 +1,7 @@
 {
   "name": "getLinkedAccountsResult",
-  "title": "<p>Returns a List of Financial Connections <code>Account</code> objects.</p>",
-  "description": "<p>returns a list of financial connections <code>account</code> objects.</p> using the Stripe API",
+  "title": "Returns a List of Financial Connections Account Objects",
+  "description": "Returns a list of financial connections account objects",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

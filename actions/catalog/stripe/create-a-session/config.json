@@ -1,7 +1,7 @@
 {
   "name": "createASessionResult",
   "title": "Create a Session",
-  "description": "Create a session using the Stripe API",
+  "description": "Create a session",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

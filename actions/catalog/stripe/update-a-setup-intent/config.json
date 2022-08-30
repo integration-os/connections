@@ -1,7 +1,7 @@
 {
   "name": "updateASetupIntentResult",
   "title": "Update a SetupIntent",
-  "description": "Update a setupintent using the Stripe API",
+  "description": "Update a setupintent",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

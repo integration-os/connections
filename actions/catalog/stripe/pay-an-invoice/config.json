@@ -1,7 +1,7 @@
 {
   "name": "payAnInvoiceResult",
   "title": "Pay an Invoice",
-  "description": "Pay an invoice using the Stripe API",
+  "description": "Pay an invoice",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

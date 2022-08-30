@@ -1,7 +1,7 @@
 {
   "name": "retrieveATransactionEntryResult",
   "title": "Retrieve a TransactionEntry",
-  "description": "Retrieve a transactionentry using the Stripe API",
+  "description": "Retrieve a transactionentry",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

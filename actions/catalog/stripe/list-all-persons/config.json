@@ -1,7 +1,7 @@
 {
   "name": "listAllPersonsResult",
   "title": "List All Persons",
-  "description": "List all persons using the Stripe API",
+  "description": "List all persons",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

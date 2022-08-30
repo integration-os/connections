@@ -1,7 +1,7 @@
 {
   "name": "result",
-  "title": "<p>Updates an Existing Subscription on a Customer to Match the Specified Parameters. When Changing P",
-  "description": "<p>updates an existing subscription on a customer to match the specified parameters. When changing plans or quantities, we will optionally prorate the price we charge next month to make up for any price changes. To preview how the proration will be calculated, use the <a href=\"#upcoming_invoice\">upcoming invoice</a> endpoint.</p> using the Stripe API",
+  "title": "Updates an Existing Subscription on a Customer to Match the Specified Parameters",
+  "description": "Updates an existing subscription on a customer to match the specified parameters. When changing plans or quantities, we will optionally prorate the price we charge next month to make up for any price changes. To preview how the proration will be calculated, use the upcoming invoice endpoint",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "getChargesChargeRefundsRefundResult",
-  "title": "<p>Retrieves the Details of an Existing refund.</p>",
-  "description": "<p>retrieves the details of an existing refund.</p> using the Stripe API",
+  "title": "Retrieves the Details of an Existing Refund",
+  "description": "Retrieves the details of an existing refund",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

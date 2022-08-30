@@ -1,7 +1,7 @@
 {
   "name": "createAnOrderResult",
   "title": "Create an Order",
-  "description": "Create an order using the Stripe API",
+  "description": "Create an order",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "listAllAccountCapabilitiesResult",
   "title": "List All Account Capabilities",
-  "description": "List all account capabilities using the Stripe API",
+  "description": "List all account capabilities",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

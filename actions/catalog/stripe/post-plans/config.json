@@ -1,7 +1,7 @@
 {
   "name": "postPlansResult",
-  "title": "<p>You Can Now Model Subscriptions More Flexibly Using the <a href=\"#prices\">Prices API</a>. It Repl",
-  "description": "<p>you can now model subscriptions more flexibly using the <a href=\"#prices\">prices api</a>. It replaces the plans api and is backwards compatible to simplify your migration.</p> using the Stripe API",
+  "title": "You Can Now Model Subscriptions More Flexibly Using the Prices API",
+  "description": "You can now model subscriptions more flexibly using the prices api. It replaces the plans api and is backwards compatible to simplify your migration",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
