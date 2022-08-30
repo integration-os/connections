@@ -78,6 +78,7 @@
     "secret": null,
     "signature": "_.headers.x-zendesk-webhook-signature"
   },
+  "connectionTypes": ["source"],
   "events": [
     {
       "name": "conditional_ticket_events",
