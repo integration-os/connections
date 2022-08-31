@@ -2,11 +2,16 @@
   "title": "ShipStation",
   "description": "Shipping tracking",
   "apiVersion": "2020-03-02",
-  "platform": "shipStations",
+  "platform": "shipstation",
   "category": "tracking",
-  "image": "https://assets.buildable.dev/catalog/node-templates/shipStation.svg",
+  "image": "https://assets.buildable.dev/catalog/node-templates/shipstation.svg",
   "tags": ["shipping", "tracking"],
   "authentication": [
+    {
+      "name": "SHIP_STATION_URL",
+      "label": "Enter ShipStation Url",
+      "placeholder": "https://ssapi.shipstation.com"
+    },
     {
       "name": "SHIP_STATION_API_KEY",
       "label": "Enter your ShipStation Api Key",
@@ -34,7 +39,7 @@
     "secret": null,
     "signature": null
   },
-  "connectionTypes": ["source", "action"],
+  "connectionTypes": ["source"],
   "events": [
     {
       "name": "ORDER_NOTIFY",
