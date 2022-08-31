@@ -1,7 +1,7 @@
 {
   "name": "listAllSubscriptionItemsResult",
   "title": "List All Subscription Items",
-  "description": "List all subscription items using the Stripe API",
+  "description": "List all subscription items",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

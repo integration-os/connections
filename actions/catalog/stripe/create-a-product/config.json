@@ -1,7 +1,7 @@
 {
   "name": "createAProductResult",
   "title": "Create a Product",
-  "description": "Create a product using the Stripe API",
+  "description": "Create a product",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

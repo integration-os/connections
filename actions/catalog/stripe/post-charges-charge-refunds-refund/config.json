@@ -1,7 +1,7 @@
 {
   "name": "postChargesChargeRefundsRefundResult",
-  "title": "<p>Update a Specified refund.</p>",
-  "description": "<p>update a specified refund.</p> using the Stripe API",
+  "title": "Update a Specified Refund",
+  "description": "Update a specified refund",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

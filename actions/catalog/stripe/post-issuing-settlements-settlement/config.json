@@ -1,7 +1,7 @@
 {
   "name": "postIssuingSettlementsSettlementResult",
-  "title": "<p>Updates the Specified Issuing <code>Settlement</code> Object by Setting the Values of the Paramet",
-  "description": "<p>updates the specified issuing <code>settlement</code> object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.</p> using the Stripe API",
+  "title": "Updates the Specified Issuing Settlement Object by Setting the Values of the Parameters Passed",
+  "description": "Updates the specified issuing settlement object by setting the values of the parameters passed. Any parameters not provided will be left unchanged",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

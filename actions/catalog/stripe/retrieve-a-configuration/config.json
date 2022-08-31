@@ -1,7 +1,7 @@
 {
   "name": "retrieveAConfigurationResult",
   "title": "Retrieve a Configuration",
-  "description": "Retrieve a configuration using the Stripe API",
+  "description": "Retrieve a configuration",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "createATaxIDResult",
   "title": "Create a Tax ID",
-  "description": "Create a tax id using the Stripe API",
+  "description": "Create a tax id",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

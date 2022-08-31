@@ -1,7 +1,7 @@
 {
   "name": "listAllSourcesResult",
   "title": "List All Sources",
-  "description": "List all sources using the Stripe API",
+  "description": "List all sources",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "retrieveACountrySpecResult",
   "title": "Retrieve a Country Spec",
-  "description": "Retrieve a country spec using the Stripe API",
+  "description": "Retrieve a country spec",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

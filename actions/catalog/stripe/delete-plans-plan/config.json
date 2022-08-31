@@ -1,7 +1,7 @@
 {
   "name": "deletePlansPlanResult",
-  "title": "<p>Deleting Plans Means New Subscribers Can’t Be Added. Existing Subscribers Aren’t affected.</p>",
-  "description": "<p>deleting plans means new subscribers can’t be added. Existing subscribers aren’t affected.</p> using the Stripe API",
+  "title": "Deleting Plans Means New Subscribers Can’t Be Added",
+  "description": "Deleting plans means new subscribers can’t be added. Existing subscribers aren’t affected",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

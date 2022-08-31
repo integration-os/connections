@@ -1,7 +1,7 @@
 {
   "name": "createAConnectionTokenResult",
   "title": "Create a Connection Token",
-  "description": "Create a connection token using the Stripe API",
+  "description": "Create a connection token",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
