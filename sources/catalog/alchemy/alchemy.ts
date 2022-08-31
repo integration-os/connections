@@ -91,11 +91,18 @@ export default class AlchemyIntegration implements IntegrationClassI {
   }
 
   verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Truthy {
-    const hmac = crypto.createHmac("sha256", secret);
-    hmac.update(request.body, "utf8");
-    const digest = hmac.digest("hex");
+    // Secret is an array of secrets because webhookData is an array
+    const secrets = secret as string[];
 
-    if (signature === digest) {
+    let atLeastOneMatch = false;
+    secrets.forEach((s) => {
+      const hmac = crypto.createHmac("sha256", s);
+      hmac.update(request.body, "utf8");
+      const digest = hmac.digest("hex");
+      atLeastOneMatch = atLeastOneMatch || signature === digest;
+    });
+
+    if (atLeastOneMatch) {
       return true;
     } else {
       throw new Error("Invalid signature");

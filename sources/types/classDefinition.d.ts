@@ -50,7 +50,7 @@ export interface IntegrationClassI {
    * @returns The updated subscribed events
    */
   unsubscribe: (
-    props: SubscriptionProps
+    props: SubscriptionProps,
   ) => Promise<{ events: Events; webhook?: any; webhooks?: any }>;
 
   /**
@@ -101,7 +101,7 @@ export interface VerifyWebhookSignatureProps {
     body: string;
   };
   signature: string;
-  secret: string | null;
+  secret: string[] | string | null;
 }
 
 export interface SubscriptionProps {
