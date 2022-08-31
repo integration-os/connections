@@ -4,7 +4,7 @@
   "apiVersion": "2020-08-24",
   "platform": "checkout.com",
   "category": "payments",
-  "image": "",
+  "image": "https://assets.buildable.dev/catalog/node-templates/checkout.svg",
   "tags": ["payments", "checkout.com", "ecommerce"],
   "authentication": [
     {
