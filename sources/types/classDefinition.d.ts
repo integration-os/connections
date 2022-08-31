@@ -101,7 +101,7 @@ export interface VerifyWebhookSignatureProps {
     body: string;
   };
   signature: string;
-  secret: string[] | string | null;
+  secret: string | null;
 }
 
 export interface SubscriptionProps {

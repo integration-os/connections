@@ -140,7 +140,7 @@ describe("Alchemy Integration", () => {
     it("should return true if the signature is valid", async () => {
       const result = await alchemy.verifyWebhookSignature({
         signature: testSignature,
-        secret: testSecrets,
+        secret: JSON.stringify(testSecrets),
         request: {
           body: JSON.stringify(testPayload),
           headers: {},
@@ -160,7 +160,7 @@ describe("Alchemy Integration", () => {
       try {
         await alchemy.verifyWebhookSignature({
           signature: invalidSignature,
-          secret: testSecrets,
+          secret: JSON.stringify(testSecrets),
           request: {
             body: JSON.stringify(testPayload),
             headers: {},
