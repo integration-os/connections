@@ -291,138 +291,138 @@
     },
     {
       "name": "invoice.canceled",
-      "description": "",
-      "group": ""
+      "description": "Published when an Invoice is canceled.",
+      "group": "Invoices"
     },
     {
       "name": "invoice.created",
-      "description": "",
-      "group": ""
+      "description": "Published when an Invoice is created.",
+      "group": "Invoices"
     },
     {
       "name": "invoice.deleted",
-      "description": "",
-      "group": ""
+      "description": "Published when a draft Invoice is deleted.",
+      "group": "Invoices"
     },
     {
       "name": "invoice.payment_made",
-      "description": "",
-      "group": ""
+      "description": "Published when a payment that is associated with an Invoice is completed.",
+      "group": "Invoices"
     },
     {
       "name": "invoice.published",
-      "description": "",
-      "group": ""
+      "description": "Published when an Invoice transitions from a draft to a non-draft status.",
+      "group": "Invoices"
     },
     {
       "name": "invoice.refunded",
-      "description": "",
-      "group": ""
+      "description": "Published when a refund is applied towards a payment of an Invoice.",
+      "group": "Invoices"
     },
     {
       "name": "invoice.scheduled_charge_failed",
-      "description": "",
-      "group": ""
+      "description": "Published when an automatic scheduled payment for an Invoice has failed.",
+      "group": "Invoices"
     },
     {
       "name": "invoice.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when an Invoice is updated.",
+      "group": "Invoices"
     },
     {
       "name": "labor.shift.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a worker starts a Shift.",
+      "group": "Labor"
     },
     {
       "name": "labor.shift.deleted",
-      "description": "",
-      "group": ""
+      "description": "Published when a Shift is deleted.",
+      "group": "Labor"
     },
     {
       "name": "labor.shift.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a Shift is updated.",
+      "group": "Labor"
     },
     {
       "name": "location.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a Location is created.",
+      "group": "Locations"
     },
     {
       "name": "location.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a Location is updated.",
+      "group": "Locations"
     },
     {
       "name": "loyalty.account.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a loyalty account is created.",
+      "group": "Loyalty"
     },
     {
       "name": "loyalty.account.deleted",
-      "description": "",
-      "group": ""
+      "description": "Published when a loyalty account is deleted.",
+      "group": "Loyalty"
     },
     {
       "name": "loyalty.account.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a loyalty account is updated.",
+      "group": "Loyalty"
     },
     {
       "name": "loyalty.event.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a loyalty event is created.",
+      "group": "Loyalty"
     },
     {
       "name": "loyalty.program.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a loyalty program is created.",
+      "group": "Loyalty"
     },
     {
       "name": "loyalty.program.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a loyalty program is updated.",
+      "group": "Loyalty"
     },
     {
       "name": "loyalty.promotion.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a loyalty promotion is created.",
+      "group": "Loyalty"
     },
     {
       "name": "loyalty.promotion.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a loyalty promotion is updated.",
+      "group": "Loyalty"
     },
     {
       "name": "oauth.authorization.revoked",
-      "description": "",
-      "group": ""
+      "description": "Published when a merchant/application revokes all access tokens and refresh tokens granted to an application.",
+      "group": "OAuth"
     },
     {
       "name": "order.created",
-      "description": "",
-      "group": ""
+      "description": "Published when an Order is created.",
+      "group": "Orders"
     },
     {
       "name": "order.fulfillment.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when an OrderFulfillment is created or updated.",
+      "group": "Orders"
     },
     {
       "name": "order.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when an Order is updated.",
+      "group": "Orders"
     },
     {
       "name": "payment.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a Payment is created.",
+      "group": "Payments"
     },
     {
       "name": "payment.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a Payment is updated.",
+      "group": "Payments"
     },
     {
       "name": "payment_method_enrollment.updated",
@@ -431,93 +431,93 @@
     },
     {
       "name": "payout.failed",
-      "description": "",
-      "group": ""
+      "description": "Published when a Payout has failed.",
+      "group": "Payouts"
     },
     {
       "name": "payout.paid",
-      "description": "",
-      "group": ""
+      "description": "Published when a Payout is complete.",
+      "group": "Payouts"
     },
     {
       "name": "payout.sent",
-      "description": "",
-      "group": ""
+      "description": "Published when a Payout is sent.",
+      "group": "Payouts"
     },
     {
       "name": "refund.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a Refund is created.",
+      "group": "Refunds"
     },
     {
       "name": "refund.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a Refund is updated.",
+      "group": "Refunds"
     },
     {
       "name": "subscription.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a Subscription is created.",
+      "group": "Subscriptions"
     },
     {
       "name": "subscription.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a Subscription is updated.",
+      "group": "Subscriptions"
     },
     {
       "name": "team_member.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a Team Member is created.",
+      "group": "Team"
     },
     {
       "name": "team_member.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a Team Member is updated.",
+      "group": "Team"
     },
     {
       "name": "team_member.wage_setting.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a Wage Setting is updated.",
+      "group": "Team"
     },
     {
       "name": "terminal.action.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a TerminalAction is crated.",
+      "group": "Terminal"
     },
     {
       "name": "terminal.action.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a TerminalAction is updated.",
+      "group": "Terminal"
     },
     {
       "name": "terminal.checkout.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a TerminalCheckout is created.",
+      "group": "Terminal"
     },
     {
       "name": "terminal.checkout.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a TerminalCheckout is updated.",
+      "group": "Terminal"
     },
     {
       "name": "terminal.refund.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a Terminal API refund is created.",
+      "group": "Terminal"
     },
     {
       "name": "terminal.refund.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a Terminal API refund is updated.",
+      "group": "Terminal"
     },
     {
       "name": "vendor.created",
-      "description": "",
-      "group": ""
+      "description": "Published when a Vendor is created.",
+      "group": "Vendors"
     },
     {
       "name": "vendor.updated",
-      "description": "",
-      "group": ""
+      "description": "Published when a Vendor is updated.",
+      "group": "Vendors"
     }
   ]
 }
