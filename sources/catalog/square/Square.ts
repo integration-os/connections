@@ -51,9 +51,11 @@ export default class SquareIntegration implements IntegrationClassI {
     hmac.update(webhookUrl + body);
     const hash = hmac.digest('base64');
 
-    if(!(hash === signature)) throw new Error('Signature verification failed');
+    const isValid = hash === signature;
 
-    return hash === signature;
+    if(!isValid) throw new Error('Signature verification failed');
+
+    return isValid;
   }
 
   async getWebhooks(): Promise<AnyObject | AnyObject[]> {
