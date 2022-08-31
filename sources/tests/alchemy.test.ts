@@ -39,7 +39,7 @@ describe("Alchemy Integration", () => {
       webhookIds = [];
     });
 
-    it("should create a webhook", async () => {
+    it("should create webhooks", async () => {
       const { webhookData, events } = <{ webhookData: any; events: [] }>await alchemy.init({
         webhookUrl: "https://example.com/webhook",
         events: Object.values(EVENTS),
@@ -57,6 +57,31 @@ describe("Alchemy Integration", () => {
       expect(events).toEqual(Object.values(EVENTS));
 
       webhookIds = webhookData.map((w) => w.id);
+    });
+
+    it("should create webhooks without passing in optional auth params", async () => {
+      const alchemy2 = new AlchemyIntegration({
+        ALCHEMY_API_TOKEN: process.env.ALCHEMY_API_TOKEN as string,
+        ALCHEMY_APP_ID: process.env.ALCHEMY_APP_ID as string,
+      });
+
+      const { webhookData, events } = <{ webhookData: any; events: [] }>await alchemy2.init({
+        webhookUrl: "https://example.com/webhook",
+        events: [EVENTS.MINED_TRANSACTION, EVENTS.DROPPED_TRANSACTION],
+      });
+
+      expect(webhookData.length).toBe(2);
+
+      webhookData.forEach((webhook, i) => {
+        expect(webhook).toHaveProperty("id");
+        expect(webhook).toHaveProperty("webhook_type");
+        expect(webhook.webhook_type).toEqual(events[i]);
+        expect(webhook.webhook_url).toEqual("https://example.com/webhook");
+      });
+
+      expect(events).toEqual([EVENTS.MINED_TRANSACTION, EVENTS.DROPPED_TRANSACTION]);
+
+      alchemy2.deleteWebhookEndpoint({ webhookIds: webhookData.map((w) => w.id) });
     });
 
     it("should throw an error if Alchemy does not return 200", async () => {
@@ -106,16 +131,16 @@ describe("Alchemy Integration", () => {
       },
     };
 
-    const testSecret = "1234";
+    const testSecrets = ["1234", "asdf", "acbd"];
 
-    const testSignature = `${createHmac("sha256", testSecret)
+    const testSignature = `${createHmac("sha256", testSecrets[2])
       .update(JSON.stringify(testPayload))
       .digest("hex")}`;
 
     it("should return true if the signature is valid", async () => {
       const result = await alchemy.verifyWebhookSignature({
         signature: testSignature,
-        secret: testSecret,
+        secret: testSecrets,
         request: {
           body: JSON.stringify(testPayload),
           headers: {},
@@ -135,7 +160,7 @@ describe("Alchemy Integration", () => {
       try {
         await alchemy.verifyWebhookSignature({
           signature: invalidSignature,
-          secret: testSecret,
+          secret: testSecrets,
           request: {
             body: JSON.stringify(testPayload),
             headers: {},

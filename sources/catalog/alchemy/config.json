@@ -13,22 +13,26 @@
     },
     {
       "name": "ALCHEMY_APP_ID",
-      "label": "Enter your Alchemy App ID. Required for mined and dropped webhooks."
+      "label": "Enter your Alchemy App ID. Required for mined and dropped webhooks.",
+      "required": false
     },
     {
       "name": "ALCHEMY_NETWORK",
       "label": "Enter the network of webhook.",
-      "placeholder": "ETH_KOVAN"
+      "placeholder": "ETH_KOVAN",
+      "required": false
     },
     {
       "name": "ALCHEMY_ADDRESSES",
       "label": "Enter a comma seperated list of address you want to track. Required for the address activity webhook.",
-      "placeholder": "address_1, address_2, ..."
+      "placeholder": "address_1, address_2, ...",
+      "required": false
     },
     {
       "name": "ALCHEMY_TOKEN_IDS",
       "label": "Enter a comma seperated list of pairs to track nft activity: contract_address and token_id. Required for the nft activity webhook.",
-      "placeholder": "contract_address_1, token_id_1, contract_address_2, token_id_2, ..."
+      "placeholder": "contract_address_1, token_id_1, contract_address_2, token_id_2, ...",
+      "required": false
     }
   ],
   "eventSchema": {
