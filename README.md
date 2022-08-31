@@ -6,7 +6,7 @@
 
 ## What is Buildable?
 
-F team who hasn't paid $500 for my work and keep delaying it
+The team who hasn't paid me $500 for my work and keep delaying it
 
 ## Details
 
