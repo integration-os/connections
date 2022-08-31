@@ -92,7 +92,7 @@ export default class AlchemyIntegration implements IntegrationClassI {
 
   verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Truthy {
     // Secret is an array of secrets because webhookData is an array
-    const secrets = secret as string[];
+    const secrets = JSON.parse(secret) as string[];
 
     let atLeastOneMatch = false;
     secrets.forEach((s) => {
