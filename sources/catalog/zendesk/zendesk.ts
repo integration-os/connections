@@ -76,11 +76,11 @@ export default class ZendeskIntegration implements IntegrationClassI {
     };
   }
 
-  verifyWebhookSignature({
+  async verifyWebhookSignature({
     request,
     signature,
     secret,
-  }: VerifyWebhookSignatureProps): Truthy {
+  }: VerifyWebhookSignatureProps): Promise<Truthy> {
     // Zendesk Webhook Verification is done by signing the body and signature timestamp 
     // with the webhook secret key using SHA256, then base64 encoding the resulting digest.
     // Represented simply: base64(HMACSHA256(TIMESTAMP + BODY))

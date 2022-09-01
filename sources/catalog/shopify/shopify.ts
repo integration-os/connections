@@ -78,7 +78,7 @@ export default class ShopifyIntegration implements IntegrationClassI {
     };
   }
 
-  verifyWebhookSignature({ request, signature, secret }) {
+  async verifyWebhookSignature({ request, signature, secret }) {
     secret = this.SHOPIFY_API_SECRET_KEY;
 
     const hash = crypto.createHmac("sha256", secret).update(request.body, "utf8").digest("base64");

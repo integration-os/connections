@@ -90,10 +90,10 @@ export default class CheckoutIntegration implements IntegrationClassI {
   }
 
   // Checkout.com Webhook signature is available in the "Cko-Signature" header
-  verifyWebhookSignature({
+  async verifyWebhookSignature({
      request,
      signature,
-   }: VerifyWebhookSignatureProps): Truthy {
+   }: VerifyWebhookSignatureProps): Promise<Truthy> {
     const hash = crypto
       .createHmac("sha256", this.webhookSignKey)
       .update(request.body, "utf8")

@@ -112,7 +112,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
     };
   }
 
-  verifyWebhookSignature({ request, signature, secret }): Truthy {
+  async verifyWebhookSignature({ request, signature, secret }): Truthy {
     // ShipStation doesn't have a way to verify the signature so we can just return true
     return true;
   }
