@@ -2,7 +2,7 @@
   "title": "Checkout.com",
   "description": "Payment processing and ecommerce",
   "apiVersion": "2020-08-24",
-  "platform": "checkout.com",
+  "platform": "checkout",
   "category": "payments",
   "image": "https://assets.buildable.dev/catalog/node-templates/checkout.svg",
   "tags": ["payments", "checkout.com", "ecommerce"],
