@@ -50,7 +50,7 @@ export interface IntegrationClassI {
    * @returns The updated subscribed events
    */
   unsubscribe: (
-    props: SubscriptionProps
+    props: SubscriptionProps,
   ) => Promise<{ events: Events; webhook?: any; webhooks?: any }>;
 
   /**
