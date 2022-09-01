@@ -47,10 +47,12 @@
     "@hubspot/api-client": "^7.1.2",
     "@octokit/core": "^4.0.4",
     "@shopify/shopify-api": "^4.1.0",
+    "@types/paypal-rest-sdk": "^1.7.6",
     "axios": "^0.27.2",
     "dotenv": "^16.0.0",
     "lodash": "^4.17.21",
     "stripe": "^9.13.0",
-    "jira.js": "^2.15.8"
+    "jira.js": "^2.15.8",
+    "paypal-rest-sdk": "^1.8.1"
   }
 }
