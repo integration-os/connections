@@ -12,7 +12,7 @@ import {
   VerifyWebhookSignatureProps,
 } from "../../types/classDefinition";
 
-export class HubspotIntegration implements IntegrationClassI {
+export default class HubspotIntegration implements IntegrationClassI {
   id = "intg_65c33a5b6e1286b561a83bc0";
 
   name = "Hubspot";
