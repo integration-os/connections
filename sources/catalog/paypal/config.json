@@ -118,7 +118,7 @@
     "secret": null,
     "signature": null
   },
-  "connectionTypes": ["source", "action"],
+  "connectionTypes": ["source"],
   "events": [
     {
       "name": "PAYMENT.AUTHORIZATION.CREATED",

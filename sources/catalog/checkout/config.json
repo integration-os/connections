@@ -74,7 +74,7 @@
     "secret": null,
     "signature": "_.headers.Cko-Signature"
   },
-  "connectionTypes": ["source", "action"],
+  "connectionTypes": ["source"],
   "events": [
     {
       "name": "gateway.payment_voided",
