@@ -34,7 +34,7 @@
     "subscriptionDelayMultiplier": 0.0
   },
   "paths": {
-    "id": "_.body.event_id",
+    "id": "_.body.subscription.id",
     "event": "_.body.type",
     "payload": "_.body",
     "secret": "_.body.subscription.signature_key",
