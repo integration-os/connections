@@ -42,7 +42,7 @@ export class HubspotIntegration implements IntegrationClassI {
     });
   }
 
-  verifyWebhookSignature(props: VerifyWebhookSignatureProps): boolean {
+  async verifyWebhookSignature(props: VerifyWebhookSignatureProps): boolean {
     return this.client.webhooks.validateSignature(
       props.signature,
       this.CLIENT_SECRET,
