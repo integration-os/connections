@@ -1,10 +1,10 @@
 {
-  "title": "Stripe",
+  "title": "PayPal",
   "description": "Payment processing and ecommerce",
-  "apiVersion": "",
+  "apiVersion": "NA",
   "platform": "paypal",
   "category": "payments",
-  "image": "",
+  "image": "https://assets.buildable.dev/catalog/node-templates/paypal.svg",
   "tags": ["payments", "paypal", "ecommerce"],
   "authentication": [
     {
