@@ -81,7 +81,7 @@ export default class CheckoutIntegration implements IntegrationClassI {
       });
 
       return {
-        webhookData: webhooks.data.id,
+        webhookData: webhooks.data,
         events
       }
     } catch(error) {
