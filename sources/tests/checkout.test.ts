@@ -84,6 +84,7 @@ describe("Checkout Integration", () => {
         events,
       });
       expect(webhook.webhookData).toBeDefined();
+      expect(webhook.webhookData['id']).toBeDefined();
       expect(webhook.events).toEqual(events);
     });
 
@@ -267,7 +268,10 @@ async function createWebhook(events: string[] = defaultEvents): Promise<string> 
     webhookUrl: 'https://example.com',
     events,
   });
-  return (webhook.webhookData as unknown as string);
+  if (!webhook.webhookData.hasOwnProperty('id')) {
+    throw new Error('Error creating webhook');
+  }
+  return webhook.webhookData['id'];
 }
 
 async function deleteWebhook(webhookId: string) {
