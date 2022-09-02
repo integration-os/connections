@@ -18,8 +18,54 @@
     },
     {
       "name": "ALCHEMY_NETWORK",
-      "label": "Enter the network of webhook.",
-      "placeholder": "ETH_KOVAN",
+      "type": "select",
+      "options": [
+        {
+          "name": "ARB_MAINNET",
+          "value": "ARB_MAINNET"
+        },
+        {
+          "name": "ARB_RINKEBY",
+          "value": "ARB_RINKEBY"
+        },
+        {
+          "name": "MATIC_MAINNET",
+          "value": "MATIC_MAINNET"
+        },
+        {
+          "name": "MATIC_MUMBAI",
+          "value": "MATIC_MUMBAI"
+        },
+        {
+          "name": "OPT_MAINNET",
+          "value": "OPT_MAINNET"
+        },
+        {
+          "name": "OPT_KOVAN",
+          "value": "OPT_KOVAN"
+        },
+        {
+          "name": "ETH_MAINNET",
+          "value": "ETH_MAINNET"
+        },
+        {
+          "name": "ETH_GOERLI",
+          "value": "ETH_GOERLI"
+        },
+        {
+          "name": "ETH_ROPSTEN",
+          "value": "ETH_ROPSTEN"
+        },
+        {
+          "name": "ETH_RINKEBY",
+          "value": "ETH_RINKEBY"
+        },
+        {
+          "name": "ETH_KOVAN",
+          "value": "ETH_KOVAN"
+        }
+      ],
+      "label": "Select the Alchemy App Network",
       "required": false
     },
     {
