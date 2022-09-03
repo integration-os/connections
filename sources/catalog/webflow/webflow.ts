@@ -40,26 +40,21 @@ export default class WebflowIntegration implements IntegrationClassI {
 
   private readonly WEBFLOW_BASE_URL = null;
   private readonly WEBFLOW_API_TOKEN = null;
-  private readonly WEBFLOW_VERSION = null;
+  private readonly WEBFLOW_VERSION = "1.0.0";
 
   private webflowSiteId?: string;
-
-  private readonly DEFAULT_WEBFLOW_VERSION = "1.0.0";
 
   private readonly client: AxiosInstance;
 
   constructor({
     WEBFLOW_BASE_URL,
     WEBFLOW_API_TOKEN,
-    WEBFLOW_VERSION,
   }: {
     WEBFLOW_BASE_URL: string;
     WEBFLOW_API_TOKEN: string;
-    WEBFLOW_VERSION?: string;
   }) {
     this.WEBFLOW_BASE_URL = WEBFLOW_BASE_URL;
     this.WEBFLOW_API_TOKEN = WEBFLOW_API_TOKEN;
-    this.WEBFLOW_VERSION = WEBFLOW_VERSION || this.DEFAULT_WEBFLOW_VERSION;
 
     this.client = axios.create({
       baseURL: this.WEBFLOW_BASE_URL,
@@ -126,7 +121,7 @@ export default class WebflowIntegration implements IntegrationClassI {
    * @param props
    * @returns
    */
-  verifyWebhookSignature(props: VerifyWebhookSignatureProps): Truthy {
+  async verifyWebhookSignature(props: VerifyWebhookSignatureProps): Promise<Truthy> {
     return true;
   }
 
