@@ -14,56 +14,167 @@ import {
 
 import axios, { AxiosInstance } from "axios";
 
+const sleep = (n) => new Promise((resolve) => setTimeout(resolve, n));
+
 export default class AdyenIntegration implements IntegrationClassI {
   id: string;
   name: string;
 
   readonly client: AxiosInstance;
+  private readonly ADYEN_API_KEY: string;
+  private readonly ADYEN_VERIFICATION_USERNAME: string;
+  private readonly ADYEN_VERIFICATION_PASSWORD: string;
 
-  constructor() {
-    this.client = axios.create();
+  constructor({
+    ADYEN_COMPANY_ID,
+    ADYEN_API_KEY,
+    ADYEN_VERIFICATION_USERNAME,
+    ADYEN_VERIFICATION_PASSWORD,
+  }: {
+    ADYEN_COMPANY_ID: string;
+    ADYEN_API_KEY: string;
+    ADYEN_VERIFICATION_USERNAME: string;
+    ADYEN_VERIFICATION_PASSWORD: string;
+  }) {
+    this.client = axios.create({
+      baseURL: `https://management-test.adyen.com/v1/companies/${ADYEN_COMPANY_ID}/webhooks`,
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": "buildable",
+        "X-API-Key": ADYEN_API_KEY,
+      },
+    });
+
+    this.ADYEN_API_KEY = ADYEN_API_KEY;
+    this.ADYEN_VERIFICATION_USERNAME = ADYEN_VERIFICATION_USERNAME;
+    this.ADYEN_VERIFICATION_PASSWORD = ADYEN_VERIFICATION_PASSWORD;
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
+    const webhooks: AnyObject[] = [];
+
+    for (const event of events) {
+      try {
+        const startTime = Date.now();
+
+        const webhook = await this.client
+          .post("/", {
+            active: true,
+            communicationFormat: "json",
+            filterMerchantAccountType: "allAccounts",
+            type: event,
+            url: webhookUrl,
+            username: this.ADYEN_VERIFICATION_USERNAME,
+            password: this.ADYEN_VERIFICATION_PASSWORD,
+          })
+          .then((response) => response.data);
+
+        const elapsedTime = Date.now() - startTime;
+
+        if (elapsedTime < 500) {
+          await sleep(500 - elapsedTime);
+        }
+
+        webhooks.push(webhook);
+      } catch (error) {
+        console.log(`Unable to create webhook for event ${event}: ${error.message}`);
+      }
+    }
+
     return {
-      webhookData: {},
-      events: [],
+      webhookData: webhooks,
+      events: webhooks.map((webhook) => webhook.type),
     };
   }
 
-  verifyWebhookSignature({ signature: signature }: VerifyWebhookSignatureProps): Truthy {
+  verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Truthy {
+    secret = Buffer.from(
+      `${this.ADYEN_VERIFICATION_USERNAME}:${this.ADYEN_VERIFICATION_PASSWORD}`,
+    ).toString("base64");
+
+    signature = request.headers["authorization"].split("Basic ")[1];
+
+    if (secret !== signature) {
+      throw new Error("invalid signature");
+    }
+
     return true;
   }
 
-  async subscribe({ webhookId, events }: SubscriptionProps): Promise<SubscribeReturns> {
-    // return new webhooks
+  async subscribe({ webhookIds, events }: SubscriptionProps): Promise<SubscribeReturns> {
+    const webhooks: AnyObject[] = (await this.getWebhooks({ webhookIds })) as AnyObject[];
+
+    // find list of events to subscribe to
+    const subscribedEvents = webhooks.map((webhook) => webhook.type);
+    const eventsToSubscribe = events.filter((event) => !subscribedEvents.includes(event));
+
+    // subscribe to events
+    const url = webhooks[0].url;
+    const { webhookData: newWebhooks, events: newEvents } = await this.init({
+      webhookUrl: url,
+      events: eventsToSubscribe,
+    });
+
+    // return new webhook/events list
     return {
-      webhook: {},
-      events: [],
+      webhooks: [...webhooks, newWebhooks],
+      events: [...subscribedEvents, ...newEvents],
     };
   }
 
-  async unsubscribe({ webhookId, events }: SubscriptionProps): Promise<{
+  async unsubscribe({ webhookIds, events }: SubscriptionProps): Promise<{
     events: Events;
     webhook?: any;
     webhooks?: any;
   }> {
+    const webhooks: AnyObject[] = (await this.getWebhooks({ webhookIds })) as AnyObject[];
+
+    // find webhooks to delete
+    const subscribedEvents = webhooks.map((webhook) => webhook.type);
+    const eventsToUnsubscribe = events.filter((event) => subscribedEvents.includes(event));
+
+    const webhooksToDelete = webhooks.filter((webhook) =>
+      eventsToUnsubscribe.includes(webhook.type),
+    );
+
+    // delete webhooks
+    const deletedWebhooks = [];
+
+    for (const webhook of webhooksToDelete) {
+      await this.deleteWebhookEndpoint({ webhookId: webhook.id }).then(() =>
+        deletedWebhooks.push(webhook),
+      );
+    }
+
+    // return final webhooks/events list
     return {
-      webhook: {},
-      events: [],
+      webhooks: webhooks.filter((webhook) => !deletedWebhooks.includes(webhook)),
+      events: subscribedEvents.filter(
+        (event) => !deletedWebhooks.map((webhook) => webhook.type).includes(event),
+      ),
     };
   }
 
-  async getWebhooks({ webhookId }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
-    return {};
+  async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+    return await this.client.get("/").then((response) => response.data.data);
   }
 
-  async getSubscribedEvents({ webhookId }: WebhooksProps): Promise<Events> {
-    return [];
+  async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {
+    const webhooks = await this.getWebhooks({ webhookIds });
+
+    return Array.from(new Set(webhooks.map((webhook) => webhook.type)));
   }
 
   async deleteWebhookEndpoint({ webhookId }: DeleteWebhookEndpointProps): Promise<Truthy> {
-    return true;
+    try {
+      await this.client.delete(`/${webhookId}`);
+      return true;
+    } catch (error) {
+      const message = `Unable to delete webhook id ${webhookId}: ${error.message}`;
+      console.log(message);
+
+      throw new Error(message);
+    }
   }
 
   async testConnection(): Promise<Truthy> {

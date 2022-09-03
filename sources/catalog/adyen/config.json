@@ -6,29 +6,66 @@
   "category": "payment",
   "image": "https://assets.buildable.dev/catalog/node-templates/adyen.svg",
   "tags": [
-    "payment",
+    "payment"
   ],
   "authentication": [
-    // TODO: change
     {
-      "name": "GITLAB_ACCESS_TOKEN",
+      "name": "ADYEN_COMPANY_ID",
+      "label": "Enter your Adyen Company ID",
+      "placeholder": "MyCompany"
+    },
+    {
+      "name": "ADYEN_API_KEY",
       "label": "Enter your GitLab Personal API Key",
-      "placeholder": "glpat-MDsSCit_wit61jf2bJgv"
+      "placeholder": "AQEohmfxJo3MbxxFw0m/n3Q5qf3VbI5bKZxNRudnEoG/AEDsaKzj/YE0YxDBXVsNvuR83LVYjEgiTGAH"
+    },
+    {
+      "name": "ADYEN_VERIFICATION_USERNAME",
+      "label": "Enter your Adyen Verification Username",
+      "placeholder": "my-username"
+    },
+    {
+      "name": "ADYEN_VERIFICATION_PASSWORD",
+      "label": "Enter your Adyen Verification Password",
+      "placeholder": "my-password"
     }
   ],
-  "eventSchema": {},
+  "eventSchema": {
+    "live":"false",
+    "notificationItems":[
+      {
+        "NotificationRequestItem":{
+          "additionalData":{
+            "expiryDate":"03/2030",
+            "cardSummary":"0005",
+            "hmacSignature":"YvCKx7b+aSiEH2eoZH8KEXWkSVQzZMCZyKC1glvHrBI="
+          },
+          "amount":{
+            "currency":"USD",
+            "value":25647
+          },
+          "eventCode":"AUTHORISATION",
+          "eventDate":"2022-09-03T12:21:18+02:00",
+          "merchantAccountCode":"BestMerch",
+          "merchantReference":"PLAYGROUND-1662200466116",
+          "paymentMethod":"cartebancaire",
+          "pspReference":"CSRK99WWP5PFWR82",
+          "success":"true"
+        }
+      }
+    ]
+  },
   "settings": {
     "parseWebhookBody": false,
     "hasSubscriptionDelay": false,
     "subscriptionDelayMultiplier": 0.0
   },
   "paths": {
-    // TODO: change
     "id": "_.body.id",
-    "event": "_.body.event_type",
+    "event": "_.body.type",
     "payload": "_.body",
-    "secret": "_.headers.x-gitlab-token",
-    "signature": "_.headers.x-gitlab-token"
+    "secret": null,
+    "signature": "_.headers.authorization"
   },
   "connectionTypes": ["source"],
   "events":
