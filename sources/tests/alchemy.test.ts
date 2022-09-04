@@ -31,7 +31,6 @@ alchemyMockPartialFail.getWebhooks = async ({ webhookIds }: { webhookIds: string
 const alchemyMockFail = mockFailingIntegration();
 
 describe("Alchemy Integration", () => {
-  /*
   describe("init", () => {
     let webhookIds: string[] = [];
 
@@ -235,7 +234,6 @@ describe("Alchemy Integration", () => {
       );
     });
   });
-  
 
   describe("unsubscribe", () => {
     let webhookIds: string[] = [];
@@ -312,7 +310,6 @@ describe("Alchemy Integration", () => {
     });
   });
 
-  
   describe("getWebhooks", () => {
     let webhookIds: string[] = [];
 
@@ -387,7 +384,6 @@ describe("Alchemy Integration", () => {
       );
     });
   });
-  */
 
   describe("deleteWebhookEndpoint", () => {
     let webhookIds: string[] = [];
@@ -446,7 +442,6 @@ describe("Alchemy Integration", () => {
     });
   });
 
-  /*
   describe("testConnection", () => {
     it("should return true if the connection is successful", async () => {
       const result = await alchemy.testConnection();
@@ -465,7 +460,6 @@ describe("Alchemy Integration", () => {
       expect(errorMessage).toMatch(/Could not connect to Alchemy/g);
     });
   });
-  */
 });
 
 async function createWebhooks(events: string[] = [EVENTS.MINED_TRANSACTION]): Promise<string[]> {
