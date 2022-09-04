@@ -103,8 +103,8 @@ describe("Checkout Integration", () => {
   });
 
   describe("verifyWebhookSignature", () => {
-    it("should return true when signature is valid", () => {
-      const result = checkout.verifyWebhookSignature({
+    it("should return true when signature is valid", async () => {
+      const result = await checkout.verifyWebhookSignature({
         request: {
           headers: {},
           body: JSON.stringify(eventPayload),
@@ -116,10 +116,10 @@ describe("Checkout Integration", () => {
       expect(result).toBeTruthy();
     });
 
-    it("should throw an error when signature is valid", () => {
+    it("should throw an error when signature is invalid", async () => {
       const invalidSignature = 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad';
       try {
-        checkout.verifyWebhookSignature({
+        await checkout.verifyWebhookSignature({
           request: {
             headers: {},
             body: JSON.stringify(eventPayload),
