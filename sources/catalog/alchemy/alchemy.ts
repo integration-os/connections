@@ -90,7 +90,11 @@ export default class AlchemyIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Promise<Truthy> {
+  async verifyWebhookSignature({
+    request,
+    signature,
+    secret,
+  }: VerifyWebhookSignatureProps): Promise<Truthy> {
     // Secret is an array of secrets because webhookData is an array
     const secrets = JSON.parse(secret) as string[];
 
@@ -167,9 +171,11 @@ export default class AlchemyIntegration implements IntegrationClassI {
   async deleteWebhookEndpoint({ webhookIds, webhookId }: WebhooksProps): Promise<Truthy> {
     const webhookIdsToDelete = webhookIds ? webhookIds : [webhookId];
     for (const id of webhookIdsToDelete) {
-      const response = await this.client.delete(`/delete-webhook?webhook_id=${id}`);
+      const response = await this.client.delete(`/delete-webhook?webhook_id=${id}`, {
+        validateStatus: (status) => [200, 404].includes(status),
+      });
 
-      if (response.status !== 200) {
+      if (![200, 404].includes(response.status)) {
         throw new Error(`Could not delete Alchemy webhook: ${response?.data?.message}`);
       }
     }
