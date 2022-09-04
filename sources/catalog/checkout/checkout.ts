@@ -81,7 +81,9 @@ export default class CheckoutIntegration implements IntegrationClassI {
       });
 
       return {
-        webhookData: webhooks.data,
+        webhookData: {
+          id: webhooks.data.id
+        },
         events
       }
     } catch(error) {
@@ -123,7 +125,7 @@ export default class CheckoutIntegration implements IntegrationClassI {
       });
 
       return {
-        webhook: { webhookId },
+        webhook: { id: webhookId },
         events: newEventsList,
       };
     } catch(error) {
@@ -150,7 +152,7 @@ export default class CheckoutIntegration implements IntegrationClassI {
       });
 
       return {
-        webhook: { webhookId },
+        webhook: { id: webhookId },
         events: newEventsList,
       };
     } catch(error) {
