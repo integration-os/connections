@@ -1,0 +1,639 @@
+{
+  "title": "PayPal",
+  "description": "Payment processing and ecommerce",
+  "apiVersion": "NA",
+  "platform": "paypal",
+  "category": "payments",
+  "image": "https://assets.buildable.dev/catalog/node-templates/paypal.svg",
+  "tags": ["payments", "paypal", "ecommerce"],
+  "authentication": [
+    {
+      "name": "PAYPAL_CLIENT_ID",
+      "label": "Enter your Paypal Client ID",
+      "placeholder": "EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM"
+    },
+    {
+      "name": "PAYPAL_CLIENT_SECRET",
+      "label": "Enter your Paypal Client Secret",
+      "placeholder": "EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM"
+    }
+  ],
+  "eventSchema": {
+    "id": "WH-2N1678257S892762B-8MC99539P4557624Y",
+    "event_version": "1.0",
+    "create_time": "2016-04-28T11:21:44Z",
+    "resource_type": "plan",
+    "event_type": "BILLING.PLAN.CREATED",
+    "summary": "A billing plan was created",
+    "resource": {
+      "id": "P-7LT50814996943336LSNDODY",
+      "merchant_preferences": {
+        "setup_fee": { "currency": "USD", "value": "1" },
+        "return_url": "http://www.paypal.com",
+        "cancel_url": "http://www.yahoo.com",
+        "auto_bill_amount": "YES",
+        "initial_fail_amount_action": "CONTINUE",
+        "max_fail_attempts": "21"
+      },
+      "update_time": "2016-04-28T11:21:31.151Z",
+      "description": "test web new",
+      "payment_definitions": [
+        {
+          "name": "Payment Definition-1",
+          "type": "REGULAR",
+          "frequency": "Month",
+          "frequency_interval": "1",
+          "amount": { "currency": "USD", "value": "10" },
+          "cycles": "15",
+          "charge_models": [
+            {
+              "type": "SHIPPING",
+              "amount": { "currency": "USD", "value": "1" },
+              "id": "CHM-29V063578B632154XLSNDODY"
+            },
+            {
+              "type": "TAX",
+              "amount": { "currency": "USD", "value": "2" },
+              "id": "CHM-72N78855RJ303084YLSNDODY"
+            }
+          ],
+          "id": "PD-28U66480VB469201XLSNDODY"
+        },
+        {
+          "name": "Payment Definition-2",
+          "type": "TRIAL",
+          "frequency": "Month",
+          "frequency_interval": "1",
+          "amount": { "currency": "USD", "value": "5" },
+          "cycles": "5",
+          "charge_models": [
+            {
+              "type": "SHIPPING",
+              "amount": { "currency": "USD", "value": "1" },
+              "id": "CHM-4CT119433N5199501LSNDODY"
+            },
+            {
+              "type": "TAX",
+              "amount": { "currency": "USD", "value": "1" },
+              "id": "CHM-38H015979N656741TLSNDODY"
+            }
+          ],
+          "id": "PD-99B78670BE878604GLSNDODY"
+        }
+      ],
+      "name": "Fast Speed Plan",
+      "state": "CREATED",
+      "create_time": "2016-04-28T11:21:31.151Z",
+      "links": [
+        {
+          "href": "https://api.paypal.com/v1/payments/billing-plans/P-7LT50814996943336LSNDODY",
+          "rel": "self",
+          "method": "GET"
+        }
+      ],
+      "type": "FIXED"
+    },
+    "links": [
+      {
+        "href": "https://api.paypal.com/v1/notifications/webhooks-events/WH-2N1678257S892762B-8MC99539P4557624Y",
+        "rel": "self",
+        "method": "GET"
+      },
+      {
+        "href": "https://api.paypal.com/v1/notifications/webhooks-events/WH-2N1678257S892762B-8MC99539P4557624Y/resend",
+        "rel": "resend",
+        "method": "POST"
+      }
+    ]
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
+  "paths": {
+    "id": "_.body.id",
+    "event": "_.body.event_type",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "connectionTypes": ["source"],
+  "events": [
+    {
+      "name": "PAYMENT.AUTHORIZATION.CREATED",
+      "description": "A payment authorization is created, approved, executed, or a future payment authorization is created.",
+      "group": "Authorized and captured payments"
+    },
+    {
+      "name": "PAYMENT.AUTHORIZATION.VOIDED",
+      "description": "A payment authorization is voided.",
+      "group": "Authorized and captured payments"
+    },
+    {
+      "name": "PAYMENT.CAPTURE.COMPLETED",
+      "description": "A payment capture completes.",
+      "group": "Authorized and captured payments"
+    },
+    {
+      "name": "PAYMENT.CAPTURE.DENIED",
+      "description": "A payment capture is denied.",
+      "group": "Authorized and captured payments"
+    },
+    {
+      "name": "PAYMENT.CAPTURE.PENDING",
+      "description": "The state of a payment capture changes to pending.",
+      "group": "Authorized and captured payments"
+    },
+    {
+      "name": "PAYMENT.CAPTURE.REFUNDED",
+      "description": "A merchant refunds a payment capture.",
+      "group": "Authorized and captured payments"
+    },
+    {
+      "name": "PAYMENT.CAPTURE.REVERSED",
+      "description": "PayPal reverses a payment capture.",
+      "group": "Authorized and captured payments"
+    },
+    {
+      "name": "PAYMENT.PAYOUTSBATCH.DENIED",
+      "description": "A batch payout payment is denied.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTSBATCH.PROCESSING",
+      "description": "The state of a batch payout payment changes to processing.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTSBATCH.SUCCESS",
+      "description": "A batch payout payment completes successfully.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTS-ITEM.BLOCKED",
+      "description": "A payouts item is blocked.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTS-ITEM.CANCELED",
+      "description": "A payouts item is canceled.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTS-ITEM.DENIED",
+      "description": "A payouts item is denied.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTS-ITEM.FAILED",
+      "description": "A payouts item fails.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTS-ITEM.HELD",
+      "description": "A payouts item is held.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTS-ITEM.REFUNDED",
+      "description": "A payouts item is refunded.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTS-ITEM.RETURNED",
+      "description": "A payouts item is returned.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTS-ITEM.SUCCEEDED",
+      "description": "A payouts item succeeds.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "PAYMENT.PAYOUTS-ITEM.UNCLAIMED",
+      "description": "A payouts item is unclaimed.",
+      "group": "Batch payouts"
+    },
+    {
+      "name": "BILLING.PLAN.CREATED",
+      "description": "A billing plan is created.",
+      "group": "Billing plans and agreements"
+    },
+    {
+      "name": "BILLING.PLAN.UPDATED",
+      "description": "A billing plan is updated.",
+      "group": "Billing plans and agreements"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.CANCELLED",
+      "description": "A billing agreement is canceled.",
+      "group": "Billing plans and agreements"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.CREATED",
+      "description": "A billing agreement is created.",
+      "group": "Billing plans and agreements"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.RE-ACTIVATED",
+      "description": "A billing agreement is re-activated.",
+      "group": "Billing plans and agreements"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.SUSPENDED",
+      "description": "A billing agreement is suspended.",
+      "group": "Billing plans and agreements"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.UPDATED",
+      "description": "A billing agreement is updated.",
+      "group": "Billing plans and agreements"
+    },
+    {
+      "name": "IDENTITY.AUTHORIZATION-CONSENT.REVOKED",
+      "description": "A user's consent token is revoked.",
+      "group": "Log in with PayPal"
+    },
+    {
+      "name": "PAYMENTS.PAYMENT.CREATED",
+      "description": "Checkout payment is created and approved by buyer.",
+      "group": "Checkout buyer approval"
+    },
+    {
+      "name": "CHECKOUT.ORDER.APPROVED",
+      "description": "See Orders.",
+      "group": "Checkout buyer approval"
+    },
+    {
+      "name": "CHECKOUT.CHECKOUT.BUYER-APPROVED",
+      "description": "Express checkout payment is created and approved by buyer.",
+      "group": "Checkout buyer approval"
+    },
+    {
+      "name": "CUSTOMER.DISPUTE.CREATED",
+      "description": "A dispute is created.",
+      "group": "Disputes"
+    },
+    {
+      "name": "CUSTOMER.DISPUTE.RESOLVED",
+      "description": "A dispute is resolved.",
+      "group": "Disputes"
+    },
+    {
+      "name": "CUSTOMER.DISPUTE.UPDATED",
+      "description": "A dispute is updated.",
+      "group": "Disputes"
+    },
+    {
+      "name": "RISK.DISPUTE.CREATED",
+      "description": "A risk dispute is created.",
+      "group": "Disputes"
+    },
+    {
+      "name": "INVOICING.INVOICE.CANCELLED",
+      "description": "A merchant or customer cancels an invoice.",
+      "group": "Invoicing"
+    },
+    {
+      "name": "INVOICING.INVOICE.CREATED",
+      "description": "An invoice is created.",
+      "group": "Invoicing"
+    },
+    {
+      "name": "INVOICING.INVOICE.PAID",
+      "description": "An invoice is paid, partially paid, or payment is made and is pending.",
+      "group": "Invoicing"
+    },
+    {
+      "name": "INVOICING.INVOICE.REFUNDED",
+      "description": "An invoice is refunded or partially refunded.",
+      "group": "Invoicing"
+    },
+    {
+      "name": "INVOICING.INVOICE.SCHEDULED",
+      "description": "An invoice is scheduled.",
+      "group": "Invoicing"
+    },
+    {
+      "name": "INVOICING.INVOICE.UPDATED",
+      "description": "An invoice is updated.",
+      "group": "Invoicing"
+    },
+    {
+      "name": "CHECKOUT.ORDER.COMPLETED",
+      "description": "See CHECKOUT.ORDER.COMPLETED.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CHECKOUT.ORDER.APPROVED",
+      "description": "See CHECKOUT.ORDER.APPROVED.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CHECKOUT.ORDER.PROCESSED",
+      "description": "See CHECKOUT.ORDER.PROCESSED.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CUSTOMER.ACCOUNT-LIMITATION.ADDED",
+      "description": "A limitation is added for a partner's managed account.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CUSTOMER.ACCOUNT-LIMITATION.ESCALATED",
+      "description": "A limitation is escalated for a partner's managed account.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CUSTOMER.ACCOUNT-LIMITATION.LIFTED",
+      "description": "A limitation is lifted for a partner's managed account.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CUSTOMER.ACCOUNT-LIMITATION.UPDATED",
+      "description": "A limitation is updated for a partner's managed account.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CUSTOMER.MERCHANT-INTEGRATION.CAPABILITY-UPDATED",
+      "description": "PayPal must enable the merchant's account as PPCP for this webhook to work.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CUSTOMER.MERCHANT-INTEGRATION.PRODUCT-SUBSCRIPTION-UPDATED",
+      "description": "The products available to the merchant have changed.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CUSTOMER.MERCHANT-INTEGRATION.SELLER-ALREADY-INTEGRATED",
+      "description": "Merchant onboards again to a partner.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CUSTOMER.MERCHANT-INTEGRATION.SELLER-ONBOARDING-INITIATED",
+      "description": "PayPal creates a merchant account from the partner's onboarding link.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CUSTOMER.MERCHANT-INTEGRATION.SELLER-CONSENT-GRANTED",
+      "description": "Merchant grants consents to a partner.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "CUSTOMER.MERCHANT-INTEGRATION.SELLER-EMAIL-CONFIRMED",
+      "description": "Merchant confirms the email and consents are granted.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "MERCHANT.ONBOARDING.COMPLETED",
+      "description": "Merchant completes setup.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "MERCHANT.PARTNER-CONSENT.REVOKED",
+      "description": "The consents for a merchant account setup are revoked or an account is closed.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "PAYMENT.CAPTURE.COMPLETED",
+      "description": "A payment capture completes.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "PAYMENT.CAPTURE.DENIED",
+      "description": "A payment capture is denied.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "PAYMENT.CAPTURE.REFUNDED",
+      "description": "A merchant refunds a payment capture.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "PAYMENT.REFERENCED-PAYOUT-ITEM.COMPLETED",
+      "description": "Funds are disbursed to the seller and partner.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "PAYMENT.REFERENCED-PAYOUT-ITEM.FAILED",
+      "description": "Attempt to disburse funds fails.",
+      "group": "Marketplaces and Platforms"
+    },
+    {
+      "name": "MERCHANT.ONBOARDING.COMPLETED",
+      "description": "A merchant completes setup.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "MERCHANT.PARTNER-CONSENT.REVOKED",
+      "description": "The consents for a merchant account setup are revoked or an account is closed.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.MANAGED-ACCOUNT.ACCOUNT-CREATED",
+      "description": "Managed account has been created.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.MANAGED-ACCOUNT.CREATION-FAILED",
+      "description": "Managed account creation failed.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.MANAGED-ACCOUNT.ACCOUNT-UPDATED",
+      "description": "Managed account has been updated.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.MANAGED-ACCOUNT.ACCOUNT-STATUS-CHANGED",
+      "description": "Capabilities and/or process status has been changed on a managed account.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.MANAGED-ACCOUNT.RISK-ASSESSED",
+      "description": "Managed account has been risk assessed or the risk assessment has been changed.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.MANAGED-ACCOUNT.NEGATIVE-BALANCE-NOTIFIED",
+      "description": "Negative balance debit has been notified on a managed account.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.MANAGED-ACCOUNT.NEGATIVE-BALANCE-DEBIT-INITIATED",
+      "description": "Negative balance debit has been initiated on a managed account.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.ACCOUNT-LIMITATION.ADDED",
+      "description": "A limitation was added for given merchant account.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.ACCOUNT-LIMITATION.LIFTED",
+      "description": "A limitation was lifted for given merchant account.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.ACCOUNT-LIMITATION.UPDATED",
+      "description": "A limitation was updated for given merchant account.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CUSTOMER.ACCOUNT-LIMITATION.ESCALATED",
+      "description": "A limitation was escalated for given merchant account.",
+      "group": "Merchant onboarding"
+    },
+    {
+      "name": "CHECKOUT.ORDER.PROCESSED",
+      "description": "A checkout order is processed.",
+      "group": "Orders"
+    },
+    {
+      "name": "PAYMENT.ORDER.CANCELLED",
+      "description": "A payment order is canceled.",
+      "group": "Payment orders"
+    },
+    {
+      "name": "PAYMENT.ORDER.CREATED",
+      "description": "A payment order is created.",
+      "group": "Payment orders"
+    },
+    {
+      "name": "PAYMENT.REFERENCED-PAYOUT-ITEM.COMPLETED",
+      "description": "Funds are disbursed to the seller and partner.",
+      "group": "Referenced payouts"
+    },
+    {
+      "name": "PAYMENT.REFERENCED-PAYOUT-ITEM.FAILED",
+      "description": "Attempt to disburse funds fails.",
+      "group": "Referenced payouts"
+    },
+    {
+      "name": "PAYMENT.SALE.COMPLETED",
+      "description": "A sale completes.",
+      "group": "Sales"
+    },
+    {
+      "name": "PAYMENT.SALE.DENIED",
+      "description": "The state of a sale changes from pending to denied.",
+      "group": "Sales"
+    },
+    {
+      "name": "PAYMENT.SALE.PENDING",
+      "description": "The state of a sale changes to pending.",
+      "group": "Sales"
+    },
+    {
+      "name": "PAYMENT.SALE.REFUNDED",
+      "description": "A merchant refunds a sale.",
+      "group": "Sales"
+    },
+    {
+      "name": "PAYMENT.SALE.REVERSED",
+      "description": "PayPal reverses a sale.",
+      "group": "Sales"
+    },
+    {
+      "name": "CATALOG.PRODUCT.CREATED",
+      "description": "A product is created.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "CATALOG.PRODUCT.UPDATED",
+      "description": "A product is updated.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "PAYMENT.SALE.COMPLETED",
+      "description": "A payment is made on a subscription.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "PAYMENT.SALE.REFUNDED",
+      "description": "A merchant refunds a sale.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "PAYMENT.SALE.REVERSED",
+      "description": "A payment is reversed on a subscription.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.PLAN.CREATED",
+      "description": "A billing plan is created.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.PLAN.UPDATED",
+      "description": "A billing plan is updated.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.PLAN.ACTIVATED",
+      "description": "A billing plan is activated.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.PLAN.PRICING-CHANGE.ACTIVATED",
+      "description": "A price change for the plan is activated.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.PLAN.DEACTIVATED",
+      "description": "A billing plan is deactivated.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.CREATED",
+      "description": "A subscription is created.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.ACTIVATED",
+      "description": "A subscription is activated.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.UPDATED",
+      "description": "A subscription is updated.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.EXPIRED",
+      "description": "A subscription expires.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.CANCELLED",
+      "description": "A subscription is cancelled.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.SUSPENDED",
+      "description": "A subscription is suspended.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "BILLING.SUBSCRIPTION.PAYMENT.FAILED",
+      "description": "Payment failed on subscription.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "VAULT.CREDIT-CARD.CREATED",
+      "description": "A credit card is created.",
+      "group": "Vault"
+    },
+    {
+      "name": "VAULT.CREDIT-CARD.DELETED",
+      "description": "A credit card is deleted.",
+      "group": "Vault"
+    },
+    {
+      "name": "VAULT.CREDIT-CARD.UPDATED",
+      "description": "A credit card is updated.",
+      "group": "Vault"
+    }
+  ]
+}

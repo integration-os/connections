@@ -1,7 +1,7 @@
 {
   "name": "createAQuoteResult",
   "title": "Create a Quote",
-  "description": "Create a quote using the Stripe API",
+  "description": "Create a quote",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

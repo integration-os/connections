@@ -1,7 +1,7 @@
 {
   "name": "listAllChargesResult",
   "title": "List All Charges",
-  "description": "List all charges using the Stripe API",
+  "description": "List all charges",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

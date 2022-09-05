@@ -28,7 +28,7 @@ export interface IntegrationClassI {
    *
    * @returns true if the signature is valid or throws an error
    */
-  verifyWebhookSignature: (props: VerifyWebhookSignatureProps) => Truthy;
+  verifyWebhookSignature: (props: VerifyWebhookSignatureProps) => Promise<Truthy>;
 
   /**
    * Subscribes events to an existing webhook
@@ -50,7 +50,7 @@ export interface IntegrationClassI {
    * @returns The updated subscribed events
    */
   unsubscribe: (
-    props: SubscriptionProps
+    props: SubscriptionProps,
   ) => Promise<{ events: Events; webhook?: any; webhooks?: any }>;
 
   /**

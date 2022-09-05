@@ -1,7 +1,7 @@
 {
   "name": "retrieveAPaymentLinkSLineItemsResult",
   "title": "Retrieve a Payment Link's Line Items",
-  "description": "Retrieve a payment link's line items using the Stripe API",
+  "description": "Retrieve a payment link's line items",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

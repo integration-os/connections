@@ -1,7 +1,7 @@
 {
   "name": "result",
-  "title": "<p>Marks the Test Mode InboundTransfer Object as Returned and Links the InboundTransfer to a Receive",
-  "description": "<p>marks the test mode inboundtransfer object as returned and links the inboundtransfer to a receiveddebit. The inboundtransfer must already be in the <code>succeeded</code> state.</p> using the Stripe API",
+  "title": "Marks the Test Mode InboundTransfer Object as Returned and Links the InboundTransfer to a ReceivedDe",
+  "description": "Marks the test mode inboundtransfer object as returned and links the inboundtransfer to a receiveddebit. The inboundtransfer must already be in the succeeded state",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

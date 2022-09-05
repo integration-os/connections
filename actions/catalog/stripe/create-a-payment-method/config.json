@@ -1,7 +1,7 @@
 {
   "name": "createAPaymentMethodResult",
   "title": "Create a PaymentMethod",
-  "description": "Create a paymentmethod using the Stripe API",
+  "description": "Create a paymentmethod",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
