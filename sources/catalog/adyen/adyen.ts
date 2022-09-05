@@ -58,7 +58,7 @@ export default class AdyenIntegration implements IntegrationClassI {
         const startTime = Date.now();
 
         const webhook = await this.client
-          .post("/", {
+          .post("", {
             active: true,
             communicationFormat: "json",
             filterMerchantAccountType: "allAccounts",
@@ -92,10 +92,12 @@ export default class AdyenIntegration implements IntegrationClassI {
       `${this.ADYEN_VERIFICATION_USERNAME}:${this.ADYEN_VERIFICATION_PASSWORD}`,
     ).toString("base64");
 
-    signature = request.headers["authorization"].split("Basic ")[1];
+    if (!signature) {
+      signature = request.headers["authorization"].split("Basic ")[1];
+    }
 
     if (secret !== signature) {
-      throw new Error("invalid signature");
+      throw new Error("Invalid signature");
     }
 
     return true;
@@ -117,7 +119,7 @@ export default class AdyenIntegration implements IntegrationClassI {
 
     // return new webhook/events list
     return {
-      webhooks: [...webhooks, newWebhooks],
+      webhooks: [...webhooks, ...(newWebhooks as AnyObject[])],
       events: [...subscribedEvents, ...newEvents],
     };
   }
@@ -141,9 +143,7 @@ export default class AdyenIntegration implements IntegrationClassI {
     const deletedWebhooks = [];
 
     for (const webhook of webhooksToDelete) {
-      await this.deleteWebhookEndpoint({ webhookId: webhook.id }).then(() =>
-        deletedWebhooks.push(webhook),
-      );
+      await this.client.delete(`/${webhook.id}`).then(() => deletedWebhooks.push(webhook));
     }
 
     // return final webhooks/events list
@@ -156,7 +156,8 @@ export default class AdyenIntegration implements IntegrationClassI {
   }
 
   async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
-    return await this.client.get("/").then((response) => response.data.data);
+    const allWebhooks = await this.client.get("").then((response) => response.data.data);
+    return allWebhooks.filter((webhook) => webhookIds.includes(webhook.id));
   }
 
   async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {
@@ -178,7 +179,7 @@ export default class AdyenIntegration implements IntegrationClassI {
   }
 
   async testConnection(): Promise<Truthy> {
-    await this.client.get(`/`);
+    await this.client.get(``);
 
     return {
       success: true,
