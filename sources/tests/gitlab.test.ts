@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import GitLabIntegration from "../catalog/gitlab/GitLab";
+import GitLabIntegration from "../catalog/gitlab/gitlab";
 
 const gitlab = new GitLabIntegration({
   GITLAB_PROJECT_ID: process.env.GITLAB_PROJECT_ID as string,
