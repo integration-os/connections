@@ -1,19 +1,21 @@
 {
   "title": "Alchemy",
-  "description": "Developer Hub for Everything in Web3",
+  "description": "The most powerful web3 development platform to build and scale your dApp with ease",
   "apiVersion": "V2",
   "platform": "alchemy",
   "category": "web3",
   "image": "https://assets.buildable.dev/catalog/node-templates/alchemy.svg",
-  "tags": [],
+  "tags": ["blockchain", "web3", "nft"],
   "authentication": [
     {
       "name": "ALCHEMY_API_TOKEN",
-      "label": "Enter your Alchemy Notify Auth Token."
+      "label": "Enter your Alchemy Notify Auth Token",
+      "placeholder": "FKiGK_rCVjFdnwA0CBo1L5CQIcPEM7Ot"
     },
     {
       "name": "ALCHEMY_APP_ID",
       "label": "Enter your Alchemy App ID. Required for mined and dropped webhooks.",
+      "placeholder": "t35xc2wsrapxabd5",
       "required": false
     },
     {
@@ -70,14 +72,14 @@
     },
     {
       "name": "ALCHEMY_ADDRESSES",
-      "label": "Enter a comma seperated list of address you want to track. Required for the address activity webhook.",
+      "label": "Enter a comma seperated list of addresses to track. Required for the address activity webhook.",
       "placeholder": "address_1, address_2, ...",
       "required": false
     },
     {
       "name": "ALCHEMY_TOKEN_IDS",
-      "label": "Enter a comma seperated list of pairs to track nft activity: contract_address and token_id. Required for the nft activity webhook.",
-      "placeholder": "contract_address_1, token_id_1, contract_address_2, token_id_2, ...",
+      "label": "Enter a comma seperated list of pairs (contract_address, token_id) to track NFT activity. Required for the NFT activity webhook.",
+      "placeholder": "address_1, id_1, address_2, id_2, ...",
       "required": false
     }
   ],
