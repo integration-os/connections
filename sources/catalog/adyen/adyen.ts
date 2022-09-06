@@ -87,7 +87,11 @@ export default class AdyenIntegration implements IntegrationClassI {
     };
   }
 
-  verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Truthy {
+  async verifyWebhookSignature({
+    request,
+    signature,
+    secret,
+  }: VerifyWebhookSignatureProps): Promise<Truthy> {
     secret = Buffer.from(
       `${this.ADYEN_VERIFICATION_USERNAME}:${this.ADYEN_VERIFICATION_PASSWORD}`,
     ).toString("base64");

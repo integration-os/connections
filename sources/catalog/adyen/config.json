@@ -16,7 +16,7 @@
     },
     {
       "name": "ADYEN_API_KEY",
-      "label": "Enter your GitLab Personal API Key",
+      "label": "Enter your Adyen Personal API Key",
       "placeholder": "AQEohmfxJo3MbxxFw0m/n3Q5qf3VbI5bKZxNRudnEoG/AEDsaKzj/YE0YxDBXVsNvuR83LVYjEgiTGAH"
     },
     {
@@ -31,26 +31,26 @@
     }
   ],
   "eventSchema": {
-    "live":"false",
-    "notificationItems":[
+    "live": "false",
+    "notificationItems": [
       {
-        "NotificationRequestItem":{
-          "additionalData":{
-            "expiryDate":"03/2030",
-            "cardSummary":"0005",
-            "hmacSignature":"YvCKx7b+aSiEH2eoZH8KEXWkSVQzZMCZyKC1glvHrBI="
+        "NotificationRequestItem": {
+          "additionalData": {
+            "expiryDate": "03/2030",
+            "cardSummary": "0005",
+            "hmacSignature": "YvCKx7b+aSiEH2eoZH8KEXWkSVQzZMCZyKC1glvHrBI="
           },
-          "amount":{
-            "currency":"USD",
-            "value":25647
+          "amount": {
+            "currency": "USD",
+            "value": 25647
           },
-          "eventCode":"AUTHORISATION",
-          "eventDate":"2022-09-03T12:21:18+02:00",
-          "merchantAccountCode":"BestMerch",
-          "merchantReference":"PLAYGROUND-1662200466116",
-          "paymentMethod":"cartebancaire",
-          "pspReference":"CSRK99WWP5PFWR82",
-          "success":"true"
+          "eventCode": "AUTHORISATION",
+          "eventDate": "2022-09-03T12:21:18+02:00",
+          "merchantAccountCode": "BestMerch",
+          "merchantReference": "PLAYGROUND-1662200466116",
+          "paymentMethod": "cartebancaire",
+          "pspReference": "CSRK99WWP5PFWR82",
+          "success": "true"
         }
       }
     ]
@@ -67,13 +67,54 @@
     "secret": null,
     "signature": "_.headers.authorization"
   },
-  "connectionTypes": ["source"],
-  "events":
-          // TODO: change
+  "connectionTypes": [
+    "source"
+  ],
+  "events": [
     {
-      "name": "confidential_issues_events",
-      "description": "A new confidential issue is created or an existing issue is updated, closed, or reopened.",
+      "name": "standard",
+      "description": "Standard set of events",
       "group": ""
     },
+    {
+      "name": "account-settings-notifications",
+      "description": "Receive a notification when there is a status change related to your company account, merchant account, or store.",
+      "group": ""
+    },
+    {
+      "name": "banktransfer-notification",
+      "description": "Receive a notification when there is a bank transfer payment",
+      "group": ""
+    },
+    {
+      "name": "directdebit-notification",
+      "description": "Receive a notification when there is a direct debit payment",
+      "group": ""
+    },
+    {
+      "name": "pending-notification",
+      "description": "Receive a notification with eventCode: PENDING when there is a pending payment for any redirect payment method",
+      "group": ""
+    },
+    {
+      "name": "ideal-notification",
+      "description": "Receive a notification when there is an iDEAL payment",
+      "group": ""
+    },
+    {
+      "name": "ideal-pending-notification",
+      "description": "Receive a notification with eventCode: PENDING when there is a pending iDEAL payment",
+      "group": ""
+    },
+    {
+      "name": "report-notification",
+      "description": "Receive a notification with eventCode: REPORT_AVAILABLE when a new report is available",
+      "group": ""
+    },
+    {
+      "name": "rreq-notification",
+      "description": "Receive a notification when there is an RReq payment",
+      "group": ""
+    }
   ]
 }
