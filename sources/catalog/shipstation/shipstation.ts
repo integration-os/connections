@@ -199,7 +199,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
   }
 
   async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {
-    const webhooks = (await this.getWebhooks({ webhookIds })) as ShipStationWebhook[];
+    const webhooks = (await this.getWebhooks({ webhookIds: webhookIds.map(String) })) as ShipStationWebhook[];
 
     if (!webhooks.length) {
       return [];
