@@ -157,7 +157,7 @@ export default class PaypalIntegration implements IntegrationClassI {
   async testConnection(): Promise<Truthy> {
     // try to list webhooks, generally a no error means the connection is good
     try {
-      this.getWebhooks();
+      await this.getWebhooks();
       return {
         success: true,
         message: "Connection tested successfully!",
