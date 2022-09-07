@@ -44,22 +44,22 @@ export default class ShipStationIntegration implements IntegrationClassI {
   id = "123456";
   name = "ShipStation";
 
-  private readonly SHIP_STATION_URL: string;
+  private readonly SHIP_STATION_BASE_URL: string;
   private readonly SHIP_STATION_API_KEY: string;
   private readonly SHIP_STATION_SECRET_KEY: string;
 
   private readonly client: AxiosInstance;
 
   constructor({
-    SHIP_STATION_URL,
+    SHIP_STATION_BASE_URL,
     SHIP_STATION_API_KEY,
     SHIP_STATION_SECRET_KEY,
   }: {
-    SHIP_STATION_URL: string;
+    SHIP_STATION_BASE_URL: string;
     SHIP_STATION_API_KEY: string;
     SHIP_STATION_SECRET_KEY: string;
   }) {
-    this.SHIP_STATION_URL = SHIP_STATION_URL;
+    this.SHIP_STATION_BASE_URL = SHIP_STATION_BASE_URL;
     this.SHIP_STATION_API_KEY = SHIP_STATION_API_KEY;
     this.SHIP_STATION_SECRET_KEY = SHIP_STATION_SECRET_KEY;
 
@@ -68,7 +68,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
     ).toString("base64");
 
     this.client = axios.create({
-      baseURL: this.SHIP_STATION_URL,
+      baseURL: this.SHIP_STATION_BASE_URL,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

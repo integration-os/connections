@@ -8,9 +8,10 @@
   "tags": ["shipping", "tracking"],
   "authentication": [
     {
-      "name": "SHIP_STATION_URL",
-      "label": "Enter ShipStation Url",
-      "placeholder": "https://ssapi.shipstation.com"
+      "name": "SHIP_STATION_BASE_URL",
+      "label": "Enter ShipStation base Url",
+      "placeholder": "https://ssapi.shipstation.com",
+      "value": "https://ssapi.shipstation.com"
     },
     {
       "name": "SHIP_STATION_API_KEY",
