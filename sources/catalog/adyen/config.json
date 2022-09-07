@@ -77,7 +77,7 @@
       "group": ""
     },
     {
-      "name": "account-settings-notifications",
+      "name": "account-settings-notification",
       "description": "Receive a notification when there is a status change related to your company account, merchant account, or store.",
       "group": ""
     },
