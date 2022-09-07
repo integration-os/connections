@@ -6,7 +6,7 @@ import { AnyObject } from "../types/classDefinition";
 jest.setTimeout(30_000);
 
 const shipStation = new ShipStationIntegration({
-  SHIP_STATION_URL: process.env.SHIP_STATION_URL as string,
+  SHIP_STATION_BASE_URL: process.env.SHIP_STATION_BASE_URL as string,
   SHIP_STATION_API_KEY: process.env.SHIP_STATION_API_KEY as string,
   SHIP_STATION_SECRET_KEY: process.env.SHIP_STATION_SECRET_KEY as string,
 });
@@ -282,7 +282,7 @@ describe("ShipStation Integration", () => {
 
     it("should throw an error if connection fails", async () => {
       const badWebflowIntegration = new ShipStationIntegration({
-        SHIP_STATION_URL: "",
+        SHIP_STATION_BASE_URL: "",
         SHIP_STATION_API_KEY: "",
         SHIP_STATION_SECRET_KEY: "",
       });
