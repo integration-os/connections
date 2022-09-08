@@ -131,23 +131,8 @@
       "group": "Authorized and captured payments"
     },
     {
-      "name": "PAYMENT.CAPTURE.COMPLETED",
-      "description": "A payment capture completes.",
-      "group": "Authorized and captured payments"
-    },
-    {
-      "name": "PAYMENT.CAPTURE.DENIED",
-      "description": "A payment capture is denied.",
-      "group": "Authorized and captured payments"
-    },
-    {
       "name": "PAYMENT.CAPTURE.PENDING",
       "description": "The state of a payment capture changes to pending.",
-      "group": "Authorized and captured payments"
-    },
-    {
-      "name": "PAYMENT.CAPTURE.REFUNDED",
-      "description": "A merchant refunds a payment capture.",
       "group": "Authorized and captured payments"
     },
     {
@@ -228,11 +213,6 @@
     {
       "name": "BILLING.SUBSCRIPTION.CANCELLED",
       "description": "A billing agreement is canceled.",
-      "group": "Billing plans and agreements"
-    },
-    {
-      "name": "BILLING.SUBSCRIPTION.CREATED",
-      "description": "A billing agreement is created.",
       "group": "Billing plans and agreements"
     },
     {
@@ -326,11 +306,6 @@
       "group": "Marketplaces and Platforms"
     },
     {
-      "name": "CHECKOUT.ORDER.APPROVED",
-      "description": "See CHECKOUT.ORDER.APPROVED.",
-      "group": "Marketplaces and Platforms"
-    },
-    {
       "name": "CHECKOUT.ORDER.PROCESSED",
       "description": "See CHECKOUT.ORDER.PROCESSED.",
       "group": "Marketplaces and Platforms"
@@ -343,11 +318,6 @@
     {
       "name": "CUSTOMER.ACCOUNT-LIMITATION.ESCALATED",
       "description": "A limitation is escalated for a partner's managed account.",
-      "group": "Marketplaces and Platforms"
-    },
-    {
-      "name": "CUSTOMER.ACCOUNT-LIMITATION.LIFTED",
-      "description": "A limitation is lifted for a partner's managed account.",
       "group": "Marketplaces and Platforms"
     },
     {
@@ -416,21 +386,6 @@
       "group": "Marketplaces and Platforms"
     },
     {
-      "name": "PAYMENT.REFERENCED-PAYOUT-ITEM.FAILED",
-      "description": "Attempt to disburse funds fails.",
-      "group": "Marketplaces and Platforms"
-    },
-    {
-      "name": "MERCHANT.ONBOARDING.COMPLETED",
-      "description": "A merchant completes setup.",
-      "group": "Merchant onboarding"
-    },
-    {
-      "name": "MERCHANT.PARTNER-CONSENT.REVOKED",
-      "description": "The consents for a merchant account setup are revoked or an account is closed.",
-      "group": "Merchant onboarding"
-    },
-    {
       "name": "CUSTOMER.MANAGED-ACCOUNT.ACCOUNT-CREATED",
       "description": "Managed account has been created.",
       "group": "Merchant onboarding"
@@ -466,29 +421,9 @@
       "group": "Merchant onboarding"
     },
     {
-      "name": "CUSTOMER.ACCOUNT-LIMITATION.ADDED",
-      "description": "A limitation was added for given merchant account.",
-      "group": "Merchant onboarding"
-    },
-    {
       "name": "CUSTOMER.ACCOUNT-LIMITATION.LIFTED",
       "description": "A limitation was lifted for given merchant account.",
       "group": "Merchant onboarding"
-    },
-    {
-      "name": "CUSTOMER.ACCOUNT-LIMITATION.UPDATED",
-      "description": "A limitation was updated for given merchant account.",
-      "group": "Merchant onboarding"
-    },
-    {
-      "name": "CUSTOMER.ACCOUNT-LIMITATION.ESCALATED",
-      "description": "A limitation was escalated for given merchant account.",
-      "group": "Merchant onboarding"
-    },
-    {
-      "name": "CHECKOUT.ORDER.PROCESSED",
-      "description": "A checkout order is processed.",
-      "group": "Orders"
     },
     {
       "name": "PAYMENT.ORDER.CANCELLED",
@@ -499,11 +434,6 @@
       "name": "PAYMENT.ORDER.CREATED",
       "description": "A payment order is created.",
       "group": "Payment orders"
-    },
-    {
-      "name": "PAYMENT.REFERENCED-PAYOUT-ITEM.COMPLETED",
-      "description": "Funds are disbursed to the seller and partner.",
-      "group": "Referenced payouts"
     },
     {
       "name": "PAYMENT.REFERENCED-PAYOUT-ITEM.FAILED",
@@ -546,31 +476,6 @@
       "group": "Subscriptions"
     },
     {
-      "name": "PAYMENT.SALE.COMPLETED",
-      "description": "A payment is made on a subscription.",
-      "group": "Subscriptions"
-    },
-    {
-      "name": "PAYMENT.SALE.REFUNDED",
-      "description": "A merchant refunds a sale.",
-      "group": "Subscriptions"
-    },
-    {
-      "name": "PAYMENT.SALE.REVERSED",
-      "description": "A payment is reversed on a subscription.",
-      "group": "Subscriptions"
-    },
-    {
-      "name": "BILLING.PLAN.CREATED",
-      "description": "A billing plan is created.",
-      "group": "Subscriptions"
-    },
-    {
-      "name": "BILLING.PLAN.UPDATED",
-      "description": "A billing plan is updated.",
-      "group": "Subscriptions"
-    },
-    {
       "name": "BILLING.PLAN.ACTIVATED",
       "description": "A billing plan is activated.",
       "group": "Subscriptions"
@@ -596,23 +501,8 @@
       "group": "Subscriptions"
     },
     {
-      "name": "BILLING.SUBSCRIPTION.UPDATED",
-      "description": "A subscription is updated.",
-      "group": "Subscriptions"
-    },
-    {
       "name": "BILLING.SUBSCRIPTION.EXPIRED",
       "description": "A subscription expires.",
-      "group": "Subscriptions"
-    },
-    {
-      "name": "BILLING.SUBSCRIPTION.CANCELLED",
-      "description": "A subscription is cancelled.",
-      "group": "Subscriptions"
-    },
-    {
-      "name": "BILLING.SUBSCRIPTION.SUSPENDED",
-      "description": "A subscription is suspended.",
       "group": "Subscriptions"
     },
     {
