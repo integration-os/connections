@@ -337,11 +337,6 @@
       "group": "platforms"
     },
     {
-      "name": "dispute.dispute_arbitration_lost",
-      "description": "Occurs when an arbitration has been lost. Your account will be debited any additional arbitration-related fees.",
-      "group": "platforms"
-    },
-    {
       "name": "fincrime.payment_compliance_review",
       "description": "Occurs when a payment is pending while under compliance review.",
       "group": "fincrime"
