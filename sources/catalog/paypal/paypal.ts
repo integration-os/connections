@@ -41,7 +41,7 @@ export default class PaypalIntegration implements IntegrationClassI {
         },
         function (error, webhook) {
           if (error) {
-            reject(error.response);
+            reject(error.response.message);
           } else {
             resolve({
               webhookData: webhook,
@@ -77,7 +77,7 @@ export default class PaypalIntegration implements IntegrationClassI {
                 resolve(true);
               } else {
                 console.log("It was a failed verification");
-                reject(new Error("Unable to verify signature."));
+                reject("Unable to verify signature.");
               }
             }
           },
@@ -125,7 +125,7 @@ export default class PaypalIntegration implements IntegrationClassI {
     return new Promise((resolve, reject) => {
       paypal.notification.webhook.list((error, data) => {
         if (error) {
-          reject(error);
+          reject(error.message);
         } else {
           resolve(data.webhooks);
         }
@@ -137,7 +137,7 @@ export default class PaypalIntegration implements IntegrationClassI {
     return new Promise((resolve, reject) => {
       paypal.notification.webhook.get(webhookId, function (error, webhook) {
         if (error) {
-          reject(error);
+          reject(error.message);
         } else {
           resolve(webhook.event_types.map((event) => event.name));
         }
@@ -148,7 +148,7 @@ export default class PaypalIntegration implements IntegrationClassI {
   async deleteWebhookEndpoint({ webhookId }: WebhooksProps): Promise<Truthy> {
     return new Promise((resolve, reject) => {
       paypal.notification.webhook.del(webhookId, (error, response) => {
-        if (error) reject(error);
+        if (error) reject(error.message);
         else resolve(response);
       });
     });
@@ -157,7 +157,7 @@ export default class PaypalIntegration implements IntegrationClassI {
   async testConnection(): Promise<Truthy> {
     // try to list webhooks, generally a no error means the connection is good
     try {
-      this.getWebhooks();
+      await this.getWebhooks();
       return {
         success: true,
         message: "Connection tested successfully!",
@@ -187,7 +187,7 @@ async function setWebhookEvents({
       ],
       (err, updatedWebhook) => {
         if (err) {
-          reject(err);
+          reject(err.message);
         } else {
           resolve({
             webhook: updatedWebhook,
