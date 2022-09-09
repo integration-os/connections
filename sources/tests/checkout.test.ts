@@ -249,7 +249,10 @@ describe("Checkout Integration", () => {
   describe("testConnection", () => {
     it("should return true if the connection is valid", async () => {
       const result = await checkout.testConnection();
-      expect(result).toBeTruthy();
+      expect(result).toEqual(expect.objectContaining({
+        success: true,
+        message: "Connection tested successfully!",
+      }));
     });
 
     it("should throw an error if something goes wrong with the connection", async () => {

@@ -191,7 +191,10 @@ export default class CheckoutIntegration implements IntegrationClassI {
   async testConnection(): Promise<Truthy> {
     try {
       await this.checkout.get('/');
-      return true;
+      return {
+        success: true,
+        message: "Connection tested successfully!",
+      };
     } catch(err) {
       throw new Error(`Error connecting to checkout.com API: ${err.message}`);
     }
