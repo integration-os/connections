@@ -36,7 +36,7 @@ describe("Webflow Integration", () => {
 
     it("should create a webhook", async () => {
       const { webhookData, events } = await webflow.init({
-        webhookUrl: "https://webhook.site/30bf4e85-64b8-48ec-a1d2-1bb357a8a017",
+        webhookUrl: "https://example.com/webhook",
         events: ["form_submission"],
       });
 
@@ -164,7 +164,7 @@ describe("Webflow Integration", () => {
   describe("getWebhooks", () => {
     let webhookId: string | undefined;
 
-    const testWebhookUrl = "https://example.com/webhook?event=form_submission";
+    const testWebhookUrl = "https://example.com/webhook";
     const testEvents = ["form_submission"];
 
     beforeEach(async () => {
@@ -196,7 +196,7 @@ describe("Webflow Integration", () => {
 
       const webhook = webhooks.pop();
 
-      expect(webhook.url).toBe(testWebhookUrl);
+      expect(webhook.url).toBe(`${testWebhookUrl}?event=${testEvents[0]}`);
       expect(webhook.triggerType).toBe(testEvents[0]);
     });
 
