@@ -40,6 +40,10 @@ type ShipStationWebhookList = {
   webhooks: ShipStationWebhook[];
 };
 
+type ShipStationWebhookInternal = Omit<ShipStationWebhook, "WebHookID"> & {
+  WebHookID: string;
+};
+
 export default class ShipStationIntegration implements IntegrationClassI {
   id = "123456";
   name = "ShipStation";
@@ -103,7 +107,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
     // So the have a unified structure
     const webhooksData = (await this.getWebhooks({
       webhookIds: createdWebhookIds,
-    })) as ShipStationWebhook[];
+    })) as ShipStationWebhookInternal[];
     const registeredEvents = webhooksData.map((webhook) => webhook.HookType);
 
     return {
@@ -124,7 +128,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
   }: SubscriptionProps): Promise<SubscribeReturns> {
     const webhooks = (await this.getWebhooks({ webhookIds })) as AnyObject[];
 
-    const subscribedEvents = (webhooks as unknown as ShipStationWebhook[]).map(
+    const subscribedEvents = (webhooks as unknown as ShipStationWebhookInternal[]).map(
       (webhook) => webhook.HookType,
     );
     const newEvents = events.filter((e) => !subscribedEvents.includes(e));
@@ -151,7 +155,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
   }: SubscriptionProps): Promise<{ events: Events; webhooks: any }> {
     const webhooks = (await this.getWebhooks({
       webhookIds,
-    })) as ShipStationWebhook[];
+    })) as ShipStationWebhookInternal[];
 
     if (!webhooks?.length) {
       return { events: [], webhooks: [] };
@@ -159,7 +163,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
 
     const webhooksIdsToDelete = webhooks
       .filter((webhook) => events.includes(webhook.HookType))
-      .map((webhook) => `${webhook.WebHookID}`);
+      .map((webhook) => webhook.WebHookID);
     const webhooksIdsToDeleteRequests = webhooksIdsToDelete.map(async (id) => {
       await this.deleteWebhookEndpoint({ webhookId: id });
 
@@ -171,7 +175,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
       .map((result) => (result as PromiseFulfilledResult<string>).value);
 
     const updatedWebhooks = webhooks.filter(
-      (webhook) => !deletedWebhooksIds.includes(`${webhook.WebHookID}`),
+      (webhook) => !deletedWebhooksIds.includes(webhook.WebHookID),
     );
     const updatedEvents = updatedWebhooks.map((webhook) => webhook.HookType);
 
@@ -186,20 +190,29 @@ export default class ShipStationIntegration implements IntegrationClassI {
       const { data } = await this.client.get<null, AxiosResponse<ShipStationWebhookList>>(
         `/webhooks`,
       );
-      const webhooks = data?.webhooks || [];
+      const webhooksList = data?.webhooks || [];
+      const webhooks = webhooksList.map((webhook) => {
+        const webhookInternal: ShipStationWebhookInternal = {
+          ...webhook,
+          WebHookID: `${webhook.WebHookID}`,
+        };
+        return webhookInternal;
+      });
 
       if (!webhookIds?.length) {
         return webhooks;
       }
 
-      return webhooks.filter((webhook) => webhookIds.includes(`${webhook.WebHookID}`));
+      return webhooks.filter((webhook) => webhookIds.includes(webhook.WebHookID));
     } catch (error) {
       throw new Error(`Could not get ShipStation webhooks: ${error.message}`);
     }
   }
 
   async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {
-    const webhooks = (await this.getWebhooks({ webhookIds: webhookIds.map(String) })) as ShipStationWebhook[];
+    const webhooks = (await this.getWebhooks({
+      webhookIds: webhookIds.map(String),
+    })) as ShipStationWebhookInternal[];
 
     if (!webhooks.length) {
       return [];
