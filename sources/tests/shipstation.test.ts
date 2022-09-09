@@ -13,7 +13,7 @@ const shipStation = new ShipStationIntegration({
 
 async function createTestWebhook(testWebhookUrl: string, events: string[]): Promise<string> {
   const webhooks = await shipStation.init({ webhookUrl: testWebhookUrl, events });
-  return `${webhooks.webhookData[0].WebHookID}`;
+  return webhooks.webhookData[0].WebHookID;
 }
 
 async function deleteTestWebhook(webhookId: string) {
@@ -47,7 +47,7 @@ describe("ShipStation Integration", () => {
       expect(webhookData).toHaveLength(1);
       expect(events).toEqual(["ORDER_NOTIFY"]);
 
-      webhookId = `${(webhookData as AnyObject[]).pop()?.WebHookID}`;
+      webhookId = (webhookData as AnyObject[]).pop()?.WebHookID;
     });
   });
 
@@ -93,7 +93,7 @@ describe("ShipStation Integration", () => {
       expect(webhooks).toHaveLength(2);
       expect(events).toEqual(["ORDER_NOTIFY", "ITEM_SHIP_NOTIFY"]);
 
-      webhookIds = (webhooks as AnyObject[]).map((wb) => `${wb.WebHookID}`);
+      webhookIds = (webhooks as AnyObject[]).map((webhook) => webhook.WebHookID);
     });
 
     it("should handle subscription of an existing event", async () => {
