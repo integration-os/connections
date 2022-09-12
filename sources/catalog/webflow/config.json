@@ -9,8 +9,9 @@
   "authentication": [
     {
       "name": "WEBFLOW_BASE_URL",
-      "label": "Enter your Webflow base URL",
-      "placeholder": "your-store-name.myshopify.com"
+      "label": "Enter Webflow base URL",
+      "placeholder": "https://api.webflow.com",
+      "value": "https://api.webflow.com"
     },
     {
       "name": "WEBFLOW_API_TOKEN",

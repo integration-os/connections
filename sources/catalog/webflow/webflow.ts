@@ -17,6 +17,7 @@ type WebflowWebook = {
   _id: string;
   triggerType: string;
   triggerId: string;
+  url: string;
   site: string;
   filter?: Record<string, any>;
   lastUsed?: string;
@@ -96,10 +97,10 @@ export default class WebflowIntegration implements IntegrationClassI {
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const siteId = await this.getWebflowSiteId();
 
-    const webhookCreateRequests = events.map(async (event) =>
-      this.client.post(`/sites/${siteId}/webhooks?event=${event}`, {
+    const webhookCreateRequests = events.map((event) =>
+      this.client.post(`/sites/${siteId}/webhooks`, {
         triggerType: event,
-        url: webhookUrl,
+        url: `${webhookUrl}?event=${event}`,
       }),
     );
     const webhookCreateResponses = await Promise.allSettled(webhookCreateRequests);
