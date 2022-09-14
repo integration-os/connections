@@ -77,6 +77,161 @@
   "connectionTypes": ["source"],
   "events": [
     {
+      "name": "issuing.3ds_card_enrolled",
+      "description": "3ds card enrolled event.",
+      "group": "issuing"
+    },
+    {
+      "name": "issuing.authorization_approved",
+      "description": "Issuing authorization approved event.",
+      "group": "issuing"
+    },
+    {
+      "name": "issuing.authorization_declined",
+      "description": "Issuing authorization declined event.",
+      "group": "issuing"
+    },
+    {
+      "name": "issuing.presentment_received",
+      "description": "Presentment received event.",
+      "group": "issuing"
+    },
+    {
+      "name": "issuing.reversal_approved",
+      "description": "Reversal approved event.",
+      "group": "issuing"
+    },
+    {
+      "name": "issuing.reversal_declined",
+      "description": "Reversal declined event.",
+      "group": "issuing"
+    },
+    {
+      "name": "marketplace.payment_instrument_rejected",
+      "description": "Payment instrument rejected event.",
+      "group": "marketplace"
+    },
+    {
+      "name": "marketplace.payment_instrument_verified",
+      "description": "Payment instrument verified event.",
+      "group": "marketplace"
+    },
+    {
+      "name": "card_payout.payment_approved",
+      "description": "Payment approved event.",
+      "group": "card_payout"
+    },
+    {
+      "name": "card_payout.payment_declined",
+      "description": "Payment declined event.",
+      "group": "card_payout"
+    },
+    {
+      "name": "accounts.full_dd_failed",
+      "description": "Full DD failed event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.full_dd_passed",
+      "description": "Full DD passed event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.match_failed",
+      "description": "Account match failed event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.match_passed",
+      "description": "Account match passed event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payment_instrument_created",
+      "description": "Payment instrument created event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payment_instrument_error",
+      "description": "Payment instrument error event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payment_instrument_rejected",
+      "description": "Payment instrument rejected event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payment_instrument_verification_failed",
+      "description": "Payment instrument verification failed event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payment_instrument_verification_passed",
+      "description": "Payment instrument verification passed event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payment_instrument_verified",
+      "description": "Payment instrument verified event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payments_disabled",
+      "description": "Payment disabled event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payments_enabled",
+      "description": "Payment enabled event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payout_declined",
+      "description": "Payout declined event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payout_paid",
+      "description": "Payout paid event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payouts_disabled",
+      "description": "Payout disabled event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.payouts_enabled",
+      "description": "Payout enabled event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.status_changed",
+      "description": "Account status changed event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.sub_entity_created",
+      "description": "Account sub entity created event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.transfer_status_changed",
+      "description": "Account transfer status changed event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.vmss_failed",
+      "description": "Account VMSS failed event.",
+      "group": "accounts"
+    },
+    {
+      "name": "accounts.vmss_passed",
+      "description": "Account VMSS passed event.",
+      "group": "accounts"
+    },
+    {
       "name": "gateway.payment_voided",
       "description": "Occurs when a void is successful.",
       "group": "gateway"
@@ -162,6 +317,16 @@
       "group": "gateway"
     },
     {
+      "name": "gateway.payment_authentication_failed",
+      "description": "Payment authentication failed event",
+      "group": "gateway"
+    },
+    {
+      "name": "gateway.payment_authorized",
+      "description": "Payment authorized event",
+      "group": "gateway"
+    },
+    {
       "name": "gateway.card_verified",
       "description": "Occurs when a card verification is successful.",
       "group": "gateway"
@@ -172,159 +337,159 @@
       "group": "gateway"
     },
     {
-      "name": "platforms.sub_entity_created",
+      "name": "marketplace.sub_entity_created",
       "description": "The sub-entity has been created successfully.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.payments_enabled",
+      "name": "marketplace.payments_enabled",
       "description": "Occurs when payment capabilities are enabled for a sub-entity.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.payments_disabled",
+      "name": "marketplace.payments_disabled",
       "description": "Occurs when payment capabilities are disabled for a sub-entity.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.payouts_enabled",
+      "name": "marketplace.payouts_enabled",
       "description": "Occurs when payout capabilities are enabled for a sub-entity.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.payouts_disabled",
+      "name": "marketplace.payouts_disabled",
       "description": "Occurs when payout capabilities are disabled for a sub-entity.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.vmss_passed",
+      "name": "marketplace.vmss_passed",
       "description": "Occurs when a sub-entity passes due diligence VMSS checks.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.vmss_failed",
+      "name": "marketplace.vmss_failed",
       "description": "Occurs when a sub-entity fails due diligence VMSS checks.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.match_passed",
+      "name": "marketplace.match_passed",
       "description": "The sub-entity has passed their MATCH check.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.match_failed",
+      "name": "marketplace.match_failed",
       "description": "The sub-entity has failed their MATCH check.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.full_dd_passed",
+      "name": "marketplace.full_dd_passed",
       "description": "The sub-entity has passed their due diligence checks.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.full_dd_failed",
+      "name": "marketplace.full_dd_failed",
       "description": "The sub-entity has failed their due diligence checks.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.status_changed",
+      "name": "marketplace.status_changed",
       "description": "Occurs when the status of a sub-entity has changed.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.payment_instrument_created",
+      "name": "marketplace.payment_instrument_created",
       "description": "Occurs when a payment instrument is created associated with a sub-entity.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.payment_instrument_error",
+      "name": "marketplace.payment_instrument_error",
       "description": "Occurs when a payment instrument has failed to be created.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.payment_instrument_verification_passed",
+      "name": "marketplace.payment_instrument_verification_passed",
       "description": "The payment instrument has passed verification.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.payment_instrument_verification_failed",
+      "name": "marketplace.payment_instrument_verification_failed",
       "description": "The payment instrument has failed verification.",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
-      "name": "platforms.transfer_status_changed",
+      "name": "marketplace.transfer_status_changed",
       "description": "A transfer you have requested has changed status. Read more about this on the checkout.com transfers documentation",
-      "group": "platforms"
+      "group": "marketplace"
     },
     {
       "name": "dispute.request_for_information_received",
       "description": "Occurs when additional information has been requested for a given payment.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_received",
       "description": "Sent when a dispute notification has been received from the scheme before knowing if further action is possible.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_resolved",
       "description": "Occurs when a dispute is received but no further actions is required from you, because you've already refunded the customer.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_canceled",
       "description": "Occurs when a dispute is canceled by the issuing bank. If previously debited, the disputed amount has been credited back to you.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_evidence_required",
       "description": "Occurs when a dispute has been received for which evidence is required.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_accepted",
       "description": "Occurs when you have accepted a dispute. No further action is required.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_expired",
       "description": "Occurs when the time limit to take action against a dispute has been exceeded. No further action is possible.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_evidence_submitted",
       "description": "Occurs once you have submitted evidence for a given dispute. No further action is required from you.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_evidence_acknowledged_by_scheme",
       "description": "Occurs when the supporting documents you sent us have been forwarded to the scheme.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_won",
       "description": "Occurs when the issuing bank has accepted your evidence and you have won the dispute. If previously debited, the amount of the dispute has been credited back to you.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_lost",
       "description": "Occurs when the issuing bank has rejected your evidence and you have lost the dispute.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_arbitration_sent_to_scheme",
       "description": "Occurs when the documentation for an arbitration has been sent to the scheme.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_arbitration_won",
       "description": "Occurs when the arbitration has been won. Your account will be credited the disputed amount.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "dispute.dispute_arbitration_lost",
       "description": "Occurs when an arbitration has been lost. Your account will be debited any additional arbitration-related fees.",
-      "group": "platforms"
+      "group": "dispute"
     },
     {
       "name": "fincrime.payment_compliance_review",
