@@ -5,6 +5,7 @@
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
+    "resolveJsonModule": true,
     "sourceMap": true,
     "pretty": true,
     "target": "es6",
