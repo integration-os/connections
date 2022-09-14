@@ -12,7 +12,7 @@ import {
 enum EventType {
   gateway = 'gateway',
   dispute = 'dispute',
-  platforms = 'platforms',
+  platforms = 'marketplace',
   fincrime = 'fincrime'
 }
 
@@ -221,9 +221,15 @@ export default class CheckoutIntegration implements IntegrationClassI {
       [EventType.fincrime]: []
     };
     events.forEach((event) => {
-      const [eventType, eventValue] = event.split('.');
+      const eventKeyValue = event.split('.');
+      // The platforms events are still not supported by Checkout workflows,
+      // although they are documented. The events have to be pushed using the old
+      // naming convention: marketplace. This should be revisited once the new nomenclature
+      // is supported.
+      const eventType = eventKeyValue[0] === 'platforms' ? EventType.platforms : eventKeyValue[0];
+      const eventValue = eventKeyValue[1];
       if (!(<any>Object).values(EventType).includes(eventType)) {
-        throw new Error('Unexpected checkout.com event type.');
+        throw new Error(`Unexpected checkout.com event type: ${event}`);
       }
       workflowCondition[eventType].push(eventValue);
     });
@@ -239,7 +245,11 @@ export default class CheckoutIntegration implements IntegrationClassI {
     let result: string[] = [];
     for(const key in conditions) {
       const conditionEvents = conditions[key];
-      conditionEvents.forEach(conditionEvent => result.push(`${key}.${conditionEvent}`));
+      // The platforms events are still not supported by Checkout workflows,
+      // although they are documented. The events have to be pushed using the old
+      // naming convention: marketplace. This should be revisited once the new nomenclature
+      // is supported.
+      conditionEvents.forEach(conditionEvent => result.push(`${key === EventType.platforms ? 'platforms' : key}.${conditionEvent}`));
     }
     return result;
   };

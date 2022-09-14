@@ -3,6 +3,7 @@ require("dotenv").config();
 import CheckoutIntegration from "../catalog/checkout/Checkout";
 import { AnyObject } from "../types/classDefinition";
 import { createHmac } from "crypto";
+import config from '../catalog/checkout/config.json';
 
 const checkout = new CheckoutIntegration({
   CHECKOUT_API_KEY_SECRET: process.env.CHECKOUT_API_KEY_SECRET,
@@ -99,6 +100,15 @@ describe("Checkout Integration", () => {
         expect(error).toBeDefined();
         expect(error.message).toContain('Something went wrong while initializing webhook');
       }
+    });
+  });
+
+  describe("config.json", () => {
+    it('should be able to subscribe to all listed events', async() => {
+      const events = config.events.map(configEvent => configEvent.name);
+      const webhook = await checkout.init({webhookUrl: 'https://example.com/webhook', events});
+      const subscribedEvents = await checkout.getSubscribedEvents({ webhookId: webhook.webhookData['id'] });
+      expect(subscribedEvents).toEqual(expect.arrayContaining(events));
     });
   });
 
