@@ -257,16 +257,6 @@
       "group": "platforms"
     },
     {
-      "name": "platforms.payout_paid",
-      "description": "A scheduled payout to a sub-entity has been made. Read more about this on the checkout.com sub-entity payouts documentation",
-      "group": "platforms"
-    },
-    {
-      "name": "platforms.payout_declined",
-      "description": "A scheduled payout to a sub-entity has failed. Read more about this on the checkout.com sub-entity payouts documentation",
-      "group": "platforms"
-    },
-    {
       "name": "dispute.request_for_information_received",
       "description": "Occurs when additional information has been requested for a given payment.",
       "group": "platforms"
