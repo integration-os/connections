@@ -108,7 +108,9 @@ describe("Checkout Integration", () => {
       const events = config.events.map(configEvent => configEvent.name);
       const webhook = await checkout.init({webhookUrl: 'https://example.com/webhook', events});
       const subscribedEvents = await checkout.getSubscribedEvents({ webhookId: webhook.webhookData['id'] });
-      expect(subscribedEvents).toEqual(expect.arrayContaining(events));
+      events.forEach(event => {
+        expect(subscribedEvents).toContain(event);
+      });
     });
   });
 
