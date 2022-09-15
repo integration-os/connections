@@ -1,0 +1,120 @@
+{
+  "title": "Adyen",
+  "description": "A payment company that allows businesses to accept e-commerce, mobile, and point-of-sale payments.",
+  "apiVersion": "NA",
+  "platform": "adyen",
+  "category": "payment",
+  "image": "https://assets.buildable.dev/catalog/node-templates/adyen.svg",
+  "tags": [
+    "payment"
+  ],
+  "authentication": [
+    {
+      "name": "ADYEN_COMPANY_ID",
+      "label": "Enter your Adyen Company ID",
+      "placeholder": "MyCompany"
+    },
+    {
+      "name": "ADYEN_API_KEY",
+      "label": "Enter your Adyen Personal API Key",
+      "placeholder": "AQEohmfxJo3MbxxFw0m/n3Q5qf3VbI5bKZxNRudnEoG/AEDsaKzj/YE0YxDBXVsNvuR83LVYjEgiTGAH"
+    },
+    {
+      "name": "ADYEN_VERIFICATION_USERNAME",
+      "label": "Enter your Adyen Verification Username",
+      "placeholder": "my-username"
+    },
+    {
+      "name": "ADYEN_VERIFICATION_PASSWORD",
+      "label": "Enter your Adyen Verification Password",
+      "placeholder": "my-password"
+    }
+  ],
+  "eventSchema": {
+    "live": "false",
+    "notificationItems": [
+      {
+        "NotificationRequestItem": {
+          "additionalData": {
+            "expiryDate": "03/2030",
+            "cardSummary": "0005",
+            "hmacSignature": "YvCKx7b+aSiEH2eoZH8KEXWkSVQzZMCZyKC1glvHrBI="
+          },
+          "amount": {
+            "currency": "USD",
+            "value": 25647
+          },
+          "eventCode": "AUTHORISATION",
+          "eventDate": "2022-09-03T12:21:18+02:00",
+          "merchantAccountCode": "BestMerch",
+          "merchantReference": "PLAYGROUND-1662200466116",
+          "paymentMethod": "cartebancaire",
+          "pspReference": "CSRK99WWP5PFWR82",
+          "success": "true"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
+  "paths": {
+    "id": "_.body.id",
+    "event": "_.body.type",
+    "payload": "_.body",
+    "secret": null,
+    "signature": "_.headers.authorization"
+  },
+  "connectionTypes": [
+    "source"
+  ],
+  "events": [
+    {
+      "name": "standard",
+      "description": "Standard set of events",
+      "group": ""
+    },
+    {
+      "name": "account-settings-notification",
+      "description": "Receive a notification when there is a status change related to your company account, merchant account, or store.",
+      "group": ""
+    },
+    {
+      "name": "banktransfer-notification",
+      "description": "Receive a notification when there is a bank transfer payment",
+      "group": ""
+    },
+    {
+      "name": "directdebit-notification",
+      "description": "Receive a notification when there is a direct debit payment",
+      "group": ""
+    },
+    {
+      "name": "pending-notification",
+      "description": "Receive a notification with eventCode: PENDING when there is a pending payment for any redirect payment method",
+      "group": ""
+    },
+    {
+      "name": "ideal-notification",
+      "description": "Receive a notification when there is an iDEAL payment",
+      "group": ""
+    },
+    {
+      "name": "ideal-pending-notification",
+      "description": "Receive a notification with eventCode: PENDING when there is a pending iDEAL payment",
+      "group": ""
+    },
+    {
+      "name": "report-notification",
+      "description": "Receive a notification with eventCode: REPORT_AVAILABLE when a new report is available",
+      "group": ""
+    },
+    {
+      "name": "rreq-notification",
+      "description": "Receive a notification when there is an RReq payment",
+      "group": ""
+    }
+  ]
+}
