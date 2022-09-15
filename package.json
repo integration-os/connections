@@ -31,6 +31,7 @@
   "homepage": "https://github.com/buildable/connections#readme",
   "devDependencies": {
     "@types/jest": "^28.1.6",
+    "@types/lodash": "^4.14.183",
     "@types/node": "^18.6.3",
     "eslint": "^8.9.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -43,10 +44,15 @@
   },
   "dependencies": {
     "@datadog/datadog-api-client": "^1.2.0",
+    "@hubspot/api-client": "^7.1.2",
     "@octokit/core": "^4.0.4",
     "@shopify/shopify-api": "^4.1.0",
+    "@types/paypal-rest-sdk": "^1.7.6",
     "axios": "^0.27.2",
     "dotenv": "^16.0.0",
+    "lodash": "^4.17.21",
+    "paypal-rest-sdk": "^1.8.1",
+    "square": "^21.1.0",
     "stripe": "^9.13.0"
   }
 }

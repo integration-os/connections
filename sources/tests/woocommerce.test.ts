@@ -3,7 +3,7 @@ require("dotenv").config();
 import axios, { AxiosInstance } from "axios";
 import * as https from "https";
 
-import WooCommerceIntegration from "../catalog/woocommerce/WooCommerce";
+import WooCommerceIntegration from "../catalog/woocommerce/woocommerce";
 import { AnyObject } from "../types/classDefinition";
 import { createHmac } from "crypto";
 
@@ -123,7 +123,8 @@ describe("WooCommerce Integration", () => {
       } catch (error) {
         errorMessage = error.message;
       }
-      await expect(errorMessage).toMatch(/Invalid signature/g);
+
+      expect(errorMessage).toMatch(/Invalid signature/g);
     });
   });
 

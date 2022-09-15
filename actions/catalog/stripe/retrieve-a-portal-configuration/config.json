@@ -1,7 +1,7 @@
 {
   "name": "retrieveAPortalConfigurationResult",
   "title": "Retrieve a Portal Configuration",
-  "description": "Retrieve a portal configuration using the Stripe API",
+  "description": "Retrieve a portal configuration",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

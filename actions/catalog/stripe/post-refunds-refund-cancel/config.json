@@ -1,7 +1,7 @@
 {
   "name": "postRefundsRefundCancelResult",
-  "title": "<p>Cancels a Refund with a Status of <code>requires_action</code>.</p><p>Refunds in Other States Can",
-  "description": "<p>cancels a refund with a status of <code>requires_action</code>.</p>\n\n<p>refunds in other states cannot be canceled, and only refunds for payment methods that require customer action will enter the <code>requires_action</code> state.</p> using the Stripe API",
+  "title": "Cancels a Refund with a Status of Requires_action",
+  "description": "Cancels a refund with a status of requires_action. Refunds in other states cannot be canceled, and only refunds for payment methods that require customer action will enter the requires_action state",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

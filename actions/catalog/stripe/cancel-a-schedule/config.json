@@ -1,7 +1,7 @@
 {
   "name": "cancelAScheduleResult",
   "title": "Cancel a Schedule",
-  "description": "Cancel a schedule using the Stripe API",
+  "description": "Cancel a schedule",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

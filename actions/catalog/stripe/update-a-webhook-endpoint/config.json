@@ -1,7 +1,7 @@
 {
   "name": "updateAWebhookEndpointResult",
   "title": "Update a Webhook Endpoint",
-  "description": "Update a webhook endpoint using the Stripe API",
+  "description": "Update a webhook endpoint",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
