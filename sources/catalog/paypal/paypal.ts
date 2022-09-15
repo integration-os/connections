@@ -20,13 +20,16 @@ export default class PaypalIntegration implements IntegrationClassI {
   constructor({
     PAYPAL_CLIENT_ID,
     PAYPAL_CLIENT_SECRET,
+    environment
   }: {
     PAYPAL_CLIENT_ID: string;
     PAYPAL_CLIENT_SECRET: string;
+    environment: string;
   }) {
+    const mode = environment === "live" ? "live" : "sandbox";
+
     paypal.configure({
-      // TODO: change to live before production
-      mode: "sandbox", //sandbox or live
+      mode, //sandbox or live
       client_id: PAYPAL_CLIENT_ID,
       client_secret: PAYPAL_CLIENT_SECRET,
     });
