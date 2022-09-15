@@ -41,6 +41,7 @@ export default class SquareIntegration implements IntegrationClassI {
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const webhook = await this.square.webhookSubscriptionsApi.createWebhookSubscription({
       subscription: {
+        name: `buildable-${this.randomHex()}`,
         eventTypes: events,
         notificationUrl: webhookUrl,
       },
@@ -158,5 +159,11 @@ export default class SquareIntegration implements IntegrationClassI {
     } catch (e) {
       throw new Error("Unable to establish a connection with Square: " + (e as Error).message);
     }
+  }
+
+  private randomHex(): string {
+    return Math.floor(Math.random() * 0xffffff)
+      .toString(16)
+      .padStart(6, "0");
   }
 }
