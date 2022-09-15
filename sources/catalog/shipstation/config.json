@@ -1,0 +1,76 @@
+{
+  "title": "ShipStation",
+  "description": "Shipping tracking",
+  "apiVersion": "2020-03-02",
+  "platform": "shipstation",
+  "category": "tracking",
+  "image": "https://assets.buildable.dev/catalog/node-templates/shipstation.svg",
+  "tags": ["shipping", "tracking"],
+  "authentication": [
+    {
+      "name": "SHIP_STATION_BASE_URL",
+      "label": "Enter ShipStation base Url",
+      "placeholder": "https://ssapi.shipstation.com",
+      "value": "https://ssapi.shipstation.com"
+    },
+    {
+      "name": "SHIP_STATION_API_KEY",
+      "label": "Enter your ShipStation Api Key",
+      "placeholder": "15975fdsaasd"
+    },
+    {
+      "name": "SHIP_STATION_SECRET_KEY",
+      "label": "Enter your ShipStation Secret Key",
+      "placeholder": "75945fdsaf97"
+    }
+  ],
+  "eventSchema": {
+    "resource_url": "https://ssapi11.shipstation.com/shipments?batchId=123456789&includeShipmentItems=False",
+    "resource_type": "SHIP_NOTIFY"
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
+  "paths": {
+    "id": "_.body.WebHookID",
+    "event": "_.body.resource_type",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "connectionTypes": ["source"],
+  "events": [
+    {
+      "name": "ORDER_NOTIFY",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "ITEM_ORDER_NOTIFY",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "SHIP_NOTIFY",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "ITEM_SHIP_NOTIFY",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "FULFILLMENT_SHIPPED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "FULFILLMENT_REJECTED",
+      "description": "",
+      "group": ""
+    }
+  ]
+}

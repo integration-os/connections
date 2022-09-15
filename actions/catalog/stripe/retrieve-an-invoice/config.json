@@ -1,7 +1,7 @@
 {
   "name": "retrieveAnInvoiceResult",
   "title": "Retrieve an Invoice",
-  "description": "Retrieve an invoice using the Stripe API",
+  "description": "Retrieve an invoice",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

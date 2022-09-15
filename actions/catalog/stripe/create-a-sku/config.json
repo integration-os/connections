@@ -1,7 +1,7 @@
 {
   "name": "createASKUResult",
   "title": "Create a SKU",
-  "description": "Create a sku using the Stripe API",
+  "description": "Create a sku",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

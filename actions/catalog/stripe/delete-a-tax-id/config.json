@@ -1,7 +1,7 @@
 {
   "name": "deleteATaxIDResult",
   "title": "Delete a Tax ID",
-  "description": "Delete a tax id using the Stripe API",
+  "description": "Delete a tax id",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

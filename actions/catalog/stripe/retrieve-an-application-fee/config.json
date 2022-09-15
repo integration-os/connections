@@ -1,7 +1,7 @@
 {
   "name": "retrieveAnApplicationFeeResult",
   "title": "Retrieve an Application Fee",
-  "description": "Retrieve an application fee using the Stripe API",
+  "description": "Retrieve an application fee",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

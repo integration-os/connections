@@ -1,7 +1,7 @@
 {
   "name": "postSourcesSourceVerifyResult",
-  "title": "<p>Verify a Given source.</p>",
-  "description": "<p>verify a given source.</p> using the Stripe API",
+  "title": "Verify a Given Source",
+  "description": "Verify a given source",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

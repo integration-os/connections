@@ -65,7 +65,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     return { webhookData: webhook.data, events };
   }
 
-  verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Truthy {
+  async verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Promise<Truthy> {
     // Override secret because the webhook creation
     // returns "******" as the secret value
     secret = this.GITHUB_REPOS_ACCESS_TOKEN;

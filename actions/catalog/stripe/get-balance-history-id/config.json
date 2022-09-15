@@ -1,7 +1,7 @@
 {
   "name": "getBalanceHistoryIdResult",
-  "title": "<p>Retrieves the Balance Transaction with the Given ID.</p><p>Note that This Endpoint Previously Use",
-  "description": "<p>retrieves the balance transaction with the given id.</p>\n\n<p>note that this endpoint previously used the path <code>/v1/balance/history/:id</code>.</p> using the Stripe API",
+  "title": "Retrieves the Balance Transaction with the Given ID",
+  "description": "Retrieves the balance transaction with the given id. Note that this endpoint previously used the path /v1/balance/history/:id",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
