@@ -21,10 +21,10 @@ export default class SquareIntegration implements IntegrationClassI {
 
   readonly SQUARE_SECRET_KEY: string;
 
-  constructor({ 
+  constructor({
     SQUARE_SECRET_KEY,
     environment
-  }: { 
+  }: {
     SQUARE_SECRET_KEY: string;
     environment: string;
   }) {
@@ -35,7 +35,7 @@ export default class SquareIntegration implements IntegrationClassI {
       environment: squareEnvironment,
     });
 
-    this.SQUARE_SECRET_KEY =  SQUARE_SECRET_KEY;
+    this.SQUARE_SECRET_KEY = SQUARE_SECRET_KEY;
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
@@ -62,7 +62,7 @@ export default class SquareIntegration implements IntegrationClassI {
 
     const isValid = hash === signature;
 
-    if(!isValid) throw new Error('Signature verification failed');
+    if (!isValid) throw new Error('Signature verification failed');
 
     return isValid;
   }
@@ -112,9 +112,9 @@ export default class SquareIntegration implements IntegrationClassI {
   }
 
   async unsubscribe({
-                      webhookId,
-                      events,
-                    }: SubscriptionProps): Promise<{ events: Events; webhook?: any; webhooks?: any }> {
+    webhookId,
+    events,
+  }: SubscriptionProps): Promise<{ events: Events; webhook?: any; webhooks?: any }> {
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });
