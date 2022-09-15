@@ -102,6 +102,9 @@ export interface VerifyWebhookSignatureProps {
   };
   signature: string;
   secret: string | null;
+  webhookUrl?: string;
+  webhookId?: string;
+  webhookIds?: string[];
 }
 
 export interface SubscriptionProps {

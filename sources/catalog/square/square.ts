@@ -21,10 +21,10 @@ export default class SquareIntegration implements IntegrationClassI {
 
   readonly SQUARE_SECRET_KEY: string;
 
-  constructor({ 
+  constructor({
     SQUARE_SECRET_KEY,
     environment
-  }: { 
+  }: {
     SQUARE_SECRET_KEY: string;
     environment: string;
   }) {
@@ -35,12 +35,13 @@ export default class SquareIntegration implements IntegrationClassI {
       environment: squareEnvironment,
     });
 
-    this.SQUARE_SECRET_KEY =  SQUARE_SECRET_KEY;
+    this.SQUARE_SECRET_KEY = SQUARE_SECRET_KEY;
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const webhook = await this.square.webhookSubscriptionsApi.createWebhookSubscription({
       subscription: {
+        name: `buildable-${this.randomHex()}`,
         eventTypes: events,
         notificationUrl: webhookUrl,
       },
@@ -52,16 +53,17 @@ export default class SquareIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Promise<Truthy> {
-    const { headers, body } = request;
-    const webhookUrl = `${headers['x-forwarded-proto']}://${headers['x-forwarded-host']}${headers['x-matched-path']}`;
+  async verifyWebhookSignature({ request, signature, secret, webhookUrl }: VerifyWebhookSignatureProps): Promise<Truthy> {
+    const { body } = request;
+
     const hmac = crypto.createHmac('sha256', secret);
     hmac.update(webhookUrl + body);
+
     const hash = hmac.digest('base64');
 
     const isValid = hash === signature;
 
-    if(!isValid) throw new Error('Signature verification failed');
+    if (!isValid) throw new Error('Signature verification failed');
 
     return isValid;
   }
@@ -111,9 +113,9 @@ export default class SquareIntegration implements IntegrationClassI {
   }
 
   async unsubscribe({
-                      webhookId,
-                      events,
-                    }: SubscriptionProps): Promise<{ events: Events; webhook?: any; webhooks?: any }> {
+    webhookId,
+    events,
+  }: SubscriptionProps): Promise<{ events: Events; webhook?: any; webhooks?: any }> {
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });
@@ -158,5 +160,11 @@ export default class SquareIntegration implements IntegrationClassI {
     } catch (e) {
       throw new Error("Unable to establish a connection with Square: " + (e as Error).message);
     }
+  }
+
+  private randomHex(): string {
+    return Math.floor(Math.random() * 0xffffff)
+      .toString(16)
+      .padStart(6, "0");
   }
 }
