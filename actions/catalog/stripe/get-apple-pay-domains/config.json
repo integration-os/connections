@@ -1,7 +1,7 @@
 {
   "name": "getApplePayDomainsResult",
-  "title": "List Apple Pay Domains",
-  "description": "List apple pay domains",
+  "title": "<p>List Apple Pay domains.</p>",
+  "description": "<p>list apple pay domains.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

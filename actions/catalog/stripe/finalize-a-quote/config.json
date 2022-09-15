@@ -1,7 +1,7 @@
 {
   "name": "finalizeAQuoteResult",
   "title": "Finalize a Quote",
-  "description": "Finalize a quote",
+  "description": "Finalize a quote using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "approveAReviewResult",
   "title": "Approve a Review",
-  "description": "Approve a review",
+  "description": "Approve a review using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

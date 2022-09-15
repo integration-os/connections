@@ -1,7 +1,7 @@
 {
   "name": "listAllShippingRatesResult",
   "title": "List All Shipping Rates",
-  "description": "List all shipping rates",
+  "description": "List all shipping rates using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

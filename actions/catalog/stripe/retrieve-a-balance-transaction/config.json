@@ -1,7 +1,7 @@
 {
   "name": "retrieveABalanceTransactionResult",
   "title": "Retrieve a Balance Transaction",
-  "description": "Retrieve a balance transaction",
+  "description": "Retrieve a balance transaction using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

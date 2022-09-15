@@ -1,7 +1,7 @@
 {
   "name": "listAllReadersResult",
   "title": "List All Readers",
-  "description": "List all readers",
+  "description": "List all readers using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

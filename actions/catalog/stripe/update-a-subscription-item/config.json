@@ -1,7 +1,7 @@
 {
   "name": "updateASubscriptionItemResult",
   "title": "Update a Subscription Item",
-  "description": "Update a subscription item",
+  "description": "Update a subscription item using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

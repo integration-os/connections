@@ -1,7 +1,7 @@
 {
   "name": "getTaxCodesResult",
-  "title": "A List of All Tax Codes Available to Add to Products in Order to Allow Specific Tax Calculations",
-  "description": "A list of all tax codes available to add to products in order to allow specific tax calculations",
+  "title": "<p>A List of <a href=\"https://stripe.com/docs/tax/tax-Categories\">all Tax Codes available</a> to Add",
+  "description": "<p>a list of <a href=\"https://stripe.Com/docs/tax/tax-categories\">all tax codes available</a> to add to products in order to allow specific tax calculations.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

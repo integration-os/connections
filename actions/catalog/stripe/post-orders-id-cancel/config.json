@@ -1,7 +1,7 @@
 {
   "name": "postOrdersIdCancelResult",
-  "title": "Cancels the Order as Well as the Payment Intent if One Is Attached",
-  "description": "Cancels the order as well as the payment intent if one is attached",
+  "title": "<p>Cancels the Order as Well as the Payment Intent if One Is attached.</p>",
+  "description": "<p>cancels the order as well as the payment intent if one is attached.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

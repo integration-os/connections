@@ -1,7 +1,7 @@
 {
   "name": "retrieveAValueListResult",
   "title": "Retrieve a Value List",
-  "description": "Retrieve a value list",
+  "description": "Retrieve a value list using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

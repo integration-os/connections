@@ -81,7 +81,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Promise<Truthy> {
+  verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Truthy {
     // WooCommerce sends the signed body in X-WC-Webhook-Signature header
     // it uses SHA256-HMAC hash encoded in base64
     // We're using the Rest API secret key for encryption, which is the default key used by WooCommerce

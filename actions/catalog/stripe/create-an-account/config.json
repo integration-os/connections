@@ -1,7 +1,7 @@
 {
   "name": "createAnAccountResult",
   "title": "Create an Account",
-  "description": "Create an account",
+  "description": "Create an account using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

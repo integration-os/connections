@@ -1,7 +1,7 @@
 {
   "name": "retrieveAReportTypeResult",
   "title": "Retrieve a Report Type",
-  "description": "Retrieve a report type",
+  "description": "Retrieve a report type using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

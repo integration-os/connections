@@ -1,7 +1,7 @@
 {
   "name": "listAllTransfersResult",
   "title": "List All Transfers",
-  "description": "List all transfers",
+  "description": "List all transfers using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

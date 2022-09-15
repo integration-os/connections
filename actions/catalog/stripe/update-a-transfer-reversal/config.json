@@ -1,7 +1,7 @@
 {
   "name": "updateATransferReversalResult",
   "title": "Update a Transfer Reversal",
-  "description": "Update a transfer reversal",
+  "description": "Update a transfer reversal using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

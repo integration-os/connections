@@ -1,7 +1,7 @@
 {
   "name": "deleteASKUResult",
   "title": "Delete a SKU",
-  "description": "Delete a sku",
+  "description": "Delete a sku using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

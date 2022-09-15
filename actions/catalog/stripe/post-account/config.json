@@ -1,7 +1,7 @@
 {
   "name": "postAccountResult",
-  "title": "Updates a Connected Account by Setting the Values of the Parameters Passed",
-  "description": "Updates a connected account by setting the values of the parameters passed. Any parameters not provided are left unchanged. Most parameters can be changed only for custom accounts. (these are marked custom only below.) parameters marked custom and express are not supported for standard accounts. To update your own account, use the dashboard. Refer to our connect documentation to learn more about updating accounts",
+  "title": "<p>Updates a <a Href=\"/docs/connect/accounts\">connected account</a> by Setting the Values of the Par",
+  "description": "<p>updates a <a href=\"/docs/connect/accounts\">connected account</a> by setting the values of the parameters passed. Any parameters not provided are left unchanged. Most parameters can be changed only for custom accounts. (these are marked <strong>custom only</strong> below.) parameters marked <strong>custom and express</strong> are not supported for standard accounts.</p>\n\n<p>to update your own account, use the <a href=\"https://dashboard.Stripe.Com/account\">dashboard</a>. Refer to our <a href=\"/docs/connect/updating-accounts\">connect</a> documentation to learn more about updating accounts.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

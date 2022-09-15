@@ -1,7 +1,7 @@
 {
   "name": "deleteACustomerDiscountResult",
   "title": "Delete a Customer Discount",
-  "description": "Delete a customer discount",
+  "description": "Delete a customer discount using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

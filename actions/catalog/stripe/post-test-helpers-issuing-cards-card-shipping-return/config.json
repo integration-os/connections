@@ -1,7 +1,7 @@
 {
   "name": "result",
-  "title": "Updates the Shipping Status of the Specified Issuing Card Object to Returned",
-  "description": "Updates the shipping status of the specified issuing card object to returned",
+  "title": "<p>Updates the Shipping Status of the Specified Issuing <code>Card</code> Object to <code>returned</",
+  "description": "<p>updates the shipping status of the specified issuing <code>card</code> object to <code>returned</code>.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

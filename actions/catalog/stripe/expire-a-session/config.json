@@ -1,7 +1,7 @@
 {
   "name": "expireASessionResult",
   "title": "Expire a Session",
-  "description": "Expire a session",
+  "description": "Expire a session using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

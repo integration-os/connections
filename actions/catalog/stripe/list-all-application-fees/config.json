@@ -1,7 +1,7 @@
 {
   "name": "listAllApplicationFeesResult",
   "title": "List All Application Fees",
-  "description": "List all application fees",
+  "description": "List all application fees using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

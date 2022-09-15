@@ -1,7 +1,7 @@
 {
   "name": "postApplePayDomainsResult",
-  "title": "Create an Apple Pay Domain",
-  "description": "Create an apple pay domain",
+  "title": "<p>Create an Apple Pay domain.</p>",
+  "description": "<p>create an apple pay domain.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

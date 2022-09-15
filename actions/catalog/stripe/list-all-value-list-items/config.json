@@ -1,7 +1,7 @@
 {
   "name": "listAllValueListItemsResult",
   "title": "List All Value List Items",
-  "description": "List all value list items",
+  "description": "List all value list items using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

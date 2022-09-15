@@ -1,7 +1,7 @@
 {
   "name": "searchCustomersResult",
   "title": "Search Customers",
-  "description": "Search customers",
+  "description": "Search customers using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

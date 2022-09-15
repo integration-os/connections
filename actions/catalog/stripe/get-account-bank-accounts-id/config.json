@@ -1,7 +1,7 @@
 {
   "name": "getAccountBankAccountsIdResult",
-  "title": "Retrieve a Specified External Account for a Given Account",
-  "description": "Retrieve a specified external account for a given account",
+  "title": "<p>Retrieve a Specified External Account for a Given account.</p>",
+  "description": "<p>retrieve a specified external account for a given account.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

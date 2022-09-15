@@ -1,7 +1,7 @@
 {
   "name": "retrieveACashBalanceResult",
   "title": "Retrieve a Cash Balance",
-  "description": "Retrieve a cash balance",
+  "description": "Retrieve a cash balance using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

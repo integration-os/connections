@@ -1,7 +1,7 @@
 {
   "name": "listPortalConfigurationsResult",
   "title": "List Portal Configurations",
-  "description": "List portal configurations",
+  "description": "List portal configurations using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

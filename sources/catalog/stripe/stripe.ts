@@ -34,7 +34,7 @@ export default class StripeIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret }) {
+  verifyWebhookSignature({ request, signature, secret }) {
     try {
       return this.stripe.webhooks.constructEvent(request.body, signature, secret);
     } catch (err) {

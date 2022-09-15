@@ -1,7 +1,7 @@
 {
   "name": "closeADisputeResult",
   "title": "Close a Dispute",
-  "description": "Close a dispute",
+  "description": "Close a dispute using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

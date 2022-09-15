@@ -1,7 +1,7 @@
 {
   "name": "deleteAWebhookEndpointResult",
   "title": "Delete a Webhook Endpoint",
-  "description": "Delete a webhook endpoint",
+  "description": "Delete a webhook endpoint using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

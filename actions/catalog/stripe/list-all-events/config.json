@@ -1,7 +1,7 @@
 {
   "name": "listAllEventsResult",
   "title": "List All Events",
-  "description": "List all events",
+  "description": "List all events using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "listAllTransactionEntriesResult",
   "title": "List All TransactionEntries",
-  "description": "List all transactionentries",
+  "description": "List all transactionentries using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

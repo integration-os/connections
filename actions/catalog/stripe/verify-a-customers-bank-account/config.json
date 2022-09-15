@@ -1,7 +1,7 @@
 {
   "name": "verifyACustomerSBankAccountResult",
   "title": "Verify a Customer's Bank Account",
-  "description": "Verify a customer's bank account",
+  "description": "Verify a customer's bank account using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "createAnInvoiceItemResult",
   "title": "Create an Invoice Item",
-  "description": "Create an invoice item",
+  "description": "Create an invoice item using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

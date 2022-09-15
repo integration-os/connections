@@ -1,7 +1,7 @@
 {
   "name": "postChargesChargeDisputeCloseResult",
   "title": "Post Charges Charge Dispute Close",
-  "description": "Post charges charge dispute close",
+  "description": "Post charges charge dispute close using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

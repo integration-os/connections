@@ -1,7 +1,7 @@
 {
   "name": "getTaxCodesIdResult",
-  "title": "Retrieves the Details of an Existing Tax Code",
-  "description": "Retrieves the details of an existing tax code. Supply the unique tax code id and stripe will return the corresponding tax code information",
+  "title": "<p>Retrieves the Details of an Existing Tax Code. Supply the Unique Tax Code ID and Stripe Will Retu",
+  "description": "<p>retrieves the details of an existing tax code. Supply the unique tax code id and stripe will return the corresponding tax code information.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

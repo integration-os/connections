@@ -1,7 +1,7 @@
 {
   "name": "getAccountPeoplePersonResult",
-  "title": "Retrieves an Existing Person",
-  "description": "Retrieves an existing person",
+  "title": "<p>Retrieves an Existing person.</p>",
+  "description": "<p>retrieves an existing person.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

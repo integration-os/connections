@@ -1,7 +1,7 @@
 {
   "name": "retrieveAccountResult",
   "title": "Retrieve Account",
-  "description": "Retrieve account",
+  "description": "Retrieve account using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

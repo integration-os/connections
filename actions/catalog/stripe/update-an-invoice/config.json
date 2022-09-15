@@ -1,7 +1,7 @@
 {
   "name": "updateAnInvoiceResult",
   "title": "Update an Invoice",
-  "description": "Update an invoice",
+  "description": "Update an invoice using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

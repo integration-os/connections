@@ -1,7 +1,7 @@
 {
   "name": "get3dSecureThreeDSecureResult",
-  "title": "Retrieves a 3D Secure Object",
-  "description": "Retrieves a 3d secure object",
+  "title": "<p>Retrieves a 3D Secure object.</p>",
+  "description": "<p>retrieves a 3d secure object.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

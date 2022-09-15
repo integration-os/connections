@@ -78,7 +78,7 @@ export default class GitLabIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ signature: signature }: VerifyWebhookSignatureProps): Promise<Truthy> {
+  verifyWebhookSignature({ signature: signature }: VerifyWebhookSignatureProps): Truthy {
     // GitLab does not sign its webhook payloads.
     // Instead, it resends the token set during the webhook creation process.
     // Thus, we can verify the signature by comparing "signature" with GITLAB_WEBHOOK_SECRET.

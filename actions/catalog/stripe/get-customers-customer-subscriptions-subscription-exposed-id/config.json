@@ -1,7 +1,7 @@
 {
   "name": "result",
-  "title": "Retrieves the Subscription with the Given ID",
-  "description": "Retrieves the subscription with the given id",
+  "title": "<p>Retrieves the Subscription with the Given ID.</p>",
+  "description": "<p>retrieves the subscription with the given id.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

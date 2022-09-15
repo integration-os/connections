@@ -1,7 +1,7 @@
 {
   "name": "result",
-  "title": "Retrieves a New Source MandateNotification",
-  "description": "Retrieves a new source mandatenotification",
+  "title": "<p>Retrieves a New Source MandateNotification.</p>",
+  "description": "<p>retrieves a new source mandatenotification.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

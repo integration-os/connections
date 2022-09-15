@@ -1,7 +1,7 @@
 {
   "name": "listAllTopUpsResult",
   "title": "List All Top-Ups",
-  "description": "List all top-ups",
+  "description": "List all top-ups using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

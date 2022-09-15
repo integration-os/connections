@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import CircleCIIntegration from "../catalog/circleci/circleci";
+import CircleCIIntegration from "../catalog/circleci/CircleCI";
 import { createHmac } from "crypto";
 
 const circleci = new CircleCIIntegration({
@@ -51,7 +51,9 @@ describe("CircleCI Integration", () => {
         errorMessage = e.message;
       }
 
-      expect(errorMessage).toMatch(/Could not initialize CircleCI integration/g);
+      expect(errorMessage).toMatch(
+        /Could not initialize CircleCI integration/g
+      );
     });
   });
 
@@ -338,7 +340,7 @@ describe("CircleCI Integration", () => {
 
     it("should delete the webhook", async () => {
       const result = await circleci.deleteWebhookEndpoint({
-        webhookId: webhookId as string,
+        webhookId: (webhookId as string),
       });
 
       expect(result).toBeTruthy();
@@ -365,7 +367,7 @@ describe("CircleCI Integration", () => {
 
       try {
         await mockCircleCi?.deleteWebhookEndpoint?.({
-          webhookId: webhookId as string,
+          webhookId: (webhookId as string),
         });
       } catch (e) {
         errorMessage = e.message;

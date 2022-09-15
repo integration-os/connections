@@ -1,7 +1,7 @@
 {
   "name": "listAllExchangeRatesResult",
   "title": "List All Exchange Rates",
-  "description": "List all exchange rates",
+  "description": "List all exchange rates using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

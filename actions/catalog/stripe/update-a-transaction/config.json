@@ -1,7 +1,7 @@
 {
   "name": "updateATransactionResult",
   "title": "Update a Transaction",
-  "description": "Update a transaction",
+  "description": "Update a transaction using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "listAllInvoiceItemsResult",
   "title": "List All Invoice Items",
-  "description": "List all invoice items",
+  "description": "List all invoice items using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

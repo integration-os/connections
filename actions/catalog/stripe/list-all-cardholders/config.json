@@ -1,7 +1,7 @@
 {
   "name": "listAllCardholdersResult",
   "title": "List All Cardholders",
-  "description": "List all cardholders",
+  "description": "List all cardholders using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

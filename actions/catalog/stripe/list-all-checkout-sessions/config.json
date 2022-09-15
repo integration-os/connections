@@ -1,7 +1,7 @@
 {
   "name": "listAllCheckoutSessionsResult",
   "title": "List All Checkout Sessions",
-  "description": "List all checkout sessions",
+  "description": "List all checkout sessions using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

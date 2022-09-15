@@ -75,7 +75,7 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Promise<Truthy> {
+  verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Truthy {
     // The X-PagerDuty-Signature header included with each webhook event delivery contains one or more signatures.
     // Multiple signatures may be present to allow for a zero-downtime secret rotation.
     // The current signature version is v1 and is computed as an HMAC of the payload body using a SHA-256 hash function.

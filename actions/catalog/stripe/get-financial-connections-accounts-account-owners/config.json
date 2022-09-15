@@ -1,7 +1,7 @@
 {
   "name": "getFinancialConnectionsAccountsAccountOwnersResult",
-  "title": "Lists All Owners for a Given Account",
-  "description": "Lists all owners for a given account",
+  "title": "<p>Lists All Owners for a Given <code>Account</code></p>",
+  "description": "<p>lists all owners for a given <code>account</code></p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

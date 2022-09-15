@@ -1,7 +1,7 @@
 {
   "name": "retrievePaymentLinkResult",
   "title": "Retrieve Payment Link",
-  "description": "Retrieve payment link",
+  "description": "Retrieve payment link using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

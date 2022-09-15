@@ -1,7 +1,7 @@
 {
   "name": "getPlansResult",
-  "title": "Returns a List of Your Plans",
-  "description": "Returns a list of your plans",
+  "title": "<p>Returns a List of Your plans.</p>",
+  "description": "<p>returns a list of your plans.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

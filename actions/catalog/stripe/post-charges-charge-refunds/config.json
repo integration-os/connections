@@ -1,7 +1,7 @@
 {
   "name": "postChargesChargeRefundsResult",
-  "title": "Create a Refund",
-  "description": "Create a refund",
+  "title": "<p>Create a refund.</p>",
+  "description": "<p>create a refund.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

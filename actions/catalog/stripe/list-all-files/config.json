@@ -1,7 +1,7 @@
 {
   "name": "listAllFilesResult",
   "title": "List All Files",
-  "description": "List all files",
+  "description": "List all files using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "getAccountResult",
-  "title": "Retrieves the Details of an Account",
-  "description": "Retrieves the details of an account",
+  "title": "<p>Retrieves the Details of an account.</p>",
+  "description": "<p>retrieves the details of an account.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

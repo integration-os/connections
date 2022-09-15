@@ -1,7 +1,7 @@
 {
   "name": "getAccountExternalAccountsResult",
-  "title": "List External Accounts for an Account",
-  "description": "List external accounts for an account",
+  "title": "<p>List External Accounts for an account.</p>",
+  "description": "<p>list external accounts for an account.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

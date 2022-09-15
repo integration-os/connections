@@ -1,7 +1,7 @@
 {
   "name": "postLinkedAccountsAccountDisconnectResult",
-  "title": "Disables Your Access to a Financial Connections Account",
-  "description": "Disables your access to a financial connections account. You will no longer be able to access data associated with the account (e. G. Balances, transactions)",
+  "title": "<p>Disables Your Access to a Financial Connections <code>Account</code>. You Will No Longer Be Able ",
+  "description": "<p>disables your access to a financial connections <code>account</code>. You will no longer be able to access data associated with the account (e.G. Balances, transactions).</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

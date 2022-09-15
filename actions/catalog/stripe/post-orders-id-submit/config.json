@@ -1,7 +1,7 @@
 {
   "name": "postOrdersIdSubmitResult",
-  "title": "Submitting an Order Transitions the Status to Processing and Creates a PaymentIntent Object so the O",
-  "description": "Submitting an order transitions the status to processing and creates a paymentintent object so the order can be paid. If the order has an amount_total of 0, no paymentintent object will be created. Once the order is submitted, its contents cannot be changed, unless the reopen method is called",
+  "title": "<p>Submitting an Order Transitions the Status to <Code>processing</code> and Creates a PaymentIntent",
+  "description": "<p>submitting an order transitions the status to <code>processing</code> and creates a paymentintent object so the order can be paid. If the order has an <code>amount_total</code> of 0, no paymentintent object will be created. Once the order is submitted, its contents cannot be changed, unless the <a href=\"#reopen_order\">reopen</a> method is called.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "listAllLocationsResult",
   "title": "List All Locations",
-  "description": "List all locations",
+  "description": "List all locations using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

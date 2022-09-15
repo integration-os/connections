@@ -1,7 +1,7 @@
 {
   "name": "listAllTaxRatesResult",
   "title": "List All Tax Rates",
-  "description": "List all tax rates",
+  "description": "List all tax rates using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

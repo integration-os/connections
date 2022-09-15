@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 import { createHmac } from "crypto";
-import PagerDutyIntegration from "../catalog/pagerduty/pagerduty";
+import PagerDutyIntegration from "../catalog/pagerduty/PagerDuty";
 import { AnyObject } from "../types/classDefinition";
 
 const pagerduty = new PagerDutyIntegration({

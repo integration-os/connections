@@ -1,7 +1,7 @@
 {
   "name": "result",
   "title": "Get Customers Customer Subscriptions Subscription Exposed Id Discount",
-  "description": "Get customers customer subscriptions subscription exposed id discount",
+  "description": "Get customers customer subscriptions subscription exposed id discount using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

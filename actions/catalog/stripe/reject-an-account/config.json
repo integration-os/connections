@@ -1,7 +1,7 @@
 {
   "name": "rejectAnAccountResult",
   "title": "Reject an Account",
-  "description": "Reject an account",
+  "description": "Reject an account using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

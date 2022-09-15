@@ -73,11 +73,11 @@ export default class CircleCIIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({
+  verifyWebhookSignature({
     request,
     signature,
     secret,
-  }: VerifyWebhookSignatureProps): Promise<Truthy> {
+  }: VerifyWebhookSignatureProps): Truthy {
     // CircleCI webhook signature is available in 'circleci-signature' header
     // The headers contains comma separated list of hashes as follows:
     //      v1=<hash>, v2=<hash>, v3=<hash>, etc...

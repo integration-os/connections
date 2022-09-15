@@ -1,7 +1,7 @@
 {
   "name": "deleteACouponResult",
   "title": "Delete a Coupon",
-  "description": "Delete a coupon",
+  "description": "Delete a coupon using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

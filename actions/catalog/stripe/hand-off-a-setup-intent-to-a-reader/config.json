@@ -1,7 +1,7 @@
 {
   "name": "handOffASetupIntentToAReaderResult",
   "title": "Hand-Off a SetupIntent to a Reader",
-  "description": "Hand-off a setupintent to a reader",
+  "description": "Hand-off a setupintent to a reader using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "deleteAccountsAccountBankAccountsIdResult",
-  "title": "Delete a Specified External Account for a Given Account",
-  "description": "Delete a specified external account for a given account",
+  "title": "<p>Delete a Specified External Account for a Given account.</p>",
+  "description": "<p>delete a specified external account for a given account.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

@@ -1,7 +1,7 @@
 {
   "name": "deleteEphemeralKeysKeyResult",
-  "title": "Invalidates a Short-Lived API Key for a Given Resource",
-  "description": "Invalidates a short-lived api key for a given resource",
+  "title": "<p>Invalidates a Short-Lived API Key for a Given resource.</p>",
+  "description": "<p>invalidates a short-lived api key for a given resource.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

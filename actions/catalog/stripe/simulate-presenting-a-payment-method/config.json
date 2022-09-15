@@ -1,7 +1,7 @@
 {
   "name": "simulatePresentingAPaymentMethodResult",
   "title": "Simulate Presenting a Payment Method",
-  "description": "Simulate presenting a payment method",
+  "description": "Simulate presenting a payment method using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

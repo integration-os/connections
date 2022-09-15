@@ -1,7 +1,7 @@
 {
   "name": "retrieveABankAccountOrCardResult",
   "title": "Retrieve a Bank Account or Card",
-  "description": "Retrieve a bank account or card",
+  "description": "Retrieve a bank account or card using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

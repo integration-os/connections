@@ -1,7 +1,7 @@
 {
   "name": "retrieveAMandateResult",
   "title": "Retrieve a Mandate",
-  "description": "Retrieve a mandate",
+  "description": "Retrieve a mandate using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

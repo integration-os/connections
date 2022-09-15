@@ -1,7 +1,7 @@
 {
   "name": "postAccountLoginLinksResult",
-  "title": "Creates a Single-Use Login Link for an Express Account to Access Their Stripe Dashboard",
-  "description": "Creates a single-use login link for an express account to access their stripe dashboard. You may only create login links for express accounts connected to your platform",
+  "title": "<p>Creates a Single-Use Login Link for an Express Account to Access Their Stripe dashboard.</p><p><s",
+  "description": "<p>creates a single-use login link for an express account to access their stripe dashboard.</p>\n\n<p><strong>you may only create login links for <a href=\"/docs/connect/express-accounts\">express accounts</a> connected to your platform</strong>.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

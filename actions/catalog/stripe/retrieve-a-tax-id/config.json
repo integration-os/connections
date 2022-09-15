@@ -1,7 +1,7 @@
 {
   "name": "retrieveATaxIDResult",
   "title": "Retrieve a Tax ID",
-  "description": "Retrieve a tax id",
+  "description": "Retrieve a tax id using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

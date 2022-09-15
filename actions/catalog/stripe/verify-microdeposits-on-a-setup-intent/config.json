@@ -1,7 +1,7 @@
 {
   "name": "verifyMicrodepositsOnASetupIntentResult",
   "title": "Verify Microdeposits on a SetupIntent",
-  "description": "Verify microdeposits on a setupintent",
+  "description": "Verify microdeposits on a setupintent using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

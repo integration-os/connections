@@ -1,7 +1,7 @@
 {
   "name": "voidACreditNoteResult",
   "title": "Void a Credit Note",
-  "description": "Void a credit note",
+  "description": "Void a credit note using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

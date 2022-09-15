@@ -1,7 +1,7 @@
 {
   "name": "createAnApplicationFeeRefundResult",
   "title": "Create an Application Fee Refund",
-  "description": "Create an application fee refund",
+  "description": "Create an application fee refund using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

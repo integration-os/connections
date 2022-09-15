@@ -1,7 +1,7 @@
 {
   "name": "postTestHelpersRefundsRefundExpireResult",
-  "title": "Expire a Refund with a Status of Requires_action",
-  "description": "Expire a refund with a status of requires_action",
+  "title": "<p>Expire a Refund with a Status of <code>requires_action</code>.</p>",
+  "description": "<p>expire a refund with a status of <code>requires_action</code>.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

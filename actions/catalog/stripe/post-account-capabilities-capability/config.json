@@ -1,7 +1,7 @@
 {
   "name": "postAccountCapabilitiesCapabilityResult",
-  "title": "Updates an Existing Account Capability",
-  "description": "Updates an existing account capability",
+  "title": "<p>Updates an Existing Account Capability.</p>",
+  "description": "<p>updates an existing account capability.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

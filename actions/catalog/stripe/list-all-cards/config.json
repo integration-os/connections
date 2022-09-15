@@ -1,7 +1,7 @@
 {
   "name": "listAllCardsResult",
   "title": "List All Cards",
-  "description": "List all cards",
+  "description": "List all cards using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

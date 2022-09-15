@@ -1,7 +1,7 @@
 {
   "name": "deleteASubscriptionItemResult",
   "title": "Delete a Subscription Item",
-  "description": "Delete a subscription item",
+  "description": "Delete a subscription item using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

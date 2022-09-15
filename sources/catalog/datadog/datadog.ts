@@ -61,7 +61,7 @@ export default class DatadogIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature(): Promise<Truthy> {
+  verifyWebhookSignature(): Truthy {
     return true;
   }
 

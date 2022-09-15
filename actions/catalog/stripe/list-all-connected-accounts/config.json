@@ -1,7 +1,7 @@
 {
   "name": "listAllConnectedAccountsResult",
   "title": "List All Connected Accounts",
-  "description": "List all connected accounts",
+  "description": "List all connected accounts using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

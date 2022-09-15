@@ -1,7 +1,7 @@
 {
   "name": "postAccountsAccountBankAccountsResult",
-  "title": "Create an External Account for a Given Account",
-  "description": "Create an external account for a given account",
+  "title": "<p>Create an External Account for a Given account.</p>",
+  "description": "<p>create an external account for a given account.</p> using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

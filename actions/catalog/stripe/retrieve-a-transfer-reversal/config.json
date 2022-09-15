@@ -1,7 +1,7 @@
 {
   "name": "retrieveATransferReversalResult",
   "title": "Retrieve a Transfer Reversal",
-  "description": "Retrieve a transfer reversal",
+  "description": "Retrieve a transfer reversal using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

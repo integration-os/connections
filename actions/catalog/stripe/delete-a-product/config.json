@@ -1,7 +1,7 @@
 {
   "name": "deleteAProductResult",
   "title": "Delete a Product",
-  "description": "Delete a product",
+  "description": "Delete a product using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",

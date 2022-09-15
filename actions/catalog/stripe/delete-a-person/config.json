@@ -1,7 +1,7 @@
 {
   "name": "deleteAPersonResult",
   "title": "Delete a Person",
-  "description": "Delete a person",
+  "description": "Delete a person using the Stripe API",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "platform": "stripe",
   "type": "js-request-function",
