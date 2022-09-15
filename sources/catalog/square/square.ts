@@ -53,11 +53,12 @@ export default class SquareIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Promise<Truthy> {
-    const { headers, body } = request;
-    const webhookUrl = `${headers['x-forwarded-proto']}://${headers['x-forwarded-host']}${headers['x-matched-path']}`;
+  async verifyWebhookSignature({ request, signature, secret, webhookUrl }: VerifyWebhookSignatureProps): Promise<Truthy> {
+    const { body } = request;
+
     const hmac = crypto.createHmac('sha256', secret);
     hmac.update(webhookUrl + body);
+
     const hash = hmac.digest('base64');
 
     const isValid = hash === signature;
