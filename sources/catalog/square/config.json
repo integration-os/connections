@@ -425,11 +425,6 @@
       "group": "Payments"
     },
     {
-      "name": "payment_method_enrollment.updated",
-      "description": "",
-      "group": ""
-    },
-    {
       "name": "payout.failed",
       "description": "Published when a Payout has failed.",
       "group": "Payouts"
