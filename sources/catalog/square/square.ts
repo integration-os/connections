@@ -107,7 +107,7 @@ export default class SquareIntegration implements IntegrationClassI {
     );
 
     return {
-      webhook: updatedWebhook,
+      webhook: updatedWebhook.result,
       events: updatedWebhook.result.subscription.eventTypes,
     };
   }
@@ -142,7 +142,7 @@ export default class SquareIntegration implements IntegrationClassI {
     );
 
     return {
-      webhook: updatedWebhook,
+      webhook: updatedWebhook.result,
       events: updatedWebhook.result.subscription.eventTypes,
     };
   }
