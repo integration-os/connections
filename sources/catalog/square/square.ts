@@ -21,10 +21,18 @@ export default class SquareIntegration implements IntegrationClassI {
 
   readonly SQUARE_SECRET_KEY: string;
 
-  constructor({ SQUARE_SECRET_KEY }: { SQUARE_SECRET_KEY: string }) {
+  constructor({ 
+    SQUARE_SECRET_KEY,
+    environment
+  }: { 
+    SQUARE_SECRET_KEY: string;
+    environment: string;
+  }) {
+    const squareEnvironment = environment === 'live' ? Environment.Production : Environment.Sandbox;
+
     this.square = new Client({
       accessToken: SQUARE_SECRET_KEY,
-      environment: Environment.Production,
+      environment: squareEnvironment,
     });
 
     this.SQUARE_SECRET_KEY =  SQUARE_SECRET_KEY;
