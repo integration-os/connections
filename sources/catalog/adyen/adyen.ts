@@ -96,9 +96,9 @@ export default class AdyenIntegration implements IntegrationClassI {
       `${this.ADYEN_VERIFICATION_USERNAME}:${this.ADYEN_VERIFICATION_PASSWORD}`,
     ).toString("base64");
 
-    if (!signature) {
-      signature = request.headers["authorization"].split("Basic ")[1];
-    }
+    signature = signature
+      ? signature.split("Basic")[1].trim()
+      : request.headers["authorization"].split("Basic")[1].trim();
 
     if (secret !== signature) {
       throw new Error("Invalid signature");

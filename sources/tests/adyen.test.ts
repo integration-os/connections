@@ -82,10 +82,6 @@ describe("Adyen Integration", () => {
       expect(response.webhookData).toHaveLength(1);
       expect(response.events).toEqual(["standard"]);
     });
-
-    it("should back off when requests are fast", async () => {
-      // TODO: implement test case
-    });
   });
 
   describe("verifyWebhookSignature", () => {
