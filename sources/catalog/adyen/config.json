@@ -62,7 +62,7 @@
   },
   "paths": {
     "id": "_.body.id",
-    "event": "_.body.type",
+    "event": "_.query.event",
     "payload": "_.body",
     "secret": null,
     "signature": "_.headers.authorization"

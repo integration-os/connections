@@ -63,7 +63,7 @@ export default class AdyenIntegration implements IntegrationClassI {
             communicationFormat: "json",
             filterMerchantAccountType: "allAccounts",
             type: event,
-            url: webhookUrl,
+            url: `${webhookUrl}?event=${event}`,
             username: this.ADYEN_VERIFICATION_USERNAME,
             password: this.ADYEN_VERIFICATION_PASSWORD,
           })
