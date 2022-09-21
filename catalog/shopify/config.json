@@ -1,0 +1,464 @@
+{
+  "_v": "1.0.0",
+  "title": "Shopify",
+  "description": "An e-commerce platform for online stores and retail point-of-sale systems",
+  "apiVersion": "2022-04",
+  "platform": "shopify",
+  "category": "ecommerce",
+  "image": "https://assets.buildable.dev/catalog/node-templates/shopify.svg",
+  "tags": ["business", "ecommerce"],
+  "authentication": [
+    {
+      "name": "SHOPIFY_STORE_URL",
+      "label": "Enter your Shopify Store URL",
+      "placeholder": "your-store-name.myshopify.com"
+    },
+    {
+      "name": "SHOPIFY_ACCESS_TOKEN",
+      "label": "Enter your Shopify Access Token",
+      "placeholder": "shpat_38ba5a4236bd26a4244qfcd1ejf7l9v0"
+    },
+    {
+      "name": "SHOPIFY_API_SECRET_KEY",
+      "label": "Enter your Shopify API Secret Key",
+      "placeholder": "sk_test_Hrs6SAopgFPF0bZXSN3f6ELN"
+    }
+  ],
+  "eventSchema": {
+    "arguments": "IPod Nano - 8GB",
+    "body": null,
+    "created_at": "2015-04-20T08:33:57-11:00",
+    "id": 164748010,
+    "description": "Received a new order",
+    "path": "/admin/orders/406514653/transactions/#1145",
+    "message": "Received new order",
+    "subject_id": 406514653,
+    "subject_type": "Order",
+    "verb": "confirmed"
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": true,
+    "subscriptionDelayMultiplier": 0.5
+  },
+  "paths": {
+    "id": "_.body.id",
+    "event": "_.headers.x-shopify-topic",
+    "payload": "_.body",
+    "secret": null,
+    "signature": "_.headers.x-shopify-hmac-sha256"
+  },
+  "connectionTypes": ["source", "action"],
+  "events": [
+    {
+      "name": "app/uninstalled",
+      "group": "app",
+      "description": ""
+    },
+    {
+      "name": "carts/create",
+      "group": "carts",
+      "description": ""
+    },
+    {
+      "name": "carts/update",
+      "group": "carts",
+      "description": ""
+    },
+    {
+      "name": "checkouts/create",
+      "group": "checkouts",
+      "description": ""
+    },
+    {
+      "name": "checkouts/delete",
+      "group": "checkouts",
+      "description": ""
+    },
+    {
+      "name": "checkouts/update",
+      "group": "checkouts",
+      "description": ""
+    },
+    {
+      "name": "collection_listings/add",
+      "group": "collection_listings",
+      "description": ""
+    },
+    {
+      "name": "collection_listings/remove",
+      "group": "collection_listings",
+      "description": ""
+    },
+    {
+      "name": "collection_listings/update",
+      "group": "collection_listings",
+      "description": ""
+    },
+    {
+      "name": "collections/create",
+      "group": "collections",
+      "description": ""
+    },
+    {
+      "name": "collections/delete",
+      "group": "collections",
+      "description": ""
+    },
+    {
+      "name": "collections/update",
+      "group": "collections",
+      "description": ""
+    },
+    {
+      "name": "customer_groups/create",
+      "group": "customer_groups",
+      "description": ""
+    },
+    {
+      "name": "customer_groups/delete",
+      "group": "customer_groups",
+      "description": ""
+    },
+    {
+      "name": "customer_groups/update",
+      "group": "customer_groups",
+      "description": ""
+    },
+    {
+      "name": "customers/create",
+      "group": "customers",
+      "description": ""
+    },
+    {
+      "name": "customers/delete",
+      "group": "customers",
+      "description": ""
+    },
+    {
+      "name": "customers/disable",
+      "group": "customers",
+      "description": ""
+    },
+    {
+      "name": "customers/enable",
+      "group": "customers",
+      "description": ""
+    },
+    {
+      "name": "customers/update",
+      "group": "customers",
+      "description": ""
+    },
+    {
+      "name": "customers_marketing_consent/update",
+      "group": "customers_marketing_consent",
+      "description": ""
+    },
+    {
+      "name": "disputes/create",
+      "group": "disputes",
+      "description": ""
+    },
+    {
+      "name": "disputes/update",
+      "group": "disputes",
+      "description": ""
+    },
+    {
+      "name": "draft_orders/create",
+      "group": "draft_orders",
+      "description": ""
+    },
+    {
+      "name": "draft_orders/delete",
+      "group": "draft_orders",
+      "description": ""
+    },
+    {
+      "name": "draft_orders/update",
+      "group": "draft_orders",
+      "description": ""
+    },
+    {
+      "name": "fulfillment_events/create",
+      "group": "fulfillment_events",
+      "description": ""
+    },
+    {
+      "name": "fulfillment_events/delete",
+      "group": "fulfillment_events",
+      "description": ""
+    },
+    {
+      "name": "fulfillments/create",
+      "group": "fulfillments",
+      "description": ""
+    },
+    {
+      "name": "fulfillments/update",
+      "group": "fulfillments",
+      "description": ""
+    },
+    {
+      "name": "order_transactions/create",
+      "group": "order_transactions",
+      "description": ""
+    },
+    {
+      "name": "orders/cancelled",
+      "group": "orders",
+      "description": ""
+    },
+    {
+      "name": "orders/create",
+      "group": "orders",
+      "description": ""
+    },
+    {
+      "name": "orders/delete",
+      "group": "orders",
+      "description": ""
+    },
+    {
+      "name": "orders/edited",
+      "group": "orders",
+      "description": ""
+    },
+    {
+      "name": "orders/fulfilled",
+      "group": "orders",
+      "description": ""
+    },
+    {
+      "name": "orders/paid",
+      "group": "orders",
+      "description": ""
+    },
+    {
+      "name": "orders/partially_fulfilled",
+      "group": "orders",
+      "description": ""
+    },
+    {
+      "name": "orders/updated",
+      "group": "orders",
+      "description": ""
+    },
+    {
+      "name": "product_listings/add",
+      "group": "product_listings",
+      "description": ""
+    },
+    {
+      "name": "product_listings/remove",
+      "group": "product_listings",
+      "description": ""
+    },
+    {
+      "name": "product_listings/update",
+      "group": "product_listings",
+      "description": ""
+    },
+    {
+      "name": "scheduled_product_listings/add",
+      "group": "scheduled_product_listings",
+      "description": ""
+    },
+    {
+      "name": "scheduled_product_listings/update",
+      "group": "scheduled_product_listings",
+      "description": ""
+    },
+    {
+      "name": "scheduled_product_listings/remove",
+      "group": "scheduled_product_listings",
+      "description": ""
+    },
+    {
+      "name": "products/create",
+      "group": "products",
+      "description": ""
+    },
+    {
+      "name": "products/delete",
+      "group": "products",
+      "description": ""
+    },
+    {
+      "name": "products/update",
+      "group": "products",
+      "description": ""
+    },
+    {
+      "name": "refunds/create",
+      "group": "refunds",
+      "description": ""
+    },
+    {
+      "name": "shop/update",
+      "group": "shop",
+      "description": ""
+    },
+    {
+      "name": "themes/create",
+      "group": "themes",
+      "description": ""
+    },
+    {
+      "name": "themes/delete",
+      "group": "themes",
+      "description": ""
+    },
+    {
+      "name": "themes/publish",
+      "group": "themes",
+      "description": ""
+    },
+    {
+      "name": "themes/update",
+      "group": "themes",
+      "description": ""
+    },
+    {
+      "name": "inventory_levels/connect",
+      "group": "inventory_levels",
+      "description": ""
+    },
+    {
+      "name": "inventory_levels/update",
+      "group": "inventory_levels",
+      "description": ""
+    },
+    {
+      "name": "inventory_levels/disconnect",
+      "group": "inventory_levels",
+      "description": ""
+    },
+    {
+      "name": "inventory_items/create",
+      "group": "inventory_items",
+      "description": ""
+    },
+    {
+      "name": "inventory_items/update",
+      "group": "inventory_items",
+      "description": ""
+    },
+    {
+      "name": "inventory_items/delete",
+      "group": "inventory_items",
+      "description": ""
+    },
+    {
+      "name": "locations/create",
+      "group": "locations",
+      "description": ""
+    },
+    {
+      "name": "locations/update",
+      "group": "locations",
+      "description": ""
+    },
+    {
+      "name": "locations/delete",
+      "group": "locations",
+      "description": ""
+    },
+    {
+      "name": "tender_transactions/create",
+      "group": "tender_transactions",
+      "description": ""
+    },
+    {
+      "name": "locales/create",
+      "group": "locales",
+      "description": ""
+    },
+    {
+      "name": "locales/update",
+      "group": "locales",
+      "description": ""
+    },
+    {
+      "name": "domains/create",
+      "group": "domains",
+      "description": ""
+    },
+    {
+      "name": "domains/update",
+      "group": "domains",
+      "description": ""
+    },
+    {
+      "name": "domains/destroy",
+      "group": "domains",
+      "description": ""
+    },
+    {
+      "name": "profiles/create",
+      "group": "profiles",
+      "description": ""
+    },
+    {
+      "name": "profiles/update",
+      "group": "profiles",
+      "description": ""
+    },
+    {
+      "name": "profiles/delete",
+      "group": "profiles",
+      "description": ""
+    },
+    {
+      "name": "payment_terms/create",
+      "group": "payment_terms",
+      "description": ""
+    },
+    {
+      "name": "payment_terms/delete",
+      "group": "payment_terms",
+      "description": ""
+    },
+    {
+      "name": "payment_terms/update",
+      "group": "payment_terms",
+      "description": ""
+    },
+    {
+      "name": "selling_plan_groups/create",
+      "group": "selling_plan_groups",
+      "description": ""
+    },
+    {
+      "name": "selling_plan_groups/update",
+      "group": "selling_plan_groups",
+      "description": ""
+    },
+    {
+      "name": "selling_plan_groups/delete",
+      "group": "selling_plan_groups",
+      "description": ""
+    },
+    {
+      "name": "bulk_operations/finish",
+      "group": "bulk_operations",
+      "description": ""
+    },
+    {
+      "name": "markets/create",
+      "group": "markets",
+      "description": ""
+    },
+    {
+      "name": "markets/update",
+      "group": "markets",
+      "description": ""
+    },
+    {
+      "name": "markets/delete",
+      "group": "markets",
+      "description": ""
+    }
+  ]
+}

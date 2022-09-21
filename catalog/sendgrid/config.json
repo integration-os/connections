@@ -1,0 +1,28 @@
+{
+  "title": "SendGrid",
+  "description": "A customer communication platform for transactional and marketing email",
+  "apiVersion": "NA",
+  "platform": "sendgrid",
+  "category": "communication",
+  "image": "https://assets.buildable.dev/catalog/node-templates/sendgrid.svg",
+  "tags": [
+    "email",
+    "marketing"
+  ],
+	"authentication": [
+		{
+			"name": "SENDGRID_API_KEY",
+			"label": "Enter your Sendgrid API Key",
+			"placeholder": "SG.UHysCSm-hgTh40rKsOp.oTtPxx9v6sH42Js9EJzr_E4090JBClyxGiI"
+		}
+	],
+  "eventSchema": {
+  },
+	"settings": {
+		"createBuildableEnvVars" : true, 
+		"hasEvents" : false
+	},
+  "paths": null,
+  "events": [],
+	"connectionTypes": ["action"]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Notion",
+  "description": "A project management and note-taking platform",
+  "apiVersion": "NA",
+  "platform": "notion",
+  "category": "cms",
+  "image": "https://assets.buildable.dev/catalog/node-templates/notion.svg",
+  "tags": [
+    "notes",
+    "database",
+    "productivity"
+  ],
+	"authentication": [
+		{
+			"name": "NOTION_API_TOKEN",
+			"label": "Enter your Notion API Token",
+			"placeholder": "627ace9771c6711c67182d1d76caaf982d1d76ca"
+		}
+	],
+  "eventSchema": {
+  },
+	"settings": {
+		"createBuildableEnvVars" : true, 
+		"hasEvents" : false
+	},
+  "paths": null,
+  "events": [],
+	"connectionTypes": ["action"]
+}
