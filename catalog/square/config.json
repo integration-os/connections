@@ -1,0 +1,517 @@
+{
+  "title": "Square",
+  "description": "A multinational payment processing software",
+  "apiVersion": "2022-08-23",
+  "platform": "square",
+  "category": "finance",
+  "image": "https://assets.buildable.dev/catalog/node-templates/square.svg",
+  "tags": [
+    "payment",
+    "POS"
+  ],
+  "authentication": [
+    {
+      "name": "SQUARE_SECRET_KEY",
+      "label": "Enter your Square Secret Key",
+      "placeholder": "EAAAEBnbGWD5-ybNoEetUqm4ByyLLO4bNzfwnMx2v7skIBcaXVRsmUgWcvyb-tV7"
+    }
+  ],
+  "eventSchema": {
+    "merchant_id": "L602VB6EWFCV",
+    "type": "payment.updated",
+    "event_id": "1690c6ed-bf78-43b2-b15e-00bb9f324796",
+    "created_at": "2022-08-24T22:33:46.051Z",
+    "data": {
+      "type": "payment",
+      "id": "fnU8SnpNCZ3nyJXAW2ZMa9lVfMeZY",
+      "object": {}
+    }
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
+  "paths": {
+    "id": "_.body.subscription.id",
+    "event": "_.body.type",
+    "payload": "_.body",
+    "secret": "_.body.subscription.signatureKey",
+    "signature": "_.headers.x-square-hmacsha256-signature"
+  },
+  "connectionTypes": [
+    "source"
+  ],
+  "events": [
+    {
+      "name": "bank_account.created",
+      "description": "Published when you link an external bank account to a Square account in the Seller Dashboard.",
+      "group": "Bank Accounts"
+    },
+    {
+      "name": "bank_account.disabled",
+      "description": "Published when Square sets the status of a BankAccount to DISABLED.",
+      "group": "Bank Accounts"
+    },
+    {
+      "name": "bank_account.verified",
+      "description": "Published when Square sets the status of a BankAccount to VERIFIED.",
+      "group": "Bank Accounts"
+    },
+    {
+      "name": "booking.created",
+      "description": "Published when a booking is created.",
+      "group": "Bookings"
+    },
+    {
+      "name": "booking.updated",
+      "description": "Published when a booking is updated or cancelled.",
+      "group": "Bookings"
+    },
+    {
+      "name": "card.automatically_updated",
+      "description": "Published when a Card's expiration information or pan is automatically updated.",
+      "group": "Cards"
+    },
+    {
+      "name": "card.created",
+      "description": "Published when a Card is created or imported.",
+      "group": "Cards"
+    },
+    {
+      "name": "card.disabled",
+      "description": "Published when a Card is disabled.",
+      "group": "Cards"
+    },
+    {
+      "name": "card.forgotten",
+      "description": "Published when a Card is GDPR forgotten/vaulted.",
+      "group": "Cards"
+    },
+    {
+      "name": "card.updated",
+      "description": "Published when a Card is updated by the developer using the UpdateCard endpoint.",
+      "group": "Cards"
+    },
+    {
+      "name": "catalog.version.updated",
+      "description": "Published when the catalog is updated.",
+      "group": "Catalog"
+    },
+    {
+      "name": "customer.created",
+      "description": "Published when a customer is created.",
+      "group": "Customers"
+    },
+    {
+      "name": "customer.custom_attribute.deleted",
+      "description": "",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute.owned.deleted",
+      "description": "Published when a customer custom attribute owned by the subscribing application is deleted.",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute.owned.updated",
+      "description": "Published when a customer custom attribute owned by the subscribing application is created or updated.",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute.public.deleted",
+      "description": "",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute.public.updated",
+      "description": "",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute.updated",
+      "description": "",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute.visible.deleted",
+      "description": "Published when a customer custom attribute that is visible to the subscribing application is deleted.",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute.visible.updated",
+      "description": "Published when a customer custom attribute that is visible to the subscribing application is created or updated.",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.created",
+      "description": "",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.deleted",
+      "description": "",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.owned.created",
+      "description": "Published when a customer custom attribute definition is created by the subscribing application.",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.owned.deleted",
+      "description": "Published when a customer custom attribute definition created by the subscribing application is deleted.",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.owned.updated",
+      "description": "Published when a customer custom attribute definition created by the subscribing application is updated.",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.public.created",
+      "description": "",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.public.deleted",
+      "description": "",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.public.updated",
+      "description": "",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.updated",
+      "description": "",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.visible.created",
+      "description": "Published when a customer custom attribute definition that is visible to the subscribing application is created.",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.visible.deleted",
+      "description": "Published when a customer custom attribute definition that is visible to the subscribing application is deleted.",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.custom_attribute_definition.visible.updated",
+      "description": "Published when a customer custom attribute definition that is visible to the subscribing application is updated.",
+      "group": "Customer Custom Attributes"
+    },
+    {
+      "name": "customer.deleted",
+      "description": "Published when a customer is deleted.",
+      "group": "Customers"
+    },
+    {
+      "name": "customer.updated",
+      "description": "Published when a customer is updated.",
+      "group": "Customers"
+    },
+    {
+      "name": "device.code.paired",
+      "description": "Published when a Square Terminal has been paired with a Terminal API client and the device_id of the paired Square Terminal is available.",
+      "group": "Devices"
+    },
+    {
+      "name": "dispute.created",
+      "description": "Published when a Dispute is created.",
+      "group": "Disputes"
+    },
+    {
+      "name": "dispute.evidence.added",
+      "description": "",
+      "group": "Disputes"
+    },
+    {
+      "name": "dispute.evidence.created",
+      "description": "Published when evidence is added to a Dispute from the Disputes Dashboard in the Seller Dashboard, the Square Point of Sale app, or by calling either CreateDisputeEvidenceFile or CreateDisputeEvidenceText.",
+      "group": "Disputes"
+    },
+    {
+      "name": "dispute.evidence.deleted",
+      "description": "Published when evidence is removed from a Dispute from the Disputes Dashboard in the Seller Dashboard, the Square Point of Sale app, or by calling DeleteDisputeEvidence.",
+      "group": "Disputes"
+    },
+    {
+      "name": "dispute.evidence.removed",
+      "description": "",
+      "group": "Disputes"
+    },
+    {
+      "name": "dispute.state.changed",
+      "description": "",
+      "group": "Disputes"
+    },
+    {
+      "name": "dispute.state.updated",
+      "description": "Published when the state of a Dispute changes.",
+      "group": "Disputes"
+    },
+    {
+      "name": "gift_card.activity.created",
+      "description": "Published when a gift card activity is created.",
+      "group": "Gift Card Activities"
+    },
+    {
+      "name": "gift_card.activity.updated",
+      "description": "",
+      "group": "Gift Card Activities"
+    },
+    {
+      "name": "gift_card.created",
+      "description": "Published when a gift card is created.",
+      "group": "Gift Cards"
+    },
+    {
+      "name": "gift_card.customer_linked",
+      "description": "Published when a customer is linked to a gift card.",
+      "group": "Gift Cards"
+    },
+    {
+      "name": "gift_card.customer_unlinked",
+      "description": "Published when a customer is unlinked from a gift card.",
+      "group": "Gift Cards"
+    },
+    {
+      "name": "gift_card.updated",
+      "description": "Published when a gift card is updated.",
+      "group": "Gift Cards"
+    },
+    {
+      "name": "inventory.count.updated",
+      "description": "Published when the quantity is updated for a CatalogItemVariation.",
+      "group": "Inventory"
+    },
+    {
+      "name": "invoice.canceled",
+      "description": "Published when an Invoice is canceled.",
+      "group": "Invoices"
+    },
+    {
+      "name": "invoice.created",
+      "description": "Published when an Invoice is created.",
+      "group": "Invoices"
+    },
+    {
+      "name": "invoice.deleted",
+      "description": "Published when a draft Invoice is deleted.",
+      "group": "Invoices"
+    },
+    {
+      "name": "invoice.payment_made",
+      "description": "Published when a payment that is associated with an Invoice is completed.",
+      "group": "Invoices"
+    },
+    {
+      "name": "invoice.published",
+      "description": "Published when an Invoice transitions from a draft to a non-draft status.",
+      "group": "Invoices"
+    },
+    {
+      "name": "invoice.refunded",
+      "description": "Published when a refund is applied towards a payment of an Invoice.",
+      "group": "Invoices"
+    },
+    {
+      "name": "invoice.scheduled_charge_failed",
+      "description": "Published when an automatic scheduled payment for an Invoice has failed.",
+      "group": "Invoices"
+    },
+    {
+      "name": "invoice.updated",
+      "description": "Published when an Invoice is updated.",
+      "group": "Invoices"
+    },
+    {
+      "name": "labor.shift.created",
+      "description": "Published when a worker starts a Shift.",
+      "group": "Labor"
+    },
+    {
+      "name": "labor.shift.deleted",
+      "description": "Published when a Shift is deleted.",
+      "group": "Labor"
+    },
+    {
+      "name": "labor.shift.updated",
+      "description": "Published when a Shift is updated.",
+      "group": "Labor"
+    },
+    {
+      "name": "location.created",
+      "description": "Published when a Location is created.",
+      "group": "Locations"
+    },
+    {
+      "name": "location.updated",
+      "description": "Published when a Location is updated.",
+      "group": "Locations"
+    },
+    {
+      "name": "loyalty.account.created",
+      "description": "Published when a loyalty account is created.",
+      "group": "Loyalty"
+    },
+    {
+      "name": "loyalty.account.deleted",
+      "description": "Published when a loyalty account is deleted.",
+      "group": "Loyalty"
+    },
+    {
+      "name": "loyalty.account.updated",
+      "description": "Published when a loyalty account is updated.",
+      "group": "Loyalty"
+    },
+    {
+      "name": "loyalty.event.created",
+      "description": "Published when a loyalty event is created.",
+      "group": "Loyalty"
+    },
+    {
+      "name": "loyalty.program.created",
+      "description": "Published when a loyalty program is created.",
+      "group": "Loyalty"
+    },
+    {
+      "name": "loyalty.program.updated",
+      "description": "Published when a loyalty program is updated.",
+      "group": "Loyalty"
+    },
+    {
+      "name": "loyalty.promotion.created",
+      "description": "Published when a loyalty promotion is created.",
+      "group": "Loyalty"
+    },
+    {
+      "name": "loyalty.promotion.updated",
+      "description": "Published when a loyalty promotion is updated.",
+      "group": "Loyalty"
+    },
+    {
+      "name": "oauth.authorization.revoked",
+      "description": "Published when a merchant/application revokes all access tokens and refresh tokens granted to an application.",
+      "group": "OAuth"
+    },
+    {
+      "name": "order.created",
+      "description": "Published when an Order is created.",
+      "group": "Orders"
+    },
+    {
+      "name": "order.fulfillment.updated",
+      "description": "Published when an OrderFulfillment is created or updated.",
+      "group": "Orders"
+    },
+    {
+      "name": "order.updated",
+      "description": "Published when an Order is updated.",
+      "group": "Orders"
+    },
+    {
+      "name": "payment.created",
+      "description": "Published when a Payment is created.",
+      "group": "Payments"
+    },
+    {
+      "name": "payment.updated",
+      "description": "Published when a Payment is updated.",
+      "group": "Payments"
+    },
+    {
+      "name": "payout.failed",
+      "description": "Published when a Payout has failed.",
+      "group": "Payouts"
+    },
+    {
+      "name": "payout.paid",
+      "description": "Published when a Payout is complete.",
+      "group": "Payouts"
+    },
+    {
+      "name": "payout.sent",
+      "description": "Published when a Payout is sent.",
+      "group": "Payouts"
+    },
+    {
+      "name": "refund.created",
+      "description": "Published when a Refund is created.",
+      "group": "Refunds"
+    },
+    {
+      "name": "refund.updated",
+      "description": "Published when a Refund is updated.",
+      "group": "Refunds"
+    },
+    {
+      "name": "subscription.created",
+      "description": "Published when a Subscription is created.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "subscription.updated",
+      "description": "Published when a Subscription is updated.",
+      "group": "Subscriptions"
+    },
+    {
+      "name": "team_member.created",
+      "description": "Published when a Team Member is created.",
+      "group": "Team"
+    },
+    {
+      "name": "team_member.updated",
+      "description": "Published when a Team Member is updated.",
+      "group": "Team"
+    },
+    {
+      "name": "team_member.wage_setting.updated",
+      "description": "Published when a Wage Setting is updated.",
+      "group": "Team"
+    },
+    {
+      "name": "terminal.action.created",
+      "description": "Published when a TerminalAction is crated.",
+      "group": "Terminal"
+    },
+    {
+      "name": "terminal.action.updated",
+      "description": "Published when a TerminalAction is updated.",
+      "group": "Terminal"
+    },
+    {
+      "name": "terminal.checkout.created",
+      "description": "Published when a TerminalCheckout is created.",
+      "group": "Terminal"
+    },
+    {
+      "name": "terminal.checkout.updated",
+      "description": "Published when a TerminalCheckout is updated.",
+      "group": "Terminal"
+    },
+    {
+      "name": "terminal.refund.created",
+      "description": "Published when a Terminal API refund is created.",
+      "group": "Terminal"
+    },
+    {
+      "name": "terminal.refund.updated",
+      "description": "Published when a Terminal API refund is updated.",
+      "group": "Terminal"
+    },
+    {
+      "name": "vendor.created",
+      "description": "Published when a Vendor is created.",
+      "group": "Vendors"
+    },
+    {
+      "name": "vendor.updated",
+      "description": "Published when a Vendor is updated.",
+      "group": "Vendors"
+    }
+  ]
+}
