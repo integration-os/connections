@@ -1,0 +1,29 @@
+{
+  "title": "Slack",
+  "description": "A platform for team communication, with chat rooms organized by topic",
+  "apiVersion": "NA",
+  "platform": "slack",
+  "category": "communication",
+  "image": "https://assets.buildable.dev/catalog/node-templates/slack.svg",
+  "tags": [
+    "business",
+    "messaging",
+    "chat"
+  ],
+	"authentication": [
+		{
+			"name": "SLACK_ACCESS_TOKEN",
+			"label": "Enter your Slack Access Token",
+			"placeholder": "xoxp-338273214724-322415065768-1306778780489-aa5fh336ed22cg4sabgd34822fg45f1"
+		}
+	],
+  "eventSchema": {
+  },
+	"settings": {
+		"createBuildableEnvVars" : true, 
+		"hasEvents" : false
+	},
+  "paths": null,
+  "events": [],
+	"connectionTypes": ["action"]
+}
