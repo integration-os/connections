@@ -166,7 +166,7 @@ export default class PaypalIntegration implements IntegrationClassI {
         message: "Connection tested successfully!",
       };
     } catch (error) {
-      throw new Error(`Could not connect to PagerDuty: ${error.message}`);
+      throw new Error(`Could not connect to PayPal: ${error}`);
     }
   }
 }
