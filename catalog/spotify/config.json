@@ -1,0 +1,39 @@
+{
+  "title": "Spotify",
+  "description": "A digital music streaming service giving access to millions of songs",
+  "apiVersion": "NA",
+  "platform": "spotify",
+  "category": "media",
+  "image": "https://assets.buildable.dev/catalog/node-templates/spotify.svg",
+  "tags": [
+    "music",
+    "podcasts"
+  ],
+	"authentication": [
+		{
+			"name": "SPOTIFY_BASE_URI",
+      "label" : "Enter your Spotify Base URI",
+			"placeholder": "https://api.spotify.com/v1",
+      "value": "https://api.spotify.com/v1"
+		},
+    {
+      "name" : "SPOTIFY_CLIENT_ID",
+      "label" : "Enter your Spotify Client ID",
+      "placeholder" : "0940e616dbf54cf5a1415196as8r0157"
+    },
+    {
+      "name" : "SPOTIFY_CLIENT_SECRET",
+      "label" : "Enter your Spotify Client Secret",
+      "placeholder" : "6e91as454g5f4s1a9205sf54d6f2c524"
+    }
+	],
+  "eventSchema": {
+  },
+	"settings": {
+		"createBuildableEnvVars" : true, 
+		"hasEvents" : false
+	},
+  "paths": null,
+  "events": [],
+	"connectionTypes": ["action"]
+}

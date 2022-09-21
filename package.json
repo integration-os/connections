@@ -47,6 +47,7 @@
     "@hubspot/api-client": "^7.1.2",
     "@octokit/core": "^4.0.4",
     "@shopify/shopify-api": "^4.1.0",
+    "@supabase/supabase-js": "^1.35.6",
     "@types/paypal-rest-sdk": "^1.7.6",
     "axios": "^0.27.2",
     "dotenv": "^16.0.0",

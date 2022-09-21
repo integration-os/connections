@@ -1,0 +1,194 @@
+{
+  "title": "WooCommerce",
+  "description": "A customizable, open-source e-commerce plugin for WordPress",
+  "apiVersion": "NA",
+  "platform": "woocommerce",
+  "category": "ecommerce",
+  "image": "https://assets.buildable.dev/catalog/node-templates/woocommerce.svg",
+  "tags": [
+    "business",
+    "ecommerce"
+  ],
+  "authentication": [
+    {
+      "name": "WOOCOMMERCE_WP_URL",
+      "label": "Enter your WordPress Website URL",
+      "placeholder": "https://my-website.com"
+    },
+    {
+      "name": "WOOCOMMERCE_CONSUMER_KEY",
+      "label": "Enter the WooCommerce Consumer Key",
+      "placeholder": "ck_13e879fc387333d4bb74e5d6b1fb10ca5bb6f1e1"
+    },
+    {
+      "name": "WOOCOMMERCE_CONSUMER_SECRET",
+      "label": "Enter your Woocommerce Consumer Secret",
+      "placeholder": "cs_d15a728095e5b75779c85197498e9eaa25dda7e9"
+    }
+  ],
+  "eventSchema": {
+    "id": 15,
+    "name": "My Product",
+    "slug": "my-product",
+    "permalink": "https://mysite.local/product/my-product/",
+    "date_created": "2022-08-12T10:04:18",
+    "date_created_gmt": "2022-08-12T10:04:18",
+    "date_modified": "2022-08-12T10:04:18",
+    "date_modified_gmt": "2022-08-12T10:04:18",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+    "short_description": "",
+    "sku": "",
+    "price": "450",
+    "regular_price": "450",
+    "sale_price": "350",
+    "date_on_sale_from": null,
+    "date_on_sale_from_gmt": null,
+    "date_on_sale_to": null,
+    "date_on_sale_to_gmt": null,
+    "on_sale": false,
+    "purchasable": false,
+    "total_sales": 0,
+    "virtual": false,
+    "downloadable": false,
+    "downloads": [],
+    "download_limit": -1,
+    "download_expiry": -1,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "backorders": "no",
+    "backorders_allowed": false,
+    "backordered": false,
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "shipping_required": true,
+    "shipping_taxable": true,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": true,
+    "average_rating": "0.00",
+    "rating_count": 0,
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+      {
+        "id": 15,
+        "name": "Uncategorized",
+        "slug": "uncategorized"
+      }
+    ],
+    "tags": [],
+    "images": [],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "price_html": "",
+    "related_ids": [],
+    "meta_data": [],
+    "stock_status": "instock",
+    "has_options": false,
+    "_links": {
+      "self": [
+        {
+          "href": "https://mysite.local/wp-json/wc/v3/webhooks/11"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://mysite.local/wp-json/wc/v3/webhooks"
+        }
+      ] }
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0
+  },
+  "paths": {
+    "id": "_.body.id",
+    "event": "_.headers.x-wc-webhook-topic",
+    "payload": "_.body",
+    "secret": null,
+    "signature": "_.headers.x-wc-webhook-signature"
+  },
+  "connectionTypes": ["source"],
+  "events": [
+    {
+      "name": "coupon.created",
+      "description": "A coupon has been created",
+      "group": ""
+    },
+    {
+      "name": "coupon.updated",
+      "description": "A coupon has been updated",
+      "group": ""
+    },
+    {
+      "name": "coupon.deleted",
+      "description": "A coupon has been deleted",
+      "group": ""
+    },
+    {
+      "name": "customer.created",
+      "description": "A customer has been created",
+      "group": ""
+    },
+    {
+      "name": "customer.updated",
+      "description": "A customer has been updated",
+      "group": ""
+    },
+    {
+      "name": "customer.deleted",
+      "description": "A customer has been deleted",
+      "group": ""
+    },
+    {
+      "name": "order.created",
+      "description": "An order has been created",
+      "group": ""
+    },
+    {
+      "name": "order.updated",
+      "description": "An order has been updated",
+      "group": ""
+    },
+    {
+      "name": "order.deleted",
+      "description": "An order has been deleted",
+      "group": ""
+    },
+    {
+      "name": "product.created",
+      "description": "A product has been created",
+      "group": ""
+    },
+    {
+      "name": "product.updated",
+      "description": "A product has been updated",
+      "group": ""
+    },
+    {
+      "name": "product.deleted",
+      "description": "A product has been deleted",
+      "group": ""
+    }
+  ]
+}
