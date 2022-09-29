@@ -32,24 +32,6 @@ If we’re missing an event source your team needs, for example, you can build i
 
 Learn more in our [contribution guidelines](CONTRIBUTING.md).
 
-## New more help?
-
-Learn more about Buildable 👇
-
-💻 Website: [https://buildable.dev](https://buildable.dev/)
-
-🏁 Get started: [https://app.buildable.dev/sign-in](https://app.buildable.dev/sign-in)
-
-📄 Docs: [https://docs.buildable.dev](https://docs.buildable.dev/)
-
-💬 Discord: [https://discord.com/invite/47AJ42Wzys](https://discord.com/invite/47AJ42Wzys)
-
-🐦 Twitter: [https://twitter.com/BuildableHQ](https://twitter.com/BuildableHQ)
-
-🚥 Roadmap: [https://roadmap.buildable.dev](https://roadmap.buildable.dev)
-
-📣 Changelog: [https://buildable.dev/changelog](https://buildable.dev/changelog)
-
 ## Contributors
 
 Supported by a network of early advocates, contributors, and champions!
