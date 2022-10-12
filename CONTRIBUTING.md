@@ -67,4 +67,4 @@ The class has the below methods and your implementation **must** not change the 
 
 ## Sample Source Connection Definition
 
-You can view a sample Source Connection definition in the [sample folder](/sources/sample/).
+You can view a sample Source Connection definition in the [sample folder](/sample/).

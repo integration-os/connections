@@ -1,5 +1,5 @@
-import Square from "../sources/catalog/square/Square";
-import SquareIntegration from "../sources/catalog/square/Square";
+import Square from "../catalog/square/Square";
+import SquareIntegration from "../catalog/square/Square";
 
 require("dotenv").config();
 

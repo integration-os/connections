@@ -2,7 +2,7 @@ import { AnyObject } from "../types/classDefinition";
 
 require("dotenv").config();
 
-import AdyenIntegration from "../sources/catalog/adyen/adyen";
+import AdyenIntegration from "../catalog/adyen/adyen";
 
 const adyen = new AdyenIntegration({
   ADYEN_COMPANY_ID: process.env.ADYEN_COMPANY_ID as string,
