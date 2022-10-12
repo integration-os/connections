@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import GitHubIntegration from "../sources/catalog/github-repos/github-repos";
+import GitHubIntegration from "../catalog/github-repos/github-repos";
 import { createHmac } from "crypto";
 
 const github = new GitHubIntegration({

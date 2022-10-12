@@ -9,8 +9,8 @@
     "sync-production": "NODE_ENV=production node ./sync/",
     "lint": "eslint --fix actions/catalog/* --ext .js",
     "prettier": "prettier --write actions/catalog/**/*.js",
-    "test": "jest ./sources/tests",
-    "coverage": "jest --coverage ./sources/tests"
+    "test": "jest ./tests",
+    "coverage": "jest --coverage ./tests"
   },
   "repository": {
     "type": "git",
