@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import WebflowIntegration from "../sources/catalog/webflow/webflow";
+import WebflowIntegration from "../catalog/webflow/webflow";
 import { AnyObject } from "../types/classDefinition";
 
 const webflow = new WebflowIntegration({

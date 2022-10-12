@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import DatadogIntegration from "../sources/catalog/datadog/datadog";
+import DatadogIntegration from "../catalog/datadog/datadog";
 import { WebhooksIntegration } from "@datadog/datadog-api-client/dist/packages/datadog-api-client-v1";
 
 type DatadogRegion = "us1" | "us3" | "us5" | "eu" | "us1-fed";

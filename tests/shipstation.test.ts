@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import ShipStationIntegration from "../sources/catalog/shipstation/shipstation";
+import ShipStationIntegration from "../catalog/shipstation/shipstation";
 import { AnyObject } from "../types/classDefinition";
 
 jest.setTimeout(30_000);

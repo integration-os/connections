@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 import { createHmac } from "crypto";
-import AlchemyIntegration from "../sources/catalog/alchemy/Alchemy";
+import AlchemyIntegration from "../catalog/alchemy/Alchemy";
 
 const alchemy = new AlchemyIntegration({
   ALCHEMY_API_TOKEN: process.env.ALCHEMY_API_TOKEN as string,
