@@ -1,0 +1,66 @@
+{
+  "title": "Webhook",
+  "description": "Send automated messages when events occur in your account",
+  "apiVersion": "NA",
+  "platform": "webhooks",
+  "category": "webhooks",
+  "image": "https://assets.buildable.dev/catalog/node-templates/webhooks.svg",
+  "tags": [
+    "webhook",
+		"rest"
+  ],
+	"authentication": [
+		{
+			"name": "WEBHOOK_URL",
+			"label": "Enter your Webhook URL",
+			"placeholder": "https://example.com/webhook"
+		},
+		{
+			"name": "WEBHOOK_METHOD",
+			"label": "Enter your Webhook Method Type",
+			"type": "select",
+			"value": "POST",
+			"options": [
+        {
+          "name": "POST",
+          "value": "POST"
+        },
+        {
+          "name": "PUT",
+          "value": "PUT"
+        },
+        {
+          "name": "PATCH",
+          "value": "PATCH"
+        },
+				{
+          "name": "GET",
+          "value": "GET"
+        },
+        {
+          "name": "DELETE",
+          "value": "DELETE"
+        }
+      ],
+			"hidden": true
+		},
+		{
+			"name": "WEBHOOK_HEADERS",
+			"label": "Enter your Webhook Headers",
+			"placeholder": "",
+			"value": "",
+			"hidden": true,
+			"required": false
+		}
+	],
+  "eventSchema": {
+  },
+	"settings": {
+		"createBuildableEnvVars" : true, 
+		"hasEvents" : false
+	},
+  "paths": null,
+  "events": [],
+	"connectionTypes": ["target"],
+	"testConnection": false
+}
