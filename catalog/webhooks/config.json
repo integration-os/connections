@@ -5,22 +5,19 @@
   "platform": "webhooks",
   "category": "webhooks",
   "image": "https://assets.buildable.dev/catalog/node-templates/webhooks.svg",
-  "tags": [
-    "webhook",
-		"rest"
-  ],
-	"authentication": [
-		{
-			"name": "WEBHOOK_URL",
-			"label": "Enter your Webhook URL",
-			"placeholder": "https://example.com/webhook"
-		},
-		{
-			"name": "WEBHOOK_METHOD",
-			"label": "Enter your Webhook Method Type",
-			"type": "select",
-			"value": "POST",
-			"options": [
+  "tags": ["webhook", "rest"],
+  "authentication": [
+    {
+      "name": "WEBHOOK_URL",
+      "label": "Enter your Webhook URL",
+      "placeholder": "https://example.com/webhook"
+    },
+    {
+      "name": "WEBHOOK_METHOD",
+      "label": "Enter your Webhook Method Type",
+      "type": "select",
+      "value": "POST",
+      "options": [
         {
           "name": "POST",
           "value": "POST"
@@ -33,7 +30,7 @@
           "name": "PATCH",
           "value": "PATCH"
         },
-				{
+        {
           "name": "GET",
           "value": "GET"
         },
@@ -42,25 +39,24 @@
           "value": "DELETE"
         }
       ],
-			"hidden": true
-		},
-		{
-			"name": "WEBHOOK_HEADERS",
-			"label": "Enter your Webhook Headers",
-			"placeholder": "",
-			"value": "",
-			"hidden": true,
-			"required": false
-		}
-	],
-  "eventSchema": {
+      "hidden": true
+    },
+    {
+      "name": "WEBHOOK_HEADERS",
+      "label": "Enter your Webhook Headers",
+      "placeholder": "",
+      "value": "",
+      "hidden": true,
+      "required": false
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false
   },
-	"settings": {
-		"createBuildableEnvVars" : true, 
-		"hasEvents" : false
-	},
   "paths": null,
   "events": [],
-	"connectionTypes": ["target"],
-	"testConnection": false
+  "connectionTypes": ["target"],
+  "testConnection": false
 }
