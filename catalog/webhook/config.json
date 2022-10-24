@@ -57,6 +57,7 @@
   },
   "paths": null,
   "events": [],
+  "actions": ["generic"],
   "connectionTypes": ["target"],
   "testConnection": false
 }
