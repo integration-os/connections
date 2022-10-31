@@ -2,8 +2,8 @@
   "title": "Webhook",
   "description": "Send automated messages when events occur in your account",
   "apiVersion": "NA",
-  "platform": "webhooks",
-  "category": "webhooks",
+  "platform": "webhook",
+  "category": "webhook",
   "image": "https://assets.buildable.dev/catalog/node-templates/webhooks.svg",
   "tags": [
     "webhook",
