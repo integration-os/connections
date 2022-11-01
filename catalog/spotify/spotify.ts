@@ -1,5 +1,5 @@
 import axios from "axios";
-import querystring from "node:querystring";
+import querystring from "querystring";
 import { TestConnection, TesterClassInterface } from "../../types/classDefinition";
 
 export default class Spotify implements TesterClassInterface {
