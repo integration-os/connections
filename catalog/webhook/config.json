@@ -4,7 +4,7 @@
   "apiVersion": "NA",
   "platform": "webhook",
   "category": "webhook",
-  "image": "https://assets.buildable.dev/catalog/node-templates/webhooks.svg",
+  "image": "https://assets.buildable.dev/catalog/node-templates/webhook.svg",
   "tags": [
     "webhook",
     "rest"
