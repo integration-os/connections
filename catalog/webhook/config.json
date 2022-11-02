@@ -5,15 +5,18 @@
   "platform": "webhook",
   "category": "webhook",
   "image": "https://assets.buildable.dev/catalog/node-templates/webhook.svg",
-  "tags": [
-    "webhook",
-    "rest"
-  ],
+  "tags": ["webhook", "rest"],
   "authentication": [
     {
       "name": "WEBHOOK_URL",
       "label": "Enter your Webhook URL",
-      "placeholder": "https://example.com/webhook"
+      "placeholder": "https://example.com/webhook",
+      "rules": {
+        "pattern": {
+          "value": "^(?:http(s)?:\\/\\/)[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.]+$",
+          "message": "This field must be a valid URL"
+        }
+      }
     },
     {
       "name": "WEBHOOK_METHOD",
@@ -60,13 +63,9 @@
   },
   "paths": null,
   "events": [],
-  "connectionTypes": [
-    "target"
-  ],
+  "connectionTypes": ["target"],
   "testConnection": false,
-  "actions": [
-    "generic"
-  ],
+  "actions": ["generic"],
   "destinationType": "http",
   "config": {
     "url": "https://us-east4-buildable-production.cloudfunctions.net/webhook-serverless",
