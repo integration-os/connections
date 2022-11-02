@@ -13,7 +13,13 @@
     {
       "name": "WEBHOOK_URL",
       "label": "Enter your Webhook URL",
-      "placeholder": "https://example.com/webhook"
+      "placeholder": "https://example.com/webhook",
+      "rules": {
+				"pattern" : {
+					"value" : "^(?:http(s)?:\\/\\/)[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.]+$",
+					"message" : "This field must be a valid URL"
+				}
+			}
     },
     {
       "name": "WEBHOOK_METHOD",
