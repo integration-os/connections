@@ -1,8 +1,8 @@
 require("dotenv").config();
 
 import { createHmac } from "crypto";
-import PagerDutyIntegration from "../catalog/pagerduty/pagerduty";
-import { AnyObject } from "../types/classDefinition";
+import PagerDutyIntegration from "../catalog/sources/pagerduty/pagerduty";
+import { AnyObject } from "../types/sourceClassDefinition";
 
 const pagerduty = new PagerDutyIntegration({
   PAGERDUTY_API_TOKEN: process.env.PAGERDUTY_API_TOKEN as string,

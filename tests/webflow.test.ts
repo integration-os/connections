@@ -1,7 +1,7 @@
 require("dotenv").config();
 
-import WebflowIntegration from "../catalog/webflow/webflow";
-import { AnyObject } from "../types/classDefinition";
+import WebflowIntegration from "../catalog/sources/webflow/webflow";
+import { AnyObject } from "../types/sourceClassDefinition";
 
 const webflow = new WebflowIntegration({
   WEBFLOW_BASE_URL: process.env.WEBFLOW_BASE_URL as string,

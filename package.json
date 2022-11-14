@@ -46,6 +46,7 @@
     "@datadog/datadog-api-client": "^1.2.0",
     "@hubspot/api-client": "^7.1.2",
     "@octokit/core": "^4.0.4",
+    "@octokit/rest": "^19.0.5",
     "@shopify/shopify-api": "^4.1.0",
     "@supabase/supabase-js": "^1.35.6",
     "@types/paypal-rest-sdk": "^1.7.6",

@@ -3,8 +3,8 @@ require("dotenv").config();
 import axios, { AxiosInstance } from "axios";
 import * as https from "https";
 
-import WooCommerceIntegration from "../catalog/woocommerce/woocommerce";
-import { AnyObject } from "../types/classDefinition";
+import WooCommerceIntegration from "../catalog/sources/woocommerce/woocommerce";
+import { AnyObject } from "../types/sourceClassDefinition";
 import { createHmac } from "crypto";
 
 describe("WooCommerce Integration", () => {
