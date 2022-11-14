@@ -6,50 +6,35 @@ Inserts a single document into a collection.
 
 ***Parameters***
 
-<table class="tg">
-  <thead>
-    <tr>
-      <th><span style="font-weight:bold">Name</span></th>
-      <th><span style="font-weight:bold">Description</span></th>
-      <th><span style="font-weight:bold">Type</span></th>
-      <th><span style="font-weight:bold">Default</span></th>
-      <th><span style="font-weight:bold">Required</span></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>collection</td>
-      <td>MongoDB collection name</td>
-      <td>String</td>
-      <td>`""`</td>
-      <td>true</td>
-    </tr>
-    <tr>
-      <td>payload</td>
-      <td>Record to insert into collection</td>
-      <td>Object</td>
-      <td>`{}</td>
-      <td>true</td>
-    </tr>
-  </tbody>
-</table>
+- **`collection`** - MongoDB collection name
+  - Type: `String`
+  - Default: `""`
+  - Required: `true`
+- **`payload`** - Record to insert into collection
+  - Type: `Object`
+  - Default: `{}`
+  - Required: `true`
+- **`options`** - Additional options
+  - Type: `Object`
+  - Default: `{}`
+  - Required: `false`
 
 ***Sample Payload***
 
 ```js
 {
-  "collection": "posts",
-  "payload": {
-    "name": "My blog post",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "createdAt": new Date().getTime() 
+  collection: "posts",
+  payload: {
+    name: "My blog post",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    createdAt: new Date().getTime() 
   }
 }
 ```
 
 ***Sample Response***
 
-```js
+```json
 {
   "data": {
     "acknowledged": true,

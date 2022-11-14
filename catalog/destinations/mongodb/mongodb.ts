@@ -36,28 +36,28 @@ class MongoDBDriver implements DestinationClassI {
     };
   }
 
-  async insertOne({ collection, payload }) {
-    return await this.db?.collection(collection).insertOne(payload);
+  async insertOne({ collection, payload, options }) {
+    return await this.db?.collection(collection).insertOne(payload, options);
   }
 
-  async insertMany({ collection, payload }) {
-    return await this.db?.collection(collection).insertMany(payload);
+  async insertMany({ collection, payload, options }) {
+    return await this.db?.collection(collection).insertMany(payload, options);
   }
 
-  async updateOne({ collection, query, payload }) {
-    return await this.db?.collection(collection).updateOne(query, payload);
+  async updateOne({ collection, filter, payload, options }) {
+    return await this.db?.collection(collection).updateOne(filter, payload, options);
   }
 
-  async updateMany({ collection, query, payload }) {
-    return await this.db?.collection(collection).updateMany(query, payload);
+  async updateMany({ collection, filter, payload, options }) {
+    return await this.db?.collection(collection).updateMany(filter, payload, options);
   }
 
-  async deleteOne({ collection, query }) {
-    return await this.db?.collection(collection).deleteOne(query);
+  async deleteOne({ collection, filter, options }) {
+    return await this.db?.collection(collection).deleteOne(filter, options);
   }
 
-  async deleteMany({ collection, query }) {
-    return await this.db?.collection(collection).deleteMany(query);
+  async deleteMany({ collection, filter, options }) {
+    return await this.db?.collection(collection).deleteMany(filter, options);
   }
 }
 
