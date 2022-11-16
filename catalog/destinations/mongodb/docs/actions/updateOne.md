@@ -4,40 +4,34 @@ Updates a single document within the collection based on the filter.
 
 [Documentation](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateOne/)
 
-***Parameters***
+**Types**
 
-- **`collection`** - MongoDB collection name
-  - Type: `String`
-  - Default: `""`
-  - Required: `true`
-- **`filter`** - The selection criteria for the update
-  - Type: `Object`
-  - Default: `[]`
-  - Required: `true`
-- **`payload`** - The modifications to apply
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `true`
-- **`options`** - Additional options
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `false`
+```ts
+interface UpdateOnePayload {
+  collection: string;
+  filter: object;
+  update: object;
+  options?: object;
+}
+```
 
-***Sample Payload***
+**Sample Payload**
 
 ```js
 {
   collection: "posts",
   filter: {
-    _id: ObjectId("636c1406dfc1c70029bcb8ea)
+    _id: ObjectId("636c1406dfc1c70029bcb8ea")
   },
-  payload: {
-    description: "My updated blog post description..."
+  update: {
+    $set: {
+      description: "My updated blog post description..."
+    }
   }
 }
 ```
 
-***Sample Response***
+**Sample Response**
 
 ```json
 {
