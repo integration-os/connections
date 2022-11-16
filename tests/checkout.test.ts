@@ -1,9 +1,9 @@
 require("dotenv").config();
 
-import CheckoutIntegration from "../catalog/checkout/Checkout";
-import { AnyObject } from "../types/classDefinition";
+import CheckoutIntegration from "../catalog/sources/checkout/Checkout";
+import { AnyObject } from "../types/sourceClassDefinition";
 import { createHmac } from "crypto";
-import config from '../catalog/checkout/config.json';
+import config from '../catalog/sources/checkout/config.json';
 
 const checkout = new CheckoutIntegration({
   CHECKOUT_API_KEY_SECRET: process.env.CHECKOUT_API_KEY_SECRET,
