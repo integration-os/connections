@@ -1,18 +1,16 @@
 import getProxyDriver from "./mongodb";
 
-export async function main(req, res) {
+export async function main({
+  payload,
+  config,
+  action
+}) {
   try {
-    const {
-      payload,
-      config,
-      action
-    } = req.body;
-
     const driver = getProxyDriver(config);
 
     const result = await driver[action](payload);
 
-    res.status(200).send(JSON.stringify(result));
+    return result;
   } catch (error) {
     let e: any = {};
 
@@ -34,6 +32,6 @@ export async function main(req, res) {
       e = { message: error.message };
     }
 
-    res.status(e.status || 400).send(JSON.stringify(e.data || e.message));
+    throw e;
   }
 }

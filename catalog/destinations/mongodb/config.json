@@ -22,12 +22,5 @@
   "events": [],
   "connectionTypes": ["target"],
   "actions": ["insertOne", "insertMany", "updateOne", "updateMany", "deleteOne", "deleteMany"],
-  "destinationType": "http",
-  "config": {
-    "url": "https://us-east4-buildable-production.cloudfunctions.net/mongodb-serverless",
-    "method": "POST",
-    "headers": {
-      "Content-Type": "application/json"
-    }
-  }
+  "destinationType": "http"
 }
