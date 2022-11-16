@@ -4,22 +4,17 @@ Inserts a single document into a collection.
 
 [Documentation](https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/)
 
-***Parameters***
+**Types**
 
-- **`collection`** - MongoDB collection name
-  - Type: `String`
-  - Default: `""`
-  - Required: `true`
-- **`payload`** - Record to insert into collection
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `true`
-- **`options`** - Additional options
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `false`
+```ts
+interface InsertOnePayload {
+  collection: string;
+  payload: object;
+  options?: object;
+}
+```
 
-***Sample Payload***
+**Sample Payload**
 
 ```js
 {
@@ -32,7 +27,7 @@ Inserts a single document into a collection.
 }
 ```
 
-***Sample Response***
+**Sample Response**
 
 ```json
 {

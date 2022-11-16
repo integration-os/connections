@@ -4,22 +4,17 @@ Removes all documents that match the filter from a collection.
 
 [Documentation](https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteMany/)
 
-***Parameters***
+**Types**
 
-- **`collection`** - MongoDB collection name
-  - Type: `String`
-  - Default: `""`
-  - Required: `true`
-- **`filter`** - The selection criteria for the delete
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `true`
-- **`options`** - Additional options
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `false`
+```ts
+interface DeleteManyPayload {
+  collection: string;
+  filter: object;
+  options?: object;
+}
+```
 
-***Sample Payload***
+**Sample Payload**
 
 ```js
 {
@@ -30,7 +25,7 @@ Removes all documents that match the filter from a collection.
 }
 ```
 
-***Sample Response***
+**Sample Response**
 
 ```json
 {

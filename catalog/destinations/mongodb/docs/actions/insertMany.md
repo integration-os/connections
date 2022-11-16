@@ -4,22 +4,17 @@ Inserts multiple documents into a collection.
 
 [Documentation](https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/)
 
-***Parameters***
+**Types**
 
-- **`collection`** - MongoDB collection name
-  - Type: `String`
-  - Default: `""`
-  - Required: `true`
-- **`payload`** - Array of record to insert into collection
-  - Type: `Object[]`
-  - Default: `[]`
-  - Required: `true`
-- **`options`** - Additional options
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `false`
+```ts
+interface InsertManyPayload {
+  collection: string;
+  payload: object;
+  options?: object;
+}
+```
 
-***Sample Payload***
+**Sample Payload**
 
 ```js
 {
@@ -39,7 +34,7 @@ Inserts multiple documents into a collection.
 }
 ```
 
-***Sample Response***
+**Sample Response**
 
 ```json
 {
