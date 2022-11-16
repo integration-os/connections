@@ -1,9 +1,16 @@
 import axios from "axios";
 import { TestConnection } from "../../../types/destinationClassDefinition";
 
+export type Method =
+  | 'get' | 'GET'
+  | 'delete' | 'DELETE'
+  | 'post' | 'POST'
+  | 'put' | 'PUT'
+  | 'patch' | 'PATCH';
+
 export default class Webhook {
   WEBHOOK_URL: string;
-  WEBHOOK_METHOD: string;
+  WEBHOOK_METHOD: Method;
   WEBHOOK_HEADERS: string;
 
   constructor({
@@ -12,7 +19,7 @@ export default class Webhook {
     WEBHOOK_HEADERS,
   }: {
     WEBHOOK_URL: string;
-    WEBHOOK_METHOD: string;
+    WEBHOOK_METHOD: Method;
     WEBHOOK_HEADERS: string;
   }) {
     this.WEBHOOK_URL = WEBHOOK_URL;

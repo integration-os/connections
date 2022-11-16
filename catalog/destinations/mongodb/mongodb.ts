@@ -36,20 +36,20 @@ class MongoDBDriver implements DestinationClassI {
     };
   }
 
-  async insertOne({ collection, payload, options }) {
-    return await this.db?.collection(collection).insertOne(payload, options);
+  async insertOne({ collection, document, options }) {
+    return await this.db?.collection(collection).insertOne(document, options);
   }
 
-  async insertMany({ collection, payload, options }) {
-    return await this.db?.collection(collection).insertMany(payload, options);
+  async insertMany({ collection, documents, options }) {
+    return await this.db?.collection(collection).insertMany(documents, options);
   }
 
-  async updateOne({ collection, filter, payload, options }) {
-    return await this.db?.collection(collection).updateOne(filter, payload, options);
+  async updateOne({ collection, filter, update, options }) {
+    return await this.db?.collection(collection).updateOne(filter, update, options);
   }
 
-  async updateMany({ collection, filter, payload, options }) {
-    return await this.db?.collection(collection).updateMany(filter, payload, options);
+  async updateMany({ collection, filter, update, options }) {
+    return await this.db?.collection(collection).updateMany(filter, update, options);
   }
 
   async deleteOne({ collection, filter, options }) {

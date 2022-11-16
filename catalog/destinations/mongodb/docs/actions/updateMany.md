@@ -4,24 +4,16 @@ Updates all documents that match the specified filter for a collection.
 
 [Documentation](https://www.mongodb.com/docs/manual/reference/method/db.collection.updateMany/)
 
-***Parameters***
+**Types**
 
-- **`collection`** - MongoDB collection name
-  - Type: `String`
-  - Default: `""`
-  - Required: `true`
-- **`filter`** - The selection criteria for the update
-  - Type: `Object`
-  - Default: `[]`
-  - Required: `true`
-- **`payload`** - The modifications to apply
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `true`
-- **`options`** - Additional options
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `false`
+```ts
+interface UpdateManyPayload {
+  collection: string;
+  filter: object;
+  update: object;
+  options?: object;
+}
+```
 
 ***Sample Payload***
 
@@ -31,8 +23,10 @@ Updates all documents that match the specified filter for a collection.
   filter: {
     name: "My blog post"
   },
-  payload: {
-    name: "My updated blog post"
+  update: {
+    $set: {
+      name: "My updated blog post"
+    }
   }
 }
 ```

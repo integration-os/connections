@@ -1,4 +1,4 @@
-# MongoDB Destination
+# Documentation
 ----
 
 MongoDB is a general purpose, document-based, distributed database.
