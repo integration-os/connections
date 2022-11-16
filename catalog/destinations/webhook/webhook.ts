@@ -26,6 +26,28 @@ export default class Webhook {
     this.WEBHOOK_METHOD = WEBHOOK_METHOD;
     this.WEBHOOK_HEADERS = WEBHOOK_HEADERS;
   }
+
+  async makeRequest({
+    signatureHeaderName,
+    signatureHeaderValue,
+    payload
+  }: {
+    signatureHeaderName: string;
+    signatureHeaderValue: string;
+    payload: any;
+  }): Promise<any> {
+    const { data } = await axios({
+      url: this.WEBHOOK_URL,
+      method: this.WEBHOOK_METHOD,
+      headers: {
+        ...JSON.parse(this.WEBHOOK_HEADERS),
+        [signatureHeaderName]: signatureHeaderValue,
+      },
+      data: payload
+    });
+
+    return data;
+  }
   
   async testConnection(): Promise<TestConnection> {
     try {
