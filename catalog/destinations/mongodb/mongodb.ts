@@ -5,6 +5,7 @@ class MongoDBDriver implements DestinationClassI {
   MONGODB_URI: string;
   client: MongoClient;
   db: Db;
+  dbName: string;
 
   constructor({ MONGODB_URI }: AnyObject) {
     this.MONGODB_URI = MONGODB_URI;
@@ -16,11 +17,18 @@ class MongoDBDriver implements DestinationClassI {
     this.client = new MongoClient(MONGODB_URI);
 
     const db = this.client.db();
-    const dbName = db.databaseName;
+    this.dbName = db.databaseName;
 
-    this.db = this.client.db(dbName);
+    this.db = this.client.db(this.dbName);
 
     await this.client.connect();
+
+    const databases = await this.client.db().admin().listDatabases();
+    const databaseNames = databases.databases.map(db => db.name);
+
+    if (!databaseNames.includes(this.dbName)) {
+      throw new Error(`Database '${this.dbName}' does not exist!`);
+    }
   }
 
   async disconnect() {
@@ -32,32 +40,32 @@ class MongoDBDriver implements DestinationClassI {
 
     return {
       success: true,
-      message: "Connection tested successfully!",
+      message: `Successfully connected to the '${this.dbName}' database!`,
     };
   }
 
   async insertOne({ collection, document, options }) {
-    return await this.db?.collection(collection).insertOne(document, options);
+    return this.db?.collection(collection).insertOne(document, options);
   }
 
   async insertMany({ collection, documents, options }) {
-    return await this.db?.collection(collection).insertMany(documents, options);
+    return this.db?.collection(collection).insertMany(documents, options);
   }
 
   async updateOne({ collection, filter, update, options }) {
-    return await this.db?.collection(collection).updateOne(filter, update, options);
+    return this.db?.collection(collection).updateOne(filter, update, options);
   }
 
   async updateMany({ collection, filter, update, options }) {
-    return await this.db?.collection(collection).updateMany(filter, update, options);
+    return this.db?.collection(collection).updateMany(filter, update, options);
   }
 
   async deleteOne({ collection, filter, options }) {
-    return await this.db?.collection(collection).deleteOne(filter, options);
+    return this.db?.collection(collection).deleteOne(filter, options);
   }
 
   async deleteMany({ collection, filter, options }) {
-    return await this.db?.collection(collection).deleteMany(filter, options);
+    return this.db?.collection(collection).deleteMany(filter, options);
   }
 }
 
@@ -73,12 +81,18 @@ const getProxyDriver = (config: AnyObject) => {
         "updateMany",
         "deleteOne",
         "deleteMany",
+        "testConnection",
       ];
 
       if (whitelistedMethods.includes(prop as string)) {
         // Establish and close connection for each method call
         return async (payload) => {
           try {
+            // Do not connect and disconnect for testConnection
+            if (prop === "testConnection") {
+              return await driver.testConnection();
+            }
+
             await driver.connect(config);
 
             const result = await driver[prop](payload);

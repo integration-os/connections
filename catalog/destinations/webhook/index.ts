@@ -5,6 +5,7 @@ export async function main({
   config: { WEBHOOK_URL, WEBHOOK_METHOD, WEBHOOK_HEADERS },
   signatureHeaderName,
   signatureHeaderValue,
+  action,
 }) {
   try {
     const driver = new Webhook({
@@ -12,6 +13,10 @@ export async function main({
       WEBHOOK_METHOD,
       WEBHOOK_HEADERS,
     });
+
+    if (action === "testConnection") {
+      return await driver.testConnection();
+    }
 
     const result = await driver.makeRequest({
       signatureHeaderName,
