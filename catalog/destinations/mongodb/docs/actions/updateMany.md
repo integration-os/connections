@@ -15,7 +15,7 @@ interface UpdateManyPayload {
 }
 ```
 
-***Sample Payload***
+**Sample Payload**
 
 ```js
 {
@@ -31,7 +31,7 @@ interface UpdateManyPayload {
 }
 ```
 
-***Sample Response***
+**Sample Response**
 
 ```json
 {

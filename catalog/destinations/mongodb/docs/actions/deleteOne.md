@@ -4,22 +4,17 @@ Removes a single document from a collection.
 
 [Documentation](https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteOne/)
 
-***Parameters***
+**Types**
 
-- **`collection`** - MongoDB collection name
-  - Type: `String`
-  - Default: `""`
-  - Required: `true`
-- **`filter`** - The selection criteria for the delete
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `true`
-- **`options`** - Additional options
-  - Type: `Object`
-  - Default: `{}`
-  - Required: `false`
+```ts
+interface DeleteOnePayload {
+  collection: string;
+  filter: object;
+  options?: object;
+}
+```
 
-***Sample Payload***
+**Sample Payload**
 
 ```js
 {
@@ -30,7 +25,7 @@ Removes a single document from a collection.
 }
 ```
 
-***Sample Response***
+**Sample Response**
 
 ```json
 {
