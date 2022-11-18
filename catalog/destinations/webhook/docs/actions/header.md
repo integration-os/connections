@@ -1,4 +1,4 @@
-# Documentation
+## Documentation
 ----
 
 Send automated messages when events occur in your account.

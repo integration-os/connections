@@ -1,4 +1,4 @@
-# Documentation
+## Documentation
 ----
 
 A general description about the Connection.
