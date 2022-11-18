@@ -32,14 +32,6 @@ class PostgreSQLDriver implements DestinationClassI {
       POSTGRESQL_DATABASE
     } = config ? config : this;
 
-    console.log({
-      POSTGRESQL_HOST,
-      POSTGRESQL_USERNAME,
-      POSTGRESQL_PASSWORD,
-      POSTGRESQL_PORT,
-      POSTGRESQL_DATABASE
-    })
-
     this.client = knex({
       client: "pg",
       connection: {
@@ -53,7 +45,6 @@ class PostgreSQLDriver implements DestinationClassI {
 
     try {
       await this.client.raw("SELECT 1");
-      console.log("Successfully connected to the database!");
     } catch (error) {
       throw new Error(`Error connecting to PostgreSQL: ${error.message}`);
     }
