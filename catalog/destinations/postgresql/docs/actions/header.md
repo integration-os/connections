@@ -1,9 +1,9 @@
-# Documentation
+## Documentation
 ----
 
 PostgreSQL is an open-source relational database management system.
 
-## Getting Started
+### Getting Started
 
 To enable Buildable to connect to your database, please ensure that your firewall accepts incoming requests from the following IP address:
 

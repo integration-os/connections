@@ -5,7 +5,7 @@ class PostgreSQLDriver implements DestinationClassI {
   POSTGRESQL_HOST: string;
   POSTGRESQL_USERNAME: string;
   POSTGRESQL_PASSWORD: string;
-  POSTGRESQL_PORT: string;
+  POSTGRESQL_PORT: number;
   POSTGRESQL_DATABASE: string;
   client: Knex;
 
@@ -19,7 +19,7 @@ class PostgreSQLDriver implements DestinationClassI {
     this.POSTGRESQL_HOST = POSTGRESQL_HOST;
     this.POSTGRESQL_USERNAME = POSTGRESQL_USERNAME;
     this.POSTGRESQL_PASSWORD = POSTGRESQL_PASSWORD; 
-    this.POSTGRESQL_PORT = POSTGRESQL_PORT;
+    this.POSTGRESQL_PORT = parseFloat(POSTGRESQL_PORT);
     this.POSTGRESQL_DATABASE = POSTGRESQL_DATABASE;
   }
 
