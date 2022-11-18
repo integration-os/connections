@@ -4,8 +4,13 @@ Action desctipion...
 
 [Documentation](LINK_TO_OFFICIAL_DOCUMENTATION)
 
-***Parameters***
+**Types**
 
+```ts
+interface ActionNamePayload {
+  // Payload types
+}
+```
 
 ***Sample Payload***
 
