@@ -107,7 +107,7 @@ class PostgreSQLDriver implements DestinationClassI {
     statement,
     maxLimit = 100
   }: { 
-    statement: AnyObject,
+    statement: string,
     maxLimit: number
   }) {
     statement = handleLimit(statement, maxLimit);
@@ -116,7 +116,7 @@ class PostgreSQLDriver implements DestinationClassI {
   }
 }
 
-const handleLimit = (query: AnyObject, maxLimit: number) => {
+const handleLimit = (query: string, maxLimit: number) => {
   if (maxLimit > 200) {
     throw new Error("The optimized value for maxLimit is less than or equal to 200");
   }
@@ -132,7 +132,7 @@ const handleLimit = (query: AnyObject, maxLimit: number) => {
   return splitQuery.join("; ");
 };
 
-const setHardLimit = (query: AnyObject, maxLimit: number) => {
+const setHardLimit = (query: string, maxLimit: number) => {
   if (query.charAt(query.length - 1) === ";") {
     query = query.substring(0, query.length - 1);
   }
@@ -150,7 +150,7 @@ const setHardLimit = (query: AnyObject, maxLimit: number) => {
     }
   } else {
     tokenizedQuery.push("LIMIT");
-    tokenizedQuery.push(maxLimit);
+    tokenizedQuery.push(maxLimit.toString());
   }
 
   return tokenizedQuery.join(" ");
