@@ -24,7 +24,7 @@ export async function main({
       payload,
     });
 
-    return { result: data, status };
+    return { data, status };
   } catch (error) {
     let e: any = {};
 
@@ -40,7 +40,8 @@ export async function main({
       // The request was made but no response was received
       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
       // http.ClientRequest in node.js
-      e = error.request;
+      // e = error.request;
+      e = { message: "unreachable endpoint", data: error.request }
     } else {
       // Something happened in setting up the request that triggered an Error
       e = { message: error.message };
