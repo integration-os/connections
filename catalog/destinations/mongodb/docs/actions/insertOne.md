@@ -9,7 +9,7 @@ Inserts a single document into a collection.
 ```ts
 interface InsertOnePayload {
   collection: string;
-  payload: object;
+  document: object;
   options?: object;
 }
 ```
@@ -19,7 +19,7 @@ interface InsertOnePayload {
 ```js
 {
   collection: "posts",
-  payload: {
+  document: {
     name: "My blog post",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     createdAt: new Date().getTime() 
