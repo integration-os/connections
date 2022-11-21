@@ -36,7 +36,7 @@ export default class Webhook {
     signatureHeaderValue: string;
     payload: any;
   }): Promise<any> {
-    const { data } = await axios({
+    const response = await axios({
       url: this.WEBHOOK_URL,
       method: this.WEBHOOK_METHOD,
       headers: {
@@ -46,7 +46,7 @@ export default class Webhook {
       data: payload
     });
 
-    return data;
+    return response;
   }
   
   async testConnection(): Promise<TestConnection> {
