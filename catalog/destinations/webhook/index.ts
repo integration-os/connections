@@ -18,13 +18,13 @@ export async function main({
       return await driver.testConnection();
     }
 
-    const result = await driver.makeRequest({
+    const { data, status } = await driver.makeRequest({
       signatureHeaderName,
       signatureHeaderValue,
       payload,
     });
 
-    return result;
+    return { result: data, status };
   } catch (error) {
     let e: any = {};
 

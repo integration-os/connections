@@ -10,7 +10,7 @@ export async function main({
 
     const result = await driver[action](payload);
 
-    return result;
+    return { result };
   } catch (error) {
     let e: any = {};
 
