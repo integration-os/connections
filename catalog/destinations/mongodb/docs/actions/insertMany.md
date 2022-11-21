@@ -9,7 +9,7 @@ Inserts multiple documents into a collection.
 ```ts
 interface InsertManyPayload {
   collection: string;
-  payload: object;
+  documents: object;
   options?: object;
 }
 ```
@@ -19,7 +19,7 @@ interface InsertManyPayload {
 ```js
 {
   collection: "posts",
-  payload: [
+  documents: [
     {
       name: "My blog post",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
