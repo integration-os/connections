@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import CircleCIIntegration from "../catalog/circleci/circleci";
+import CircleCIIntegration from "../catalog/sources/circleci/circleci";
 import { createHmac } from "crypto";
 
 const circleci = new CircleCIIntegration({

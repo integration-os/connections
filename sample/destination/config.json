@@ -1,0 +1,33 @@
+{
+  "title": "MongoDB",
+  "description": "MongoDB is a general purpose, document-based, distributed database",
+  "apiVersion": "NA",
+  "platform": "mongodb-destination",
+  "category": "database",
+  "image": "https://assets.buildable.dev/catalog/node-templates/mongo.svg",
+  "tags": ["database", "db"],
+  "authentication": [
+    {
+      "name": "MONGODB_URI",
+      "label": "Enter your MongoDB URI",
+      "placeholder": "mongodb://username:password@mongodbhost:port/db-name-and-rest"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": ["insertOne", "insertMany", "updateOne", "updateMany", "deleteOne", "deleteMany"],
+  "destinationType": "http",
+  "config": {
+    "url": "https://us-east4-buildable-production.cloudfunctions.net/mongodb-serverless",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "PostgreSQL",
+  "description": "PostgreSQL is an open-source relational database management system",
+  "apiVersion": "NA",
+  "platform": "postgresql",
+  "category": "database",
+  "image": "https://assets.buildable.dev/catalog/node-templates/postgresql.svg",
+  "tags": ["database", "db", "sql"],
+  "authentication": [
+    {
+      "name": "POSTGRESQL_HOST",
+      "label": "Enter your PostgreSQL Host",
+      "placeholder": "my-host"
+    },
+    {
+      "name": "POSTGRESQL_USERNAME",
+      "label": "Enter your PostgreSQL Username",
+      "placeholder": "my-username"
+    },
+    {
+      "name": "POSTGRESQL_PASSWORD",
+      "type": "password",
+      "label": "Enter your PostgreSQL Password",
+      "placeholder": "supersecretpassword"
+    },
+    {
+      "name": "POSTGRESQL_PORT",
+      "label": "Enter your PostgreSQL Port",
+      "placeholder": "5432"
+    },
+    {
+      "name": "POSTGRESQL_DATABASE",
+      "label": "Enter your PostgreSQL Database Name",
+      "placeholder": "my-db"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": ["insert", "update", "delete", "executeRawQuery"],
+  "destinationType": "http"
+}
