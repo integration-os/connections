@@ -10,17 +10,18 @@
   "eventSchema": {},
   "settings": {
     "createBuildableEnvVars": true,
-    "hasEvents": false,
     "showUrl": true
   },
   "paths": {
     "id": null,
-    "event": "webhook-source.event.received",
+    "event": "event.received",
     "payload": "_.body",
     "secret": null,
     "signature": null
   },
-  "events": [],
+  "events": [
+    "event.received"
+  ],
   "connectionTypes": ["source"],
   "testConnection": false,
   "classifications": {
