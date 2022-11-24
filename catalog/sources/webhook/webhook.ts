@@ -27,8 +27,41 @@ export default class Webhook {
     this.WEBHOOK_HEADERS = WEBHOOK_HEADERS;
   }
 
+  async init({ webhookUrl, events }) {
+    return {
+      webhookData: {},
+      events,
+    };
+  }
+
   async verifyWebhookSignature({ request, signature, secret }) {
     // Validation falls on the user to implement
+    return true;
+  }
+
+  async subscribe({ webhookId, events }) {
+    return {
+      webhook: {},
+      events: ["event.received"],
+    };
+  }
+
+  async unsubscribe({ webhookId, events }) {
+    return {
+      events: [],
+      webhook: {},
+    };
+  }
+
+  async getWebhooks() {
+    return [];
+  }
+
+  async getSubscribedEvents({ webhookId }) {
+    return ["event.received"];
+  }
+
+  async deleteWebhookEndpoint({ webhookId }) {
     return true;
   }
   
