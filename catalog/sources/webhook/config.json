@@ -20,7 +20,11 @@
     "signature": null
   },
   "events": [
-    "event.received"
+    {
+      "name": "event.received",
+      "description": "Subscribe to all events (default behavior)",
+      "group": ""
+    }
   ],
   "connectionTypes": ["source"],
   "testConnection": false,
