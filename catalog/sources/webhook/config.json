@@ -5,33 +5,28 @@
   "platform": "webhook",
   "category": "webhook",
   "image": "https://assets.buildable.dev/catalog/node-templates/webhook.svg",
-  "tags": [
-    "webhook",
-    "rest"
-  ],
+  "tags": ["webhook", "rest"],
   "authentication": [],
   "eventSchema": {},
   "settings": {
     "createBuildableEnvVars": true,
     "hasEvents": false,
-		"showUrl": true
+    "showUrl": true
   },
   "paths": {
-		"id": null,
+    "id": null,
     "event": "webhook-source.event.received",
     "payload": "_.body",
     "secret": null,
     "signature": null
-	},
+  },
   "events": [],
-  "connectionTypes": [
-    "source"
-  ],
+  "connectionTypes": ["source"],
   "testConnection": false,
-	"classifications": {
-		"dataIngestion": {
-			"streamTypes": ["manual"],
-			"extractionTypes": []
-		}
-	}
+  "classifications": {
+    "dataIngestion": {
+      "streamTypes": ["manual"],
+      "extractionTypes": []
+    }
+  }
 }
