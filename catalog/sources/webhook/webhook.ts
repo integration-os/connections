@@ -31,28 +31,6 @@ export default class Webhook {
     // Validation falls on the user to implement
     return true;
   }
-
-  // async makeRequest({
-  //   signatureHeaderName,
-  //   signatureHeaderValue,
-  //   payload
-  // }: {
-  //   signatureHeaderName: string;
-  //   signatureHeaderValue: string;
-  //   payload: any;
-  // }): Promise<any> {
-  //   const response = await axios({
-  //     url: this.WEBHOOK_URL,
-  //     method: this.WEBHOOK_METHOD,
-  //     headers: {
-  //       ...JSON.parse(this.WEBHOOK_HEADERS),
-  //       [signatureHeaderName]: signatureHeaderValue,
-  //     },
-  //     data: payload
-  //   });
-
-  //   return response;
-  // }
   
   async testConnection(): Promise<TestConnection> {
     try {
