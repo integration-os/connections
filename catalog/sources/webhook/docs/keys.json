@@ -1,0 +1,7 @@
+[
+  {
+    "key": "WEBHOOK_URL",
+    "heading": "Webhook URL",
+    "subHeading": "Post data to this URL to recieve events in your stream"
+  }
+]
