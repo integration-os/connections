@@ -9,7 +9,7 @@
   "authentication": [],
   "eventSchema": {},
   "settings": {
-    "createBuildableEnvVars": true,
+    "createBuildableEnvVars": false,
     "showUrl": true,
     "autoSubscribeAllEvents": true
   },
