@@ -10,7 +10,8 @@
   "eventSchema": {},
   "settings": {
     "createBuildableEnvVars": true,
-    "showUrl": true
+    "showUrl": true,
+    "autoSubscribeAllEvents": true
   },
   "paths": {
     "id": null,
