@@ -1,0 +1,33 @@
+{
+  "title": "Node.js",
+  "description": "Receive events emitted from your Node app",
+  "apiVersion": "NA",
+  "platform": "nodejs",
+  "category": "nodejs",
+  "image": "https://assets.buildable.dev/catalog/node-templates/nodejs.svg",
+  "tags": ["javascript", "sdk"],
+  "authentication": [],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": false,
+    "autoSubscribeAllEvents": true,
+    "showSecret": true,
+    "allowCustomEvents": true
+  },
+  "paths": {
+    "id": null,
+    "event": "_.topic",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "events": [],
+  "connectionTypes": ["source"],
+  "testConnection": false,
+  "classifications": {
+    "dataIngestion": {
+      "streamTypes": ["manual"],
+      "extractionTypes": []
+    }
+  }
+}
