@@ -12,7 +12,8 @@
     "createBuildableEnvVars": false,
     "autoSubscribeAllEvents": true,
     "showSecret": true,
-    "allowCustomEvents": true
+    "allowCustomEvents": true,
+    "showEvents": false
   },
   "paths": {
     "id": null,

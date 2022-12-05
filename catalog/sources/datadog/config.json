@@ -65,7 +65,8 @@
     "parseWebhookBody": false,
     "hasSubscriptionDelay": false,
     "subscriptionDelayMultiplier": 0.0,
-    "autoSubscribeAllEvents": true
+    "autoSubscribeAllEvents": true,
+    "showEvents": false
   },
   "paths": {
     "id": "_.body.name",
