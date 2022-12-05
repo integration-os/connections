@@ -11,7 +11,8 @@
   "settings": {
     "createBuildableEnvVars": false,
     "showUrl": true,
-    "autoSubscribeAllEvents": true
+    "autoSubscribeAllEvents": true,
+    "showEvents": false
   },
   "paths": {
     "id": null,

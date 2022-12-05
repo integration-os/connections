@@ -33,7 +33,8 @@
   "settings": {
     "parseWebhookBody": false,
     "hasSubscriptionDelay": false,
-    "subscriptionDelayMultiplier": 0.0
+    "subscriptionDelayMultiplier": 0.0,
+    "showEvents": true
   },
   "paths": {
     "id": "_.body._id",
