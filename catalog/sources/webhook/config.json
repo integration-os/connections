@@ -12,7 +12,8 @@
     "createBuildableEnvVars": false,
     "showUrl": true,
     "autoSubscribeAllEvents": true,
-    "showEvents": false
+    "showEvents": false,
+    "secureAuthFields": false
   },
   "paths": {
     "id": null,
