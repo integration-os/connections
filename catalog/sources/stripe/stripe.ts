@@ -36,7 +36,11 @@ export default class StripeIntegration implements IntegrationClassI {
 
   async verifyWebhookSignature({ request, signature, secret }) {
     try {
-      return this.stripe.webhooks.constructEvent(request.body, signature, secret);
+      return this.stripe.webhooks.constructEvent(
+        request.body,
+        signature,
+        secret,
+      );
     } catch (err) {
       throw new Error("Unable to verify signature.");
     }
@@ -49,9 +53,12 @@ export default class StripeIntegration implements IntegrationClassI {
 
     const eventsAfterSubscribe = subscribedEvents.concat(events);
 
-    const updatedWebhook = await this.stripe.webhookEndpoints.update(webhookId, {
-      enabled_events: eventsAfterSubscribe as any,
-    });
+    const updatedWebhook = await this.stripe.webhookEndpoints.update(
+      webhookId,
+      {
+        enabled_events: eventsAfterSubscribe as any,
+      },
+    );
 
     return {
       webhook: updatedWebhook,
@@ -77,9 +84,12 @@ export default class StripeIntegration implements IntegrationClassI {
       };
     }
 
-    const updatedWebhook = await this.stripe.webhookEndpoints.update(webhookId, {
-      enabled_events: eventsAfterUnsubscribe as any,
-    });
+    const updatedWebhook = await this.stripe.webhookEndpoints.update(
+      webhookId,
+      {
+        enabled_events: eventsAfterUnsubscribe as any,
+      },
+    );
 
     return {
       events: updatedWebhook.enabled_events,
@@ -94,7 +104,9 @@ export default class StripeIntegration implements IntegrationClassI {
   }
 
   async getSubscribedEvents({ webhookId }) {
-    const webhookEndpoint = await this.stripe.webhookEndpoints.retrieve(webhookId);
+    const webhookEndpoint = await this.stripe.webhookEndpoints.retrieve(
+      webhookId,
+    );
 
     return webhookEndpoint.enabled_events;
   }
@@ -115,7 +127,8 @@ export default class StripeIntegration implements IntegrationClassI {
     } catch (err) {
       console.log((err as Error).message);
       throw new Error(
-        "Unable to establish a connection with Stripe: " + (err as Error).message
+        "Unable to establish a connection with Stripe: " +
+          (err as Error).message,
       );
     }
   }

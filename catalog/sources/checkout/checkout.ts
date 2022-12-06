@@ -1,23 +1,28 @@
 import axios, { AxiosInstance } from "axios";
 import crypto from "crypto";
 import {
-  AnyObject, DeleteWebhookEndpointProps,
+  AnyObject,
+  DeleteWebhookEndpointProps,
   Events,
   InitProps,
   InitReturns,
-  IntegrationClassI, SubscribeReturns, SubscriptionProps, Truthy,
-  VerifyWebhookSignatureProps, WebhooksProps,
-  TestConnection
+  IntegrationClassI,
+  SubscribeReturns,
+  SubscriptionProps,
+  Truthy,
+  VerifyWebhookSignatureProps,
+  WebhooksProps,
+  TestConnection,
 } from "../../../types/sourceClassDefinition";
 
 enum EventType {
-  accounts = 'accounts',
-  issuing = 'issuing',
-  cardPayout = 'card_payout',
-  marketplace = 'marketplace',
-  gateway = 'gateway',
-  dispute = 'dispute',
-  fincrime = 'fincrime'
+  accounts = "accounts",
+  issuing = "issuing",
+  cardPayout = "card_payout",
+  marketplace = "marketplace",
+  gateway = "gateway",
+  dispute = "dispute",
+  fincrime = "fincrime",
 }
 
 type WorkflowConditionEvents = {
@@ -27,7 +32,7 @@ type WorkflowConditionEvents = {
 interface WorkflowCondition {
   id: string;
   type: string;
-  events: WorkflowConditionEvents
+  events: WorkflowConditionEvents;
 }
 
 export default class CheckoutIntegration implements IntegrationClassI {
@@ -35,29 +40,31 @@ export default class CheckoutIntegration implements IntegrationClassI {
   name: string;
 
   private readonly apiKeySecret: string;
-  private readonly environment: string = 'sandbox';
+  private readonly environment: string = "sandbox";
   private readonly webhookSignKey: string;
   private readonly checkout: AxiosInstance;
 
   constructor({
-    CHECKOUT_API_KEY_SECRET
+    CHECKOUT_API_KEY_SECRET,
   }: {
-    CHECKOUT_API_KEY_SECRET: string
+    CHECKOUT_API_KEY_SECRET: string;
   }) {
     this.apiKeySecret = CHECKOUT_API_KEY_SECRET;
     this.webhookSignKey = this.apiKeySecret;
-    this.environment = this.apiKeySecret.indexOf('sk_sbox') === 0 ? 'sandbox' : 'production';
-    const baseURL = this.environment === 'sandbox' ?
-      "https://api.sandbox.checkout.com/workflows/" :
-      "https://api.checkout.com/workflows/";
+    this.environment =
+      this.apiKeySecret.indexOf("sk_sbox") === 0 ? "sandbox" : "production";
+    const baseURL =
+      this.environment === "sandbox"
+        ? "https://api.sandbox.checkout.com/workflows/"
+        : "https://api.checkout.com/workflows/";
 
     this.checkout = axios.create({
       baseURL,
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         "User-Agent": "buildable",
-        "Authorization": `Bearer ${this.apiKeySecret}`,
+        Authorization: `Bearer ${this.apiKeySecret}`,
       },
     });
   }
@@ -65,48 +72,52 @@ export default class CheckoutIntegration implements IntegrationClassI {
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const workflowConditions = this.eventsToWorkflowConditions(events);
     try {
-      const webhooks = await this.checkout.post('/', {
-        name: 'Buildable',
+      const webhooks = await this.checkout.post("/", {
+        name: "Buildable",
         active: true,
-        conditions: [{
-          type: "event",
-          events: workflowConditions
-        }],
+        conditions: [
+          {
+            type: "event",
+            events: workflowConditions,
+          },
+        ],
         actions: [
           {
-            type: 'webhook',
+            type: "webhook",
             url: webhookUrl,
             signature: {
               method: "HMACSHA256",
-              key: this. webhookSignKey
-            }
-          }
-        ]
+              key: this.webhookSignKey,
+            },
+          },
+        ],
       });
 
       return {
         webhookData: {
-          id: webhooks.data.id
+          id: webhooks.data.id,
         },
-        events
-      }
-    } catch(error) {
-      throw new Error(`Something went wrong while initializing webhook: ${error.message}`);
+        events,
+      };
+    } catch (error) {
+      throw new Error(
+        `Something went wrong while initializing webhook: ${error.message}`,
+      );
     }
   }
 
   // Checkout.com Webhook signature is available in the "Cko-Signature" header
   async verifyWebhookSignature({
-     request,
-     signature,
-   }: VerifyWebhookSignatureProps): Promise<Truthy> {
+    request,
+    signature,
+  }: VerifyWebhookSignatureProps): Promise<Truthy> {
     const hash = crypto
       .createHmac("sha256", this.webhookSignKey)
       .update(request.body, "utf8")
       .digest("hex");
 
     if (hash !== signature) {
-      throw new Error('Invalid Signature');
+      throw new Error("Invalid Signature");
     }
 
     return true;
@@ -118,48 +129,56 @@ export default class CheckoutIntegration implements IntegrationClassI {
   }: SubscriptionProps): Promise<SubscribeReturns> {
     try {
       const webhook = await this.getWebhooks({ webhookId });
-      const eventsCondition = CheckoutIntegration.getWebhookEventsCondition(webhook);
+      const eventsCondition =
+        CheckoutIntegration.getWebhookEventsCondition(webhook);
       const webhookEvents = webhook.events;
       const newEventsList = Array.from(new Set([...webhookEvents, ...events]));
       const newConditions = this.eventsToWorkflowConditions(newEventsList);
 
-      await this.checkout.put(`/${webhookId}/conditions/${eventsCondition.id}`, {
-        type: 'event',
-        events: newConditions,
-      });
+      await this.checkout.put(
+        `/${webhookId}/conditions/${eventsCondition.id}`,
+        {
+          type: "event",
+          events: newConditions,
+        },
+      );
 
       return {
         webhook: { id: webhookId },
         events: newEventsList,
       };
-    } catch(error) {
-      throw new Error(
-        `Could not subscribe to new events: ${error.message}`
-      );
+    } catch (error) {
+      throw new Error(`Could not subscribe to new events: ${error.message}`);
     }
   }
 
   async unsubscribe({
     webhookId,
-    events
+    events,
   }: SubscriptionProps): Promise<SubscribeReturns> {
     try {
       const webhook = await this.getWebhooks({ webhookId });
       const webhookEvents = webhook.events;
-      const eventsCondition = CheckoutIntegration.getWebhookEventsCondition(webhook);
-      const newEventsList = webhookEvents.filter(event => !events.includes(event));
+      const eventsCondition =
+        CheckoutIntegration.getWebhookEventsCondition(webhook);
+      const newEventsList = webhookEvents.filter(
+        (event) => !events.includes(event),
+      );
       const newConditions = this.eventsToWorkflowConditions(newEventsList);
 
-      await this.checkout.put(`/${webhookId}/conditions/${eventsCondition.id}`, {
-        type: 'event',
-        events: newConditions,
-      });
+      await this.checkout.put(
+        `/${webhookId}/conditions/${eventsCondition.id}`,
+        {
+          type: "event",
+          events: newConditions,
+        },
+      );
 
       return {
         webhook: { id: webhookId },
         events: newEventsList,
       };
-    } catch(error) {
+    } catch (error) {
       throw new Error(`Could not unsubscribe from events: ${error.message}`);
     }
   }
@@ -168,7 +187,7 @@ export default class CheckoutIntegration implements IntegrationClassI {
     try {
       const webhook = await this.getWebhooks({ webhookId });
       return webhook.events;
-    } catch(error) {
+    } catch (error) {
       throw new Error(`Error getting subscribed events: ${error.message}`);
     }
   }
@@ -177,29 +196,30 @@ export default class CheckoutIntegration implements IntegrationClassI {
     try {
       const response = await this.checkout.get(`/${webhookId}`);
       return this.parseWorkflowConditions(response.data);
-    } catch(err) {
+    } catch (err) {
       throw new Error(`Error retrieving webhooks: ${err.message}`);
     }
   }
 
-  async deleteWebhookEndpoint({webhookId}: DeleteWebhookEndpointProps): Promise<Truthy> {
+  async deleteWebhookEndpoint({
+    webhookId,
+  }: DeleteWebhookEndpointProps): Promise<Truthy> {
     try {
       await this.checkout.delete(`/${webhookId}`);
       return true;
-    } catch(err) {
+    } catch (err) {
       throw new Error(`Error deleting webhook: ${err.message}`);
     }
   }
 
-
   async testConnection(): Promise<TestConnection> {
     try {
-      await this.checkout.get('/');
+      await this.checkout.get("/");
       return {
         success: true,
         message: "Connection tested successfully!",
       };
-    } catch(err) {
+    } catch (err) {
       throw new Error(`Error connecting to checkout.com API: ${err.message}`);
     }
   }
@@ -225,16 +245,16 @@ export default class CheckoutIntegration implements IntegrationClassI {
       [EventType.marketplace]: [],
       [EventType.gateway]: [],
       [EventType.dispute]: [],
-      [EventType.fincrime]: []
+      [EventType.fincrime]: [],
     };
     events.forEach((event) => {
-      const [eventType, eventValue] = event.split('.');
+      const [eventType, eventValue] = event.split(".");
       if (!(<any>Object).values(EventType).includes(eventType)) {
         throw new Error(`Unexpected checkout.com event type: ${event}`);
       }
       workflowCondition[eventType].push(eventValue);
     });
-    Object.keys(workflowCondition).forEach(key => {
+    Object.keys(workflowCondition).forEach((key) => {
       if (workflowCondition[key].length <= 0) {
         delete workflowCondition[key];
       }
@@ -242,22 +262,34 @@ export default class CheckoutIntegration implements IntegrationClassI {
     return workflowCondition;
   }
 
-  private workflowConditionsToEvents(conditions: WorkflowConditionEvents): Events {
+  private workflowConditionsToEvents(
+    conditions: WorkflowConditionEvents,
+  ): Events {
     let result: string[] = [];
-    for(const key in conditions) {
+    for (const key in conditions) {
       const conditionEvents = conditions[key];
-      conditionEvents.forEach(conditionEvent => result.push(`${key}.${conditionEvent}`));
+      conditionEvents.forEach((conditionEvent) =>
+        result.push(`${key}.${conditionEvent}`),
+      );
     }
     return result;
-  };
+  }
 
   private parseWorkflowConditions(webhookData: AnyObject): AnyObject {
-    const eventCondition = webhookData.conditions.find(condition => condition.type === 'event');
-    webhookData["events"] = this.workflowConditionsToEvents(eventCondition.events);
+    const eventCondition = webhookData.conditions.find(
+      (condition) => condition.type === "event",
+    );
+    webhookData["events"] = this.workflowConditionsToEvents(
+      eventCondition.events,
+    );
     return webhookData;
   }
 
-  private static getWebhookEventsCondition(webhook: AnyObject): WorkflowCondition {
-    return (webhook.conditions as WorkflowCondition[]).find(condition => condition.type === 'event');
+  private static getWebhookEventsCondition(
+    webhook: AnyObject,
+  ): WorkflowCondition {
+    return (webhook.conditions as WorkflowCondition[]).find(
+      (condition) => condition.type === "event",
+    );
   }
 }

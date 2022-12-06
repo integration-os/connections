@@ -82,7 +82,8 @@ export default class WebflowIntegration implements IntegrationClassI {
         return this.webflowSiteId;
       }
 
-      const webflowSites = (await this.client.get<WebflowSite[]>(`/sites`)).data;
+      const webflowSites = (await this.client.get<WebflowSite[]>(`/sites`))
+        .data;
 
       if (!webflowSites?.length) {
         throw new Error(`Can not get Webflow site id`);
@@ -104,11 +105,15 @@ export default class WebflowIntegration implements IntegrationClassI {
         url: `${webhookUrl}?event=${event}`,
       }),
     );
-    const webhookCreateResponses = await Promise.allSettled(webhookCreateRequests);
+    const webhookCreateResponses = await Promise.allSettled(
+      webhookCreateRequests,
+    );
     const webhooks = webhookCreateResponses
       .filter((response) => response.status === "fulfilled")
       .map(
-        (response) => (response as PromiseFulfilledResult<AxiosResponse<WebflowWebook>>).value.data,
+        (response) =>
+          (response as PromiseFulfilledResult<AxiosResponse<WebflowWebook>>)
+            .value.data,
       );
     const registeredEvents = webhooks.map((webhook) => webhook.triggerType);
 
@@ -123,7 +128,9 @@ export default class WebflowIntegration implements IntegrationClassI {
    * @param props
    * @returns
    */
-  async verifyWebhookSignature(props: VerifyWebhookSignatureProps): Promise<Truthy> {
+  async verifyWebhookSignature(
+    props: VerifyWebhookSignatureProps,
+  ): Promise<Truthy> {
     return true;
   }
 
@@ -134,7 +141,9 @@ export default class WebflowIntegration implements IntegrationClassI {
   }: SubscriptionProps): Promise<SubscribeReturns> {
     const webhooks = (await this.getWebhooks({ webhookIds })) as AnyObject[];
 
-    const subscribedEvents = (webhooks as WebflowWebook[]).map((webhook) => webhook.triggerType);
+    const subscribedEvents = (webhooks as WebflowWebook[]).map(
+      (webhook) => webhook.triggerType,
+    );
     const newEvents = events.filter((e) => !subscribedEvents.includes(e));
 
     const updatedWebhoks = webhooks;
@@ -173,12 +182,16 @@ export default class WebflowIntegration implements IntegrationClassI {
 
       return id;
     });
-    const webhooksIdsToDeleteResults = await Promise.allSettled(webhooksIdsToDeleteRequests);
+    const webhooksIdsToDeleteResults = await Promise.allSettled(
+      webhooksIdsToDeleteRequests,
+    );
     const deletedWebhookIds = webhooksIdsToDeleteResults
       .filter((result) => result.status === "fulfilled")
       .map((result) => (result as PromiseFulfilledResult<string>).value);
 
-    const updatedWebhooks = webhooks.filter((webhook) => !deletedWebhookIds.includes(webhook._id));
+    const updatedWebhooks = webhooks.filter(
+      (webhook) => !deletedWebhookIds.includes(webhook._id),
+    );
     const updatedEvents = updatedWebhooks.map((webhook) => webhook.triggerType);
 
     return {
@@ -187,12 +200,15 @@ export default class WebflowIntegration implements IntegrationClassI {
     };
   }
 
-  async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+  async getWebhooks({
+    webhookIds,
+  }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
     try {
       const siteId = await this.getWebflowSiteId();
-      const { data } = await this.client.get<null, AxiosResponse<WebflowWebook[]>>(
-        `/sites/${siteId}/webhooks`,
-      );
+      const { data } = await this.client.get<
+        null,
+        AxiosResponse<WebflowWebook[]>
+      >(`/sites/${siteId}/webhooks`);
       const webhooks = data || [];
 
       if (!webhookIds?.length) {
@@ -206,7 +222,9 @@ export default class WebflowIntegration implements IntegrationClassI {
   }
 
   async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {
-    const webhooks = (await this.getWebhooks({ webhookIds })) as WebflowWebook[];
+    const webhooks = (await this.getWebhooks({
+      webhookIds,
+    })) as WebflowWebook[];
 
     if (!webhooks.length) {
       return [];
@@ -234,7 +252,9 @@ export default class WebflowIntegration implements IntegrationClassI {
         message: "Connection tested successfully!",
       };
     } catch (error) {
-      throw new Error(`Unable to establish a connection with Webflow: ${error.message}`);
+      throw new Error(
+        `Unable to establish a connection with Webflow: ${error.message}`,
+      );
     }
   }
 }

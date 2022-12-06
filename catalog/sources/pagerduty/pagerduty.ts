@@ -67,7 +67,9 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     });
 
     if (response.status !== 200) {
-      throw new Error(`Could not initialize PagerDuty integration: ${response?.data?.message}`);
+      throw new Error(
+        `Could not initialize PagerDuty integration: ${response?.data?.message}`,
+      );
     }
 
     return {
@@ -76,7 +78,11 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Promise<Truthy> {
+  async verifyWebhookSignature({
+    request,
+    signature,
+    secret,
+  }: VerifyWebhookSignatureProps): Promise<Truthy> {
     // The X-PagerDuty-Signature header included with each webhook event delivery contains one or more signatures.
     // Multiple signatures may be present to allow for a zero-downtime secret rotation.
     // The current signature version is v1 and is computed as an HMAC of the payload body using a SHA-256 hash function.
@@ -98,7 +104,10 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     }
   }
 
-  async subscribe({ webhookId, events }: SubscriptionProps): Promise<SubscribeReturns> {
+  async subscribe({
+    webhookId,
+    events,
+  }: SubscriptionProps): Promise<SubscribeReturns> {
     const webhook: AnyObject = await this.getWebhooks({ webhookId });
 
     const newEventsList = Array.from(new Set([...webhook.events, ...events]));
@@ -108,7 +117,9 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     });
 
     if (response.status !== 200) {
-      throw new Error(`Could not subscribe to new PagerDuty events: ${response?.data?.message}`);
+      throw new Error(
+        `Could not subscribe to new PagerDuty events: ${response?.data?.message}`,
+      );
     }
 
     return {
@@ -124,7 +135,9 @@ export default class PagerDutyIntegration implements IntegrationClassI {
   }> {
     const webhook: AnyObject = await this.getWebhooks({ webhookId });
 
-    const newEventsList = webhook.events.filter((event: string) => !events.includes(event));
+    const newEventsList = webhook.events.filter(
+      (event: string) => !events.includes(event),
+    );
 
     if (newEventsList.length === 0) {
       await this.deleteWebhookEndpoint({ webhookId });
@@ -135,7 +148,9 @@ export default class PagerDutyIntegration implements IntegrationClassI {
       });
 
       if (response.status !== 200) {
-        throw new Error(`Could not unsubscribe from PagerDuty events: ${response?.data?.message}`);
+        throw new Error(
+          `Could not unsubscribe from PagerDuty events: ${response?.data?.message}`,
+        );
       }
 
       return {
@@ -145,14 +160,20 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     }
   }
 
-  async getWebhooks({ webhookId }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+  async getWebhooks({
+    webhookId,
+  }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
     const response = await this.client.get(webhookId ? `/${webhookId}` : "");
 
     if (response.status !== 200) {
-      throw new Error(`Could not get PagerDuty webhooks: ${response?.data?.message}`);
+      throw new Error(
+        `Could not get PagerDuty webhooks: ${response?.data?.message}`,
+      );
     }
 
-    return webhookId ? response.data.webhook_subscription : response.data.webhook_subscriptions;
+    return webhookId
+      ? response.data.webhook_subscription
+      : response.data.webhook_subscriptions;
   }
 
   async getSubscribedEvents({ webhookId }: WebhooksProps): Promise<Events> {
@@ -165,7 +186,9 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     const response = await this.client.delete(`/${webhookId}`);
 
     if (response.status !== 204) {
-      throw new Error(`Could not delete PagerDuty webhook: ${response?.data?.message}`);
+      throw new Error(
+        `Could not delete PagerDuty webhook: ${response?.data?.message}`,
+      );
     }
 
     return true;

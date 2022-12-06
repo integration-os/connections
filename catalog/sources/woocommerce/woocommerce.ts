@@ -72,7 +72,9 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
         webhooks.push(webhook);
       } catch (error) {
-        console.log(`Unable to create webhook for event ${event}: ${error.message}`);
+        console.log(
+          `Unable to create webhook for event ${event}: ${error.message}`,
+        );
       }
     }
 
@@ -82,13 +84,20 @@ export default class WooCommerceIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret }: VerifyWebhookSignatureProps): Promise<Truthy> {
+  async verifyWebhookSignature({
+    request,
+    signature,
+    secret,
+  }: VerifyWebhookSignatureProps): Promise<Truthy> {
     // WooCommerce sends the signed body in X-WC-Webhook-Signature header
     // it uses SHA256-HMAC hash encoded in base64
     // We're using the Rest API secret key for encryption, which is the default key used by WooCommerce
     secret = this.WOOCOMMERCE_CUSTOMER_SECRET;
 
-    const hash = crypto.createHmac("sha256", secret).update(request.body, "utf8").digest("base64");
+    const hash = crypto
+      .createHmac("sha256", secret)
+      .update(request.body, "utf8")
+      .digest("base64");
 
     if (hash !== signature) {
       throw new Error(`Invalid signature`);
@@ -97,8 +106,13 @@ export default class WooCommerceIntegration implements IntegrationClassI {
     return true;
   }
 
-  async subscribe({ webhookIds, events }: SubscriptionProps): Promise<SubscribeReturns> {
-    const webhooks: AnyObject[] = (await this.getWebhooks({ webhookIds })) as AnyObject[];
+  async subscribe({
+    webhookIds,
+    events,
+  }: SubscriptionProps): Promise<SubscribeReturns> {
+    const webhooks: AnyObject[] = (await this.getWebhooks({
+      webhookIds,
+    })) as AnyObject[];
 
     // fail if no webhook is returned, as there is no way to extract the URL
     if (!webhooks.length) {
@@ -107,7 +121,9 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
     // find events to subscribe to
     const eventList = webhooks.map((webhook) => webhook.topic);
-    const eventsToSubscribe = events.filter((event) => !eventList.includes(event));
+    const eventsToSubscribe = events.filter(
+      (event) => !eventList.includes(event),
+    );
 
     const { delivery_url } = webhooks[0];
 
@@ -131,7 +147,9 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
         webhooks.push(webhook);
       } catch (error) {
-        console.log(`Unable to create webhook for event ${event}: ${error.message}`);
+        console.log(
+          `Unable to create webhook for event ${event}: ${error.message}`,
+        );
       }
     }
 
@@ -152,7 +170,9 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
     // find events to unsubscribe from
     const subscribedEvents = webhooks.map((webhook) => webhook.topic);
-    const eventsToUnsubscribe = events.filter((event) => subscribedEvents.includes(event));
+    const eventsToUnsubscribe = events.filter((event) =>
+      subscribedEvents.includes(event),
+    );
 
     // find webhooks to delete
     const webhooksToDelete = webhooks.filter((webhook) =>
@@ -180,7 +200,9 @@ export default class WooCommerceIntegration implements IntegrationClassI {
     };
   }
 
-  async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+  async getWebhooks({
+    webhookIds,
+  }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
     const webhooks: AnyObject[] = [];
 
     for (const webhookId of webhookIds) {
@@ -193,7 +215,9 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
         webhooks.push(webhook);
       } catch (error) {
-        console.log(`Unable to retrieve webhook ${webhookId}: ${error.message}`);
+        console.log(
+          `Unable to retrieve webhook ${webhookId}: ${error.message}`,
+        );
       }
     }
 
@@ -208,9 +232,13 @@ export default class WooCommerceIntegration implements IntegrationClassI {
     return Array.from(new Set(events));
   }
 
-  async deleteWebhookEndpoint({ webhookId }: DeleteWebhookEndpointProps): Promise<Truthy> {
+  async deleteWebhookEndpoint({
+    webhookId,
+  }: DeleteWebhookEndpointProps): Promise<Truthy> {
     try {
-      await this.client.delete(`/wp-json/wc/v3/webhooks/${webhookId}?force=true`);
+      await this.client.delete(
+        `/wp-json/wc/v3/webhooks/${webhookId}?force=true`,
+      );
       return true;
     } catch (error) {
       if (error.response.status === 404) {
