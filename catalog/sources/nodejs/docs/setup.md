@@ -1,20 +1,13 @@
 ## Node.js Source Setup
 
-Check out our [setup guide](https://docs.buildable.dev/) to learn how to get started.
-
-### Install the Buildable Node SDK
-
-`> npm install @buildable/messages`
-
-### Emitting messages
-
-To use the SDK to emit messages, run the following code snippet:
+To use the [Node.js SDK](https://www.npmjs.com/package/@buildable/client), run the following code snippet. Check out our [quick start guide](https://docs.buildable.dev/) for more info.
 
 ```js
-const { createClient } = require('@buildable/messages');
+const { createClient } = require('@buildable/client');
 
 const client = createClient('{{SECRET_KEY}}');
 
+// Emit custom events using a name and payload
 client.emit("user.created", { 
   name: "John Doe"
 });
