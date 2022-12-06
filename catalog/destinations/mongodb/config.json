@@ -16,7 +16,8 @@
   "eventSchema": {},
   "settings": {
     "createBuildableEnvVars": true,
-    "hasEvents": false
+    "hasEvents": false,
+    "showEvents": false
   },
   "paths": null,
   "events": [],

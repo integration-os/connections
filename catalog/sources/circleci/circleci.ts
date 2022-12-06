@@ -10,7 +10,7 @@ import {
   Truthy,
   VerifyWebhookSignatureProps,
   WebhooksProps,
-  TestConnection
+  TestConnection,
 } from "../../../types/sourceClassDefinition";
 
 import crypto from "crypto";
@@ -28,7 +28,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
 
   constructor({
     CIRCLECI_PERSONAL_API_KEY,
-    CIRCLECI_PROJECT_ID
+    CIRCLECI_PROJECT_ID,
   }: {
     CIRCLECI_PERSONAL_API_KEY: string;
     CIRCLECI_PROJECT_ID: string;
@@ -62,7 +62,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
 
     if (response.status !== 201) {
       throw new Error(
-        `Could not initialize CircleCI integration: ${response.data.message}`
+        `Could not initialize CircleCI integration: ${response.data.message}`,
       );
     }
 
@@ -120,7 +120,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
 
     if (response.status !== 200) {
       throw new Error(
-        `Could not subscribe to new events: ${response.data.message}`
+        `Could not subscribe to new events: ${response.data.message}`,
       );
     }
 
@@ -138,7 +138,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
     let webhook: AnyObject = await this.getWebhooks({ webhookId });
 
     const newEventsList = webhook.events.filter(
-      (event: string) => !events.includes(event)
+      (event: string) => !events.includes(event),
     );
 
     if (newEventsList.length === 0) {
@@ -150,7 +150,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
 
       if (response.status !== 200) {
         throw new Error(
-          `Could not unsubscribe to new events: ${response.data.message}`
+          `Could not unsubscribe to new events: ${response.data.message}`,
         );
       }
 
@@ -172,7 +172,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
     } catch (e) {
       if (e.response) {
         throw new Error(
-          `Could not get CircleCI webhooks: ${e.response.data.message}`
+          `Could not get CircleCI webhooks: ${e.response.data.message}`,
         );
       }
 
@@ -193,7 +193,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
 
     if (response.status !== 200) {
       throw new Error(
-        `Could not delete CircleCI webhook: ${response.data.message}`
+        `Could not delete CircleCI webhook: ${response.data.message}`,
       );
     }
 

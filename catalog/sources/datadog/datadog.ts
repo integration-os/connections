@@ -9,7 +9,7 @@ import {
   SubscriptionProps,
   Truthy,
   WebhooksProps,
-  TestConnection
+  TestConnection,
 } from "../../../types/sourceClassDefinition";
 import { client, v1 } from "@datadog/datadog-api-client";
 import { WebhooksIntegrationApi } from "@datadog/datadog-api-client/dist/packages/datadog-api-client-v1";
@@ -76,7 +76,7 @@ export default class DatadogIntegration implements IntegrationClassI {
       };
     } catch (error) {
       console.log(
-        `Webhook ${webhookId} retrieval failed. Attempting creation...`
+        `Webhook ${webhookId} retrieval failed. Attempting creation...`,
       );
       const { webhookData } = await this.init({
         webhookUrl: this.webhookUrl,
@@ -112,7 +112,7 @@ export default class DatadogIntegration implements IntegrationClassI {
       })
       .catch((error) => {
         throw new Error(
-          `Unable to retrieve webhook integration ${webhookId}: ${error.message}`
+          `Unable to retrieve webhook integration ${webhookId}: ${error.message}`,
         );
       });
   }
@@ -146,7 +146,7 @@ export default class DatadogIntegration implements IntegrationClassI {
     } catch (error) {
       if (error.code !== 404) {
         throw new Error(
-          `Unable to connect to Datadog Webhooks API: ${error.message}`
+          `Unable to connect to Datadog Webhooks API: ${error.message}`,
         );
       }
     }

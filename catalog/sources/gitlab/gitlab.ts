@@ -67,19 +67,26 @@ export default class GitLabIntegration implements IntegrationClassI {
     console.log("events: ", events);
     console.log("eventsObject: ", eventsObject);
 
-    const response = await this.client.post(`/projects/${this.GITLAB_PROJECT_ID}/hooks`, {
-      url: webhookUrl,
-      token: this.GITLAB_WEBHOOK_SECRET,
-      ...eventsObject,
-    });
+    const response = await this.client.post(
+      `/projects/${this.GITLAB_PROJECT_ID}/hooks`,
+      {
+        url: webhookUrl,
+        token: this.GITLAB_WEBHOOK_SECRET,
+        ...eventsObject,
+      },
+    );
 
     return {
       webhookData: response.data as GitLabWebhook,
-      events: GitLabIntegration.extractEventsArray(response.data as GitLabWebhook),
+      events: GitLabIntegration.extractEventsArray(
+        response.data as GitLabWebhook,
+      ),
     };
   }
 
-  async verifyWebhookSignature({ signature: signature }: VerifyWebhookSignatureProps): Promise<Truthy> {
+  async verifyWebhookSignature({
+    signature: signature,
+  }: VerifyWebhookSignatureProps): Promise<Truthy> {
     // GitLab does not sign its webhook payloads.
     // Instead, it resends the token set during the webhook creation process.
     // Thus, we can verify the signature by comparing "signature" with GITLAB_WEBHOOK_SECRET.
@@ -90,7 +97,10 @@ export default class GitLabIntegration implements IntegrationClassI {
     return true;
   }
 
-  async subscribe({ webhookId, events }: SubscriptionProps): Promise<SubscribeReturns> {
+  async subscribe({
+    webhookId,
+    events,
+  }: SubscriptionProps): Promise<SubscribeReturns> {
     const eventsObject = GitLabIntegration.extractEventsObject(events);
 
     const response = await this.client.put(
@@ -134,7 +144,9 @@ export default class GitLabIntegration implements IntegrationClassI {
     };
   }
 
-  async getWebhooks({ webhookId }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+  async getWebhooks({
+    webhookId,
+  }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
     try {
       const response = await this.client.get(
         `/projects/${this.GITLAB_PROJECT_ID}/hooks/${webhookId}`,
@@ -152,8 +164,12 @@ export default class GitLabIntegration implements IntegrationClassI {
     return GitLabIntegration.extractEventsArray(webhook as GitLabWebhook);
   }
 
-  async deleteWebhookEndpoint({ webhookId }: DeleteWebhookEndpointProps): Promise<Truthy> {
-    await this.client.delete(`/projects/${this.GITLAB_PROJECT_ID}/hooks/${webhookId}`);
+  async deleteWebhookEndpoint({
+    webhookId,
+  }: DeleteWebhookEndpointProps): Promise<Truthy> {
+    await this.client.delete(
+      `/projects/${this.GITLAB_PROJECT_ID}/hooks/${webhookId}`,
+    );
 
     return true;
   }
@@ -168,7 +184,10 @@ export default class GitLabIntegration implements IntegrationClassI {
   }
 
   // helper methods
-  private static extractEventsObject(events: string[], unsubscribe: boolean = false) {
+  private static extractEventsObject(
+    events: string[],
+    unsubscribe: boolean = false,
+  ) {
     const eventObject = {};
 
     for (const event of events) {

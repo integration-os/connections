@@ -1,4 +1,8 @@
-import { DestinationClassI, AnyObject, TestConnection } from "../../../types/destinationClassDefinition";
+import {
+  DestinationClassI,
+  AnyObject,
+  TestConnection,
+} from "../../../types/destinationClassDefinition";
 import { MongoClient, Db } from "mongodb";
 
 class MongoDBDriver implements DestinationClassI {
@@ -24,7 +28,7 @@ class MongoDBDriver implements DestinationClassI {
     await this.client.connect();
 
     const databases = await this.client.db().admin().listDatabases();
-    const databaseNames = databases.databases.map(db => db.name);
+    const databaseNames = databases.databases.map((db) => db.name);
 
     if (!databaseNames.includes(this.dbName)) {
       throw new Error(`Database '${this.dbName}' does not exist!`);
@@ -103,8 +107,8 @@ const getProxyDriver = (config: AnyObject) => {
           } catch (error) {
             console.log("Error occured ===> ", error);
             throw error;
-          };
-        }
+          }
+        };
       }
 
       throw new Error(`Method ${prop as string} not found`);

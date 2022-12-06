@@ -1,0 +1,40 @@
+{
+  "title": "Webhook",
+  "description": "Receive events emitted to a custom Webhook URL",
+  "apiVersion": "NA",
+  "platform": "webhook",
+  "category": "webhook",
+  "image": "https://assets.buildable.dev/catalog/node-templates/webhook.svg",
+  "tags": ["webhook", "rest"],
+  "authentication": [],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": false,
+    "showUrl": true,
+    "autoSubscribeAllEvents": true,
+    "showEvents": false,
+    "secureAuthFields": false
+  },
+  "paths": {
+    "id": null,
+    "event": "event.received",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "events": [
+    {
+      "name": "event.received",
+      "description": "Subscribe to all events (default behavior)",
+      "group": ""
+    }
+  ],
+  "connectionTypes": ["source"],
+  "testConnection": false,
+  "classifications": {
+    "dataIngestion": {
+      "streamTypes": ["manual"],
+      "extractionTypes": []
+    }
+  }
+}

@@ -1,4 +1,8 @@
-import { DestinationClassI, AnyObject, TestConnection } from "../../../types/destinationClassDefinition";
+import {
+  DestinationClassI,
+  AnyObject,
+  TestConnection,
+} from "../../../types/destinationClassDefinition";
 import { Knex, knex } from "knex";
 
 class PostgreSQLDriver implements DestinationClassI {
@@ -18,7 +22,7 @@ class PostgreSQLDriver implements DestinationClassI {
   }: AnyObject) {
     this.POSTGRESQL_HOST = POSTGRESQL_HOST;
     this.POSTGRESQL_USERNAME = POSTGRESQL_USERNAME;
-    this.POSTGRESQL_PASSWORD = POSTGRESQL_PASSWORD; 
+    this.POSTGRESQL_PASSWORD = POSTGRESQL_PASSWORD;
     this.POSTGRESQL_PORT = parseFloat(POSTGRESQL_PORT);
     this.POSTGRESQL_DATABASE = POSTGRESQL_DATABASE;
   }
@@ -29,7 +33,7 @@ class PostgreSQLDriver implements DestinationClassI {
       POSTGRESQL_USERNAME,
       POSTGRESQL_PASSWORD,
       POSTGRESQL_PORT,
-      POSTGRESQL_DATABASE
+      POSTGRESQL_DATABASE,
     } = config ? config : this;
 
     this.client = knex({
@@ -64,51 +68,45 @@ class PostgreSQLDriver implements DestinationClassI {
   }
 
   async insert({
-    tableName, 
-    data, 
-    returning, 
-    options 
-  }: { 
-    tableName: string, 
-    data: AnyObject, 
-    returning?: string[],
-    options?: AnyObject
+    tableName,
+    data,
+    returning,
+    options,
+  }: {
+    tableName: string;
+    data: AnyObject;
+    returning?: string[];
+    options?: AnyObject;
   }) {
     return this.client(tableName).insert(data, returning, options);
   }
 
   async update({
-    tableName, 
+    tableName,
     query,
     data,
-    returning, 
-    options 
-  }: { 
-    tableName: string, 
-    query: AnyObject,
-    data: AnyObject,
-    returning: string[],
-    options: AnyObject
+    returning,
+    options,
+  }: {
+    tableName: string;
+    query: AnyObject;
+    data: AnyObject;
+    returning: string[];
+    options: AnyObject;
   }) {
     return this.client(tableName).where(query).update(data, returning, options);
   }
 
-  async delete({
-    tableName, 
-    query
-  }: { 
-    tableName: string, 
-    query: AnyObject,
-  }) {
+  async delete({ tableName, query }: { tableName: string; query: AnyObject }) {
     return this.client(tableName).where(query).del();
   }
 
   async executeRawQuery({
     statement,
-    maxLimit = 100
-  }: { 
-    statement: string,
-    maxLimit: number
+    maxLimit = 100,
+  }: {
+    statement: string;
+    maxLimit: number;
   }) {
     statement = handleLimit(statement, maxLimit);
 
@@ -118,7 +116,9 @@ class PostgreSQLDriver implements DestinationClassI {
 
 const handleLimit = (query: string, maxLimit: number) => {
   if (maxLimit > 200) {
-    throw new Error("The optimized value for maxLimit is less than or equal to 200");
+    throw new Error(
+      "The optimized value for maxLimit is less than or equal to 200",
+    );
   }
 
   const splitQuery = query.split(";");
@@ -146,7 +146,9 @@ const setHardLimit = (query: string, maxLimit: number) => {
     const limit = tokenizedQuery[foundIndex + 1];
     if (Number.parseInt(limit) > maxLimit) {
       // Handle parsing with parenthesis or semi colons
-      tokenizedQuery[foundIndex + 1] = maxLimit + limit.toString().substring(Number.parseInt(limit).toString().length);
+      tokenizedQuery[foundIndex + 1] =
+        maxLimit +
+        limit.toString().substring(Number.parseInt(limit).toString().length);
     }
   } else {
     tokenizedQuery.push("LIMIT");
@@ -166,7 +168,7 @@ const getProxyDriver = (config: AnyObject) => {
         "update",
         "delete",
         "executeRawQuery",
-        "testConnection"
+        "testConnection",
       ];
 
       if (whitelistedMethods.includes(prop as string)) {
@@ -188,8 +190,8 @@ const getProxyDriver = (config: AnyObject) => {
           } catch (error) {
             console.log("Error occured ===> ", error);
             throw error;
-          };
-        }
+          }
+        };
       }
 
       throw new Error(`Method ${prop as string} not found`);

@@ -93,16 +93,23 @@ export default class ShipStationIntegration implements IntegrationClassI {
         event: event,
       }),
     );
-    const webhookCreateResults = await Promise.allSettled(webhookCreateRequests);
+    const webhookCreateResults = await Promise.allSettled(
+      webhookCreateRequests,
+    );
 
     const createdWebhooks = webhookCreateResults
       .filter((response) => response.status === "fulfilled")
       .map(
         (response) =>
-          (response as PromiseFulfilledResult<AxiosResponse<ShipStationWebhookSubscribeResponse>>)
-            .value.data,
+          (
+            response as PromiseFulfilledResult<
+              AxiosResponse<ShipStationWebhookSubscribeResponse>
+            >
+          ).value.data,
       );
-    const createdWebhookIds = createdWebhooks.map((createdWebhook) => `${createdWebhook.id}`);
+    const createdWebhookIds = createdWebhooks.map(
+      (createdWebhook) => `${createdWebhook.id}`,
+    );
 
     // Get created webhooks data coz return modules from `subscribe` and `getWebhoks` aren't the same
     // So the have a unified structure
@@ -117,7 +124,11 @@ export default class ShipStationIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret }): Promise<Truthy> {
+  async verifyWebhookSignature({
+    request,
+    signature,
+    secret,
+  }): Promise<Truthy> {
     // ShipStation doesn't have a way to verify the signature so we can just return true
     return true;
   }
@@ -129,9 +140,9 @@ export default class ShipStationIntegration implements IntegrationClassI {
   }: SubscriptionProps): Promise<SubscribeReturns> {
     const webhooks = (await this.getWebhooks({ webhookIds })) as AnyObject[];
 
-    const subscribedEvents = (webhooks as unknown as ShipStationWebhookInternal[]).map(
-      (webhook) => webhook.HookType,
-    );
+    const subscribedEvents = (
+      webhooks as unknown as ShipStationWebhookInternal[]
+    ).map((webhook) => webhook.HookType);
     const newEvents = events.filter((e) => !subscribedEvents.includes(e));
 
     const updatedWebhoks = webhooks;
@@ -170,7 +181,9 @@ export default class ShipStationIntegration implements IntegrationClassI {
 
       return id;
     });
-    const webHooksDeleteResults = await Promise.allSettled(webhooksIdsToDeleteRequests);
+    const webHooksDeleteResults = await Promise.allSettled(
+      webhooksIdsToDeleteRequests,
+    );
     const deletedWebhooksIds = webHooksDeleteResults
       .filter((result) => result.status === "fulfilled")
       .map((result) => (result as PromiseFulfilledResult<string>).value);
@@ -186,11 +199,14 @@ export default class ShipStationIntegration implements IntegrationClassI {
     };
   }
 
-  async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+  async getWebhooks({
+    webhookIds,
+  }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
     try {
-      const { data } = await this.client.get<null, AxiosResponse<ShipStationWebhookList>>(
-        `/webhooks`,
-      );
+      const { data } = await this.client.get<
+        null,
+        AxiosResponse<ShipStationWebhookList>
+      >(`/webhooks`);
       const webhooksList = data?.webhooks || [];
       const webhooks = webhooksList.map((webhook) => {
         const webhookInternal: ShipStationWebhookInternal = {
@@ -204,7 +220,9 @@ export default class ShipStationIntegration implements IntegrationClassI {
         return webhooks;
       }
 
-      return webhooks.filter((webhook) => webhookIds.includes(webhook.WebHookID));
+      return webhooks.filter((webhook) =>
+        webhookIds.includes(webhook.WebHookID),
+      );
     } catch (error) {
       throw new Error(`Could not get ShipStation webhooks: ${error.message}`);
     }
@@ -229,7 +247,9 @@ export default class ShipStationIntegration implements IntegrationClassI {
     } catch (error) {
       throw new Error(
         `Could not delete ShipStation webhook: ${
-          error.response?.data ? JSON.stringify(error.response?.data) : error.message
+          error.response?.data
+            ? JSON.stringify(error.response?.data)
+            : error.message
         }`,
       );
     }
@@ -244,7 +264,9 @@ export default class ShipStationIntegration implements IntegrationClassI {
         message: "Connection tested successfully!",
       };
     } catch (error) {
-      throw new Error(`Unable to establish a connection with ShipStation: ${error.message}`);
+      throw new Error(
+        `Unable to establish a connection with ShipStation: ${error.message}`,
+      );
     }
   }
 }

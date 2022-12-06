@@ -1,0 +1,7 @@
+[
+  {
+    "key": "SECRET_KEY",
+    "heading": "Secret Key",
+    "subHeading": "Use this Secret Key in your Node.js server to recieve events in your stream"
+  }
+]

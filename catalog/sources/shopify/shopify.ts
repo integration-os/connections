@@ -30,7 +30,10 @@ export default class ShopifyIntegration implements IntegrationClassI {
     SHOPIFY_ACCESS_TOKEN: string;
     SHOPIFY_API_SECRET_KEY: string;
   }) {
-    this.shopify = new Shopify.Clients.Rest(SHOPIFY_STORE_URL, SHOPIFY_ACCESS_TOKEN);
+    this.shopify = new Shopify.Clients.Rest(
+      SHOPIFY_STORE_URL,
+      SHOPIFY_ACCESS_TOKEN,
+    );
 
     this.SHOPIFY_API_SECRET_KEY = SHOPIFY_API_SECRET_KEY;
     this.API_BASE_PATH = `/admin/api/${ApiVersion.April22}`;
@@ -81,7 +84,10 @@ export default class ShopifyIntegration implements IntegrationClassI {
   async verifyWebhookSignature({ request, signature, secret }) {
     secret = this.SHOPIFY_API_SECRET_KEY;
 
-    const hash = crypto.createHmac("sha256", secret).update(request.body, "utf8").digest("base64");
+    const hash = crypto
+      .createHmac("sha256", secret)
+      .update(request.body, "utf8")
+      .digest("base64");
 
     if (hash !== signature) {
       throw new Error("Unable to verify signature.");
@@ -132,7 +138,9 @@ export default class ShopifyIntegration implements IntegrationClassI {
       }
     }
 
-    const updatedWebhooks = webhooks.filter((webhook) => !webhooksIdsToDelete.includes(webhook.id));
+    const updatedWebhooks = webhooks.filter(
+      (webhook) => !webhooksIdsToDelete.includes(webhook.id),
+    );
 
     return {
       webhooks: updatedWebhooks,
@@ -225,7 +233,8 @@ export default class ShopifyIntegration implements IntegrationClassI {
     } catch (err) {
       console.log((err as Error).message);
       throw new Error(
-        "Unable to establish a connection with Shopify: " + (err as Error).message
+        "Unable to establish a connection with Shopify: " +
+          (err as Error).message,
       );
     }
   }
