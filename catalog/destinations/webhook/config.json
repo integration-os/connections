@@ -1,6 +1,6 @@
 {
   "title": "Webhook",
-  "description": "Send automated messages when events occur in your account",
+  "description": "Send automated events to a custom Webhook URL.",
   "apiVersion": "NA",
   "platform": "webhook",
   "category": "webhook",
