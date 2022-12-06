@@ -10,7 +10,7 @@
   "eventSchema": {},
   "settings": {
     "createBuildableEnvVars": false,
-    "autoSubscribeAllEvents": true,
+    "autoSubscribeAllEvents": false,
     "showSecret": true,
     "allowCustomEvents": true,
     "showEvents": false
