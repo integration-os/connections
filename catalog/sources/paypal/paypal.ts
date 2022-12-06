@@ -21,7 +21,7 @@ export default class PaypalIntegration implements IntegrationClassI {
   constructor({
     PAYPAL_CLIENT_ID,
     PAYPAL_CLIENT_SECRET,
-    environment
+    environment,
   }: {
     PAYPAL_CLIENT_ID: string;
     PAYPAL_CLIENT_SECRET: string;
@@ -57,8 +57,12 @@ export default class PaypalIntegration implements IntegrationClassI {
     });
   }
 
-  async verifyWebhookSignature({ request }: VerifyWebhookSignatureProps): Promise<Truthy> {
-    const webhookIds: string[] = (await this.getWebhooks()).map((webhook) => webhook.id);
+  async verifyWebhookSignature({
+    request,
+  }: VerifyWebhookSignatureProps): Promise<Truthy> {
+    const webhookIds: string[] = (await this.getWebhooks()).map(
+      (webhook) => webhook.id,
+    );
 
     const verifyHelper = (webhookId: string) => {
       return new Promise((resolve, reject) => {
@@ -90,20 +94,32 @@ export default class PaypalIntegration implements IntegrationClassI {
     };
     // try to verify the signature with each webhook id as we have no way to know which webhook to attribute the event to
     return (
-      await Promise.all(webhookIds.map((webhookId) => verifyHelper(webhookId).catch(() => false)))
+      await Promise.all(
+        webhookIds.map((webhookId) =>
+          verifyHelper(webhookId).catch(() => false),
+        ),
+      )
     ).some(Boolean);
   }
 
-  async subscribe({ webhookId, events: newEvents }: SubscriptionProps): Promise<SubscribeReturns> {
+  async subscribe({
+    webhookId,
+    events: newEvents,
+  }: SubscriptionProps): Promise<SubscribeReturns> {
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });
     // combine and uniq events
-    const eventsAfterSubscribe = [...new Set([...subscribedEvents, ...newEvents])];
+    const eventsAfterSubscribe = [
+      ...new Set([...subscribedEvents, ...newEvents]),
+    ];
     return setWebhookEvents({ webhookId, events: eventsAfterSubscribe });
   }
 
-  async unsubscribe({ webhookId, events }: SubscriptionProps): Promise<SubscribeReturns> {
+  async unsubscribe({
+    webhookId,
+    events,
+  }: SubscriptionProps): Promise<SubscribeReturns> {
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });

@@ -44,7 +44,9 @@ export default class AlchemyIntegration implements IntegrationClassI {
 
     const trimmedTokenIds = this.parseCommaSeperatedString(ALCHEMY_TOKEN_IDS);
     if (trimmedTokenIds.length % 2 !== 0) {
-      throw new Error("Failed to parse ALCHEMY_TOKEN_IDS as pairs of (contract_address, token_id)");
+      throw new Error(
+        "Failed to parse ALCHEMY_TOKEN_IDS as pairs of (contract_address, token_id)",
+      );
     }
     this.ALCHEMY_TOKEN_IDS = [];
     for (let i = 0; i < trimmedTokenIds.length; i += 2) {
@@ -71,15 +73,23 @@ export default class AlchemyIntegration implements IntegrationClassI {
     for (let i = 0; i < events.length; ++i) {
       const response = await this.client.post("/create-webhook", {
         webhook_type: events[i],
-        ...(events[i] !== "NFT_ACTIVITY" ? { app_id: this.ALCHEMY_APP_ID } : {}),
+        ...(events[i] !== "NFT_ACTIVITY"
+          ? { app_id: this.ALCHEMY_APP_ID }
+          : {}),
         webhook_url: webhookUrl,
         ...(this.ALCHEMY_NETWORK ? { network: this.ALCHEMY_NETWORK } : {}),
-        ...(events[i] === "ADDRESS_ACTIVITY" ? { addresses: this.ALCHEMY_ADDRESSES } : {}),
-        ...(events[i] === "NFT_ACTIVITY" ? { nft_filters: this.ALCHEMY_TOKEN_IDS } : {}),
+        ...(events[i] === "ADDRESS_ACTIVITY"
+          ? { addresses: this.ALCHEMY_ADDRESSES }
+          : {}),
+        ...(events[i] === "NFT_ACTIVITY"
+          ? { nft_filters: this.ALCHEMY_TOKEN_IDS }
+          : {}),
       });
 
       if (response.status !== 200) {
-        throw new Error(`Could not initialize Alchemy integration: ${response?.data?.message}`);
+        throw new Error(
+          `Could not initialize Alchemy integration: ${response?.data?.message}`,
+        );
       }
 
       webhookData.push(response.data.data);
@@ -143,7 +153,9 @@ export default class AlchemyIntegration implements IntegrationClassI {
 
     await this.deleteWebhookEndpoint({ webhookIds: webhooksIdsToDelete });
 
-    const updatedWebhooks = webhooks.filter((webhook) => !webhooksIdsToDelete.includes(webhook.id));
+    const updatedWebhooks = webhooks.filter(
+      (webhook) => !webhooksIdsToDelete.includes(webhook.id),
+    );
 
     return {
       webhooks: updatedWebhooks,
@@ -151,11 +163,15 @@ export default class AlchemyIntegration implements IntegrationClassI {
     };
   }
 
-  async getWebhooks({ webhookIds }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
+  async getWebhooks({
+    webhookIds,
+  }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
     const response = await this.client.get("/team-webhooks");
 
     if (response.status !== 200) {
-      throw new Error(`Could not get Alchemy webhooks: ${response?.data?.message}`);
+      throw new Error(
+        `Could not get Alchemy webhooks: ${response?.data?.message}`,
+      );
     }
 
     return webhookIds
@@ -169,15 +185,23 @@ export default class AlchemyIntegration implements IntegrationClassI {
     return webhooks.map((webhook) => webhook.webhook_type);
   }
 
-  async deleteWebhookEndpoint({ webhookIds, webhookId }: WebhooksProps): Promise<Truthy> {
+  async deleteWebhookEndpoint({
+    webhookIds,
+    webhookId,
+  }: WebhooksProps): Promise<Truthy> {
     const webhookIdsToDelete = webhookIds ? webhookIds : [webhookId];
     for (const id of webhookIdsToDelete) {
-      const response = await this.client.delete(`/delete-webhook?webhook_id=${id}`, {
-        validateStatus: (status) => [200, 404].includes(status),
-      });
+      const response = await this.client.delete(
+        `/delete-webhook?webhook_id=${id}`,
+        {
+          validateStatus: (status) => [200, 404].includes(status),
+        },
+      );
 
       if (![200, 404].includes(response.status)) {
-        throw new Error(`Could not delete Alchemy webhook: ${response?.data?.message}`);
+        throw new Error(
+          `Could not delete Alchemy webhook: ${response?.data?.message}`,
+        );
       }
     }
 

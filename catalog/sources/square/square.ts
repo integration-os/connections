@@ -1,5 +1,5 @@
 import { Client, Environment } from "square";
-import crypto from 'crypto';
+import crypto from "crypto";
 import {
   IntegrationClassI,
   InitProps,
@@ -24,12 +24,13 @@ export default class SquareIntegration implements IntegrationClassI {
 
   constructor({
     SQUARE_SECRET_KEY,
-    environment
+    environment,
   }: {
     SQUARE_SECRET_KEY: string;
     environment: string;
   }) {
-    const squareEnvironment = environment === 'live' ? Environment.Production : Environment.Sandbox;
+    const squareEnvironment =
+      environment === "live" ? Environment.Production : Environment.Sandbox;
 
     this.square = new Client({
       accessToken: SQUARE_SECRET_KEY,
@@ -40,13 +41,14 @@ export default class SquareIntegration implements IntegrationClassI {
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
-    const webhook = await this.square.webhookSubscriptionsApi.createWebhookSubscription({
-      subscription: {
-        name: `buildable-${this.randomHex()}`,
-        eventTypes: events,
-        notificationUrl: webhookUrl,
-      },
-    });
+    const webhook =
+      await this.square.webhookSubscriptionsApi.createWebhookSubscription({
+        subscription: {
+          name: `buildable-${this.randomHex()}`,
+          eventTypes: events,
+          notificationUrl: webhookUrl,
+        },
+      });
 
     return {
       webhookData: webhook.result,
@@ -54,58 +56,74 @@ export default class SquareIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret, webhookUrl }: VerifyWebhookSignatureProps): Promise<Truthy> {
+  async verifyWebhookSignature({
+    request,
+    signature,
+    secret,
+    webhookUrl,
+  }: VerifyWebhookSignatureProps): Promise<Truthy> {
     const { body } = request;
 
-    const hmac = crypto.createHmac('sha256', secret);
+    const hmac = crypto.createHmac("sha256", secret);
     hmac.update(webhookUrl + body);
 
-    const hash = hmac.digest('base64');
+    const hash = hmac.digest("base64");
 
     const isValid = hash === signature;
 
-    if (!isValid) throw new Error('Signature verification failed');
+    if (!isValid) throw new Error("Signature verification failed");
 
     return isValid;
   }
 
   async getWebhooks(): Promise<AnyObject | AnyObject[]> {
-    const webhookEndpoint = await this.square.webhookSubscriptionsApi.listWebhookSubscriptions();
+    const webhookEndpoint =
+      await this.square.webhookSubscriptionsApi.listWebhookSubscriptions();
 
     return webhookEndpoint.result;
   }
 
   async getSubscribedEvents({ webhookId }: WebhooksProps): Promise<Events> {
     const webhook: AnyObject =
-      await this.square.webhookSubscriptionsApi.retrieveWebhookSubscription(webhookId);
+      await this.square.webhookSubscriptionsApi.retrieveWebhookSubscription(
+        webhookId,
+      );
 
     return webhook.result.subscription.eventTypes;
   }
 
-  async deleteWebhookEndpoint({ webhookId }: DeleteWebhookEndpointProps): Promise<Truthy> {
+  async deleteWebhookEndpoint({
+    webhookId,
+  }: DeleteWebhookEndpointProps): Promise<Truthy> {
     try {
-      await this.square.webhookSubscriptionsApi.deleteWebhookSubscription(webhookId);
+      await this.square.webhookSubscriptionsApi.deleteWebhookSubscription(
+        webhookId,
+      );
       return true;
     } catch (error) {
       throw new Error((error as any).errors[0].detail);
     }
   }
 
-  async subscribe({ webhookId, events }: SubscriptionProps): Promise<SubscribeReturns> {
+  async subscribe({
+    webhookId,
+    events,
+  }: SubscriptionProps): Promise<SubscribeReturns> {
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });
 
     const eventsAfterSubscribe = subscribedEvents.concat(events);
 
-    const updatedWebhook = await this.square.webhookSubscriptionsApi.updateWebhookSubscription(
-      webhookId,
-      {
-        subscription: {
-          eventTypes: eventsAfterSubscribe,
+    const updatedWebhook =
+      await this.square.webhookSubscriptionsApi.updateWebhookSubscription(
+        webhookId,
+        {
+          subscription: {
+            eventTypes: eventsAfterSubscribe,
+          },
         },
-      },
-    );
+      );
 
     return {
       webhook: updatedWebhook.result,
@@ -116,7 +134,11 @@ export default class SquareIntegration implements IntegrationClassI {
   async unsubscribe({
     webhookId,
     events,
-  }: SubscriptionProps): Promise<{ events: Events; webhook?: any; webhooks?: any }> {
+  }: SubscriptionProps): Promise<{
+    events: Events;
+    webhook?: any;
+    webhooks?: any;
+  }> {
     const subscribedEvents = await this.getSubscribedEvents({
       webhookId,
     });
@@ -133,14 +155,15 @@ export default class SquareIntegration implements IntegrationClassI {
       };
     }
 
-    const updatedWebhook = await this.square.webhookSubscriptionsApi.updateWebhookSubscription(
-      webhookId,
-      {
-        subscription: {
-          eventTypes: eventsAfterUnsubscribe,
+    const updatedWebhook =
+      await this.square.webhookSubscriptionsApi.updateWebhookSubscription(
+        webhookId,
+        {
+          subscription: {
+            eventTypes: eventsAfterUnsubscribe,
+          },
         },
-      },
-    );
+      );
 
     return {
       webhook: updatedWebhook.result,
@@ -159,7 +182,9 @@ export default class SquareIntegration implements IntegrationClassI {
         message: "Connection to Square Webhooks API is healthy",
       };
     } catch (e) {
-      throw new Error("Unable to establish a connection with Square: " + (e as Error).message);
+      throw new Error(
+        "Unable to establish a connection with Square: " + (e as Error).message,
+      );
     }
   }
 

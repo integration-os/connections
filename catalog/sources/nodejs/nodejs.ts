@@ -40,7 +40,7 @@ export default class Nodejs {
   async deleteWebhookEndpoint({ webhookId }) {
     return true;
   }
-  
+
   async testConnection(): Promise<TestConnection> {
     return {
       success: true,

@@ -4,11 +4,7 @@
   "description": "Buildable's core open-source offering that makes it easy to collect, centralize and action your backend system activity.",
   "main": "",
   "scripts": {
-    "sync-localhost": "NODE_ENV=localhost node ./sync/",
-    "sync-staging": "NODE_ENV=staging node ./sync/",
-    "sync-production": "NODE_ENV=production node ./sync/",
-    "lint": "eslint --fix actions/catalog/* --ext .js",
-    "prettier": "prettier --write actions/catalog/**/*.js",
+    "prettier": "prettier --write catalog/**/**/*.ts",
     "test": "jest ./tests",
     "coverage": "jest --coverage ./tests"
   },
@@ -19,9 +15,12 @@
   "keywords": [
     "buildable",
     "connections",
-    "actions",
     "templates",
-    "integrations"
+    "integrations",
+    "sources",
+    "destinations",
+    "etl",
+    "elt"
   ],
   "author": "Buildable Technologies Inc.",
   "license": "MIT",
