@@ -13,7 +13,8 @@
     "autoSubscribeAllEvents": false,
     "showSecret": true,
     "allowCustomEvents": true,
-    "showEvents": false
+    "showEvents": false,
+    "secureAuthFields": false
   },
   "paths": {
     "id": null,
