@@ -25,7 +25,7 @@
   "actions": [
     "customers.create",
     "customers.update",
-    "customers.delete",
+    "customers.del",
 
     "charges.create",
     "charges.update",
@@ -50,7 +50,7 @@
 
     "products.create",
     "products.update",
-    "products.delete",
+    "products.del",
 
     "prices.create",
     "prices.update",
@@ -82,7 +82,7 @@
 
     "subscriptionItems.create",
     "subscriptionItems.update",
-    "subscriptionItems.delete",
+    "subscriptionItems.del",
 
     "accounts.create",
     "accounts.update",
