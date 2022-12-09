@@ -33,7 +33,10 @@ export const callDynamicAction = async <T extends StripeModels, U = unknown>({
 }: DynamicAction<T, U>) => {
   const stripe = createClient(env);
 
-  return await (stripe[dataModel][action] as (args: U) => Promise<unknown>)(
-    args,
-  );
+  if (typeof stripe[dataModel][action] === "function") {
+    // @ts-ignore
+    return await (stripe[dataModel][action] as (args: U) => Promise<unknown>)(args);
+  } else {
+    throw new Error(`Expected a function but got: ${typeof stripe[dataModel][action]}`);
+  }
 };
