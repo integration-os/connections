@@ -8,6 +8,6 @@ export async function main({ payload, config, action }) {
 
     return { data, status: 200 };
   } catch (error) {
-    throw { data: error, status: 400 };
+    throw error;
   }
 }
