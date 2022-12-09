@@ -131,10 +131,7 @@ export default class SquareIntegration implements IntegrationClassI {
     };
   }
 
-  async unsubscribe({
-    webhookId,
-    events,
-  }: SubscriptionProps): Promise<{
+  async unsubscribe({ webhookId, events }: SubscriptionProps): Promise<{
     events: Events;
     webhook?: any;
     webhooks?: any;
