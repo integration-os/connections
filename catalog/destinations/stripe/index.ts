@@ -1,4 +1,4 @@
-import { getModelAndAction, callDynamicAction } from "./lib/index";
+import { getModelAndAction, callDynamicAction, testConnection } from "./lib/index";
 import { StripeConfig } from "./lib/types";
 
 export async function main({
@@ -11,6 +11,12 @@ export async function main({
   action: string;
 }) {
   try {
+    if (action === "testConnection") {
+      const result = await testConnection(config);
+
+      return { data: result, status: 200 };
+    }
+
     const { modelName, actionName } = getModelAndAction(action);
 
     const result = await callDynamicAction({
@@ -22,6 +28,6 @@ export async function main({
 
     return { data: result, status: 200 };
   } catch (error) {
-    throw { data: error, status: 400 };
+    throw error;
   }
 }
