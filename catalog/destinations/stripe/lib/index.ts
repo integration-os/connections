@@ -25,6 +25,22 @@ export const getModelAndAction = <T extends StripeModels>(
   };
 };
 
+export const testConnection = async (config: StripeConfig) => {
+  const stripe = createClient(config);
+
+  try {
+    // Test the connection by trying to list a charge
+    await stripe.charges.list({ limit: 1 });
+
+    return {
+      success: true,
+      message: "Connection tested successfully!",
+    };
+  } catch (err) {
+    throw new Error((err as Error).message);
+  }
+}
+
 export const callDynamicAction = async <T extends StripeModels, U = unknown>({
   dataModel,
   action,
