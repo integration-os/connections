@@ -1,26 +1,23 @@
-import { getModelAndAction, callDynamicAction } from './lib/index';
-import { StripeConfig } from './lib/types';
+import { getModelAndAction, callDynamicAction } from "./lib/index";
+import { StripeConfig } from "./lib/types";
 
-export async function main({ 
-  payload, 
-  config, 
-  action 
+export async function main({
+  payload,
+  config,
+  action,
 }: {
   payload: Record<string, unknown>;
   config: StripeConfig;
   action: string;
 }) {
   try {
-    const {
-      modelName,
-      actionName
-    } = getModelAndAction(action);
+    const { modelName, actionName } = getModelAndAction(action);
 
     const result = await callDynamicAction({
       dataModel: modelName,
       action: actionName,
       env: config,
-      args: payload
+      args: payload,
     });
 
     return { data: result, status: 200 };
