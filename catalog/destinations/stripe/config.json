@@ -1,0 +1,99 @@
+{
+  "title": "Stripe",
+  "description": "A suite of payment APIs that powers commerce for online businesses",
+  "apiVersion": "2020-08-27",
+  "platform": "stripe",
+  "category": "finance",
+  "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
+  "tags": ["payment", "business"],
+  "authentication": [
+    {
+      "name": "STRIPE_SECRET_KEY",
+      "label": "Enter your Stripe Secret Key",
+      "placeholder": "sk_test_Hrs6SAopgFPF0bZXSN3f6ELN"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": [
+    "customers.create",
+    "customers.update",
+    "customers.del",
+
+    "charges.create",
+    "charges.update",
+    "charges.capture",
+
+    "disputes.update",
+    "disputes.close",
+
+    "plans.create",
+    "plans.update",
+    "plans.del",
+
+    "paymentIntents.create",
+    "paymentIntents.update",
+    "paymentIntents.confirm",
+    "paymentIntents.capture",
+
+    "payouts.create",
+    "payouts.update",
+    "payouts.cancel",
+    "payouts.reverse",
+
+    "products.create",
+    "products.update",
+    "products.del",
+
+    "prices.create",
+    "prices.update",
+
+    "coupons.create",
+    "coupons.update",
+
+    "promotion_codes.create",
+    "promotion_codes.update",
+
+    "invoices.create",
+    "invoices.update",
+    "invoices.finalizeInvoice",
+    "invoices.voidInvoice",
+
+    "invoiceItems.create",
+    "invoiceItems.update",
+    "invoiceItems.delete",
+
+    "quotes.create",
+    "quotes.update",
+    "quotes.finalizeQuote",
+    "quotes.accept",
+    "quotes.cancel",
+
+    "subscriptions.create",
+    "subscriptions.update",
+    "subscriptions.cancel",
+
+    "subscriptionItems.create",
+    "subscriptionItems.update",
+    "subscriptionItems.del",
+
+    "accounts.create",
+    "accounts.update",
+    "accounts.del",
+
+    "accounts.createPerson",
+    "accounts.updatePerson",
+    "accounts.deletePerson",
+
+    "transfers.create",
+    "transfers.update"
+  ],
+  "destinationType": "http"
+}

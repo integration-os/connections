@@ -1,19 +1,6 @@
 ## Connect 
 
-Send automated events to a custom Webhook URL.
-
-### Getting Started
-
-To enable Buildable to make requests to your Webhook URL, please ensure that your firewall accepts incoming requests from the following IP addresses:
-
-`35.245.232.82` `35.245.100.81`
-
-`34.120.49.202` `34.160.218.232`
-
-`3.12.101.201` `3.129.238.32`
-
-`3.13.190.25` `3.133.23.83`
-
+A suite of payment APIs that powers commerce for online businesses.
 
 ### Securely Encrypted
 
