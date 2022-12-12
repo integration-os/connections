@@ -4,7 +4,7 @@ Send automated events to a custom Webhook URL.
 
 ### Getting Started
 
-To enable Buildable to connect to your database, please ensure that your firewall accepts incoming requests from the following IP addresses:
+To enable Buildable to make requests to your Webhook URL, please ensure that your firewall accepts incoming requests from the following IP addresses:
 
 `35.245.232.82` `35.245.100.81`
 
