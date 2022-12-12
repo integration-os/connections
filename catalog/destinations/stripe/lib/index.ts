@@ -50,6 +50,11 @@ export const callDynamicAction = async <T extends StripeModels, U = unknown>({
   const stripe = createClient(env);
 
   if (typeof stripe[dataModel][action] === "function") {
+    if (Array.isArray(args)) {
+      // @ts-ignore
+      return await (stripe[dataModel][action] as (args: U) => Promise<unknown>)(...args);
+    }
+
     // @ts-ignore
     return await (stripe[dataModel][action] as (args: U) => Promise<unknown>)(args);
   } else {
