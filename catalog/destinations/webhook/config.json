@@ -44,15 +44,13 @@
           "name": "DELETE",
           "value": "DELETE"
         }
-      ],
-      "hidden": true
+      ]
     },
     {
       "name": "WEBHOOK_HEADERS",
       "label": "Enter your Webhook Headers",
       "placeholder": "",
       "value": "{\"buildable-connection-platform\":\"webhook\"}",
-      "hidden": true,
       "required": false
     }
   ],
