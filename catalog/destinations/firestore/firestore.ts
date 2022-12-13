@@ -1,150 +1,149 @@
-import { initializeApp, cert, getApp } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
-import { v4 } from 'uuid';
+import { initializeApp, cert, getApp } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
+import { v4 } from "uuid";
 import {
-	FirestoreConfig,
-	FirestoreInsertPayload,
-	FirestoreRemovePayload,
-	FirestoreUpdatePayload,
-} from './lib/types';
+  FirestoreConfig,
+  FirestoreInsertPayload,
+  FirestoreRemovePayload,
+  FirestoreUpdatePayload,
+} from "./lib/types";
 
 export const createClient = async (config: FirestoreConfig) => {
-	const appName = v4();
+  const appName = v4();
 
-	initializeApp(
-		{
-			credential: cert(JSON.parse(config.SERVICE_ACCOUNT_CONFIG)),
-		},
-		appName
-	);
+  initializeApp(
+    {
+      credential: cert(JSON.parse(config.SERVICE_ACCOUNT_CONFIG)),
+    },
+    appName,
+  );
 
-	const db = getFirestore(getApp(appName));
+  const db = getFirestore(getApp(appName));
 
-	return db;
+  return db;
 };
 
 export const insert = async (
-	client: FirebaseFirestore.Firestore,
-	payload: FirestoreInsertPayload
+  client: FirebaseFirestore.Firestore,
+  payload: FirestoreInsertPayload,
 ) => {
-	const {
-		collection,
-		id = v4().replace(/-/g, ''),
-		data,
-		options = {},
-	} = payload;
+  const {
+    collection,
+    id = v4().replace(/-/g, ""),
+    data,
+    options = {},
+  } = payload;
 
-	const result = await client
-		.collection(collection)
-		.doc(id)
-		.set({ ...data }, options);
+  const result = await client
+    .collection(collection)
+    .doc(id)
+    .set({ ...data }, options);
 
-	return result;
+  return result;
 };
 
 export const update = async (
-	client: FirebaseFirestore.Firestore,
-	payload: FirestoreUpdatePayload
+  client: FirebaseFirestore.Firestore,
+  payload: FirestoreUpdatePayload,
 ) => {
-	const { collection, id, data } = payload;
+  const { collection, id, data } = payload;
 
-	const doc = await client.collection(collection).doc(id).get();
+  const doc = await client.collection(collection).doc(id).get();
 
-	if (!doc.exists) throw new Error('Document Not Found');
+  if (!doc.exists) throw new Error("Document Not Found");
 
-	const result = await client.collection(collection).doc(id).update(data);
+  const result = await client.collection(collection).doc(id).update(data);
 
-	return result;
+  return result;
 };
 
 export const remove = async (
-	client: FirebaseFirestore.Firestore,
-	payload: FirestoreRemovePayload
+  client: FirebaseFirestore.Firestore,
+  payload: FirestoreRemovePayload,
 ) => {
-	const { collection, id } = payload;
+  const { collection, id } = payload;
 
-	const doc = await client.collection(collection).doc(id).get();
+  const doc = await client.collection(collection).doc(id).get();
 
-	if (!doc.exists) throw new Error('Document Not Found');
+  if (!doc.exists) throw new Error("Document Not Found");
 
-	const result = await client.collection(collection).doc(id).delete();
+  const result = await client.collection(collection).doc(id).delete();
 
-	return result;
+  return result;
 };
 
 export const disconnect = async (client: FirebaseFirestore.Firestore) => {
-	await client.terminate();
+  await client.terminate();
 };
 
 export const testConnection = async (config: FirestoreConfig) => {
-	const client = await createClient(config);
+  const client = await createClient(config);
 
-	try {
-		// Test the connection by trying to list
-		const query = client.collection('buildable-test-connection');
+  try {
+    // Test the connection by trying to list
+    const query = client.collection("buildable-test-connection");
 
-		await query.get();
+    await query.get();
 
-		return {
-			success: true,
-			message: 'Connection tested successfully!',
-		};
-	} catch (err) {
-		throw new Error((err as Error).message);
-	}
+    return {
+      success: true,
+      message: "Connection tested successfully!",
+    };
+  } catch (err) {
+    throw new Error((err as Error).message);
+  }
 };
 
 const getProxyDriver = (config: FirestoreConfig) => {
-	return new Proxy(() => {}, {
-		get: (target, prop) => {
-			const whitelistedMethods = [
-				'insert',
-				'update',
-				'remove',
-				'testConnection',
-			];
+  return new Proxy(() => {}, {
+    get: (target, prop) => {
+      const whitelistedMethods = [
+        "insert",
+        "update",
+        "remove",
+        "testConnection",
+      ];
 
-			const methods: {
-				[key: string]: (
-					client: FirebaseFirestore.Firestore,
-					payload?: unknown
-				) => Promise<unknown>;
-			} = {
-				disconnect,
-				insert,
-				update,
-				remove,
-			};
+      const methods: {
+        [key: string]: (
+          client: FirebaseFirestore.Firestore,
+          payload?: unknown,
+        ) => Promise<unknown>;
+      } = {
+        disconnect,
+        insert,
+        update,
+        remove,
+      };
 
-			const propAsString = prop as string;
+      const propAsString = prop as string;
 
-			if (whitelistedMethods.includes(propAsString)) {
-				// Establish and close connection for each method call
-				return async (payload: unknown) => {
-					try {
-						// Do not connect and disconnect for testConnection
-						if (prop === 'testConnection') {
-							return await testConnection(config);
-						}
+      if (whitelistedMethods.includes(propAsString)) {
+        // Establish and close connection for each method call
+        return async (payload: unknown) => {
+          try {
+            // Do not connect and disconnect for testConnection
+            if (prop === "testConnection") {
+              return await testConnection(config);
+            }
 
-						const client = await createClient(config);
+            const client = await createClient(config);
 
-						const result = await methods[propAsString](client, payload);
+            const result = await methods[propAsString](client, payload);
 
-						await methods['disconnect'](client);
+            await methods["disconnect"](client);
 
-						return result;
-					} catch (error) {
-						console.log('Error occured ===> ', error);
-						throw error;
-					}
-				};
-			}
+            return result;
+          } catch (error) {
+            console.log("Error occured ===> ", error);
+            throw error;
+          }
+        };
+      }
 
-			throw new Error(`Method ${propAsString} not found`);
-		},
-	});
+      throw new Error(`Method ${propAsString} not found`);
+    },
+  });
 };
 
 export default getProxyDriver;
-
