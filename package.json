@@ -55,6 +55,8 @@
     "lodash": "^4.17.21",
     "paypal-rest-sdk": "^1.8.1",
     "square": "^21.1.0",
-    "stripe": "^9.13.0"
+    "stripe": "^9.13.0",
+    "firebase": "^9.15.0",
+    "firebase-admin": "^11.3.0"
   }
 }
