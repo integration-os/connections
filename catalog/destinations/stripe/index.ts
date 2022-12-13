@@ -1,4 +1,8 @@
-import { getModelAndAction, callDynamicAction, testConnection } from "./lib/index";
+import {
+  getModelAndAction,
+  callDynamicAction,
+  testConnection,
+} from "./lib/index";
 import { StripeConfig } from "./lib/types";
 
 export async function main({
