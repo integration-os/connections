@@ -50,13 +50,15 @@
     "@supabase/supabase-js": "^1.35.6",
     "@types/paypal-rest-sdk": "^1.7.6",
     "axios": "^0.27.2",
+    "bytes": "^3.1.2",
     "dotenv": "^16.0.0",
+    "firebase": "^9.15.0",
+    "firebase-admin": "^11.3.0",
+    "ftp": "^0.3.10",
     "knex": "^2.3.0",
     "lodash": "^4.17.21",
     "paypal-rest-sdk": "^1.8.1",
     "square": "^21.1.0",
-    "stripe": "^9.13.0",
-    "firebase": "^9.15.0",
-    "firebase-admin": "^11.3.0"
+    "stripe": "^9.13.0"
   }
 }

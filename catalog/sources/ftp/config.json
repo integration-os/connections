@@ -1,0 +1,149 @@
+{
+  "title": "FTP/FTPS",
+  "description": "Receive file manipulation events on an FTP server and extract relevant information from designated file types",
+  "apiVersion": "NA",
+  "platform": "ftp",
+  "category": "storage",
+  "image": "https://svgur.com/i/pPz.svg",
+  "tags": ["file", "csv", "json"],
+  "authentication": [
+    {
+      "name": "FTP_HOST",
+      "label": "Enter the hostname for your FTP server",
+      "placeholder": "ftp.example.com"
+    },
+    {
+      "name": "FTP_PORT",
+      "label": "Enter the port number for your FTP server",
+      "placeholder": "21",
+      "value": "21"
+    },
+    {
+      "name": "FTP_USER",
+      "label": "Enter your FTP username",
+      "placeholder": "root"
+    },
+    {
+      "name": "FTP_PASSWORD",
+      "label": "Enter your FTP password",
+      "placeholder": "password",
+      "type": "password"
+    },
+    {
+      "name": "FTP_PATH",
+      "label": "Enter the FTP Directory Path",
+      "placeholder": "/path/to/directory",
+      "value": "."
+    },
+    {
+      "name": "FTP_SCAN_INTERVAL",
+      "label": "Select the FTP Scan Interval",
+      "type": "select",
+      "value": "15 minutes",
+      "options": [
+        {
+          "value": "*/15 * * * ",
+          "name": "15 minutes"
+        },
+        {
+          "value": "/30 * * * *",
+          "name": "30 minutes"
+        },
+        {
+          "value": "0 */1 * * *",
+          "name": "1 hour"
+        },
+        {
+          "value": "0 */3 * * *",
+          "name": "3 hours"
+        },
+        {
+          "value": "0 */6 * * *",
+          "name": "6 hours"
+        },
+        {
+          "value": "0 */12 * * *",
+          "name": "12 hours"
+        },
+        {
+          "value": "0 0 */1 * *",
+          "name": "1 day"
+        }
+      ]
+    },
+    {
+      "name": "FTP_EXTRACTOR_FILE_TYPE",
+      "label": "Enter the Extractor File Type",
+      "subText": "This is to receive events from the contents within files",
+      "type": "select",
+      "value": "csv",
+      "options": [
+        {
+          "name": "CSV",
+          "value": "csv"
+        }
+      ]
+    },
+    {
+      "name": "FTP_EXTRACTOR_FILE_SIZE_LIMIT",
+      "label": "Enter the Maximum Allowed Extractor File Size",
+      "subText": "The maximum allowed value is 5GB",
+      "placeholder": "50mb",
+      "value": "50mb"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": false,
+    "autoSubscribeAllEvents": true,
+    "showEvents": false,
+    "secureAuthFields": true
+  },
+  "paths": {
+    "id": null,
+    "event": "_.body.event",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "events": [
+    {
+      "name": "file.uploaded",
+      "description": "A new file has been uploaded",
+      "group": ""
+    },
+    {
+      "name": "file.updated",
+      "description": "A file has been updated",
+      "group": ""
+    },
+    {
+      "name": "file.deleted",
+      "description": "A file has been deleted",
+      "group": ""
+    },
+    {
+      "name": "file.opened",
+      "description": "A file has been opened",
+      "group": ""
+    },
+    {
+      "name": "file.closed",
+      "description": "A new file has been closed",
+      "group": ""
+    },
+    {
+      "name": "file.item.parsed",
+      "description": "A file record has been been parsed",
+      "group": ""
+    }
+  ],
+  "connectionTypes": ["source", "extractor"],
+  "testConnection": true,
+  "classifications": {
+    "dataIngestion": {
+      "streamTypes": ["manual"],
+      "extractionTypes": ["s3"]
+    }
+  }
+}
