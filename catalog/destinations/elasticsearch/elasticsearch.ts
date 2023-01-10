@@ -3,7 +3,7 @@ import {
   AnyObject,
   TestConnection,
 } from "../../../types/destinationClassDefinition";
-import { Client } from "@elastic/elasticsearch";
+import { Client, ClientOptions } from "@elastic/elasticsearch";
 
 class ElasticSearchDriver implements DestinationClassI {
   ELASTICSEARCH_URL: string;
@@ -28,31 +28,28 @@ class ElasticSearchDriver implements DestinationClassI {
     const ELASTICSEARCH_BASIC_PASSWORD = config ? config.ELASTICSEARCH_BASIC_PASSWORD : this.ELASTICSEARCH_BASIC_PASSWORD;
     const ELASTICSEARCH_TLS_CA = config ? config.ELASTICSEARCH_TLS_CA : this.ELASTICSEARCH_TLS_CA;
 
-    let auth: any = {};
-    let tls: any;
+    let clientConfig: ClientOptions = {
+      node: ELASTICSEARCH_URL,
+    }
 
     if(ELASTICSEARCH_API_KEY) {
-      auth = {
+      clientConfig.auth = {
         apiKey: ELASTICSEARCH_API_KEY,
       }
     } else if(ELASTICSEARCH_BASIC_USER || ELASTICSEARCH_BASIC_PASSWORD) {
-      auth = {
+      clientConfig.auth = {
         username: ELASTICSEARCH_BASIC_USER,
         password: ELASTICSEARCH_BASIC_PASSWORD,
       }
     }
 
     if(ELASTICSEARCH_TLS_CA) {
-      tls = {
+      clientConfig.tls = {
         ca: ELASTICSEARCH_TLS_CA,
       }
     }
 
-    this.client = new Client({
-      node: ELASTICSEARCH_URL,
-      auth,
-      ...(tls ? { tls } : {})
-    });
+    this.client = new Client(clientConfig);
   }
 
   async disconnect() {
