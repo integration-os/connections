@@ -21,7 +21,7 @@ class ElasticSearchDriver implements DestinationClassI {
     this.ELASTICSEARCH_TLS_CA = ELASTICSEARCH_TLS_CA;
   }
 
-  async connect(config?: AnyObject) {
+  async connect(config: AnyObject) {
     const ELASTICSEARCH_URL = config ? config.ELASTICSEARCH_URL : this.ELASTICSEARCH_URL;
     const ELASTICSEARCH_API_KEY = config ? config.ELASTICSEARCH_API_KEY : this.ELASTICSEARCH_API_KEY;
     const ELASTICSEARCH_BASIC_USER = config ? config.ELASTICSEARCH_BASIC_USER : this.ELASTICSEARCH_BASIC_USER;
