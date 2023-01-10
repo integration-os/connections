@@ -1,6 +1,6 @@
 ## Connect 
 
-ElasticSearch is a general purpose, document-based, distributed database.
+ElasticSearch is a distributed, free and open search and analytics engine.
 
 ### IP Whitelisting
 
