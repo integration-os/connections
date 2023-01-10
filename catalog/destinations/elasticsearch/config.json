@@ -8,14 +8,27 @@
   "tags": ["database", "db"],
   "authentication": [
     {
-      "name": "ELASTIC_SEARCH_URL",
+      "name": "ELASTICSEARCH_URL",
       "label": "Enter your ElasticSearch URL",
-      "placeholder": "https://username:password@elasticsearchhost:port/db-name-and-rest"
+      "placeholder": "https://ec47fc4d2c53414e1307e85726d4b9bb.us-east-1.aws.found.io:9243"
     },
     {
-      "name": "ELASTIC_SEARCH_API_KEY",
+      "name": "ELASTICSEARCH_API_KEY",
       "label": "Enter your ElasticSearch API Key",
-      "placeholder": "base64EncodedKey"
+      "placeholder": "base64EncodedKey",
+      "required": false
+    },
+    {
+      "name": "ELASTICSEARCH_USERNAME",
+      "label": "Enter your ElasticSearch Username",
+      "placeholder": "base64EncodedKey",
+      "required": false
+    },
+    {
+      "name": "ELASTICSEARCH_PASSWORD",
+      "label": "Enter your ElasticSearch Password",
+      "placeholder": "base64EncodedKey",
+      "required": false
     }
   ],
   "eventSchema": {},
