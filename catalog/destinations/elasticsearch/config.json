@@ -40,6 +40,6 @@
   "paths": null,
   "events": [],
   "connectionTypes": ["target"],
-  "actions": ["insertOne", "insertMany", "updateOne", "updateMany", "deleteOne", "deleteMany"],
+  "actions": ["index", "delete", "upsert", "bulk"],
   "destinationType": "http"
 }
