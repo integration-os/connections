@@ -1,0 +1,32 @@
+{
+  "title": "ElasticSearch",
+  "description": "ElasticSearch is a distributed, free and open search and analytics engine",
+  "apiVersion": "NA",
+  "platform": "elasticsearch",
+  "category": "database",
+  "image": "https://assets.buildable.dev/catalog/node-templates/elasticsearch.svg",
+  "tags": ["database", "db"],
+  "authentication": [
+    {
+      "name": "ELASTIC_SEARCH_URL",
+      "label": "Enter your ElasticSearch URL",
+      "placeholder": "https://username:password@elasticsearchhost:port/db-name-and-rest"
+    },
+    {
+      "name": "ELASTIC_SEARCH_API_KEY",
+      "label": "Enter your ElasticSearch API Key",
+      "placeholder": "base64EncodedKey"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": ["insertOne", "insertMany", "updateOne", "updateMany", "deleteOne", "deleteMany"],
+  "destinationType": "http"
+}
