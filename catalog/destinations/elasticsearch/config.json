@@ -1,0 +1,33 @@
+{
+  "title": "ElasticSearch",
+  "description": "ElasticSearch is a distributed, free and open search and analytics engine",
+  "apiVersion": "NA",
+  "platform": "elasticsearch",
+  "category": "database",
+  "image": "https://assets.buildable.dev/catalog/node-templates/elasticsearch.svg",
+  "tags": ["database", "db"],
+  "authentication": [
+    {
+      "name": "ELASTICSEARCH_URL",
+      "label": "Enter your ElasticSearch URL",
+      "placeholder": "https://ec47fc4d2c53414e1307e85726d4b9bb.us-east-1.aws.found.io:9243"
+    },
+    {
+      "name": "ELASTICSEARCH_API_KEY",
+      "label": "Enter your ElasticSearch API Key",
+      "placeholder": "base64EncodedKey",
+      "required": false
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": false,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": ["index", "delete", "update", "bulk"],
+  "destinationType": "http"
+}
