@@ -17,29 +17,17 @@
       "label": "Enter your ElasticSearch API Key",
       "placeholder": "base64EncodedKey",
       "required": false
-    },
-    {
-      "name": "ELASTICSEARCH_USERNAME",
-      "label": "Enter your ElasticSearch Username",
-      "placeholder": "base64EncodedKey",
-      "required": false
-    },
-    {
-      "name": "ELASTICSEARCH_PASSWORD",
-      "label": "Enter your ElasticSearch Password",
-      "placeholder": "base64EncodedKey",
-      "required": false
     }
   ],
   "eventSchema": {},
   "settings": {
-    "createBuildableEnvVars": true,
+    "createBuildableEnvVars": false,
     "hasEvents": false,
     "showEvents": false
   },
   "paths": null,
   "events": [],
   "connectionTypes": ["target"],
-  "actions": ["index", "delete", "upsert", "bulk"],
+  "actions": ["index", "delete", "update", "bulk"],
   "destinationType": "http"
 }
