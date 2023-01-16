@@ -108,33 +108,68 @@
   },
   "events": [
     {
-      "name": "file.uploaded",
-      "description": "A new file has been uploaded",
+      "name": "connection.connected",
+      "description": "The connection to the FTP Server has been established.",
+      "group": ""
+    },
+    {
+      "name": "connection.disconnected",
+      "description": "The connection to the FTP Server has been closed.",
+      "group": ""
+    },
+    {
+      "name": "connection.failed",
+      "description": "The connection to the FTP Server has failed.",
+      "group": ""
+    },
+    {
+      "name": "files-metadata.scanned",
+      "description": "The metadata of the files has been scanned.",
+      "group": ""
+    },
+    {
+      "name": "files-metadata.state.processed",
+      "description": "The metadata of the files has been processed.",
+      "group": ""
+    },
+    {
+      "name": "file.added",
+      "description": "A new file has been added.",
       "group": ""
     },
     {
       "name": "file.updated",
-      "description": "A file has been updated",
+      "description": "A file has been updated.",
       "group": ""
     },
     {
       "name": "file.deleted",
-      "description": "A file has been deleted",
+      "description": "A file has been deleted.",
       "group": ""
     },
     {
-      "name": "file.opened",
-      "description": "A file has been opened",
+      "name": "file.parsed",
+      "description": "A file has been parsed.",
       "group": ""
     },
     {
-      "name": "file.closed",
-      "description": "A new file has been closed",
+      "name": "file.parsed.failed",
+      "description": "A file has failed to be parsed.",
       "group": ""
     },
     {
-      "name": "file.item.parsed",
-      "description": "A file record has been been parsed",
+      "name": "record.parsed",
+      "description": "A record in a file has been parsed.",
+      "group": ""
+    },
+    {
+      "name": "record.unknown",
+      "description": "A record in a file has an unknown type.",
+      "group": ""
+    },
+    {
+      "name": "record.size.maximum-limit-exceeded",
+      "description": "A record in a file has exceeded the maximum size limit.",
       "group": ""
     }
   ],
