@@ -9,8 +9,10 @@ interface FTPConfig {
   FTP_USER: string;
   FTP_PASSWORD: string;
   FTP_PATH: string;
+  FTP_EXTRACTOR_ENABLED: boolean;
   FTP_SCAN_INTERVAL: string;
   FTP_EXTRACTOR_FILE_TYPE: string;
+  FTP_EXTRACTOR_RECORD_COUNT_LIMIT: number;
   FTP_EXTRACTOR_FILE_SIZE_LIMIT: string;
 };
 
@@ -27,13 +29,28 @@ const handleMaximumExtractorFileSize = (extractorFileSizeLimit: string) => {
   return extractorFileSizeBytes;
 }
 
-const EVENT_NAMES = ["file.uploaded", "file.updated", "file.deleted", "file.opened", "file.closed", "file.item.parsed"];
+const EVENT_NAMES = [
+  "connection.connected",
+  "connection.disconnected",
+  "connection.failed",
+  "files-metadata.scanned",
+  "files-metadata.state.processed",
+  "file.added",
+  "file.updated",
+  "file.deleted",
+  "file.parsed",
+  "file.parsed.failed",
+  "record.parsed",
+  "record.unknown",
+  "record.size.maximum-limit-exceeded"
+];
 
 const getFTPClient = (config: {
   FTP_HOST: string;
   FTP_PORT: number;
   FTP_USER: string;
   FTP_PASSWORD: string;
+  FTP_PATH: string;
 }): Promise<boolean> => {
   const client = new ftp();
 
@@ -46,6 +63,12 @@ const getFTPClient = (config: {
     });
 
     client.on('ready', () => {
+      // client.list(config.FTP_PATH, (err, list) => {
+      //   if (err) reject(err);
+    
+      //   resolve(true);
+      // });
+
       resolve(true);
     });
 
@@ -61,8 +84,10 @@ export default class FTP {
   FTP_USER: string;
   FTP_PASSWORD: string;
   FTP_PATH: string;
+  FTP_EXTRACTOR_ENABLED: boolean;
   FTP_SCAN_INTERVAL: string;
   FTP_EXTRACTOR_FILE_TYPE: string;
+  FTP_EXTRACTOR_RECORD_COUNT_LIMIT: number;
   FTP_EXTRACTOR_FILE_SIZE_LIMIT: number;
 
   constructor({
@@ -71,7 +96,9 @@ export default class FTP {
     FTP_USER,
     FTP_PASSWORD,
     FTP_PATH = ".",
+    FTP_EXTRACTOR_ENABLED = true,
     FTP_SCAN_INTERVAL = "15 minutes",
+    FTP_EXTRACTOR_RECORD_COUNT_LIMIT = 1,
     FTP_EXTRACTOR_FILE_TYPE = "csv",
     FTP_EXTRACTOR_FILE_SIZE_LIMIT = "100mb",
   }: FTPConfig) {
@@ -80,7 +107,9 @@ export default class FTP {
     this.FTP_USER = FTP_USER;
     this.FTP_PASSWORD = FTP_PASSWORD;
     this.FTP_PATH = FTP_PATH;
+    this.FTP_EXTRACTOR_ENABLED = FTP_EXTRACTOR_ENABLED;
     this.FTP_SCAN_INTERVAL = FTP_SCAN_INTERVAL;
+    this.FTP_EXTRACTOR_RECORD_COUNT_LIMIT = FTP_EXTRACTOR_RECORD_COUNT_LIMIT;
     this.FTP_EXTRACTOR_FILE_TYPE = FTP_EXTRACTOR_FILE_TYPE;
     this.FTP_EXTRACTOR_FILE_SIZE_LIMIT = handleMaximumExtractorFileSize(FTP_EXTRACTOR_FILE_SIZE_LIMIT);
   }
@@ -130,6 +159,7 @@ export default class FTP {
         FTP_PORT: this.FTP_PORT,
         FTP_USER: this.FTP_USER,
         FTP_PASSWORD: this.FTP_PASSWORD,
+        FTP_PATH: this.FTP_PATH,
       });
 
       return {
