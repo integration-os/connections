@@ -40,7 +40,7 @@
       "name": "FTP_SCAN_INTERVAL",
       "label": "Select the FTP Scan Interval",
       "type": "select",
-      "value": "At every 15th minute",
+      "value": "*/15 * * * *",
       "options": [
         {
           "value": "*/15 * * * *",
@@ -76,14 +76,14 @@
       "name": "FTP_EXTRACTOR_ENABLED",
       "label": "Enable FTP File Content Extraction",
       "type": "select",
-      "value": "Yes",
+      "value": "Y",
       "options": [
         {
-          "value": true,
+          "value": "Y",
           "name": "Yes"
         },
 				{
-          "value": false,
+          "value": "N",
           "name": "No"
         }
       ]
