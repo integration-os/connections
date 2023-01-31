@@ -12,6 +12,7 @@
     "createBuildableEnvVars": false,
     "showUrl": true,
     "autoSubscribeAllEvents": true,
+    "autoAddAllEventsToPipeline": true,
     "showEvents": false,
     "secureAuthFields": false
   },
