@@ -66,6 +66,7 @@
     "hasSubscriptionDelay": false,
     "subscriptionDelayMultiplier": 0.0,
     "autoSubscribeAllEvents": true,
+    "autoAddAllEventsToPipeline": true,
     "showEvents": false
   },
   "paths": {
