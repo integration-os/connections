@@ -2,7 +2,7 @@
   "title": "Stripe",
   "description": "A suite of payment APIs that powers commerce for online businesses",
   "apiVersion": "2020-03-02",
-  "platform": "stripe",
+  "type": "stripe",
   "category": "finance",
   "image": "https://assets.buildable.dev/catalog/node-templates/stripe.svg",
   "tags": ["payment", "business"],

@@ -2,7 +2,7 @@
   "title": "Square",
   "description": "A multinational payment processing software",
   "apiVersion": "2022-08-23",
-  "platform": "square",
+  "type": "square",
   "category": "finance",
   "image": "https://assets.buildable.dev/catalog/node-templates/square.svg",
   "tags": [

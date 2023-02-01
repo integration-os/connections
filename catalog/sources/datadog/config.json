@@ -2,7 +2,7 @@
   "title": "Datadog",
   "description": "A monitoring service for cloud-scale applications",
   "apiVersion": "NA",
-  "platform": "datadog",
+  "type": "datadog",
   "category": "observability",
   "image": "https://assets.buildable.dev/catalog/node-templates/datadog.svg",
   "tags": [

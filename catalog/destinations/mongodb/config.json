@@ -2,7 +2,7 @@
   "title": "MongoDB",
   "description": "MongoDB is a general purpose, document-based, distributed database",
   "apiVersion": "NA",
-  "platform": "mongodb",
+  "type": "mongodb",
   "category": "database",
   "image": "https://assets.buildable.dev/catalog/node-templates/mongo.svg",
   "tags": ["database", "db"],

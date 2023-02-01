@@ -2,7 +2,7 @@
   "title": "ShipStation",
   "description": "A multichannel sofware for managing shipping and tracking",
   "apiVersion": "2020-03-02",
-  "platform": "shipstation",
+  "type": "shipstation",
   "category": "ecommerce",
   "image": "https://assets.buildable.dev/catalog/node-templates/shipstation.svg",
   "tags": ["shipping", "tracking"],
