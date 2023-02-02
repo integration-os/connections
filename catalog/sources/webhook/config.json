@@ -2,7 +2,7 @@
   "title": "Webhook",
   "description": "Receive events emitted to a custom Webhook URL",
   "apiVersion": "NA",
-  "platform": "webhook",
+  "type": "webhook",
   "category": "webhook",
   "image": "https://assets.buildable.dev/catalog/node-templates/webhook.svg",
   "tags": ["webhook", "rest"],

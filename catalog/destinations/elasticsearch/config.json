@@ -2,7 +2,7 @@
   "title": "ElasticSearch",
   "description": "ElasticSearch is a distributed, free and open search and analytics engine",
   "apiVersion": "NA",
-  "platform": "elasticsearch",
+  "type": "elasticsearch",
   "category": "database",
   "image": "https://assets.buildable.dev/catalog/node-templates/elasticsearch.svg",
   "tags": ["database", "db"],

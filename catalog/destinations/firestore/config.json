@@ -2,7 +2,7 @@
   "title": "Firestore",
   "description": "A flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud",
   "apiVersion": "2020-08-27",
-  "platform": "firestore",
+  "type": "firestore",
   "category": "database",
   "image": "https://assets.buildable.dev/catalog/node-templates/firestore.svg",
   "tags": ["firebase", "database"],

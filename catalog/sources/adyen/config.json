@@ -2,7 +2,7 @@
   "title": "Adyen",
   "description": "A payment company that allows businesses to accept e-commerce, mobile, and point-of-sale payments",
   "apiVersion": "NA",
-  "platform": "adyen",
+  "type": "adyen",
   "category": "finance",
   "image": "https://assets.buildable.dev/catalog/node-templates/adyen.svg",
   "tags": [

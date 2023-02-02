@@ -2,7 +2,7 @@
   "title": "GitHub Repos",
   "description": "A managed hosting solution for repository management using Git",
   "apiVersion": "NA",
-  "platform": "github-repos",
+  "type": "github-repos",
   "category": "git",
   "image": "https://assets.buildable.dev/catalog/node-templates/github-repos.svg",
   "tags": ["version-control", "code"],

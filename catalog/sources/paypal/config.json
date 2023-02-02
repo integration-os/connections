@@ -2,7 +2,7 @@
   "title": "PayPal",
   "description": "A multinational payment processing software",
   "apiVersion": "NA",
-  "platform": "paypal",
+  "type": "paypal",
   "category": "finance",
   "image": "https://assets.buildable.dev/catalog/node-templates/paypal.svg",
   "tags": [

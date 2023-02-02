@@ -2,7 +2,7 @@
   "title": "FTP/FTPS",
   "description": "Receive file manipulation events on an FTP server and extract relevant information from designated file types",
   "apiVersion": "NA",
-  "platform": "ftp",
+  "type": "ftp",
   "category": "storage",
   "image": "https://assets.buildable.dev/catalog/node-templates/ftp.svg",
   "tags": ["files", "csv", "json"],
