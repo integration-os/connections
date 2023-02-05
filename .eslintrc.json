@@ -1,16 +1,22 @@
 {
   "root": true,
+  "parser": "@typescript-eslint/parser",
   "env": {
     "node": true,
     "commonjs": true,
     "es6": true,
-    "jquery": false
+    "jquery": false,
+    "jest/globals": true
   },
   "extends": ["eslint:recommended", "prettier", "airbnb-base"],
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 2020
+    "ecmaVersion": 2020,
+    "project": "./tsconfig.json"
   },
+  "plugins": [
+    "@typescript-eslint", "jest"
+  ],
   "rules": {
     "quotes": ["warn", "double"],
     "semi": ["error", "always"],
@@ -20,6 +26,7 @@
     "no-use-before-define": ["off"],
     "no-useless-catch": ["off"],
     "no-console": ["off"],
+    "no-plusplus": ["off"],
     "no-mixed-spaces-and-tabs": ["off"],
     "require-atomic-updates": ["off"],
     "import/no-unresolved": ["off"],
@@ -31,6 +38,9 @@
     "curly": ["off"],
     "nonblock-statement-body-position": ["off"],
     "consistent-return": ["off"],
-    "newIsCap": ["off"]
+    "newIsCap": ["off"],
+
+    "import/prefer-default-export": ["off"],
+    "import/extensions": ["off"]
   }
 }

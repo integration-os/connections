@@ -1,16 +1,21 @@
+import { Knex, knex } from "knex";
 import {
   DestinationClassI,
   AnyObject,
   TestConnection,
 } from "../../../types/destinationClassDefinition";
-import { Knex, knex } from "knex";
 
 class PostgreSQLDriver implements DestinationClassI {
   POSTGRESQL_HOST: string;
+
   POSTGRESQL_USERNAME: string;
+
   POSTGRESQL_PASSWORD: string;
+
   POSTGRESQL_PORT: number;
+
   POSTGRESQL_DATABASE: string;
+
   client: Knex;
 
   constructor({
@@ -34,7 +39,7 @@ class PostgreSQLDriver implements DestinationClassI {
       POSTGRESQL_PASSWORD,
       POSTGRESQL_PORT,
       POSTGRESQL_DATABASE,
-    } = config ? config : this;
+    } = config || this;
 
     this.client = knex({
       client: "pg",
@@ -55,7 +60,7 @@ class PostgreSQLDriver implements DestinationClassI {
   }
 
   async disconnect() {
-    return await this.client.destroy();
+    return this.client.destroy();
   }
 
   async testConnection(): Promise<TestConnection> {
@@ -108,9 +113,9 @@ class PostgreSQLDriver implements DestinationClassI {
     statement: string;
     maxLimit: number;
   }) {
-    statement = handleLimit(statement, maxLimit);
+    const limitedStatement = handleLimit(statement, maxLimit);
 
-    return this.client.raw(statement);
+    return this.client.raw(limitedStatement);
   }
 }
 
@@ -133,22 +138,23 @@ const handleLimit = (query: string, maxLimit: number) => {
 };
 
 const setHardLimit = (query: string, maxLimit: number) => {
-  if (query.charAt(query.length - 1) === ";") {
-    query = query.substring(0, query.length - 1);
-  }
+  // if (query.charAt(query.length - 1) === ";") {
+  //   query = query.substring(0, query.length - 1);
+  // }
+  const limitedQuery = query.charAt(query.length - 1) === ";" ? query.substring(query.length - 1) : query;
 
-  const tokenizedQuery = query.split(" ");
+  const tokenizedQuery = limitedQuery.split(" ");
   const foundIndex = Math.max(
     tokenizedQuery.lastIndexOf("limit"),
     tokenizedQuery.lastIndexOf("LIMIT"),
   );
   if (foundIndex > 0) {
     const limit = tokenizedQuery[foundIndex + 1];
-    if (Number.parseInt(limit) > maxLimit) {
-      // Handle parsing with parenthesis or semi colons
+    if (Number.parseInt(limit, 10) > maxLimit) {
+      // Handle parsing with parenthesis or semicolons
       tokenizedQuery[foundIndex + 1] =
         maxLimit +
-        limit.toString().substring(Number.parseInt(limit).toString().length);
+        limit.toString().substring(Number.parseInt(limit, 10).toString().length);
     }
   } else {
     tokenizedQuery.push("LIMIT");

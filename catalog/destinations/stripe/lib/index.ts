@@ -8,10 +8,9 @@ import {
   ModelAndAction,
 } from "./types";
 
-export const createClient = (config: StripeConfig) =>
-  new Stripe(config.STRIPE_SECRET_KEY, {
-    apiVersion: "2020-08-27",
-  });
+export const createClient = (config: StripeConfig) => new Stripe(config.STRIPE_SECRET_KEY, {
+  apiVersion: "2020-08-27",
+});
 
 export const getModelAndAction = <T extends StripeModels>(
   action: string,
@@ -39,7 +38,7 @@ export const testConnection = async (config: StripeConfig) => {
   } catch (err) {
     throw new Error((err as Error).message);
   }
-}
+};
 
 export const callDynamicAction = async <T extends StripeModels, U = unknown>({
   dataModel,
@@ -52,12 +51,11 @@ export const callDynamicAction = async <T extends StripeModels, U = unknown>({
   if (typeof stripe[dataModel][action] === "function") {
     if (Array.isArray(args)) {
       // @ts-ignore
-      return await (stripe[dataModel][action] as (args: U) => Promise<unknown>)(...args);
+      return (stripe[dataModel][action] as (_: U) => Promise<unknown>)(...args);
     }
 
     // @ts-ignore
-    return await (stripe[dataModel][action] as (args: U) => Promise<unknown>)(args);
-  } else {
-    throw new Error(`Expected a function but got: ${typeof stripe[dataModel][action]}`);
+    return (stripe[dataModel][action] as (_: U) => Promise<unknown>)(args);
   }
+  throw new Error(`Expected a function but got: ${typeof stripe[dataModel][action]}`);
 };
