@@ -13,7 +13,9 @@ import { IntegrationClassI } from "../../../types/sourceClassDefinition";
 
 export default class StripeIntegration implements IntegrationClassI {
   id = "intg_627aceaf971c67182d1d76ca";
+
   name = "Stripe";
+
   stripe: Stripe;
 
   constructor({ STRIPE_SECRET_KEY }: { STRIPE_SECRET_KEY: string }) {
@@ -112,7 +114,7 @@ export default class StripeIntegration implements IntegrationClassI {
   }
 
   async deleteWebhookEndpoint({ webhookId }) {
-    return await this.stripe.webhookEndpoints.del(webhookId);
+    return this.stripe.webhookEndpoints.del(webhookId);
   }
 
   async testConnection() {
@@ -127,8 +129,8 @@ export default class StripeIntegration implements IntegrationClassI {
     } catch (err) {
       console.log((err as Error).message);
       throw new Error(
-        "Unable to establish a connection with Stripe: " +
-          (err as Error).message,
+        `Unable to establish a connection with Stripe: ${
+          (err as Error).message}`,
       );
     }
   }

@@ -15,7 +15,9 @@ export type Method =
 
 export default class Webhook {
   WEBHOOK_URL: string;
+
   WEBHOOK_METHOD: Method;
+
   WEBHOOK_HEADERS: string;
 
   constructor({

@@ -8,7 +8,7 @@
  * @docs      https://shopify.dev/api/admin-rest/2022-04/resources/webhook
  */
 
-import { Shopify, ApiVersion, DataType } from "@shopify/shopify-api";
+import { ApiVersion, DataType, Shopify } from "@shopify/shopify-api";
 import crypto from "crypto";
 import { IntegrationClassI } from "../../../types/sourceClassDefinition";
 
@@ -16,9 +16,13 @@ const sleep = (n) => new Promise((resolve) => setTimeout(resolve, n));
 
 export default class ShopifyIntegration implements IntegrationClassI {
   id = "intg_6296661448d9214b8e446de2";
+
   name = "Shopify";
+
   shopify: any;
+
   API_BASE_PATH: string;
+
   SHOPIFY_API_SECRET_KEY: string;
 
   constructor({
@@ -81,8 +85,8 @@ export default class ShopifyIntegration implements IntegrationClassI {
     };
   }
 
-  async verifyWebhookSignature({ request, signature, secret }) {
-    secret = this.SHOPIFY_API_SECRET_KEY;
+  async verifyWebhookSignature({ request, signature }) {
+    const secret = this.SHOPIFY_API_SECRET_KEY;
 
     const hash = crypto
       .createHmac("sha256", secret)
@@ -177,7 +181,7 @@ export default class ShopifyIntegration implements IntegrationClassI {
         return webhooks.concat(data.body.webhooks);
       }
 
-      return await getAllWebhooks(
+      return getAllWebhooks(
         data.pageInfo.nextPage.query.page_info,
         webhooks.concat(data.body.webhooks),
       );
@@ -193,9 +197,7 @@ export default class ShopifyIntegration implements IntegrationClassI {
       webhookIds,
     });
 
-    const events = webhooks.map((webhook) => webhook.topic);
-
-    return events;
+    return webhooks.map((webhook) => webhook.topic);
   }
 
   async deleteWebhookEndpoint({ webhookId }) {
@@ -233,8 +235,8 @@ export default class ShopifyIntegration implements IntegrationClassI {
     } catch (err) {
       console.log((err as Error).message);
       throw new Error(
-        "Unable to establish a connection with Shopify: " +
-          (err as Error).message,
+        `Unable to establish a connection with Shopify: ${
+          (err as Error).message}`,
       );
     }
   }

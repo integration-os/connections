@@ -1,3 +1,5 @@
+import { client, v1 } from "@datadog/datadog-api-client";
+import { WebhooksIntegrationApi } from "@datadog/datadog-api-client/dist/packages/datadog-api-client-v1";
 import {
   AnyObject,
   DeleteWebhookEndpointProps,
@@ -11,16 +13,16 @@ import {
   WebhooksProps,
   TestConnection,
 } from "../../../types/sourceClassDefinition";
-import { client, v1 } from "@datadog/datadog-api-client";
-import { WebhooksIntegrationApi } from "@datadog/datadog-api-client/dist/packages/datadog-api-client-v1";
 
 type DatadogRegion = "us1" | "us3" | "us5" | "eu" | "us1-fed";
 
 export default class DatadogIntegration implements IntegrationClassI {
   id: string;
+
   name: string;
 
   readonly datadogClient: WebhooksIntegrationApi;
+
   private webhookUrl: string | undefined = undefined;
 
   constructor({
@@ -71,7 +73,7 @@ export default class DatadogIntegration implements IntegrationClassI {
       const webhook = await this.getWebhooks({ webhookId });
 
       return {
-        webhook: webhook,
+        webhook,
         events: ["any"],
       };
     } catch (error) {
@@ -98,7 +100,7 @@ export default class DatadogIntegration implements IntegrationClassI {
     const webhook = await this.deleteWebhookEndpoint({ webhookId });
 
     return {
-      webhook: webhook,
+      webhook,
       events: [],
     };
   }
@@ -106,7 +108,7 @@ export default class DatadogIntegration implements IntegrationClassI {
   async getWebhooks({
     webhookId,
   }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
-    return await this.datadogClient
+    return this.datadogClient
       .getWebhooksIntegration({
         webhookName: webhookId,
       })
@@ -166,9 +168,6 @@ export default class DatadogIntegration implements IntegrationClassI {
 
   static getRegionUrl(region: DatadogRegion): string {
     switch (region) {
-      case "us1":
-      default:
-        return "api.datadoghq.com";
       case "us3":
         return "us3.datadoghq.com";
       case "us5":
@@ -177,6 +176,9 @@ export default class DatadogIntegration implements IntegrationClassI {
         return "datadoghq.eu";
       case "us1-fed":
         return "ddog-gov.com";
+      case "us1":
+      default:
+        return "api.datadoghq.com";
     }
   }
 }

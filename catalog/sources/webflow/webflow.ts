@@ -38,10 +38,13 @@ type WebflowSite = {
 
 export default class WebflowIntegration implements IntegrationClassI {
   id = "159753";
+
   name = "Webflow";
 
   private readonly WEBFLOW_BASE_URL = null;
+
   private readonly WEBFLOW_API_TOKEN = null;
+
   private readonly WEBFLOW_VERSION = "1.0.0";
 
   private webflowSiteId?: string;
@@ -72,7 +75,7 @@ export default class WebflowIntegration implements IntegrationClassI {
 
   /**
    * Helper function to get site id for the given API KEY/TOKEN
-   * Each site has it's own generated API Key
+   * Each site has its own generated API Key
    * Site id is needed for other Webflow API calls
    * @returns
    */
@@ -82,11 +85,11 @@ export default class WebflowIntegration implements IntegrationClassI {
         return this.webflowSiteId;
       }
 
-      const webflowSites = (await this.client.get<WebflowSite[]>(`/sites`))
+      const webflowSites = (await this.client.get<WebflowSite[]>("/sites"))
         .data;
 
       if (!webflowSites?.length) {
-        throw new Error(`Can not get Webflow site id`);
+        throw new Error("Can not get Webflow site id");
       }
 
       this.webflowSiteId = webflowSites[0]._id;
@@ -99,21 +102,19 @@ export default class WebflowIntegration implements IntegrationClassI {
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const siteId = await this.getWebflowSiteId();
 
-    const webhookCreateRequests = events.map((event) =>
-      this.client.post(`/sites/${siteId}/webhooks`, {
-        triggerType: event,
-        url: `${webhookUrl}?event=${event}`,
-      }),
-    );
+    const webhookCreateRequests = events.map((event) => this.client.post(`/sites/${siteId}/webhooks`, {
+      triggerType: event,
+      url: `${webhookUrl}?event=${event}`,
+    }));
     const webhookCreateResponses = await Promise.allSettled(
       webhookCreateRequests,
     );
     const webhooks = webhookCreateResponses
       .filter((response) => response.status === "fulfilled")
       .map(
-        (response) =>
-          (response as PromiseFulfilledResult<AxiosResponse<WebflowWebook>>)
-            .value.data,
+        // eslint-disable-next-line no-undef
+        (response) => (response as PromiseFulfilledResult<AxiosResponse<WebflowWebook>>)
+          .value.data,
       );
     const registeredEvents = webhooks.map((webhook) => webhook.triggerType);
 
@@ -124,7 +125,7 @@ export default class WebflowIntegration implements IntegrationClassI {
   }
 
   /**
-   * Webflow doesn't have a way to verify the signature so we can just return true
+   * Webflow doesn't have a way to verify the signature, so we can just return true
    * @param props
    * @returns
    */
@@ -187,6 +188,7 @@ export default class WebflowIntegration implements IntegrationClassI {
     );
     const deletedWebhookIds = webhooksIdsToDeleteResults
       .filter((result) => result.status === "fulfilled")
+      // eslint-disable-next-line no-undef
       .map((result) => (result as PromiseFulfilledResult<string>).value);
 
     const updatedWebhooks = webhooks.filter(

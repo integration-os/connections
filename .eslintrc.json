@@ -17,6 +17,9 @@
   "plugins": [
     "@typescript-eslint", "jest"
   ],
+  "ignorePatterns": [
+    "**/*.test.ts"
+  ],
   "rules": {
     "quotes": ["warn", "double"],
     "semi": ["error", "always"],
@@ -27,7 +30,10 @@
     "no-useless-catch": ["off"],
     "no-console": ["off"],
     "no-plusplus": ["off"],
+    "no-restricted-syntax": ["off"],
+    "no-await-in-loop": ["off"],
     "no-mixed-spaces-and-tabs": ["off"],
+    "no-promise-executor-return": ["off"],
     "require-atomic-updates": ["off"],
     "import/no-unresolved": ["off"],
     "arrow-body-style": ["off"],
@@ -37,6 +43,7 @@
     "object-curly-newline": ["off"],
     "curly": ["off"],
     "nonblock-statement-body-position": ["off"],
+    "class-methods-use-this": ["off"],
     "consistent-return": ["off"],
     "newIsCap": ["off"],
 
