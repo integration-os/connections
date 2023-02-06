@@ -1,0 +1,27 @@
+{
+  "title": "BigQuery",
+  "description": "MongoDB is a general purpose, document-based, distributed database",
+  "apiVersion": "v2",
+  "platform": "google-cloud",
+  "category": "database",
+  "image": "https://assets.buildable.dev/catalog/node-templates/bigquery.svg",
+  "tags": ["database", "db"],
+  "authentication": [
+    {
+      "name": "GOOGLE_SERVICE_ACCOUNT_KEY",
+      "label": "Enter your Service Account Key",
+      "placeholder": "{}"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": ["insertOne", "insertMany", "updateOne", "updateMany", "deleteOne", "deleteMany"],
+  "destinationType": "http"
+}
