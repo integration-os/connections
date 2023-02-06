@@ -212,8 +212,29 @@ const getProxyDriver = (config: AnyObject) => {
   const driver = new BigQueryDriver(config);
 
   return new Proxy(driver, {
-    get: (target, props) => {
-      // TODO: implement this
+    get: (target, prop) => {
+      if (typeof driver[prop] === "function") {
+        return async (payload) => {
+          try {
+            if (prop === "testConnection") {
+              return driver.testConnection();
+            }
+
+            await driver.connect();
+
+            const result = await driver[prop](payload);
+
+            await driver.disconnect();
+
+            return result;
+          } catch (err) {
+            console.log("Error occurred ===> ", err);
+            throw err;
+          }
+        };
+      }
+
+      throw new Error(`Method ${prop as string} not found`);
     },
   });
 };
