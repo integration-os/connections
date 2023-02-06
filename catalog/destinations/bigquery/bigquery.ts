@@ -73,7 +73,6 @@ export class BigQueryDriver implements DestinationClassI {
     try {
       // NOTE: maybe send data to BigQuery by chunks?
       await this.client.dataset(dataset).table(table).insert(data, options);
-      console.log(`inserted ${data.length} records to ${this.GCP_PROJECT_ID}.${dataset}.${table} successfully`);
     } catch (err) {
       // TODO data does not match the schema, store to the letters archive
       console.log("Schema-altering action");
@@ -99,11 +98,7 @@ export class BigQueryDriver implements DestinationClassI {
       WHERE ${filters}
     `;
 
-    console.log(`running update query ${updateQuery}`);
-
     await this.client.dataset(dataset).table(table).query(updateQuery);
-
-    console.log("Success");
   }
 
   async deleteData({ dataset, table, filters }: IBigQueryDelete) {
@@ -117,11 +112,7 @@ export class BigQueryDriver implements DestinationClassI {
       deleteQuery += ` WHERE ${filters}`;
     }
 
-    console.log(`running delete query ${deleteQuery}`);
-
     await this.client.dataset(dataset).table(table).query(deleteQuery);
-
-    console.log("Success");
   }
 
   /**
