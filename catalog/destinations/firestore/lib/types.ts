@@ -1,4 +1,4 @@
-import 'firebase/firestore';
+import { firestore } from "firebase-admin";
 
 export type FirestoreConfig = {
   SERVICE_ACCOUNT_CONFIG: string;
@@ -8,7 +8,7 @@ export type FirestoreInsertPayload = {
   collection: string;
   id?: string;
   data: Record<string, unknown>;
-  options?: FirebaseFirestore.SetOptions;
+  options?: firestore.Firestore;
 }
 
 export type FirestoreUpdatePayload = {

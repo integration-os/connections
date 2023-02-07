@@ -1,8 +1,6 @@
 import { TestConnection } from "../../../types/sourceClassDefinition";
 
 export default class Nodejs {
-  constructor() {}
-
   async init({ webhookUrl, events }) {
     return {
       webhookData: {},

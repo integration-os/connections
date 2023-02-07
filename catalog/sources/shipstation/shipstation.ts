@@ -47,10 +47,13 @@ type ShipStationWebhookInternal = Omit<ShipStationWebhook, "WebHookID"> & {
 
 export default class ShipStationIntegration implements IntegrationClassI {
   id = "123456";
+
   name = "ShipStation";
 
   private readonly SHIP_STATION_BASE_URL: string;
+
   private readonly SHIP_STATION_API_KEY: string;
+
   private readonly SHIP_STATION_SECRET_KEY: string;
 
   private readonly client: AxiosInstance;
@@ -84,15 +87,13 @@ export default class ShipStationIntegration implements IntegrationClassI {
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
-    const webhookCreateRequests = events.map(async (event) =>
-      this.client.post<
+    const webhookCreateRequests = events.map(async (event) => this.client.post<
         ShipStationWebhookSubscribeRequest,
         AxiosResponse<ShipStationWebhookSubscribeResponse>
-      >(`/webhooks/subscribe`, {
+      >("/webhooks/subscribe", {
         target_url: webhookUrl,
-        event: event,
-      }),
-    );
+        event,
+      }));
     const webhookCreateResults = await Promise.allSettled(
       webhookCreateRequests,
     );
@@ -100,12 +101,12 @@ export default class ShipStationIntegration implements IntegrationClassI {
     const createdWebhooks = webhookCreateResults
       .filter((response) => response.status === "fulfilled")
       .map(
-        (response) =>
-          (
+        (response) => (
+        // eslint-disable-next-line no-undef
             response as PromiseFulfilledResult<
               AxiosResponse<ShipStationWebhookSubscribeResponse>
             >
-          ).value.data,
+        ).value.data,
       );
     const createdWebhookIds = createdWebhooks.map(
       (createdWebhook) => `${createdWebhook.id}`,
@@ -186,6 +187,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
     );
     const deletedWebhooksIds = webHooksDeleteResults
       .filter((result) => result.status === "fulfilled")
+      // eslint-disable-next-line no-undef
       .map((result) => (result as PromiseFulfilledResult<string>).value);
 
     const updatedWebhooks = webhooks.filter(
@@ -206,7 +208,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
       const { data } = await this.client.get<
         null,
         AxiosResponse<ShipStationWebhookList>
-      >(`/webhooks`);
+      >("/webhooks");
       const webhooksList = data?.webhooks || [];
       const webhooks = webhooksList.map((webhook) => {
         const webhookInternal: ShipStationWebhookInternal = {
@@ -220,9 +222,7 @@ export default class ShipStationIntegration implements IntegrationClassI {
         return webhooks;
       }
 
-      return webhooks.filter((webhook) =>
-        webhookIds.includes(webhook.WebHookID),
-      );
+      return webhooks.filter((webhook) => webhookIds.includes(webhook.WebHookID));
     } catch (error) {
       throw new Error(`Could not get ShipStation webhooks: ${error.message}`);
     }

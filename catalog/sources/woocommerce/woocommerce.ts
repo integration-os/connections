@@ -1,3 +1,5 @@
+import axios, { AxiosInstance } from "axios";
+import crypto from "crypto";
 import {
   AnyObject,
   DeleteWebhookEndpointProps,
@@ -12,16 +14,16 @@ import {
   VerifyWebhookSignatureProps,
   WebhooksProps,
 } from "../../../types/sourceClassDefinition";
-import axios, { AxiosInstance } from "axios";
-import crypto from "crypto";
 
 const sleep = (n) => new Promise((resolve) => setTimeout(resolve, n));
 
 export default class WooCommerceIntegration implements IntegrationClassI {
   id: string;
+
   name: string;
 
   readonly client: AxiosInstance;
+
   private readonly WOOCOMMERCE_CUSTOMER_SECRET: string;
 
   constructor({
@@ -87,12 +89,11 @@ export default class WooCommerceIntegration implements IntegrationClassI {
   async verifyWebhookSignature({
     request,
     signature,
-    secret,
   }: VerifyWebhookSignatureProps): Promise<Truthy> {
     // WooCommerce sends the signed body in X-WC-Webhook-Signature header
     // it uses SHA256-HMAC hash encoded in base64
     // We're using the Rest API secret key for encryption, which is the default key used by WooCommerce
-    secret = this.WOOCOMMERCE_CUSTOMER_SECRET;
+    const secret = this.WOOCOMMERCE_CUSTOMER_SECRET;
 
     const hash = crypto
       .createHmac("sha256", secret)
@@ -100,7 +101,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
       .digest("base64");
 
     if (hash !== signature) {
-      throw new Error(`Invalid signature`);
+      throw new Error("Invalid signature");
     }
 
     return true;
@@ -134,7 +135,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
         const webhook = await this.client
           .post("/wp-json/wc/v3/webhooks", {
             topic: event,
-            delivery_url: delivery_url,
+            delivery_url,
             secret: this.WOOCOMMERCE_CUSTOMER_SECRET,
           })
           .then((response) => response.data);
@@ -155,7 +156,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
     // return new webhooks
     return {
-      webhooks: webhooks,
+      webhooks,
       events: webhooks.map((webhook) => webhook.topic),
     };
   }
@@ -170,14 +171,10 @@ export default class WooCommerceIntegration implements IntegrationClassI {
 
     // find events to unsubscribe from
     const subscribedEvents = webhooks.map((webhook) => webhook.topic);
-    const eventsToUnsubscribe = events.filter((event) =>
-      subscribedEvents.includes(event),
-    );
+    const eventsToUnsubscribe = events.filter((event) => subscribedEvents.includes(event));
 
     // find webhooks to delete
-    const webhooksToDelete = webhooks.filter((webhook) =>
-      eventsToUnsubscribe.includes(webhook.topic),
-    );
+    const webhooksToDelete = webhooks.filter((webhook) => eventsToUnsubscribe.includes(webhook.topic));
 
     // delete webhooks
     for (const webhook of webhooksToDelete) {
@@ -195,7 +192,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
     }
 
     return {
-      webhooks: webhooks,
+      webhooks,
       events: webhooks.map((webhook) => webhook.topic),
     };
   }
