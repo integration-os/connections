@@ -1,7 +1,9 @@
 import { BigQuery, TableSchema } from "@google-cloud/bigquery";
 import bigquery from "@google-cloud/bigquery/build/src/types";
+
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
 import { BigQuerySchemaType, IBigQueryDelete, IBigQueryInsert, IBigQueryUpdate } from "./lib/types";
+
 import ITableFieldSchema = bigquery.ITableFieldSchema;
 
 export class BigQueryDriver implements DestinationClassI {
@@ -57,28 +59,47 @@ export class BigQueryDriver implements DestinationClassI {
     };
   }
 
+  /**
+   * Insert a chunk of data into BigQuery
+   * @param dataset name of the dataset
+   * @param table name of the table to insert into
+   * @param data source data
+   * @param options insertion options
+   */
   async insertData({ dataset, table, data, options }: IBigQueryInsert) {
     if (!this.client) {
       throw new Error("Connection to BigQuery not established");
     }
 
+    const bqTable = this.client.dataset(dataset).table(table);
+
+    // check if the table exists
     try {
-      await this.client.dataset(dataset).table(table).get();
+      await bqTable.get();
     } catch (err) {
       // TODO: table not found, store to the letters archive
       console.log(`table \`${this.GCP_PROJECT_ID}.${dataset}.${table}\` not found`);
-      return;
+      return null;
     }
 
+    // attempt data insertion
     try {
-      // NOTE: maybe send data to BigQuery by chunks?
-      await this.client.dataset(dataset).table(table).insert(data, options);
+      // NOTE: maybe send data to BigQuery chunk by chunk?
+      return await bqTable.insert(data, options);
     } catch (err) {
       // TODO data does not match the schema, store to the letters archive
       console.log("Schema-altering action");
+      return null;
     }
   }
 
+  /**
+   * Updates row(s) of data that match certain criteria from a BigQuery table
+   * @param dataset name of the dataset
+   * @param table name of the table to update rows from
+   * @param set set of key/value pairs to update
+   * @param filters criteria to match for, written as a SQL `WHERE` clause
+   */
   async updateData({ dataset, table, filters, set }: IBigQueryUpdate) {
     if (!this.client) {
       throw new Error("Connection to BigQuery not established");
@@ -88,37 +109,48 @@ export class BigQueryDriver implements DestinationClassI {
       throw new Error("BigQuery UPDATE must have a WHERE clause");
     }
 
+    // extracting table schema
     const bqTable = this.client.dataset(dataset).table(table);
 
     const metadata = await bqTable.getMetadata();
     const { schema } = metadata[0];
 
+    // composing SQL query
     const updateQuery = `UPDATE \`${this.GCP_PROJECT_ID}.${dataset}.${table}\`
       SET ${BigQueryDriver.extractChangeset(set, schema)}
       WHERE ${filters}
     `;
 
-    await this.client.dataset(dataset).table(table).query(updateQuery);
+    // executing query
+    await bqTable.query(updateQuery);
   }
 
+  /**
+   * Deletes row(s) of data that match certain criteria from a BigQuery table
+   * @param dataset name of the dataset
+   * @param table name of the table to delete rows from
+   * @param filters criteria to match for, written as a SQL `WHERE` clause
+   */
   async deleteData({ dataset, table, filters }: IBigQueryDelete) {
     if (!this.client) {
       throw new Error("Connection to BigQuery not established");
     }
 
-    let deleteQuery = `DELETE FROM \`${this.GCP_PROJECT_ID}.${dataset}.${table}\``;
-
-    if (filters && filters.length) {
-      deleteQuery += ` WHERE ${filters}`;
+    if (!filters || !filters.length) {
+      throw new Error("BigQuery DELETE must have a WHERE clause");
     }
+
+    const deleteQuery = `DELETE FROM \`${this.GCP_PROJECT_ID}.${dataset}.${table}\`
+        WHERE ${filters}
+    `;
 
     await this.client.dataset(dataset).table(table).query(deleteQuery);
   }
 
   /**
    * Parses the passed value into a BigQuery SQL-DML compliant query string
-   * @param value
-   * @param fieldSchema
+   * @param value value to parse
+   * @param fieldSchema BigQuery field schema
    * @private
    */
   private static parseValue(value: String | AnyObject, fieldSchema: ITableFieldSchema): string {
@@ -167,8 +199,8 @@ export class BigQueryDriver implements DestinationClassI {
 
   /**
    * Extracts BigQuery SQL-DML compliant string from values that need to be updated.
-   * @param set
-   * @param schema
+   * @param set changeset
+   * @param schema BigQuery table schema
    * @private
    */
   private static extractChangeset(set: string | string[] | AnyObject, schema: TableSchema): string {
@@ -207,10 +239,6 @@ const getProxyDriver = (config: AnyObject) => {
       if (typeof driver[prop] === "function") {
         return async (payload) => {
           try {
-            if (prop === "testConnection") {
-              return driver.testConnection();
-            }
-
             await driver.connect();
 
             const result = await driver[prop](payload);

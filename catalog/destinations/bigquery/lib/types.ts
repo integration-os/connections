@@ -20,5 +20,5 @@ export interface IBigQueryUpdate {
 export interface IBigQueryDelete {
   dataset: string;
   table: string;
-  filters?: string;
+  filters: string;
 }
