@@ -42,7 +42,7 @@ export class BigQueryDriver implements DestinationClassI {
     const query = `SELECT name
       FROM \`bigquery-public-data.usa_names.usa_1910_2013\`
       WHERE state = 'TX'
-      LIMIT 100`;
+      LIMIT 1`;
 
     const response = await this.client!.query(query);
 
@@ -109,20 +109,20 @@ export class BigQueryDriver implements DestinationClassI {
       throw new Error("BigQuery UPDATE must have a WHERE clause");
     }
 
-    // extracting table schema
+    // extract table schema
     const bqTable = this.client.dataset(dataset).table(table);
 
     const metadata = await bqTable.getMetadata();
     const { schema } = metadata[0];
 
-    // composing SQL query
+    // compose SQL query
     const updateQuery = `UPDATE \`${this.GCP_PROJECT_ID}.${dataset}.${table}\`
       SET ${BigQueryDriver.extractChangeset(set, schema)}
       WHERE ${filters}
     `;
 
-    // executing query
-    await bqTable.query(updateQuery);
+    // execute query
+    return bqTable.query(updateQuery);
   }
 
   /**
@@ -204,8 +204,6 @@ export class BigQueryDriver implements DestinationClassI {
    * @private
    */
   private static extractChangeset(set: string | string[] | AnyObject, schema: TableSchema): string {
-    console.log(schema);
-
     if (typeof set === "string") {
       return set;
     }
