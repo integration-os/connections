@@ -18,7 +18,8 @@
     "@typescript-eslint", "jest"
   ],
   "ignorePatterns": [
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "tests/**"
   ],
   "rules": {
     "quotes": ["warn", "double"],

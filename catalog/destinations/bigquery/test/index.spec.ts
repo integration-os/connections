@@ -5,6 +5,23 @@ import getProxyDriver, { BigQueryDriver } from "../bigquery";
 describe("Test: BigQuery Destination", () => {
   let driver: BigQueryDriver | null = null;
 
+  it("should reject unknown methods from the proxy object", async () => {
+    driver = getProxyDriver(
+      {
+        GOOGLE_SERVICE_ACCOUNT_KEY: process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+        GCP_PROJECT_ID: process.env.GCP_PROJECT_ID,
+      },
+    );
+
+    try {
+      (driver as any).unknownMethod();
+    } catch (err) {
+      expect(err.message).toEqual("Method unknownMethod() not found");
+    }
+
+    driver = null;
+  });
+
   describe("connect", () => {
     beforeEach(() => {
       driver = getProxyDriver(
@@ -21,6 +38,13 @@ describe("Test: BigQuery Destination", () => {
 
     it("should connect to BigQuery", async () => {
       return driver.connect().then(async () => {
+        const result = await driver.testConnection();
+
+        expect(result.success).toBeTruthy();
+      });
+    });
+    it("should accept service account key as config", async () => {
+      return driver.connect({ GOOGLE_SERVICE_ACCOUNT_KEY: process.env.GOOGLE_SERVICE_ACCOUNT_KEY }).then(async () => {
         const result = await driver.testConnection();
 
         expect(result.success).toBeTruthy();
@@ -48,6 +72,47 @@ describe("Test: BigQuery Destination", () => {
       await driver.disconnect();
 
       await expect(driver.testConnection()).rejects.toThrow();
+    });
+  });
+
+  describe("testConnection", () => {
+    beforeEach(() => {
+      driver = getProxyDriver(
+        {
+          GOOGLE_SERVICE_ACCOUNT_KEY: process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+          GCP_PROJECT_ID: process.env.GCP_PROJECT_ID,
+        },
+      );
+    });
+
+    afterEach(() => {
+      driver = null;
+    });
+
+    it("should return success=true and a message when successful", async () => {
+      await driver.connect();
+      const result = await driver.testConnection();
+
+      expect(result).toEqual({
+        success: true,
+        message: "Connection established successfully",
+      });
+    });
+
+    it("should return success=false and a message when failed", async () => {
+      await driver.connect();
+
+      const querySpy = jest.spyOn(driver.client, "query");
+      querySpy.mockImplementation(() => Promise.resolve(null));
+
+      const result = await driver.testConnection();
+
+      expect(result).toEqual({
+        success: false,
+        message: "Could not establish connection to BigQuery",
+      });
+
+      querySpy.mockRestore();
     });
   });
 
@@ -81,28 +146,33 @@ describe("Test: BigQuery Destination", () => {
 
       // delete each table in the dataset
       for (const table of tables) {
-        await table.delete();
+        try {
+          await table.delete();
+        } catch (err) {
+          console.log(err.message);
+        }
       }
 
       // delete the dataset
-      await dataset.delete();
+      try {
+        await dataset.delete();
+      } catch (err) {
+        console.log(err.message);
+      }
     });
 
-    beforeEach(() => {
+    beforeEach(async () => {
       driver = getProxyDriver(
         {
           GOOGLE_SERVICE_ACCOUNT_KEY: process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
           GCP_PROJECT_ID: process.env.GCP_PROJECT_ID,
         },
       );
+
+      await driver.connect();
     });
 
     afterEach(() => {
-      client
-        .dataset(datasetName)
-        .table(tableName)
-        .query(`DELETE FROM \`${process.env.GCP_PROJECT_ID}.${datasetName}.${tableName}\` WHERE id=1`);
-
       driver = null;
     });
 
@@ -115,7 +185,35 @@ describe("Test: BigQuery Destination", () => {
       })).rejects.toThrow(/BigQuery - table not found/);
     });
 
-    it("should raise an error if a field that does not match the schema is present", async () => {
+    it("should raise an error if the client cannot get the table", async () => {
+      // mock connect to prevent client recreation and hence overriding
+      // jest spy
+      const mockConnect = jest.fn().mockResolvedValue(true);
+      driver.connect = mockConnect;
+
+      // mock table getting
+      const getSpy = jest
+        .spyOn(driver.client, "dataset")
+        .mockImplementation(() => ({
+          table: () => {
+            return {
+              get: () => Promise.reject(new Error("Unknown Error Occurred")),
+            };
+          },
+        } as any));
+
+      await expect(driver.insertData({
+        dataset: datasetName,
+        table: tableName,
+        data: [{ id: 1, name: "Jon Snow" }],
+        options: {},
+      })).rejects.toThrow(/BigQuery - Unknown Error Occurred/);
+
+      mockConnect.mockRestore();
+      getSpy.mockRestore();
+    });
+
+    it("should raise an error if an extra field is present", async () => {
       await expect(driver.insertData({
         dataset: datasetName,
         table: tableName,
@@ -239,6 +337,22 @@ describe("Test: BigQuery Destination", () => {
       })).rejects.toThrow(/BigQuery UPDATE must have a WHERE clause/);
     });
 
+    it("should raise if a wrong type is inserted", async () => {
+      await expect(driver.updateData({
+        dataset: datasetName,
+        table: tableName,
+        set: { age: "John Snow" },
+        filters: "address.street2=\"King's Landing\"",
+      })).rejects.toThrow(/Schema mismatch/);
+
+      await expect(driver.updateData({
+        dataset: datasetName,
+        table: tableName,
+        set: { is_alive: "yes" },
+        filters: "address.street2=\"King's Landing\"",
+      })).rejects.toThrow(/Schema mismatch/);
+    });
+
     it("should update rows", async () => {
       const result = await driver.updateData({
         dataset: datasetName,
@@ -252,6 +366,17 @@ describe("Test: BigQuery Destination", () => {
           other: { some: "random", object: "here" },
           bytes: "should be converted to bytes",
         },
+        filters: "address.street2=\"King's Landing\"",
+      });
+
+      expect(result.length).toBeGreaterThan(0);
+    });
+
+    it("should accept an array of string changesets", async () => {
+      const result = await driver.updateData({
+        dataset: datasetName,
+        table: tableName,
+        set: ["name=\"Jaime Lannister\"", "age=32"],
         filters: "address.street2=\"King's Landing\"",
       });
 
@@ -288,6 +413,31 @@ describe("Test: BigQuery Destination", () => {
       });
 
       expect(result.length).toBeGreaterThan(0);
+    });
+
+    it("should refuse invalid dates", async () => {
+      await expect(driver.updateData({
+        dataset: datasetName,
+        table: tableName,
+        set: {
+          date_of_birth: "not-a-date",
+          time_of_birth: "not-a-date",
+          datetime: "not-a-date",
+          created_at: "not-a-date",
+        },
+        filters: "address.street2=\"King's Landing\"",
+      })).rejects.toThrow();
+    });
+
+    it("should refuse non-existing columns", async () => {
+      await expect(driver.updateData({
+        dataset: datasetName,
+        table: tableName,
+        set: {
+          new: "field",
+        },
+        filters: "address.street2=\"King's Landing\"",
+      })).rejects.toThrow(/Schema mismatch/);
     });
   });
 

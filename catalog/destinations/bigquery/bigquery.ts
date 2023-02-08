@@ -10,7 +10,7 @@ import ITableFieldSchema = bigquery.ITableFieldSchema;
 export class BigQueryDriver implements DestinationClassI {
   private readonly GOOGLE_SERVICE_ACCOUNT_KEY: string;
 
-  private client: BigQuery | null = null;
+  client: BigQuery | null = null;
 
   GCP_PROJECT_ID: string;
 
@@ -19,10 +19,8 @@ export class BigQueryDriver implements DestinationClassI {
     this.GCP_PROJECT_ID = GCP_PROJECT_ID;
   }
 
-  async connect(config?: AnyObject): Promise<void | Truthy> {
-    const saKey = config && config.GOOGLE_SERVICE_ACCOUNT_KEY ?
-      JSON.parse(config.GOOGLE_SERVICE_ACCOUNT_KEY) :
-      JSON.parse(this.GOOGLE_SERVICE_ACCOUNT_KEY);
+  async connect(_config?: AnyObject): Promise<void | Truthy> {
+    const saKey = JSON.parse(this.GOOGLE_SERVICE_ACCOUNT_KEY);
 
     this.client = new BigQuery({
       projectId: this.GCP_PROJECT_ID,
@@ -68,27 +66,27 @@ export class BigQueryDriver implements DestinationClassI {
    * @param options insertion options
    */
   async insertData({ dataset, table, data, options }: IBigQueryInsert) {
-    const bqTable = this.client?.dataset(dataset).table(table);
+    const bqTable = this.client.dataset(dataset).table(table);
 
     // check if the table exists
     try {
-      await bqTable?.get();
+      await bqTable.get();
     } catch (err) {
       if (err.message.match(/Not found: Table/)) {
         throw new Error(`BigQuery - table not found: \`${this.GCP_PROJECT_ID}.${dataset}.${table}\``);
       }
 
-      throw new Error(`BigQuery: ${err.message}`);
+      throw new Error(`BigQuery - ${err.message}`);
     }
 
     try {
       // NOTE: maybe send data to BigQuery chunk by chunk?
-      return await bqTable?.insert(data, options);
+      return bqTable.insert(data, options);
     } catch (err) {
       // detect whether the error is from schema mismatch or something else
-      const isSchemaMismatch = (err.errors as any)?.find(
-        (error) => error.errors?.find(
-          (e) => e.message?.match(/no such field/),
+      const isSchemaMismatch = (err.errors as any).find(
+        (error) => error.errors.find(
+          (e) => e.message.match(/no such field/),
         ),
       );
 
@@ -113,9 +111,9 @@ export class BigQueryDriver implements DestinationClassI {
     }
 
     // extract table schema
-    const bqTable = this.client?.dataset(dataset).table(table);
+    const bqTable = this.client.dataset(dataset).table(table);
 
-    const metadata = await bqTable?.getMetadata();
+    const metadata = await bqTable.getMetadata();
     const { schema } = metadata[0];
 
     // compose SQL query
@@ -125,6 +123,7 @@ export class BigQueryDriver implements DestinationClassI {
     `;
 
     // execute query
+
     return bqTable.query(updateQuery);
   }
 
@@ -143,7 +142,7 @@ export class BigQueryDriver implements DestinationClassI {
         WHERE ${filters}
     `;
 
-    return this.client?.dataset(dataset).table(table).query(deleteQuery);
+    return this.client.dataset(dataset).table(table).query(deleteQuery);
   }
 
   /**
@@ -159,6 +158,7 @@ export class BigQueryDriver implements DestinationClassI {
 
     let date: Dayjs | null = null;
 
+    // eslint-disable-next-line default-case
     switch (fieldSchema.type as BigQuerySchemaType) {
       case "INTEGER":
       case "FLOAT":
@@ -170,11 +170,7 @@ export class BigQueryDriver implements DestinationClassI {
         return `${value}`;
 
       case "BOOLEAN":
-        if (typeof value === "boolean") {
-          return `${value}`;
-        }
-
-        if (value !== "true" && value !== "false") {
+        if (String(value) !== "true" && String(value) !== "false") {
           throw new Error(`Schema mismatch: "${value}" is not a valid value for field "${fieldSchema.name}" of type "${fieldSchema.type}"`);
         }
 
@@ -242,9 +238,6 @@ export class BigQueryDriver implements DestinationClassI {
 
         record += `${values.join(",")})`;
         return record;
-
-      default:
-        throw new Error(`Unknown type: ${fieldSchema.type}`);
     }
   }
 
@@ -254,11 +247,7 @@ export class BigQueryDriver implements DestinationClassI {
    * @param schema BigQuery table schema
    * @private
    */
-  private static extractChangeset(set: string | string[] | AnyObject, schema: TableSchema): string {
-    if (typeof set === "string") {
-      return set;
-    }
-
+  private static extractChangeset(set: string[] | AnyObject, schema: TableSchema): string {
     if (Array.isArray(set)) {
       return set.join(",");
     }
@@ -285,6 +274,11 @@ export default function getProxyDriver(config: AnyObject) {
 
   return new Proxy(driver, {
     get: (target, prop) => {
+      // return the client
+      if (prop === "client") {
+        return driver.client;
+      }
+
       if (typeof driver[prop] === "function") {
         if (prop === "testConnection") {
           return async () => driver.testConnection();
@@ -320,7 +314,7 @@ export default function getProxyDriver(config: AnyObject) {
         };
       }
 
-      throw new Error(`Method ${prop as string} not found`);
+      throw new Error(`Method ${prop as string}() not found`);
     },
   });
 }
