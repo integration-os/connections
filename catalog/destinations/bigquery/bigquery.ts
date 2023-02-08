@@ -1,3 +1,4 @@
+import dayjs, { Dayjs } from "dayjs";
 import { BigQuery, TableSchema } from "@google-cloud/bigquery";
 import bigquery from "@google-cloud/bigquery/build/src/types";
 
@@ -77,9 +78,11 @@ export class BigQueryDriver implements DestinationClassI {
     try {
       await bqTable.get();
     } catch (err) {
-      // TODO: table not found, store to the letters archive
-      console.log(`table \`${this.GCP_PROJECT_ID}.${dataset}.${table}\` not found`);
-      return null;
+      if (err.message.match(/Not found: Table/)) {
+        throw new Error(`BigQuery: table \`${this.GCP_PROJECT_ID}.${dataset}.${table}\` not found`);
+      }
+
+      throw new Error(`BigQuery: ${err.message}`);
     }
 
     // attempt data insertion
@@ -87,9 +90,18 @@ export class BigQueryDriver implements DestinationClassI {
       // NOTE: maybe send data to BigQuery chunk by chunk?
       return await bqTable.insert(data, options);
     } catch (err) {
-      // TODO data does not match the schema, store to the letters archive
-      console.log("Schema-altering action");
-      return null;
+      // detect whether the error is from schema mismatch or something else
+      const isSchemaAltering = (err.errors as any)?.find(
+        (error) => error.errors?.find(
+          (e) => e.message?.match(/no such field/),
+        ),
+      );
+
+      if (isSchemaAltering) {
+        throw new Error(`BigQuery: Schema mismatch - ${isSchemaAltering.errors[0].message}`);
+      }
+
+      throw err;
     }
   }
 
@@ -157,23 +169,69 @@ export class BigQueryDriver implements DestinationClassI {
     let record: string;
     let values: string[];
 
+    let date: Dayjs | null = null;
+
     switch (fieldSchema.type as BigQuerySchemaType) {
       case "INTEGER":
       case "FLOAT":
       case "NUMERIC":
       case "BIGNUMERIC":
+        if (Number.isNaN(parseFloat(value as string))) {
+          throw new Error(`Schema mismatch: "${value}" is not a valid value for field "${fieldSchema.name}" of type "${fieldSchema.type}"`);
+        }
+        return `${value}`;
+
       case "BOOLEAN":
+        if (typeof value === "boolean") {
+          return `${value}`;
+        }
+
+        if (value !== "true" && value !== "false") {
+          throw new Error(`Schema mismatch: "${value}" is not a valid value for field "${fieldSchema.name}" of type "${fieldSchema.type}"`);
+        }
+
+        // fallback
         return `${value}`;
 
       case "STRING":
+        return `"${value}"`;
+
       case "DATE":
+        date = dayjs(value as string);
+
+        if (date.isValid()) {
+          return `"${date.format("YYYY-MM-DD")}"`;
+        }
+
+        return `"${value}"`;
       case "TIME":
+        date = dayjs(value as string);
+
+        if (date.isValid()) {
+          return `"${date.format("HH:mm:ss")}"`;
+        }
+
+        return `"${value}"`;
       case "DATETIME":
-      case "GEOGRAPHY": // value must conform to BigQuery Geography type. See https://cloud.google.com/bigquery/docs/geospatial-data
+        date = dayjs(value as string);
+
+        if (date.isValid()) {
+          return `"${date.format("YYYY-MM-DD HH:mm:ss")}"`;
+        }
+
         return `"${value}"`;
 
       case "TIMESTAMP":
+        date = dayjs(value as string);
+
+        if (date.isValid()) {
+          return `timestamp("${date.format("YYYY-MM-DD HH:mm:ss")}")`;
+        }
+
         return `timestamp("${value}")`;
+
+      case "GEOGRAPHY": // value must conform to BigQuery Geography type. See https://cloud.google.com/bigquery/docs/geospatial-data
+        return `ST_GEOGFROMTEXT("${value}")`;
 
       case "JSON":
         return `JSON '${JSON.stringify(value)}'`;
