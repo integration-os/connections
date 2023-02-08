@@ -1,3 +1,4 @@
+import axios, { AxiosInstance } from "axios";
 import {
   AnyObject,
   DeleteWebhookEndpointProps,
@@ -13,17 +14,19 @@ import {
   TestConnection,
 } from "../../../types/sourceClassDefinition";
 
-import axios, { AxiosInstance } from "axios";
-
 const sleep = (n) => new Promise((resolve) => setTimeout(resolve, n));
 
 export default class AdyenIntegration implements IntegrationClassI {
   id: string;
+
   name: string;
 
   readonly client: AxiosInstance;
+
   private readonly ADYEN_API_KEY: string;
+
   private readonly ADYEN_VERIFICATION_USERNAME: string;
+
   private readonly ADYEN_VERIFICATION_PASSWORD: string;
 
   constructor({
@@ -93,17 +96,16 @@ export default class AdyenIntegration implements IntegrationClassI {
   async verifyWebhookSignature({
     request,
     signature,
-    secret,
   }: VerifyWebhookSignatureProps): Promise<Truthy> {
-    secret = Buffer.from(
+    const secret = Buffer.from(
       `${this.ADYEN_VERIFICATION_USERNAME}:${this.ADYEN_VERIFICATION_PASSWORD}`,
     ).toString("base64");
 
-    signature = signature
+    const verificationSignature = signature
       ? signature.split("Basic")[1].trim()
-      : request.headers["authorization"].split("Basic")[1].trim();
+      : (request.headers as any).authorization.split("Basic")[1].trim();
 
-    if (secret !== signature) {
+    if (secret !== verificationSignature) {
       throw new Error("Invalid signature");
     }
 
@@ -125,7 +127,7 @@ export default class AdyenIntegration implements IntegrationClassI {
     );
 
     // subscribe to events
-    const url = webhooks[0].url;
+    const { url } = webhooks[0];
     const { webhookData: newWebhooks, events: newEvents } = await this.init({
       webhookUrl: url,
       events: eventsToSubscribe,
@@ -149,13 +151,9 @@ export default class AdyenIntegration implements IntegrationClassI {
 
     // find webhooks to delete
     const subscribedEvents = webhooks.map((webhook) => webhook.type);
-    const eventsToUnsubscribe = events.filter((event) =>
-      subscribedEvents.includes(event),
-    );
+    const eventsToUnsubscribe = events.filter((event) => subscribedEvents.includes(event));
 
-    const webhooksToDelete = webhooks.filter((webhook) =>
-      eventsToUnsubscribe.includes(webhook.type),
-    );
+    const webhooksToDelete = webhooks.filter((webhook) => eventsToUnsubscribe.includes(webhook.type));
 
     // delete webhooks
     const deletedWebhooks = [];
@@ -172,8 +170,7 @@ export default class AdyenIntegration implements IntegrationClassI {
         (webhook) => !deletedWebhooks.includes(webhook),
       ),
       events: subscribedEvents.filter(
-        (event) =>
-          !deletedWebhooks.map((webhook) => webhook.type).includes(event),
+        (event) => !deletedWebhooks.map((webhook) => webhook.type).includes(event),
       ),
     };
   }
@@ -208,7 +205,7 @@ export default class AdyenIntegration implements IntegrationClassI {
   }
 
   async testConnection(): Promise<TestConnection> {
-    await this.client.get(``);
+    await this.client.get("");
 
     return {
       success: true,

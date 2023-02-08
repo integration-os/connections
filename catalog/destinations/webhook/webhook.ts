@@ -15,7 +15,9 @@ export type Method =
 
 export default class Webhook {
   WEBHOOK_URL: string;
+
   WEBHOOK_METHOD: Method;
+
   WEBHOOK_HEADERS: string;
 
   constructor({
@@ -41,7 +43,7 @@ export default class Webhook {
     signatureHeaderValue: string;
     payload: any;
   }): Promise<any> {
-    const response = await axios({
+    return axios({
       url: this.WEBHOOK_URL,
       method: this.WEBHOOK_METHOD,
       headers: {
@@ -50,8 +52,6 @@ export default class Webhook {
       },
       data: payload,
     });
-
-    return response;
   }
 
   async testConnection(): Promise<TestConnection> {

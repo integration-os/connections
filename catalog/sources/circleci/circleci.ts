@@ -1,3 +1,5 @@
+import crypto from "crypto";
+import axios from "axios";
 import {
   AnyObject,
   DeleteWebhookEndpointProps,
@@ -13,15 +15,15 @@ import {
   TestConnection,
 } from "../../../types/sourceClassDefinition";
 
-import crypto from "crypto";
-import axios from "axios";
-
 export default class CircleCIIntegration implements IntegrationClassI {
   id: string;
+
   name: string;
 
   readonly CIRCLECI_API_KEY: string;
+
   CIRCLECI_PROJECT_ID: string;
+
   CIRCLECI_WEBHOOK_NAME: string;
 
   readonly client;
@@ -51,7 +53,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
     const response = await this.client.post("", {
       name: this.CIRCLECI_WEBHOOK_NAME,
       url: webhookUrl,
-      events: events,
+      events,
       scope: {
         id: this.CIRCLECI_PROJECT_ID,
         type: "project",
@@ -69,7 +71,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
     const webhookData = response.data;
 
     return {
-      webhookData: webhookData,
+      webhookData,
       events: webhookData.events,
     };
   }
@@ -77,7 +79,6 @@ export default class CircleCIIntegration implements IntegrationClassI {
   async verifyWebhookSignature({
     request,
     signature,
-    secret,
   }: VerifyWebhookSignatureProps): Promise<Truthy> {
     // CircleCI webhook signature is available in 'circleci-signature' header
     // The headers contains comma separated list of hashes as follows:
@@ -85,7 +86,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
     // As the time of writing this code, the latest and only version is v1
     // and is a HMAC-SHA256, hex encoded value
 
-    secret = this.CIRCLECI_API_KEY;
+    const secret = this.CIRCLECI_API_KEY;
 
     const hash = crypto
       .createHmac("sha256", secret)
@@ -100,7 +101,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
     const pureSignature = signature.split("v1=")[1].trim().split(",")[0].trim();
 
     if (hash !== pureSignature) {
-      throw new Error(`Invalid signature`);
+      throw new Error("Invalid signature");
     }
 
     return true;
@@ -158,7 +159,7 @@ export default class CircleCIIntegration implements IntegrationClassI {
     }
 
     return {
-      webhook: webhook,
+      webhook,
       events: newEventsList,
     };
   }

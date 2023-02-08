@@ -17,7 +17,9 @@ import {
 export default class PaypalIntegration implements IntegrationClassI {
   // just a random string
   id = "intg_182b1e2fc12";
+
   name = "Paypal";
+
   constructor({
     PAYPAL_CLIENT_ID,
     PAYPAL_CLIENT_SECRET,
@@ -30,7 +32,7 @@ export default class PaypalIntegration implements IntegrationClassI {
     const mode = environment === "live" ? "live" : "sandbox";
 
     paypal.configure({
-      mode, //sandbox or live
+      mode, // sandbox or live
       client_id: PAYPAL_CLIENT_ID,
       client_secret: PAYPAL_CLIENT_SECRET,
     });
@@ -43,7 +45,7 @@ export default class PaypalIntegration implements IntegrationClassI {
           url: webhookUrl,
           event_types: events.map((event) => ({ name: event })),
         },
-        function (error, webhook) {
+        (error, webhook) => {
           if (error) {
             reject(error.response.message);
           } else {
@@ -72,7 +74,7 @@ export default class PaypalIntegration implements IntegrationClassI {
           // suggests body should be a string
           request.body as any,
           webhookId,
-          function (error, response) {
+          (error, response) => {
             if (error) {
               console.log(error);
               throw error;
@@ -85,7 +87,7 @@ export default class PaypalIntegration implements IntegrationClassI {
                 resolve(true);
               } else {
                 console.log("It was a failed verification");
-                reject("Unable to verify signature.");
+                reject(Error("Unable to verify signature."));
               }
             }
           },
@@ -95,9 +97,7 @@ export default class PaypalIntegration implements IntegrationClassI {
     // try to verify the signature with each webhook id as we have no way to know which webhook to attribute the event to
     return (
       await Promise.all(
-        webhookIds.map((webhookId) =>
-          verifyHelper(webhookId).catch(() => false),
-        ),
+        webhookIds.map((webhookId) => verifyHelper(webhookId).catch(() => false)),
       )
     ).some(Boolean);
   }
@@ -155,7 +155,7 @@ export default class PaypalIntegration implements IntegrationClassI {
 
   async getSubscribedEvents({ webhookId }: WebhooksProps): Promise<Events> {
     return new Promise((resolve, reject) => {
-      paypal.notification.webhook.get(webhookId, function (error, webhook) {
+      paypal.notification.webhook.get(webhookId, (error, webhook) => {
         if (error) {
           reject(error.message);
         } else {

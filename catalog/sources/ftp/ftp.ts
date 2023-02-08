@@ -1,6 +1,6 @@
-import { TestConnection } from "../../../types/sourceClassDefinition";
 import bytes from "bytes";
 import ftp from "ftp";
+import { TestConnection } from "../../../types/sourceClassDefinition";
 
 interface FTPConfig {
   name: string;
@@ -14,12 +14,12 @@ interface FTPConfig {
   FTP_EXTRACTOR_FILE_TYPE: string;
   FTP_EXTRACTOR_RECORD_COUNT_LIMIT: number;
   FTP_EXTRACTOR_FILE_SIZE_LIMIT: string;
-};
+}
 
 const handleMaximumExtractorFileSize = (extractorFileSizeLimit: string) => {
   let extractorFileSizeBytes: number = bytes.parse(extractorFileSizeLimit);
 
-  if (extractorFileSizeBytes < 0) 
+  if (extractorFileSizeBytes < 0)
     throw new Error("Invalid file size limit. Please use a valid file size limit (e.g. 5mb, 100mb, 1gb, etc.");
 
   if (extractorFileSizeBytes > bytes.parse("5gb")) {
@@ -27,7 +27,7 @@ const handleMaximumExtractorFileSize = (extractorFileSizeLimit: string) => {
   }
 
   return extractorFileSizeBytes;
-}
+};
 
 const EVENT_NAMES = [
   "connection.connected",
@@ -42,7 +42,7 @@ const EVENT_NAMES = [
   "file.parsed.failed",
   "record.parsed",
   "record.unknown",
-  "record.size.maximum-limit-exceeded"
+  "record.size.maximum-limit-exceeded",
 ];
 
 const getFTPClient = (config: {
@@ -52,6 +52,7 @@ const getFTPClient = (config: {
   FTP_PASSWORD: string;
   FTP_PATH: string;
 }): Promise<boolean> => {
+  // eslint-disable-next-line new-cap
   const client = new ftp();
 
   return new Promise((resolve, reject) => {
@@ -62,32 +63,41 @@ const getFTPClient = (config: {
       password: config.FTP_PASSWORD,
     });
 
-    client.on('ready', () => {
+    client.on("ready", () => {
       // client.list(config.FTP_PATH, (err, list) => {
       //   if (err) reject(err);
-    
+
       //   resolve(true);
       // });
 
       resolve(true);
     });
 
-    client.on('error', (err: any) => {
+    client.on("error", (err: any) => {
       reject(err);
     });
   });
-}
+};
 
 export default class FTP {
   FTP_HOST: string;
+
   FTP_PORT: number;
+
   FTP_USER: string;
+
   FTP_PASSWORD: string;
+
   FTP_PATH: string;
+
   FTP_EXTRACTOR_ENABLED: boolean;
+
   FTP_SCAN_INTERVAL: string;
+
   FTP_EXTRACTOR_FILE_TYPE: string;
+
   FTP_EXTRACTOR_RECORD_COUNT_LIMIT: number;
+
   FTP_EXTRACTOR_FILE_SIZE_LIMIT: number;
 
   constructor({
@@ -103,7 +113,7 @@ export default class FTP {
     FTP_EXTRACTOR_FILE_SIZE_LIMIT = "100mb",
   }: FTPConfig) {
     this.FTP_HOST = FTP_HOST;
-    this.FTP_PORT = parseInt(FTP_PORT);
+    this.FTP_PORT = parseInt(FTP_PORT, 10);
     this.FTP_USER = FTP_USER;
     this.FTP_PASSWORD = FTP_PASSWORD;
     this.FTP_PATH = FTP_PATH;
@@ -114,7 +124,7 @@ export default class FTP {
     this.FTP_EXTRACTOR_FILE_SIZE_LIMIT = handleMaximumExtractorFileSize(FTP_EXTRACTOR_FILE_SIZE_LIMIT);
   }
 
-  async init({ webhookUrl, events }) {
+  async init({ events }) {
     return {
       webhookData: {},
       events,
@@ -129,7 +139,7 @@ export default class FTP {
   async subscribe({ webhookId, events }) {
     return {
       webhook: {},
-      events: EVENT_NAMES
+      events: EVENT_NAMES,
     };
   }
 

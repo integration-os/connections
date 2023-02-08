@@ -17,7 +17,9 @@ import {
 
 export default class SquareIntegration implements IntegrationClassI {
   id = "sandbox-sq0idb-TFf_EmComK7MWat_w3hznQ";
+
   name = "Square";
+
   square: Client;
 
   readonly SQUARE_SECRET_KEY: string;
@@ -180,7 +182,7 @@ export default class SquareIntegration implements IntegrationClassI {
       };
     } catch (e) {
       throw new Error(
-        "Unable to establish a connection with Square: " + (e as Error).message,
+        `Unable to establish a connection with Square: ${(e as Error).message}`,
       );
     }
   }

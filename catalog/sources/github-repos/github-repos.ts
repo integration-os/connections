@@ -3,6 +3,7 @@
 
 import { Octokit } from "@octokit/core";
 
+import crypto from "crypto";
 import {
   AnyObject,
   DeleteWebhookEndpointProps,
@@ -17,14 +18,16 @@ import {
   VerifyWebhookSignatureProps,
   WebhooksProps,
 } from "../../../types/sourceClassDefinition";
-import crypto from "crypto";
 
 export default class GitHubReposIntegration implements IntegrationClassI {
   id: string;
+
   name: string;
 
   readonly GITHUB_REPOS_ACCESS_TOKEN: string; // Generated from GitHub account
+
   GITHUB_REPOS_ACCOUNT_USERNAME: string; // Account name i.e. buildable
+
   GITHUB_REPOS_REPOSITORY: string; // Repository name i.e. event-integrations
 
   readonly octokit: Octokit;
@@ -56,7 +59,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
         repo: this.GITHUB_REPOS_REPOSITORY,
         name: "web", // "web" stands for "webhook"
         active: true,
-        events: events,
+        events,
         config: {
           url: webhookUrl,
           secret: this.GITHUB_REPOS_ACCESS_TOKEN,
@@ -72,11 +75,10 @@ export default class GitHubReposIntegration implements IntegrationClassI {
   async verifyWebhookSignature({
     request,
     signature,
-    secret,
   }: VerifyWebhookSignatureProps): Promise<Truthy> {
     // Override secret because the webhook creation
     // returns "******" as the secret value
-    secret = this.GITHUB_REPOS_ACCESS_TOKEN;
+    const secret = this.GITHUB_REPOS_ACCESS_TOKEN;
 
     const hash = crypto
       .createHmac("sha256", secret)
@@ -84,7 +86,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
       .digest("hex");
 
     if (`sha256=${hash}` !== signature) {
-      throw new Error(`Invalid signature`);
+      throw new Error("Invalid signature");
     }
 
     return true;
@@ -113,7 +115,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     // return new webhooks
     return {
       webhook: newWebhook.data,
-      events: events,
+      events,
     };
   }
 
@@ -186,7 +188,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
       return true;
     } catch (e) {
       console.log((e as Error).message);
-      throw new Error("Unable to delete webhook: " + (e as Error).message);
+      throw new Error(`Unable to delete webhook: ${(e as Error).message}`);
     }
   }
 
@@ -205,7 +207,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
     } catch (e) {
       console.log((e as Error).message);
       throw new Error(
-        "Unable to establish a connection with GitHub: " + (e as Error).message,
+        `Unable to establish a connection with GitHub: ${(e as Error).message}`,
       );
     }
   }

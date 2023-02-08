@@ -15,6 +15,7 @@ import {
   TestConnection,
 } from "../../../types/sourceClassDefinition";
 
+// eslint-disable-next-line no-shadow
 enum EventType {
   accounts = "accounts",
   issuing = "issuing",
@@ -37,11 +38,15 @@ interface WorkflowCondition {
 
 export default class CheckoutIntegration implements IntegrationClassI {
   id: string;
+
   name: string;
 
   private readonly apiKeySecret: string;
+
   private readonly environment: string = "sandbox";
+
   private readonly webhookSignKey: string;
+
   private readonly checkout: AxiosInstance;
 
   constructor({
@@ -238,7 +243,7 @@ export default class CheckoutIntegration implements IntegrationClassI {
    *
    */
   private eventsToWorkflowConditions(events: Events): WorkflowConditionEvents {
-    let workflowCondition: WorkflowConditionEvents = {
+    const workflowCondition: WorkflowConditionEvents = {
       [EventType.accounts]: [],
       [EventType.cardPayout]: [],
       [EventType.issuing]: [],
@@ -265,12 +270,12 @@ export default class CheckoutIntegration implements IntegrationClassI {
   private workflowConditionsToEvents(
     conditions: WorkflowConditionEvents,
   ): Events {
-    let result: string[] = [];
+    const result: string[] = [];
+
+    // eslint-disable-next-line guard-for-in
     for (const key in conditions) {
       const conditionEvents = conditions[key];
-      conditionEvents.forEach((conditionEvent) =>
-        result.push(`${key}.${conditionEvent}`),
-      );
+      conditionEvents.forEach((conditionEvent) => result.push(`${key}.${conditionEvent}`));
     }
     return result;
   }
@@ -279,7 +284,8 @@ export default class CheckoutIntegration implements IntegrationClassI {
     const eventCondition = webhookData.conditions.find(
       (condition) => condition.type === "event",
     );
-    webhookData["events"] = this.workflowConditionsToEvents(
+    // eslint-disable-next-line no-param-reassign
+    webhookData.events = this.workflowConditionsToEvents(
       eventCondition.events,
     );
     return webhookData;
