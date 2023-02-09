@@ -1,3 +1,4 @@
+import dayjs, { Dayjs } from "dayjs";
 import { BigQuery, TableSchema } from "@google-cloud/bigquery";
 import bigquery from "@google-cloud/bigquery/build/src/types";
 
@@ -18,10 +19,8 @@ export class BigQueryDriver implements DestinationClassI {
     this.GCP_PROJECT_ID = GCP_PROJECT_ID;
   }
 
-  async connect(config?: AnyObject): Promise<void | Truthy> {
-    const saKey = config && config.GOOGLE_SERVICE_ACCOUNT_KEY ?
-      JSON.parse(config.GOOGLE_SERVICE_ACCOUNT_KEY) :
-      JSON.parse(this.GOOGLE_SERVICE_ACCOUNT_KEY);
+  async connect(_config?: AnyObject): Promise<void | Truthy> {
+    const saKey = JSON.parse(this.GOOGLE_SERVICE_ACCOUNT_KEY);
 
     this.client = new BigQuery({
       projectId: this.GCP_PROJECT_ID,
@@ -44,7 +43,7 @@ export class BigQueryDriver implements DestinationClassI {
       WHERE state = 'TX'
       LIMIT 1`;
 
-    const response = await this.client!.query(query);
+    const response = await this.client.query(query);
 
     if (!response) {
       return {
@@ -67,29 +66,35 @@ export class BigQueryDriver implements DestinationClassI {
    * @param options insertion options
    */
   async insertData({ dataset, table, data, options }: IBigQueryInsert) {
-    if (!this.client) {
-      throw new Error("Connection to BigQuery not established");
-    }
-
     const bqTable = this.client.dataset(dataset).table(table);
 
     // check if the table exists
     try {
       await bqTable.get();
     } catch (err) {
-      // TODO: table not found, store to the letters archive
-      console.log(`table \`${this.GCP_PROJECT_ID}.${dataset}.${table}\` not found`);
-      return null;
+      if (err.message.match(/Not found: Table/)) {
+        throw new Error(`BigQuery - table not found: \`${this.GCP_PROJECT_ID}.${dataset}.${table}\``);
+      }
+
+      throw new Error(`BigQuery - ${err.message}`);
     }
 
-    // attempt data insertion
     try {
       // NOTE: maybe send data to BigQuery chunk by chunk?
-      return await bqTable.insert(data, options);
+      return bqTable.insert(data, options);
     } catch (err) {
-      // TODO data does not match the schema, store to the letters archive
-      console.log("Schema-altering action");
-      return null;
+      // detect whether the error is from schema mismatch or something else
+      const isSchemaMismatch = (err.errors as any).find(
+        (error) => error.errors.find(
+          (e) => e.message.match(/no such field/),
+        ),
+      );
+
+      if (isSchemaMismatch) {
+        throw new Error(`BigQuery - Schema mismatch: ${isSchemaMismatch.errors[0].message}`);
+      }
+
+      throw err;
     }
   }
 
@@ -101,10 +106,6 @@ export class BigQueryDriver implements DestinationClassI {
    * @param filters criteria to match for, written as a SQL `WHERE` clause
    */
   async updateData({ dataset, table, filters, set }: IBigQueryUpdate) {
-    if (!this.client) {
-      throw new Error("Connection to BigQuery not established");
-    }
-
     if (!filters || !filters.length) {
       throw new Error("BigQuery UPDATE must have a WHERE clause");
     }
@@ -122,6 +123,7 @@ export class BigQueryDriver implements DestinationClassI {
     `;
 
     // execute query
+
     return bqTable.query(updateQuery);
   }
 
@@ -132,10 +134,6 @@ export class BigQueryDriver implements DestinationClassI {
    * @param filters criteria to match for, written as a SQL `WHERE` clause
    */
   async deleteData({ dataset, table, filters }: IBigQueryDelete) {
-    if (!this.client) {
-      throw new Error("Connection to BigQuery not established");
-    }
-
     if (!filters || !filters.length) {
       throw new Error("BigQuery DELETE must have a WHERE clause");
     }
@@ -144,36 +142,80 @@ export class BigQueryDriver implements DestinationClassI {
         WHERE ${filters}
     `;
 
-    await this.client.dataset(dataset).table(table).query(deleteQuery);
+    return this.client.dataset(dataset).table(table).query(deleteQuery);
   }
 
   /**
    * Parses the passed value into a BigQuery SQL-DML compliant query string
+   * @param key column name
    * @param value value to parse
    * @param fieldSchema BigQuery field schema
    * @private
    */
-  private static parseValue(value: String | AnyObject, fieldSchema: ITableFieldSchema): string {
+  private static parseValue(key: string, value: String | AnyObject, fieldSchema: ITableFieldSchema): string {
     let record: string;
     let values: string[];
 
+    let date: Dayjs | null = null;
+
+    // eslint-disable-next-line default-case
     switch (fieldSchema.type as BigQuerySchemaType) {
       case "INTEGER":
       case "FLOAT":
       case "NUMERIC":
       case "BIGNUMERIC":
+        if (Number.isNaN(parseFloat(value as string))) {
+          throw new Error(`Schema mismatch: "${value}" is not a valid value for field "${fieldSchema.name}" of type "${fieldSchema.type}"`);
+        }
+        return `${value}`;
+
       case "BOOLEAN":
+        if (String(value) !== "true" && String(value) !== "false") {
+          throw new Error(`Schema mismatch: "${value}" is not a valid value for field "${fieldSchema.name}" of type "${fieldSchema.type}"`);
+        }
+
+        // fallback
         return `${value}`;
 
       case "STRING":
+        return `"${value}"`;
+
       case "DATE":
+        date = dayjs(value as string);
+
+        if (date.isValid()) {
+          return `"${date.format("YYYY-MM-DD")}"`;
+        }
+
+        return `"${value}"`;
       case "TIME":
+        date = dayjs(value as string);
+
+        if (date.isValid()) {
+          return `"${date.format("HH:mm:ss")}"`;
+        }
+
+        return `"${value}"`;
       case "DATETIME":
-      case "GEOGRAPHY": // value must conform to BigQuery Geography type. See https://cloud.google.com/bigquery/docs/geospatial-data
+        date = dayjs(value as string);
+
+        if (date.isValid()) {
+          return `"${date.format("YYYY-MM-DD HH:mm:ss")}"`;
+        }
+
         return `"${value}"`;
 
       case "TIMESTAMP":
+        date = dayjs(value as string);
+
+        if (date.isValid()) {
+          return `timestamp("${date.format("YYYY-MM-DD HH:mm:ss")}")`;
+        }
+
         return `timestamp("${value}")`;
+
+      case "GEOGRAPHY": // value must conform to BigQuery Geography type. See https://cloud.google.com/bigquery/docs/geospatial-data
+        return `ST_GEOGFROMTEXT("${value}")`;
 
       case "JSON":
         return `JSON '${JSON.stringify(value)}'`;
@@ -184,16 +226,18 @@ export class BigQueryDriver implements DestinationClassI {
       case "RECORD":
         record = "STRUCT(";
 
-        values = Object.entries(value).map(([k, v]) => {
-          const schema = fieldSchema.fields.find((f) => f.name === k);
-          return BigQueryDriver.parseValue(v, schema);
+        values = fieldSchema.fields.map((field) => {
+          const v = value[field.name];
+
+          if (v) {
+            return BigQueryDriver.parseValue(field.name, v, field);
+          }
+
+          return `${key}.${field.name}`;
         });
 
         record += `${values.join(",")})`;
         return record;
-
-      default:
-        throw new Error(`Unknown type: ${fieldSchema.type}`);
     }
   }
 
@@ -203,11 +247,7 @@ export class BigQueryDriver implements DestinationClassI {
    * @param schema BigQuery table schema
    * @private
    */
-  private static extractChangeset(set: string | string[] | AnyObject, schema: TableSchema): string {
-    if (typeof set === "string") {
-      return set;
-    }
-
+  private static extractChangeset(set: string[] | AnyObject, schema: TableSchema): string {
     if (Array.isArray(set)) {
       return set.join(",");
     }
@@ -217,10 +257,10 @@ export class BigQueryDriver implements DestinationClassI {
       const keySchema: ITableFieldSchema | undefined = schema.fields.find((field) => field.name === key);
 
       if (!keySchema) {
-        throw new Error("Schema-altering update");
+        throw new Error(`Schema mismatch: ${key} not found`);
       }
 
-      query += BigQueryDriver.parseValue(value, keySchema);
+      query += BigQueryDriver.parseValue(key, value, keySchema);
 
       return query;
     });
@@ -229,17 +269,40 @@ export class BigQueryDriver implements DestinationClassI {
   }
 }
 
-const getProxyDriver = (config: AnyObject) => {
+export default function getProxyDriver(config: AnyObject) {
   const driver = new BigQueryDriver(config);
 
   return new Proxy(driver, {
     get: (target, prop) => {
+      // return the client
+      if (prop === "client") {
+        return driver.client;
+      }
+
       if (typeof driver[prop] === "function") {
+        if (prop === "testConnection") {
+          return async () => driver.testConnection();
+        }
+
+        // Force the proxy to return a Promise that only resolves once the connection has been established
+        if (prop === "connect") {
+          return async () => {
+            await driver.connect();
+          };
+        }
+
+        // Force the proxy to return a Promise that only resolves once the connection has been dropped
+        if (prop === "disconnect") {
+          return async () => {
+            await driver.disconnect();
+          };
+        }
+
         return async (payload) => {
           try {
             await driver.connect();
 
-            const result = await driver[prop](payload);
+            const result = await target[prop](payload);
 
             await driver.disconnect();
 
@@ -251,9 +314,7 @@ const getProxyDriver = (config: AnyObject) => {
         };
       }
 
-      throw new Error(`Method ${prop as string} not found`);
+      throw new Error(`Method ${prop as string}() not found`);
     },
   });
-};
-
-export default getProxyDriver;
+}
