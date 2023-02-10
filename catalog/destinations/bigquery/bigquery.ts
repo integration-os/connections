@@ -34,7 +34,7 @@ export class BigQueryDriver implements DestinationClassI {
 
   async testConnection(): Promise<TestConnection> {
     if (!this.client) {
-      throw new Error("Connection to BigQuery not established");
+      await this.connect();
     }
 
     // A sample query
@@ -123,7 +123,6 @@ export class BigQueryDriver implements DestinationClassI {
     `;
 
     // execute query
-
     return bqTable.query(updateQuery);
   }
 
