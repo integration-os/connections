@@ -45,6 +45,8 @@ export class BigQueryDriver implements DestinationClassI {
 
     const response = await this.client.query(query);
 
+    await this.disconnect();
+
     if (!response) {
       return {
         success: false,

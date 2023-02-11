@@ -91,7 +91,7 @@
   },
   "paths": {
     "id": "_.body.id",
-    "event": "_.body.event_type",
+    "event": "_.body.event_name",
     "payload": "_.body",
     "secret": "_.headers.x-gitlab-token",
     "signature": "_.headers.x-gitlab-token"
