@@ -2,7 +2,7 @@
   "title": "BigQuery",
   "description": "BigQuery is a fully-managed, serverless data warehouse provided by Google Cloud.",
   "apiVersion": "NA",
-  "platform": "google-cloud",
+  "type": "bigquery",
   "category": "database",
   "image": "https://assets.buildable.dev/catalog/node-templates/bigquery.svg",
   "tags": ["database", "db", "warehouse", "analytics", "olap"],
