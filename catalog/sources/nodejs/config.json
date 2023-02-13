@@ -11,7 +11,7 @@
   "settings": {
     "createBuildableEnvVars": false,
     "autoSubscribeAllEvents": false,
-    "autoAddAllEventsToPipeline": true,
+    "autoAddAllEventsToPipeline": false,
     "showSecret": true,
     "allowCustomEvents": true,
     "showEvents": false,
