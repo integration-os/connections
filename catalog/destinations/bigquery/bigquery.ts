@@ -119,10 +119,12 @@ export class BigQueryDriver implements DestinationClassI {
     const { schema } = metadata[0];
 
     // compose SQL query
-    const updateQuery = `UPDATE \`${this.GCP_PROJECT_ID}.${dataset}.${table}\`
+    const updateQuery = `UPDATE \`foodly-algeria.${dataset}.${table}\`
       SET ${BigQueryDriver.extractChangeset(set, schema)}
       WHERE ${filters}
     `;
+
+    console.log("Sending", updateQuery);
 
     // execute query
     return bqTable.query(updateQuery);
@@ -139,7 +141,7 @@ export class BigQueryDriver implements DestinationClassI {
       throw new Error("BigQuery DELETE must have a WHERE clause");
     }
 
-    const deleteQuery = `DELETE FROM \`${this.GCP_PROJECT_ID}.${dataset}.${table}\`
+    const deleteQuery = `DELETE FROM \`foodly-algeria.${dataset}.${table}\`
         WHERE ${filters}
     `;
 
