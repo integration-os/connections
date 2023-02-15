@@ -1,0 +1,32 @@
+{
+  "title": "BigQuery",
+  "description": "BigQuery is a fully-managed, serverless data warehouse provided by Google Cloud.",
+  "apiVersion": "NA",
+  "type": "bigquery",
+  "category": "database",
+  "image": "https://assets.buildable.dev/catalog/node-templates/bigquery.svg",
+  "tags": ["database", "db", "warehouse", "analytics", "olap"],
+  "authentication": [
+    {
+      "name": "GOOGLE_SERVICE_ACCOUNT_KEY",
+      "label": "Enter your Service Account Key content",
+      "placeholder": "{\"type\": \"service_account\", \"project_id\": \"my-gcp-project\", ..."
+    },
+    {
+      "name": "GOOGLE_PROJECT_ID",
+      "label": "Enter your Project ID",
+      "placeholder": "my-gcp-project"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": ["insertData", "updateData", "deleteData", "executeRawQuery"],
+  "destinationType": "http"
+}

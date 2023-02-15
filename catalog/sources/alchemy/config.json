@@ -2,7 +2,7 @@
   "title": "Alchemy",
   "description": "The most powerful web3 development platform to build and scale your dApp with ease",
   "apiVersion": "V2",
-  "platform": "alchemy",
+  "type": "alchemy",
   "category": "web3",
   "image": "https://assets.buildable.dev/catalog/node-templates/alchemy.svg",
   "tags": ["blockchain", "web3", "nft"],

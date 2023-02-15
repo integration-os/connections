@@ -2,7 +2,7 @@
   "title": "Webhook",
   "description": "Send automated events to a custom Webhook URL.",
   "apiVersion": "NA",
-  "platform": "webhook",
+  "type": "webhook",
   "category": "webhook",
   "image": "https://assets.buildable.dev/catalog/node-templates/webhook.svg",
   "tags": ["webhook", "rest"],
@@ -50,7 +50,7 @@
       "name": "WEBHOOK_HEADERS",
       "label": "Enter your Webhook Headers",
       "placeholder": "",
-      "value": "{\"buildable-connection-platform\":\"webhook\"}",
+      "value": "{\"buildable-connection-type\":\"webhook\"}",
       "required": false
     }
   ],

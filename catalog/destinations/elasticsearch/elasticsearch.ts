@@ -1,17 +1,23 @@
+import { Client, ClientOptions } from "@elastic/elasticsearch";
 import {
   DestinationClassI,
   AnyObject,
   TestConnection,
 } from "../../../types/destinationClassDefinition";
-import { Client, ClientOptions } from "@elastic/elasticsearch";
 
 class ElasticSearchDriver implements DestinationClassI {
   ELASTICSEARCH_URL: string;
+
   ELASTICSEARCH_API_KEY: string;
+
   ELASTICSEARCH_BASIC_USER: string;
+
   ELASTICSEARCH_BASIC_PASSWORD: string;
+
   ELASTICSEARCH_TLS_CA: string;
+
   ELASTICSEARCH_CLOUD_ID: string;
+
   client: Client;
 
   constructor({ ELASTICSEARCH_URL, ELASTICSEARCH_API_KEY, ELASTICSEARCH_BASIC_USER, ELASTICSEARCH_BASIC_PASSWORD, ELASTICSEARCH_TLS_CA, ELASTICSEARCH_CLOUD_ID }: AnyObject) {
@@ -31,46 +37,47 @@ class ElasticSearchDriver implements DestinationClassI {
     const ELASTICSEARCH_TLS_CA = config ? config.ELASTICSEARCH_TLS_CA : this.ELASTICSEARCH_TLS_CA;
     const ELASTICSEARCH_CLOUD_ID = config ? config.ELASTICSEARCH_CLOUD_ID : this.ELASTICSEARCH_CLOUD_ID;
 
-    let clientConfig: ClientOptions = {
+    const clientConfig: ClientOptions = {
       node: ELASTICSEARCH_URL,
-    }
+    };
 
-    if(ELASTICSEARCH_API_KEY) {
+    if (ELASTICSEARCH_API_KEY) {
       clientConfig.auth = {
         apiKey: ELASTICSEARCH_API_KEY,
-      }
-    } else if(ELASTICSEARCH_BASIC_USER || ELASTICSEARCH_BASIC_PASSWORD) {
+      };
+    } else if (ELASTICSEARCH_BASIC_USER || ELASTICSEARCH_BASIC_PASSWORD) {
       clientConfig.auth = {
         username: ELASTICSEARCH_BASIC_USER,
         password: ELASTICSEARCH_BASIC_PASSWORD,
-      }
+      };
     }
 
-    if(ELASTICSEARCH_TLS_CA) {
+    if (ELASTICSEARCH_TLS_CA) {
       clientConfig.tls = {
         ca: ELASTICSEARCH_TLS_CA,
-      }
+      };
     }
 
-    if(ELASTICSEARCH_CLOUD_ID) {
+    if (ELASTICSEARCH_CLOUD_ID) {
       clientConfig.cloud = {
         id: ELASTICSEARCH_CLOUD_ID,
-      }
+      };
     }
 
     this.client = new Client(clientConfig);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   async disconnect() {
     return true;
   }
 
   async testConnection(): Promise<TestConnection> {
-    await this.client.cat.indices({ format: "json" })
+    await this.client.cat.indices({ format: "json" });
 
     return {
       success: true,
-      message: `Successfully connected to the elasticsearch instance!`,
+      message: "Successfully connected to the elasticsearch instance!",
     };
   }
 
@@ -78,7 +85,7 @@ class ElasticSearchDriver implements DestinationClassI {
     return this.client.index({
       index,
       document,
-      ...rest
+      ...rest,
     });
   }
 
@@ -86,7 +93,7 @@ class ElasticSearchDriver implements DestinationClassI {
     return this.client.delete({
       index,
       id,
-      ...rest
+      ...rest,
     });
   }
 
@@ -95,14 +102,14 @@ class ElasticSearchDriver implements DestinationClassI {
       index,
       id,
       doc,
-      ...rest
+      ...rest,
     });
   }
 
   async bulk({ operations, ...rest }) {
     return this.client.bulk({
       operations,
-      ...rest
+      ...rest,
     });
   }
 }

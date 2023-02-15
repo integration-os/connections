@@ -1,3 +1,5 @@
+import axios from "axios";
+import crypto from "crypto";
 import {
   IntegrationClassI,
   InitProps,
@@ -11,17 +13,22 @@ import {
   Truthy,
   TestConnection,
 } from "../../../types/sourceClassDefinition";
-import axios from "axios";
-import crypto from "crypto";
 
 export default class AlchemyIntegration implements IntegrationClassI {
   id: string = "1234";
+
   name: string = "Alchemy";
+
   ALCHEMY_API_TOKEN: string = null;
+
   ALCHEMY_APP_ID: string = null;
+
   ALCHEMY_ADDRESSES: string[] = null;
+
   ALCHEMY_TOKEN_IDS: { contract_address: string; token_id: string }[] = null;
+
   ALCHEMY_NETWORK: string = null;
+
   readonly client;
 
   constructor({
@@ -119,9 +126,8 @@ export default class AlchemyIntegration implements IntegrationClassI {
 
     if (atLeastOneMatch) {
       return true;
-    } else {
-      throw new Error("Invalid signature");
     }
+    throw new Error("Invalid signature");
   }
 
   async subscribe({
@@ -180,7 +186,7 @@ export default class AlchemyIntegration implements IntegrationClassI {
   }
 
   async getSubscribedEvents({ webhookIds }: WebhooksProps): Promise<Events> {
-    const webhooks = <AnyObject[]>await this.getWebhooks({ webhookIds });
+    const webhooks = <AnyObject[]> await this.getWebhooks({ webhookIds });
 
     return webhooks.map((webhook) => webhook.webhook_type);
   }
@@ -189,7 +195,7 @@ export default class AlchemyIntegration implements IntegrationClassI {
     webhookIds,
     webhookId,
   }: WebhooksProps): Promise<Truthy> {
-    const webhookIdsToDelete = webhookIds ? webhookIds : [webhookId];
+    const webhookIdsToDelete = webhookIds || [webhookId];
     for (const id of webhookIdsToDelete) {
       const response = await this.client.delete(
         `/delete-webhook?webhook_id=${id}`,

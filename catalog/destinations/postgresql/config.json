@@ -2,7 +2,7 @@
   "title": "PostgreSQL",
   "description": "PostgreSQL is an open-source relational database management system",
   "apiVersion": "NA",
-  "platform": "postgresql",
+  "type": "postgresql",
   "category": "database",
   "image": "https://assets.buildable.dev/catalog/node-templates/postgresql.svg",
   "tags": ["database", "db", "sql"],

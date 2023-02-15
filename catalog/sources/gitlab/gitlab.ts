@@ -1,3 +1,4 @@
+import axios, { AxiosInstance } from "axios";
 import {
   AnyObject,
   DeleteWebhookEndpointProps,
@@ -13,8 +14,6 @@ import {
   WebhooksProps,
 } from "../../../types/sourceClassDefinition";
 
-import axios, { AxiosInstance } from "axios";
-
 interface GitLabWebhook {
   id: number;
   url: string;
@@ -24,10 +23,13 @@ interface GitLabWebhook {
 
 export default class GitLabIntegration implements IntegrationClassI {
   id: string;
+
   name: string;
 
   private readonly GITLAB_ACCESS_TOKEN: string; // Generated from GitLab account
+
   GITLAB_PROJECT_ID: string; // Can either be GitLab-assigned ID or URL-encoded path
+
   GITLAB_BASE_URL: string = "https://gitlab.com";
 
   readonly GITLAB_WEBHOOK_SECRET;
@@ -85,7 +87,7 @@ export default class GitLabIntegration implements IntegrationClassI {
   }
 
   async verifyWebhookSignature({
-    signature: signature,
+    signature,
   }: VerifyWebhookSignatureProps): Promise<Truthy> {
     // GitLab does not sign its webhook payloads.
     // Instead, it resends the token set during the webhook creation process.
@@ -195,7 +197,7 @@ export default class GitLabIntegration implements IntegrationClassI {
     }
 
     if (!events.includes("push_events")) {
-      eventObject["push_events"] = false;
+      (eventObject as any).push_events = false;
     }
 
     return eventObject;

@@ -2,7 +2,7 @@
   "title": "WooCommerce",
   "description": "A customizable, open-source e-commerce plugin for WordPress",
   "apiVersion": "NA",
-  "platform": "woocommerce",
+  "type": "woocommerce",
   "category": "ecommerce",
   "image": "https://assets.buildable.dev/catalog/node-templates/woocommerce.svg",
   "tags": [

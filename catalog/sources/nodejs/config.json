@@ -2,7 +2,7 @@
   "title": "Node.js",
   "description": "Receive events emitted from your Node app",
   "apiVersion": "NA",
-  "platform": "nodejs",
+  "type": "nodejs",
   "category": "nodejs",
   "image": "https://assets.buildable.dev/catalog/node-templates/nodejs.svg",
   "tags": ["javascript", "sdk"],
@@ -11,7 +11,7 @@
   "settings": {
     "createBuildableEnvVars": false,
     "autoSubscribeAllEvents": false,
-    "autoAddAllEventsToPipeline": true,
+    "autoAddAllEventsToPipeline": false,
     "showSecret": true,
     "allowCustomEvents": true,
     "showEvents": false,

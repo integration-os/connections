@@ -1,3 +1,5 @@
+import axios from "axios";
+import crypto from "crypto";
 import {
   IntegrationClassI,
   InitProps,
@@ -11,15 +13,18 @@ import {
   Truthy,
   TestConnection,
 } from "../../../types/sourceClassDefinition";
-import axios from "axios";
-import crypto from "crypto";
 
 export default class PagerDutyIntegration implements IntegrationClassI {
   id = "1234";
+
   name = "PagerDuty";
+
   PAGERDUTY_API_TOKEN = null;
+
   PAGERDUTY_FILTER_TYPE = null;
+
   PAGERDUTY_FILTER_ID = null;
+
   readonly client;
 
   constructor({
@@ -60,8 +65,8 @@ export default class PagerDutyIntegration implements IntegrationClassI {
           ...(this.PAGERDUTY_FILTER_TYPE === "account_reference"
             ? {}
             : {
-                id: this.PAGERDUTY_FILTER_ID,
-              }),
+              id: this.PAGERDUTY_FILTER_ID,
+            }),
         },
       },
     });
@@ -89,19 +94,18 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     // This is performed for each signing secret and the results are concatenated using comma separation. An example signature is shown below:
     // X-PagerDuty-Signature: v1=...,v1=...
 
-    var expectedSignature = crypto
+    const expectedSignature = crypto
       .createHmac("sha256", secret)
       .update(request.body, "utf8")
       .digest("hex");
 
-    var signatureWithVersion = "v1=" + expectedSignature;
-    var signatureList = signature.split(",");
+    const signatureWithVersion = `v1=${expectedSignature}`;
+    const signatureList = signature.split(",");
 
     if (signatureList.indexOf(signatureWithVersion) > -1) {
       return true;
-    } else {
-      throw new Error(`Invalid signature`);
     }
+    throw new Error("Invalid signature");
   }
 
   async subscribe({
@@ -142,22 +146,21 @@ export default class PagerDutyIntegration implements IntegrationClassI {
     if (newEventsList.length === 0) {
       await this.deleteWebhookEndpoint({ webhookId });
       return { events: [] };
-    } else {
-      const response = await this.client.put(`/${webhookId}`, {
-        webhook_subscription: { events: newEventsList },
-      });
-
-      if (response.status !== 200) {
-        throw new Error(
-          `Could not unsubscribe from PagerDuty events: ${response?.data?.message}`,
-        );
-      }
-
-      return {
-        webhook: response.data.webhook_subscription,
-        events: response.data.webhook_subscription.events,
-      };
     }
+    const response = await this.client.put(`/${webhookId}`, {
+      webhook_subscription: { events: newEventsList },
+    });
+
+    if (response.status !== 200) {
+      throw new Error(
+        `Could not unsubscribe from PagerDuty events: ${response?.data?.message}`,
+      );
+    }
+
+    return {
+      webhook: response.data.webhook_subscription,
+      events: response.data.webhook_subscription.events,
+    };
   }
 
   async getWebhooks({

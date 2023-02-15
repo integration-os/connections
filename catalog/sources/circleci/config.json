@@ -2,7 +2,7 @@
   "title": "CircleCI",
   "description": "A continuous integration and delivery platform for modern software development",
   "apiVersion": "NA",
-  "platform": "circleci",
+  "type": "circleci",
   "category": "DevOps",
   "image": "https://assets.buildable.dev/catalog/node-templates/circleci.svg",
   "tags": [

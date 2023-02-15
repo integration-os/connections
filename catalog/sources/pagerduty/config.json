@@ -2,7 +2,7 @@
   "title": "PagerDuty",
   "description": "A cloud computing company specializing in a SaaS incident responses",
   "apiVersion": "Webhooks v3",
-  "platform": "pagerduty",
+  "type": "pagerduty",
   "category": "observability",
   "image": "https://assets.buildable.dev/catalog/node-templates/pagerduty.svg",
   "tags": [

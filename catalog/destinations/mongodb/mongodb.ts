@@ -1,14 +1,17 @@
+import { MongoClient, Db } from "mongodb";
 import {
   DestinationClassI,
   AnyObject,
   TestConnection,
 } from "../../../types/destinationClassDefinition";
-import { MongoClient, Db } from "mongodb";
 
 class MongoDBDriver implements DestinationClassI {
   MONGODB_URI: string;
+
   client: MongoClient;
+
   db: Db;
+
   dbName: string;
 
   constructor({ MONGODB_URI }: AnyObject) {
@@ -28,7 +31,7 @@ class MongoDBDriver implements DestinationClassI {
     await this.client.connect();
 
     const databases = await this.client.db().admin().listDatabases();
-    const databaseNames = databases.databases.map((db) => db.name);
+    const databaseNames = databases.databases.map((database) => database.name);
 
     if (!databaseNames.includes(this.dbName)) {
       throw new Error(`Database '${this.dbName}' does not exist!`);
@@ -36,7 +39,7 @@ class MongoDBDriver implements DestinationClassI {
   }
 
   async disconnect() {
-    return await this.client.close();
+    return this.client.close();
   }
 
   async testConnection(): Promise<TestConnection> {

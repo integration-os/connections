@@ -2,7 +2,7 @@
   "title": "Checkout.com",
   "description": "An international financial technology company that processes payments",
   "apiVersion": "2020-08-24",
-  "platform": "checkout",
+  "type": "checkout",
   "category": "finance",
   "image": "https://assets.buildable.dev/catalog/node-templates/checkout.svg",
   "tags": ["payment", "ecommerce"],

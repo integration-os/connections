@@ -2,7 +2,7 @@
   "title": "GitLab",
   "description": "A DevOps software package that combines the ability to develop, secure, and operate software in a single application",
   "apiVersion": "NA",
-  "platform": "gitlab",
+  "type": "gitlab",
   "category": "devops",
   "image": "https://assets.buildable.dev/catalog/node-templates/gitlab.svg",
   "tags": [
@@ -91,7 +91,7 @@
   },
   "paths": {
     "id": "_.body.id",
-    "event": "_.body.event_type",
+    "event": "_.body.event_name",
     "payload": "_.body",
     "secret": "_.headers.x-gitlab-token",
     "signature": "_.headers.x-gitlab-token"

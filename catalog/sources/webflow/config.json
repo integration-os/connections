@@ -2,7 +2,7 @@
   "title": "Webflow",
   "description": "A platform to build professional, custom websites in a completely visual canvas",
   "apiVersion": "1.0.0",
-  "platform": "webflow",
+  "type": "webflow",
   "category": "cms",
   "image": "https://assets.buildable.dev/catalog/node-templates/webflow.svg",
   "tags": ["website", "cms"],

@@ -1,12 +1,8 @@
-import { initializeApp, cert, getApp } from "firebase-admin/app";
+import { cert, getApp, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 import { v4 } from "uuid";
-import {
-  FirestoreConfig,
-  FirestoreInsertPayload,
-  FirestoreRemovePayload,
-  FirestoreUpdatePayload,
-} from "./lib/types";
+import { firestore } from "firebase-admin";
+import { FirestoreConfig, FirestoreInsertPayload, FirestoreRemovePayload, FirestoreUpdatePayload } from "./lib/types";
 
 export const createClient = async (config: FirestoreConfig) => {
   const appName = v4();
@@ -18,13 +14,11 @@ export const createClient = async (config: FirestoreConfig) => {
     appName,
   );
 
-  const db = getFirestore(getApp(appName));
-
-  return db;
+  return getFirestore(getApp(appName));
 };
 
 export const insert = async (
-  client: FirebaseFirestore.Firestore,
+  client: firestore.Firestore,
   payload: FirestoreInsertPayload,
 ) => {
   const {
@@ -34,16 +28,14 @@ export const insert = async (
     options = {},
   } = payload;
 
-  const result = await client
+  return client
     .collection(collection)
     .doc(id)
     .set({ ...data }, options);
-
-  return result;
 };
 
 export const update = async (
-  client: FirebaseFirestore.Firestore,
+  client: firestore.Firestore,
   payload: FirestoreUpdatePayload,
 ) => {
   const { collection, id, data } = payload;
@@ -52,13 +44,11 @@ export const update = async (
 
   if (!doc.exists) throw new Error("Document Not Found");
 
-  const result = await client.collection(collection).doc(id).update(data);
-
-  return result;
+  return client.collection(collection).doc(id).update(data);
 };
 
 export const remove = async (
-  client: FirebaseFirestore.Firestore,
+  client: firestore.Firestore,
   payload: FirestoreRemovePayload,
 ) => {
   const { collection, id } = payload;
@@ -67,12 +57,10 @@ export const remove = async (
 
   if (!doc.exists) throw new Error("Document Not Found");
 
-  const result = await client.collection(collection).doc(id).delete();
-
-  return result;
+  return client.collection(collection).doc(id).delete();
 };
 
-export const disconnect = async (client: FirebaseFirestore.Firestore) => {
+export const disconnect = async (client: firestore.Firestore) => {
   await client.terminate();
 };
 
@@ -106,7 +94,7 @@ const getProxyDriver = (config: FirestoreConfig) => {
 
       const methods: {
         [key: string]: (
-          client: FirebaseFirestore.Firestore,
+          client: firestore.Firestore,
           payload?: unknown,
         ) => Promise<unknown>;
       } = {
@@ -131,11 +119,11 @@ const getProxyDriver = (config: FirestoreConfig) => {
 
             const result = await methods[propAsString](client, payload);
 
-            await methods["disconnect"](client);
+            await methods.disconnect(client);
 
             return result;
           } catch (error) {
-            console.log("Error occured ===> ", error);
+            console.log("Error occurred ===> ", error);
             throw error;
           }
         };
