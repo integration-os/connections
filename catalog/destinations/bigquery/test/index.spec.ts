@@ -71,7 +71,7 @@ describe("Test: BigQuery Destination", () => {
     it("should disconnect from BigQuery", async () => {
       await driver.disconnect();
 
-      await expect(driver.testConnection()).rejects.toThrow();
+      await expect(driver.client).toBeNull();
     });
   });
 
@@ -113,6 +113,15 @@ describe("Test: BigQuery Destination", () => {
       });
 
       querySpy.mockRestore();
+    });
+
+    it("should reconstruct the client when it is not initialized", async () => {
+      const result = await driver.testConnection(); // this should issue connect() internally
+
+      expect(result).toEqual({
+        success: true,
+        message: "Connection established successfully",
+      });
     });
   });
 
@@ -217,7 +226,7 @@ describe("Test: BigQuery Destination", () => {
       await expect(driver.insertData({
         dataset: datasetName,
         table: tableName,
-        data: [{ id: 1, name: "Jon Snow", title: "King in The North" }],
+        data: [{ id: 1, name: "Jon Snow", game: "King in The North" }],
         options: {},
       })).rejects.toThrow(/BigQuery - Schema mismatch/);
     }, 15000);

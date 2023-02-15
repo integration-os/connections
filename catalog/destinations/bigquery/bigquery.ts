@@ -19,11 +19,16 @@ export class BigQueryDriver implements DestinationClassI {
     this.GCP_PROJECT_ID = GCP_PROJECT_ID;
   }
 
-  async connect(_config?: AnyObject): Promise<void | Truthy> {
-    const saKey = JSON.parse(this.GOOGLE_SERVICE_ACCOUNT_KEY);
+  async connect(config?: AnyObject): Promise<void | Truthy> {
+    const { GOOGLE_SERVICE_ACCOUNT_KEY, GCP_PROJECT_ID } = config || this;
+
+    // reassign GCP_PROJECT_ID
+    this.GCP_PROJECT_ID = GCP_PROJECT_ID;
+
+    const saKey = JSON.parse(GOOGLE_SERVICE_ACCOUNT_KEY);
 
     this.client = new BigQuery({
-      projectId: this.GCP_PROJECT_ID,
+      projectId: GCP_PROJECT_ID,
       credentials: saKey,
     });
   }
@@ -81,11 +86,9 @@ export class BigQueryDriver implements DestinationClassI {
       throw new Error(`BigQuery - ${err.message}`);
     }
 
-    try {
-      // NOTE: maybe send data to BigQuery chunk by chunk?
-      return bqTable.insert(data, options);
-    } catch (err) {
+    return bqTable.insert(data).catch((err) => {
       // detect whether the error is from schema mismatch or something else
+
       const isSchemaMismatch = (err.errors as any).find(
         (error) => error.errors.find(
           (e) => e.message.match(/no such field/),
@@ -97,7 +100,7 @@ export class BigQueryDriver implements DestinationClassI {
       }
 
       throw err;
-    }
+    });
   }
 
   /**
@@ -119,7 +122,7 @@ export class BigQueryDriver implements DestinationClassI {
     const { schema } = metadata[0];
 
     // compose SQL query
-    const updateQuery = `UPDATE \`foodly-algeria.${dataset}.${table}\`
+    const updateQuery = `UPDATE \`${this.GCP_PROJECT_ID}.${dataset}.${table}\`
       SET ${BigQueryDriver.extractChangeset(set, schema)}
       WHERE ${filters}
     `;
@@ -141,7 +144,7 @@ export class BigQueryDriver implements DestinationClassI {
       throw new Error("BigQuery DELETE must have a WHERE clause");
     }
 
-    const deleteQuery = `DELETE FROM \`foodly-algeria.${dataset}.${table}\`
+    const deleteQuery = `DELETE FROM \`${this.GCP_PROJECT_ID}.${dataset}.${table}\`
         WHERE ${filters}
     `;
 
@@ -303,7 +306,7 @@ export default function getProxyDriver(config: AnyObject) {
 
         return async (payload) => {
           try {
-            await driver.connect();
+            await driver.connect(config);
 
             const result = await target[prop](payload);
 
