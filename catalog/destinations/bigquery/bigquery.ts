@@ -8,11 +8,11 @@ import { BigQuerySchemaType, IBigQueryDelete, IBigQueryInsert, IBigQueryUpdate }
 import ITableFieldSchema = bigquery.ITableFieldSchema;
 
 export class BigQueryDriver implements DestinationClassI {
-  private readonly GOOGLE_SERVICE_ACCOUNT_KEY: string;
-
   client: BigQuery | null = null;
 
   GCP_PROJECT_ID: string;
+
+  GOOGLE_SERVICE_ACCOUNT_KEY: string;
 
   constructor({ GOOGLE_SERVICE_ACCOUNT_KEY, GCP_PROJECT_ID }: AnyObject) {
     this.GOOGLE_SERVICE_ACCOUNT_KEY = GOOGLE_SERVICE_ACCOUNT_KEY;
@@ -21,6 +21,11 @@ export class BigQueryDriver implements DestinationClassI {
 
   async connect(config?: AnyObject): Promise<void | Truthy> {
     const { GOOGLE_SERVICE_ACCOUNT_KEY, GCP_PROJECT_ID } = config || this;
+
+    console.log("connect", {
+      GOOGLE_SERVICE_ACCOUNT_KEY,
+      GCP_PROJECT_ID,
+    });
 
     // reassign GCP_PROJECT_ID
     this.GCP_PROJECT_ID = GCP_PROJECT_ID;
@@ -274,6 +279,7 @@ export class BigQueryDriver implements DestinationClassI {
 
 export default function getProxyDriver(config: AnyObject) {
   const driver = new BigQueryDriver(config);
+  console.log("driver config", config);
 
   return new Proxy(driver, {
     get: (target, prop) => {
@@ -304,6 +310,12 @@ export default function getProxyDriver(config: AnyObject) {
         return async (payload) => {
           try {
             await driver.connect(config);
+
+            console.log({
+              prop,
+              payload,
+              config,
+            });
 
             const result = await target[prop](payload);
 
