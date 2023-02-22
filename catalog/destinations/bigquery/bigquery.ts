@@ -86,7 +86,7 @@ export class BigQueryDriver implements DestinationClassI {
       throw new Error(`BigQuery - ${err.message}`);
     }
 
-    return bqTable.insert(data).catch((err) => {
+    return bqTable.insert(data, options).catch((err) => {
       // detect whether the error is from schema mismatch or something else
 
       const isSchemaMismatch = (err.errors as any).find(
@@ -126,9 +126,6 @@ export class BigQueryDriver implements DestinationClassI {
       SET ${BigQueryDriver.extractChangeset(set, schema)}
       WHERE ${filters}
     `;
-
-    console.log("Sending", updateQuery);
-
     // execute query
     return bqTable.query(updateQuery);
   }
@@ -293,7 +290,7 @@ export default function getProxyDriver(config: AnyObject) {
         // Force the proxy to return a Promise that only resolves once the connection has been established
         if (prop === "connect") {
           return async () => {
-            await driver.connect();
+            await driver.connect(config);
           };
         }
 
