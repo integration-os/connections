@@ -64,13 +64,13 @@ const getFTPClient = (config: {
     });
 
     client.on("ready", () => {
-      // client.list(config.FTP_PATH, (err, list) => {
-      //   if (err) reject(err);
+      client.list(config.FTP_PATH, (err, list) => {
+        if (err) reject(err);
 
-      //   resolve(true);
-      // });
+        resolve(true);
+      });
 
-      resolve(true);
+      // resolve(true);
     });
 
     client.on("error", (err: any) => {
@@ -177,6 +177,10 @@ export default class FTP {
         message: `Connection to ${this.FTP_HOST} tested successfully!`,
       };
     } catch (err) {
+      if (err.message.match(/File not found/gi)) {
+        err.message = "Directory not found";
+      }
+
       throw new Error(
         `Unable to connect to ${this.FTP_HOST}: ${err.message}`,
       );
