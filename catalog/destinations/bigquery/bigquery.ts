@@ -3,7 +3,7 @@ import { BigQuery, TableSchema } from "@google-cloud/bigquery";
 import bigquery from "@google-cloud/bigquery/build/src/types";
 
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
-import { BigQuerySchemaType, IBigQueryDelete, IBigQueryInsert, IBigQueryUpdate } from "./lib/types";
+import { BigQuerySchemaType, IBigQueryDelete, IBigQueryInsert, IBigQueryRawQuery, IBigQueryUpdate } from "./lib/types";
 
 import ITableFieldSchema = bigquery.ITableFieldSchema;
 
@@ -146,6 +146,14 @@ export class BigQueryDriver implements DestinationClassI {
     `;
 
     return this.client.dataset(dataset).table(table).query(deleteQuery);
+  }
+
+  /**
+   * Executes an arbitrary BigQuery GoogleSQL statement
+   * @param query query to execute
+   */
+  async executeRawQuery({ query }: IBigQueryRawQuery) {
+    return this.client.query(query);
   }
 
   /**

@@ -519,4 +519,32 @@ describe("Test: BigQuery Destination", () => {
       expect(result.length).toBeGreaterThan(0);
     });
   });
+
+  describe("executeRawQuery", () => {
+    beforeEach(() => {
+      driver = getProxyDriver(
+        {
+          GOOGLE_SERVICE_ACCOUNT_KEY: process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+          GCP_PROJECT_ID: process.env.GCP_PROJECT_ID,
+        },
+      );
+    });
+
+    afterEach(() => {
+      driver = null;
+    });
+
+    it("should execute an arbitrary SQL query", async () => {
+      const query = `SELECT name
+      FROM \`bigquery-public-data.usa_names.usa_1910_2013\`
+      WHERE state = 'TX'
+      LIMIT 1`;
+
+      const result = await driver.executeRawQuery({ query });
+
+      console.log(result);
+
+      expect(result[0].length).toEqual(1);
+    });
+  });
 });
