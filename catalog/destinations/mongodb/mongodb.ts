@@ -21,6 +21,8 @@ class MongoDBDriver implements DestinationClassI {
   async connect(config?: AnyObject) {
     const MONGODB_URI = config ? config.MONGODB_URI : this.MONGODB_URI;
 
+    if (!MONGODB_URI) throw new Error("Invalid MongoDB URI provided.");
+
     this.client = new MongoClient(MONGODB_URI);
 
     const db = this.client.db();

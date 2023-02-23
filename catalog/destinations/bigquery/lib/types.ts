@@ -22,3 +22,7 @@ export interface IBigQueryDelete {
   table: string;
   filters: string;
 }
+
+export interface IBigQueryRawQuery {
+  query: string;
+}
