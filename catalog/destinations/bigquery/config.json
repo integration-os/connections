@@ -13,7 +13,7 @@
       "placeholder": "{\"type\": \"service_account\", \"project_id\": \"my-gcp-project\", ..."
     },
     {
-      "name": "GOOGLE_PROJECT_ID",
+      "name": "GCP_PROJECT_ID",
       "label": "Enter your Project ID",
       "placeholder": "my-gcp-project"
     }

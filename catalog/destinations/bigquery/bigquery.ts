@@ -3,16 +3,16 @@ import { BigQuery, TableSchema } from "@google-cloud/bigquery";
 import bigquery from "@google-cloud/bigquery/build/src/types";
 
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
-import { BigQuerySchemaType, IBigQueryDelete, IBigQueryInsert, IBigQueryUpdate } from "./lib/types";
+import { BigQuerySchemaType, IBigQueryDelete, IBigQueryInsert, IBigQueryRawQuery, IBigQueryUpdate } from "./lib/types";
 
 import ITableFieldSchema = bigquery.ITableFieldSchema;
 
 export class BigQueryDriver implements DestinationClassI {
-  private readonly GOOGLE_SERVICE_ACCOUNT_KEY: string;
-
   client: BigQuery | null = null;
 
   GCP_PROJECT_ID: string;
+
+  GOOGLE_SERVICE_ACCOUNT_KEY: string;
 
   constructor({ GOOGLE_SERVICE_ACCOUNT_KEY, GCP_PROJECT_ID }: AnyObject) {
     this.GOOGLE_SERVICE_ACCOUNT_KEY = GOOGLE_SERVICE_ACCOUNT_KEY;
@@ -86,7 +86,7 @@ export class BigQueryDriver implements DestinationClassI {
       throw new Error(`BigQuery - ${err.message}`);
     }
 
-    return bqTable.insert(data).catch((err) => {
+    return bqTable.insert(data, options).catch((err) => {
       // detect whether the error is from schema mismatch or something else
 
       const isSchemaMismatch = (err.errors as any).find(
@@ -126,9 +126,6 @@ export class BigQueryDriver implements DestinationClassI {
       SET ${BigQueryDriver.extractChangeset(set, schema)}
       WHERE ${filters}
     `;
-
-    console.log("Sending", updateQuery);
-
     // execute query
     return bqTable.query(updateQuery);
   }
@@ -149,6 +146,14 @@ export class BigQueryDriver implements DestinationClassI {
     `;
 
     return this.client.dataset(dataset).table(table).query(deleteQuery);
+  }
+
+  /**
+   * Executes an arbitrary BigQuery GoogleSQL statement
+   * @param query query to execute
+   */
+  async executeRawQuery({ query }: IBigQueryRawQuery) {
+    return this.client.query(query);
   }
 
   /**
@@ -293,7 +298,7 @@ export default function getProxyDriver(config: AnyObject) {
         // Force the proxy to return a Promise that only resolves once the connection has been established
         if (prop === "connect") {
           return async () => {
-            await driver.connect();
+            await driver.connect(config);
           };
         }
 
