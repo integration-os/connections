@@ -34,6 +34,5 @@ export function composeUriSuffix(resource: string, secondaryResource?: string, p
     path += `/${secondaryResource}`;
   }
 
-  path += ".json";
-  return path;
+  return `${path}.json`;
 }
