@@ -1,5 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
+import { ShopifyAction } from "./lib/types";
+import { composeUriSuffix, extractMethod } from "./lib/utils";
 
 const API_VERSION = "2023-01";
 
@@ -48,14 +50,29 @@ export class ShopifyDriver implements DestinationClassI {
     }
   }
 
-  process(method: "POST" | "PUT" | "DELETE", path: string, payload?: AnyObject) {
+  /**
+   * Process the passed Shopify action
+   * @param method HTTP method
+   * @param resource primary Shopify resource
+   * @param secondaryResource secondary Shopify resource
+   */
+  process(method: "POST" | "PUT" | "DELETE", resource: string, secondaryResource?: string) {
     switch (method) {
       case "POST":
-        return this.client.post(path, payload);
+        return async (payload?: ShopifyAction) => {
+          const path = composeUriSuffix(resource, secondaryResource, payload);
+          return this.client.post(path, payload.data);
+        };
       case "PUT":
-        return this.client.put(path, payload);
+        return async (payload?: ShopifyAction) => {
+          const path = composeUriSuffix(resource, secondaryResource, payload);
+          return this.client.put(path, payload.data);
+        };
       case "DELETE":
-        return this.client.delete(path, payload);
+        return async (payload?: ShopifyAction) => {
+          const path = composeUriSuffix(resource, secondaryResource, payload);
+          return this.client.delete(path);
+        };
       default:
         throw new Error(`Method ${method} not supported`);
     }
@@ -66,8 +83,35 @@ export default function getProxyDriver(config: AnyObject) {
   const driver = new ShopifyDriver(config);
 
   return new Proxy(driver, {
-    get: (target, action) => {
-      throw new Error("Proxy get not implemented");
+    get: async (target, action) => {
+      if (["testConnection", "connect", "disconnect"].includes(String(action))) {
+        return target[action](config);
+      }
+
+      const [resource, ...rest] = String(action).split(".");
+
+      if (!rest.length || rest.length > 2) {
+        throw new Error(`Unknown action: ${String(action)}`);
+      }
+
+      if (rest.length === 1) {
+        const method = extractMethod(rest[0]);
+
+        await target.connect(config);
+        const result = await target.process(method, resource);
+        await target.disconnect();
+
+        return result;
+      }
+
+      const secondaryResource = rest[0];
+      const method = extractMethod(rest[1]);
+
+      await target.connect(config);
+      const result = await target.process(method, secondaryResource);
+      await target.disconnect();
+
+      return result;
     },
   });
 }
