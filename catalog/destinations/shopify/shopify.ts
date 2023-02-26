@@ -53,25 +53,8 @@ export default function getProxyDriver(config: AnyObject) {
   const driver = new ShopifyDriver(config);
 
   return new Proxy(driver, {
-    get: (target, prop) => {
-      if (typeof driver[prop] === "function") {
-        return async (payload) => {
-          try {
-            await driver.connect(config);
-
-            const result = await target[prop](payload);
-
-            await driver.disconnect();
-
-            return result;
-          } catch (err) {
-            console.log("Error occurred ===> ", err);
-            throw err;
-          }
-        };
-      }
-
-      throw new Error(`Method ${prop as string}() not found`);
+    get: (target, action) => {
+      throw new Error("Proxy get not implemented");
     },
   });
 }
