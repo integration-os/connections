@@ -1,0 +1,32 @@
+{
+  "title": "Shopify",
+  "description": "Shopify is an online platform for creating and managing e-commerce stores",
+  "apiVersion": "NA",
+  "type": "shopify",
+  "category": "ecommerce",
+  "image": "https://assets.buildable.dev/catalog/node-templates/shopify.svg",
+  "tags": ["ecommerce", "business"],
+  "authentication": [
+    {
+      "name": "SHOPIFY_STORE_NAME",
+      "label": "Enter the name of your Shopify store",
+      "placeholder": "mystore"
+    },
+    {
+      "name": "SHOPIFY_ACCESS_TOKEN",
+      "label": "Enter your Shopify access token",
+      "placeholder": "shpat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": ["insertData", "updateData", "deleteData", "executeRawQuery"],
+  "destinationType": "http"
+}
