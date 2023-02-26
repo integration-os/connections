@@ -47,6 +47,19 @@ export class ShopifyDriver implements DestinationClassI {
       };
     }
   }
+
+  process(method: "POST" | "PUT" | "DELETE", path: string, payload?: AnyObject) {
+    switch (method) {
+      case "POST":
+        return this.client.post(path, payload);
+      case "PUT":
+        return this.client.put(path, payload);
+      case "DELETE":
+        return this.client.delete(path, payload);
+      default:
+        throw new Error(`Method ${method} not supported`);
+    }
+  }
 }
 
 export default function getProxyDriver(config: AnyObject) {
