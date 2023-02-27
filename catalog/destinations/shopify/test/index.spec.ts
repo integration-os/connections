@@ -130,4 +130,15 @@ describe("Test: Shopify Destination", () => {
       querySpy.mockRestore();
     });
   });
+
+  describe("process", () => {
+    xit("should parse 2-part actions correctly", () => {});
+    xit("should parse 3-part actions correctly", () => {});
+    xit("should reject malformed actions", () => {});
+    xit("should extract the HTTP method correctly", () => {});
+    xit("should reject unknown methods from actions", () => {});
+    xit("should handle HTTP 406 Not Accepted responses", () => {});
+    xit("should handle HTTP 400 Bad Request responses", () => {});
+    xit("should handle other errors", () => {});
+  });
 });

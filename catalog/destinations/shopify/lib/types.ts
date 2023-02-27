@@ -1,6 +1,7 @@
 import { AnyObject } from "../../../../types/sourceClassDefinition";
 
 export interface ShopifyAction {
-  id?: string | number;
+  primaryResourceId?: string | number;
+  secondaryResourceId?: string | number;
   data?: AnyObject
 }

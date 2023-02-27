@@ -27,14 +27,22 @@ export function composeUriSuffix(
   { resource, secondaryResource, payload }:
     {resource: string, secondaryResource?: string, payload?: ShopifyAction},
 ) {
+  if (secondaryResource && !payload?.primaryResourceId) {
+    throw new Error("Cannot select a secondary resource without a primary resource identifier");
+  }
+
   let path = `/${resource}`;
 
-  if (payload.id) {
-    path += `/${payload.id}`;
+  if (payload?.primaryResourceId) {
+    path += `/${payload.primaryResourceId}`;
   }
 
   if (secondaryResource) {
     path += `/${secondaryResource}`;
+
+    if (payload?.secondaryResourceId) {
+      path += `/${payload.secondaryResourceId}`;
+    }
   }
 
   return `${path}.json`;
