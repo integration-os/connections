@@ -11,7 +11,7 @@ export class ShopifyDriver implements DestinationClassI {
 
   private SHOPIFY_ACCESS_KEY: string;
 
-  private client: AxiosInstance;
+  client: AxiosInstance;
 
   constructor({ SHOPIFY_STORE_NAME, SHOPIFY_ACCESS_KEY }: AnyObject) {
     this.SHOPIFY_STORE_NAME = SHOPIFY_STORE_NAME;
@@ -36,7 +36,7 @@ export class ShopifyDriver implements DestinationClassI {
   }
 
   async disconnect(): Promise<void | Truthy> {
-    this.client = undefined;
+    this.client = null;
   }
 
   async testConnection(): Promise<TestConnection> {
@@ -50,7 +50,7 @@ export class ShopifyDriver implements DestinationClassI {
     } catch (err) {
       return {
         success: false,
-        message: `Connection to Shopify failed: ${err.response.data.errors}`,
+        message: `Connection to Shopify failed: ${err.message}`,
       };
     }
   }
@@ -96,9 +96,25 @@ export default function getProxyDriver(config: AnyObject) {
   const driver = new ShopifyDriver(config);
 
   return new Proxy(driver, {
-    get: async (target, action) => {
-      if (["testConnection", "connect", "disconnect"].includes(String(action))) {
-        return async () => target[action](config);
+    get: (target, action) => {
+      if (String(action) === "client") {
+        return target.client;
+      }
+
+      if (typeof driver[action] === "function") {
+        if (action === "testConnection") {
+          return async () => driver.testConnection();
+        }
+
+        if (action === "connect") {
+          return async (localConfig?: AnyObject) => {
+            await driver.connect(localConfig || config);
+          };
+        }
+
+        if (action === "disconnect") {
+          return async () => driver.disconnect();
+        }
       }
 
       return async (payload: ShopifyAction) => {
@@ -115,7 +131,6 @@ export default function getProxyDriver(config: AnyObject) {
         let path: string;
 
         if (rest.length === 1) {
-          //
           method = extractMethod(rest[0]);
           path = composeUriSuffix({
             resource,
