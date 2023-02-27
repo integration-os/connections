@@ -21,6 +21,7 @@ export class ShopifyDriver implements DestinationClassI {
   async connect(config?: AnyObject): Promise<void | Truthy> {
     const { SHOPIFY_STORE_NAME, SHOPIFY_ACCESS_KEY } = config || this;
 
+    // create an axios client for Shopify REST API
     this.client = axios.create({
       baseURL: `https://${SHOPIFY_STORE_NAME}.myshopify.com/admin/api/${API_VERSION}`,
       headers: {
@@ -29,10 +30,6 @@ export class ShopifyDriver implements DestinationClassI {
         "X-Shopify-Access-Token": SHOPIFY_ACCESS_KEY,
       },
     });
-    axiosRetry(this.client, {
-      retryDelay: axiosRetry.exponentialDelay,
-      retries: 5,
-      retryCondition: (err) => err.response.status === 429 });
   }
 
   async disconnect(): Promise<void | Truthy> {
@@ -68,21 +65,24 @@ export class ShopifyDriver implements DestinationClassI {
    * @param path RESTful URL suffix
    * @param data JSON data
    */
-  process(method: "POST" | "PUT" | "DELETE", path: string, data?: AnyObject) {
+  async process(method: "POST" | "PUT" | "DELETE", path: string, data?: AnyObject) {
     try {
+      let result;
+
       switch (method) {
-        case "POST":
-          return this.client.post(path, data);
-
         case "PUT":
-          return this.client.put(path, data);
-
+          result = await this.client.put(path, data);
+          break;
         case "DELETE":
-          return this.client.delete(path);
-
+          result = await this.client.delete(path);
+          break;
+        case "POST":
         default:
-          throw new Error(`Method ${method} not supported`);
+          result = await this.client.post(path, data);
+          break;
       }
+
+      return result;
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response.status === 406) {
@@ -96,6 +96,15 @@ export class ShopifyDriver implements DestinationClassI {
 
       throw err;
     }
+  }
+
+  async setRetryPolicy() {
+    // Initialize a retry policy
+    axiosRetry(this.client, {
+      retryDelay: axiosRetry.exponentialDelay,
+      retries: 5,
+      retryCondition: (error) => error.response?.status === 429,
+    });
   }
 }
 
@@ -129,7 +138,7 @@ export default function getProxyDriver(config: AnyObject) {
         const [resource, ...rest] = String(action).split(".");
 
         // validate the split
-        if (!rest.length || rest.length > 2) {
+        if (rest.length === 0 || rest.length > 2) {
           throw new Error(`Unknown action format: ${String(action)}`);
         }
 
@@ -156,6 +165,7 @@ export default function getProxyDriver(config: AnyObject) {
 
         // issue action
         await target.connect(config);
+        await target.setRetryPolicy();
         const result = await target.process(method, path, payload.data);
         await target.disconnect();
 

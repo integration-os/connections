@@ -40,7 +40,7 @@ export function composeUriSuffix(
   if (secondaryResource) {
     path += `/${secondaryResource}`;
 
-    if (payload?.secondaryResourceId) {
+    if (payload.secondaryResourceId) {
       path += `/${payload.secondaryResourceId}`;
     }
   }

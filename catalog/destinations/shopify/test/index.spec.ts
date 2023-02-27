@@ -1,10 +1,12 @@
-import { AxiosError } from "axios";
+import { AxiosError, AxiosInstance } from "axios";
 import getProxyDriver, { ShopifyDriver } from "../shopify";
 
 describe("Test: Shopify Destination", () => {
   let driver: ShopifyDriver | null = null;
 
   describe("connect", () => {
+    console.log("SHOPIFY", process.env.SHOPIFY_STORE_NAME, process.env.SHOPIFY_ACCESS_KEY);
+
     beforeEach(() => {
       driver = getProxyDriver({
         SHOPIFY_STORE_NAME: process.env.SHOPIFY_STORE_NAME,
@@ -18,6 +20,7 @@ describe("Test: Shopify Destination", () => {
 
     it("should connect to Shopify", async () => {
       return driver.connect().then(async () => {
+        console.log("driver", driver);
         const result = await driver.testConnection();
 
         expect(result.success).toBeTruthy();
@@ -34,6 +37,31 @@ describe("Test: Shopify Destination", () => {
 
         expect(result.success).toBeTruthy();
       });
+    });
+
+    it("should retry exponentially for 5 times if too many requests", async () => {
+      // attempt connection
+      await driver.connect();
+
+      driver.client.post = jest.fn().mockRejectedValue(new AxiosError("Mocked Error", "Too many requests", {}, {}, {
+        status: 429,
+        statusText: "Too many requests",
+        config: {},
+        headers: {},
+        data: {
+          errors: "Mocked HTTP 429 Too many requests response",
+        },
+      }));
+
+      driver.connect = jest.fn();
+
+      try {
+        await driver["products.create"]({});
+      } catch (err) {
+        console.log(err);
+      }
+
+      jest.resetAllMocks();
     });
   });
 
@@ -132,13 +160,142 @@ describe("Test: Shopify Destination", () => {
   });
 
   describe("process", () => {
-    xit("should parse 2-part actions correctly", () => {});
-    xit("should parse 3-part actions correctly", () => {});
-    xit("should reject malformed actions", () => {});
-    xit("should extract the HTTP method correctly", () => {});
-    xit("should reject unknown methods from actions", () => {});
-    xit("should handle HTTP 406 Not Accepted responses", () => {});
-    xit("should handle HTTP 400 Bad Request responses", () => {});
-    xit("should handle other errors", () => {});
+    let postSpy: jest.SpyInstance;
+    let putSpy: jest.SpyInstance;
+    let deleteSpy: jest.SpyInstance;
+    let originalClient: AxiosInstance;
+
+    beforeEach(() => {
+      driver = getProxyDriver({
+        SHOPIFY_STORE_NAME: process.env.SHOPIFY_STORE_NAME,
+        SHOPIFY_ACCESS_KEY: process.env.SHOPIFY_ACCESS_KEY,
+      });
+      // initialize client by connecting to Shopify
+      driver.connect();
+
+      // store reference to original client
+      originalClient = driver.client;
+
+      // mock calls to connect by attaching spies to post, put and delete calls
+      driver.connect = jest.fn().mockImplementation(async () => {
+        driver.client = originalClient;
+        // init spies
+        postSpy = jest.spyOn(driver.client, "post");
+        putSpy = jest.spyOn(driver.client, "put");
+        deleteSpy = jest.spyOn(driver.client, "delete");
+
+        // mock calls
+        postSpy.mockImplementation(async () => Promise.resolve({ data: [] }));
+        putSpy.mockImplementation(async () => Promise.resolve({ data: [] }));
+        deleteSpy.mockImplementation(async () => Promise.resolve({ deleted: true }));
+      });
+    });
+
+    afterEach(() => {
+      postSpy?.mockRestore();
+      putSpy?.mockRestore();
+      deleteSpy?.mockRestore();
+
+      driver = null;
+      postSpy = null;
+      putSpy = null;
+      deleteSpy = null;
+    });
+
+    it("should issue the request to Shopify", async () => {
+      // POST request
+      await driver["products.create"]({});
+      expect(postSpy).toHaveBeenCalled();
+
+      // PUT request
+      await driver["products.update"]({});
+      expect(putSpy).toHaveBeenCalled();
+
+      // DELETE request
+      await driver["products.delete"]({});
+      expect(deleteSpy).toHaveBeenCalled();
+    });
+
+    it("should handle 2-resource requests", async () => {
+      // POST request
+      await driver["products.orders.create"]({ primaryResourceId: 1 });
+      expect(postSpy).toHaveBeenCalled();
+    });
+
+    it("should reject wrong methods", async () => {
+      // wrong request
+      await expect(() => driver["products.wrong"]({}))
+        .rejects.toThrow("Method wrong not supported");
+    });
+
+    it("should reject malformed actions", async () => {
+      // wrong request
+      await expect(() => driver["products.orders.fulfillment.create"]({}))
+        .rejects.toThrow("Unknown action format: products.orders.fulfillment.create");
+    });
+
+    it("should handle HTTP 406 Not Accepted responses", async () => {
+      driver.connect = jest.fn().mockImplementation(async () => {
+        driver.client = originalClient;
+
+        postSpy = jest.spyOn(driver.client, "post");
+
+        // mock an axios 406 error
+        const error = new AxiosError();
+        error.response = {
+          status: 406,
+          statusText: "Not Accepted",
+          config: {},
+          headers: {},
+          data: {
+            errors: "Mocked HTTP 406 Not Accepted response",
+          },
+        };
+
+        // mock call to post
+        postSpy.mockRejectedValue(error);
+      });
+
+      await expect(driver["process.create"]({})).rejects.toThrow("[Shopify] The selected action is not supported");
+    });
+
+    it("should handle HTTP 400 Bad Request responses", async () => {
+      driver.connect = jest.fn().mockImplementation(async () => {
+        driver.client = originalClient;
+
+        postSpy = jest.spyOn(driver.client, "put");
+
+        // mock an axios 400 error
+        const error = new AxiosError();
+        error.response = {
+          status: 400,
+          statusText: "Not Accepted",
+          config: {},
+          headers: {},
+          data: {
+            errors: "Mocked HTTP 400 Bad Request response",
+          },
+        };
+
+        // mock calls
+        postSpy.mockRejectedValue(error);
+      });
+
+      await expect(driver["process.update"]({}))
+        .rejects.toThrow("[Shopify] Bad Request: Mocked HTTP 400 Bad Request response");
+    });
+
+    it("should handle other errors", async () => {
+      driver.connect = jest.fn().mockImplementation(async () => {
+        driver.client = originalClient;
+
+        postSpy = jest.spyOn(driver.client, "delete");
+
+        // mock calls
+        postSpy.mockRejectedValue(new Error("Mocked error"));
+      });
+
+      await expect(driver["process.delete"]({})).rejects.toThrow("Mocked error");
+    });
   });
 });

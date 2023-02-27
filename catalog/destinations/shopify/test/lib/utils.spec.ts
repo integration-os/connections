@@ -11,6 +11,9 @@ describe("Test: Shopify utility functions", () => {
     it("should extract 'DELETE' method from 'delete' actions", () => {
       expect(extractMethod("delete")).toBe("DELETE");
     });
+    it("should raise an error", () => {
+      expect(() => extractMethod("bad")).toThrow("Method bad not supported");
+    });
   });
 
   describe("composeUriSuffix", () => {
