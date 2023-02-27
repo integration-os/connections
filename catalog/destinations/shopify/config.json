@@ -27,6 +27,59 @@
   "paths": null,
   "events": [],
   "connectionTypes": ["target"],
-  "actions": ["insertData", "updateData", "deleteData", "executeRawQuery"],
+  "actions": [
+    "reports.create",
+    "reports.update",
+    "reports.delete",
+
+    "customers.create",
+    "customers.account_activation_url.create",
+    "customers.send_invite.create",
+    "customers.update",
+    "customers.delete",
+
+    "inventory_items.create",
+
+    "draft_orders.create",
+    "draft_orders.send_invoice.create",
+    "draft_orders.update",
+    "draft_orders.delete",
+
+    "orders.create",
+    "orders.cancel.create",
+    "orders.close.create",
+    "orders.update",
+    "orders.delete",
+    "orders.risks.create",
+    "orders.risks.update",
+    "orders.risks.delete",
+    "orders.refunds.create",
+    "orders.refunds.calculate.create",
+    "orders.transactions.create",
+
+    "products.create",
+    "products.update",
+    "products.delete",
+    "products.variants.create",
+    "variants.update",
+    "variants.delete",
+
+    "checkouts.create",
+    "checkouts.update",
+    "checkouts.complete.create",
+    "checkouts.payments.create",
+
+    "fulfillment_orders.cancel.create",
+    "fulfillment_orders.close.create",
+    "fulfillment_orders.hold.create",
+    "fulfillment_orders.move.create",
+    "fulfillment_orders.open.create",
+    "fulfillment_orders.release_hold.create",
+    "fulfillment_orders.reschedule.create",
+
+    "fulfillments.create",
+    "fulfillments.cancel.create",
+    "fulfillments.update_tracking.create"
+  ],
   "destinationType": "http"
 }

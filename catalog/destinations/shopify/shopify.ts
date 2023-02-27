@@ -1,4 +1,5 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosError, AxiosInstance } from "axios";
+import axiosRetry from "axios-retry";
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
 import { ShopifyAction } from "./lib/types";
 import { composeUriSuffix, extractMethod } from "./lib/utils";
@@ -28,6 +29,10 @@ export class ShopifyDriver implements DestinationClassI {
         "X-Shopify-Access-Token": SHOPIFY_ACCESS_KEY,
       },
     });
+    axiosRetry(this.client, {
+      retryDelay: axiosRetry.exponentialDelay,
+      retries: 5,
+      retryCondition: (err) => err.response.status === 429 });
   }
 
   async disconnect(): Promise<void | Truthy> {
@@ -53,28 +58,36 @@ export class ShopifyDriver implements DestinationClassI {
   /**
    * Process the passed Shopify action
    * @param method HTTP method
-   * @param resource primary Shopify resource
-   * @param secondaryResource secondary Shopify resource
+   * @param path RESTful URL suffix
+   * @param data JSON data
    */
-  process(method: "POST" | "PUT" | "DELETE", resource: string, secondaryResource?: string) {
-    switch (method) {
-      case "POST":
-        return async (payload?: ShopifyAction) => {
-          const path = composeUriSuffix(resource, secondaryResource, payload);
-          return this.client.post(path, payload.data);
-        };
-      case "PUT":
-        return async (payload?: ShopifyAction) => {
-          const path = composeUriSuffix(resource, secondaryResource, payload);
-          return this.client.put(path, payload.data);
-        };
-      case "DELETE":
-        return async (payload?: ShopifyAction) => {
-          const path = composeUriSuffix(resource, secondaryResource, payload);
+  process(method: "POST" | "PUT" | "DELETE", path: string, data?: AnyObject) {
+    try {
+      switch (method) {
+        case "POST":
+          return this.client.post(path, data);
+
+        case "PUT":
+          return this.client.put(path, data);
+
+        case "DELETE":
           return this.client.delete(path);
-        };
-      default:
-        throw new Error(`Method ${method} not supported`);
+
+        default:
+          throw new Error(`Method ${method} not supported`);
+      }
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        if (err.response.status === 406) {
+          throw new Error("[Shopify] The selected action is not supported");
+        }
+
+        if (err.response.status === 400) {
+          throw new Error(`[Shopify] Bad Request: ${err.response.data.errors}`);
+        }
+      }
+
+      throw err;
     }
   }
 }
@@ -85,33 +98,47 @@ export default function getProxyDriver(config: AnyObject) {
   return new Proxy(driver, {
     get: async (target, action) => {
       if (["testConnection", "connect", "disconnect"].includes(String(action))) {
-        return target[action](config);
+        return async () => target[action](config);
       }
 
-      const [resource, ...rest] = String(action).split(".");
+      return async (payload: ShopifyAction) => {
+        // split the action string by . separator
+        const [resource, ...rest] = String(action).split(".");
 
-      if (!rest.length || rest.length > 2) {
-        throw new Error(`Unknown action: ${String(action)}`);
-      }
+        // validate the split
+        if (!rest.length || rest.length > 2) {
+          throw new Error(`Unknown action format: ${String(action)}`);
+        }
 
-      if (rest.length === 1) {
-        const method = extractMethod(rest[0]);
+        // extract method and URL suffix
+        let method: "POST" | "PUT" | "DELETE";
+        let path: string;
 
+        if (rest.length === 1) {
+          //
+          method = extractMethod(rest[0]);
+          path = composeUriSuffix({
+            resource,
+            payload,
+          });
+        } else {
+          method = extractMethod(rest[1]);
+
+          const secondaryResource = rest[0];
+          path = composeUriSuffix({
+            resource,
+            secondaryResource,
+            payload,
+          });
+        }
+
+        // issue action
         await target.connect(config);
-        const result = await target.process(method, resource);
+        const result = await target.process(method, path, payload.data);
         await target.disconnect();
 
         return result;
-      }
-
-      const secondaryResource = rest[0];
-      const method = extractMethod(rest[1]);
-
-      await target.connect(config);
-      const result = await target.process(method, secondaryResource);
-      await target.disconnect();
-
-      return result;
+      };
     },
   });
 }

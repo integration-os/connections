@@ -18,12 +18,15 @@ export function extractMethod(method: string): "POST" | "PUT" | "DELETE" {
 }
 
 /**
- * a local function that composes the REST URI suffix given a payload
+ * a local function that composes the REST URI suffix given Shopify resource(s) and payload
  * @param resource
  * @param secondaryResource
  * @param payload
  */
-export function composeUriSuffix(resource: string, secondaryResource?: string, payload?: ShopifyAction) {
+export function composeUriSuffix(
+  { resource, secondaryResource, payload }:
+    {resource: string, secondaryResource?: string, payload?: ShopifyAction},
+) {
   let path = `/${resource}`;
 
   if (payload.id) {
