@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import getProxyDriver, { ShopifyDriver } from "../shopify";
 
 describe("Test: Shopify Destination", () => {
@@ -93,6 +94,37 @@ describe("Test: Shopify Destination", () => {
       expect(result).toEqual({
         success: false,
         message: "Connection to Shopify failed: Mocked error",
+      });
+
+      querySpy.mockRestore();
+    });
+
+    it("should return success=false and a message on axios failure", async () => {
+      await driver.connect();
+
+      const querySpy = jest.spyOn(driver.client, "get");
+
+      // mock Axios error
+      const err = new AxiosError();
+
+      err.response = {
+        status: 400,
+        data: {
+          errors: "Mocked Axios error",
+        },
+        statusText: "OK",
+        headers: {},
+        config: {},
+      };
+
+      // reject with Axios error
+      querySpy.mockImplementation(() => Promise.reject(err));
+
+      const result = await driver.testConnection();
+
+      expect(result).toEqual({
+        success: false,
+        message: "Connection to Shopify failed: Mocked Axios error",
       });
 
       querySpy.mockRestore();

@@ -48,6 +48,13 @@ export class ShopifyDriver implements DestinationClassI {
         message: "Connection to Shopify was successful",
       };
     } catch (err) {
+      if (err instanceof AxiosError) {
+        return {
+          success: false,
+          message: `Connection to Shopify failed: ${err.response.data.errors}`,
+        };
+      }
+
       return {
         success: false,
         message: `Connection to Shopify failed: ${err.message}`,
