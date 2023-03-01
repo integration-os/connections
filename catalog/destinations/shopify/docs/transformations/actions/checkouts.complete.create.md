@@ -2,9 +2,15 @@
 
 Completes a checkout
 
-[Documentation]("https://shopify.dev/docs/api/admin-rest/2023-01/resources/checkout")
+**Requirements**
+
+- Requires access to protected customer data
+- Requires `checkouts` access scope.
+
+[Documentation](https://shopify.dev/docs/api/admin-rest/2023-01/resources/checkout)
 
 **Sample Payload**
+
 ```json
 {
     "primaryResourceId": "checkout-token"
@@ -14,6 +20,7 @@ Completes a checkout
 Note: `primaryResourceId` refers to the checkout token.
 
 **Sample Response**
+
 ```json
 {
   "checkout": {

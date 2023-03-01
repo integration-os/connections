@@ -1,6 +1,11 @@
-# Creata a Checkout
+# Create a Checkout
 
 Creates a new checkout
+
+**Requirements**
+
+- Requires access to protected customer data
+- Requires `checkouts` access scope.
 
 [Documentation]("https://shopify.dev/docs/api/admin-rest/2023-01/resources/checkout")
 

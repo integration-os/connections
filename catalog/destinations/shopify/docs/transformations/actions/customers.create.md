@@ -1,10 +1,16 @@
 # Create a Customer
+
 Creates a customer
+
+**Requirements**
+
+- Requires access to protected customer data
+- Requires `customers` access scope.
 
 [Documentation](https://shopify.dev/docs/api/admin-rest/2023-01/resources/customer)
 
-
 **Sample Payload**
+
 ```json
 {
   "data": {
@@ -35,6 +41,7 @@ Creates a customer
 ```
 
 **Sample Response**
+
 ```json
 {
   "customer": {
