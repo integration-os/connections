@@ -1,9 +1,15 @@
-# checkouts.payments.create
+# Creates a new payment
 
-Creates a payment to a checkout
+Creates a payment on a checkout using the session ID returned by the card vault
+
+**Requirements**
+
+- Requires access to protected customer data
 
 [Documentation](https://shopify.dev/docs/api/admin-rest/2023-01/resources/payment)
+
 **Sample Payload**
+
 ```json
 {
   "primaryResourceId": "checkout-token",
@@ -25,6 +31,7 @@ Creates a payment to a checkout
 Note: `primaryResourceId` refers to the checkout token.
 
 **Sample Response**
+
 ```json
 {
   "payment": {
