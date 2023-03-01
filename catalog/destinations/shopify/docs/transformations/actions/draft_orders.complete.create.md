@@ -1,6 +1,6 @@
-# Create a draft order
+# Complete a draft order
 
-Creates a draft order
+Completes a draft order.
 
 **Requirements**
 
@@ -13,150 +13,136 @@ Creates a draft order
 
 ```json
 {
-  "data": {
-    "draft_order": {
-      "line_items": [
-        {
-          "title": "Custom Tee",
-          "price": "20.00",
-          "quantity": 2
-        }
-      ],
-      "applied_discount": {
-        "description": "Custom discount",
-        "value_type": "fixed_amount",
-        "value": "10.0",
-        "amount": "10.00",
-        "title": "Custom"
-      },
-      "customer": {
-        "id": 207119551
-      },
-      "use_customer_default_address": true
-    }
-  }
+  "primaryResourceId": 123456789
 }
 ```
+
+**Note:** `primaryResourceId` represents the draft order ID
 
 **Sample Response**
 
 ```json
 {
   "draft_order": {
-    "id": 1069920494,
-    "note": null,
+    "id": 994118539,
+    "note": "rush order",
     "email": "bob.norman@mail.example.com",
     "taxes_included": false,
     "currency": "USD",
     "invoice_sent_at": null,
-    "created_at": "2023-02-13T10:30:01-05:00",
-    "updated_at": "2023-02-13T10:30:01-05:00",
+    "created_at": "2023-02-13T10:18:48-05:00",
+    "updated_at": "2023-02-13T10:29:47-05:00",
     "tax_exempt": false,
-    "completed_at": null,
-    "name": "#D5",
-    "status": "open",
+    "completed_at": "2023-02-13T10:29:47-05:00",
+    "name": "#D2",
+    "status": "completed",
     "line_items": [
       {
-        "id": 1066630407,
-        "variant_id": null,
-        "product_id": null,
-        "title": "Custom Tee",
-        "variant_title": null,
-        "sku": null,
+        "id": 994118539,
+        "variant_id": 39072856,
+        "product_id": 632910392,
+        "title": "IPod Nano - 8gb",
+        "variant_title": "green",
+        "sku": "IPOD2008GREEN",
         "vendor": null,
-        "quantity": 2,
+        "quantity": 1,
         "requires_shipping": false,
         "taxable": true,
         "gift_card": false,
         "fulfillment_service": "manual",
-        "grams": 0,
+        "grams": 567,
         "tax_lines": [],
         "applied_discount": null,
-        "name": "Custom Tee",
+        "name": "IPod Nano - 8gb - green",
         "properties": [],
-        "custom": true,
-        "price": "20.00",
-        "admin_graphql_api_id": "gid://shopify/DraftOrderLineItem/1066630407"
+        "custom": false,
+        "price": "199.00",
+        "admin_graphql_api_id": "gid://shopify/DraftOrderLineItem/994118539"
       }
     ],
     "shipping_address": {
-      "first_name": null,
+      "first_name": "Bob",
       "address1": "Chestnut Street 92",
-      "phone": "555-625-1199",
+      "phone": "+1(502)-459-2181",
       "city": "Louisville",
       "zip": "40202",
       "province": "Kentucky",
       "country": "United States",
-      "last_name": null,
+      "last_name": "Norman",
       "address2": "",
       "company": null,
-      "latitude": null,
-      "longitude": null,
-      "name": "",
+      "latitude": 45.41634,
+      "longitude": -75.6868,
+      "name": "Bob Norman",
       "country_code": "US",
       "province_code": "KY"
     },
     "billing_address": {
-      "first_name": null,
+      "first_name": "Bob",
       "address1": "Chestnut Street 92",
-      "phone": "555-625-1199",
+      "phone": "+1(502)-459-2181",
       "city": "Louisville",
       "zip": "40202",
       "province": "Kentucky",
       "country": "United States",
-      "last_name": null,
+      "last_name": "Norman",
       "address2": "",
       "company": null,
-      "latitude": null,
-      "longitude": null,
-      "name": "",
+      "latitude": 45.41634,
+      "longitude": -75.6868,
+      "name": "Bob Norman",
       "country_code": "US",
       "province_code": "KY"
     },
-    "invoice_url": "https://jsmith.myshopify.com/548380009/invoices/95146d7e1a37bb96b0d91e1ea4b0c744",
+    "invoice_url": "https://jsmith.myshopify.com/548380009/invoices/ba8dcf6c022ccad3d47e3909e378e33f",
     "applied_discount": {
-      "description": "Custom discount",
-      "value": "10.0",
-      "title": "Custom",
-      "amount": "10.00",
+      "description": "$5promo",
+      "value": "5.0",
+      "title": null,
+      "amount": "5.00",
       "value_type": "fixed_amount"
     },
-    "order_id": null,
-    "shipping_line": null,
+    "order_id": 1073459966,
+    "shipping_line": {
+      "title": "UPS Ground",
+      "custom": false,
+      "handle": "ups-3-12.25",
+      "price": "12.25"
+    },
     "tax_lines": [],
-    "tags": "",
+    "tags": "Wholesale",
     "note_attributes": [],
-    "total_price": "30.00",
-    "subtotal_price": "30.00",
+    "total_price": "206.25",
+    "subtotal_price": "194.00",
     "total_tax": "0.00",
     "presentment_currency": "USD",
     "total_line_items_price_set": {
       "shop_money": {
-        "amount": "40.00",
+        "amount": "826.00",
         "currency_code": "USD"
       },
       "presentment_money": {
-        "amount": "40.00",
+        "amount": "826.00",
         "currency_code": "USD"
       }
     },
     "total_price_set": {
       "shop_money": {
-        "amount": "30.00",
+        "amount": "206.25",
         "currency_code": "USD"
       },
       "presentment_money": {
-        "amount": "30.00",
+        "amount": "206.25",
         "currency_code": "USD"
       }
     },
     "subtotal_price_set": {
       "shop_money": {
-        "amount": "30.00",
+        "amount": "194.00",
         "currency_code": "USD"
       },
       "presentment_money": {
-        "amount": "30.00",
+        "amount": "194.00",
         "currency_code": "USD"
       }
     },
@@ -172,44 +158,44 @@ Creates a draft order
     },
     "total_discounts_set": {
       "shop_money": {
-        "amount": "10.00",
+        "amount": "5.00",
         "currency_code": "USD"
       },
       "presentment_money": {
-        "amount": "10.00",
+        "amount": "5.00",
         "currency_code": "USD"
       }
     },
     "total_shipping_price_set": {
       "shop_money": {
-        "amount": "0.00",
+        "amount": "12.25",
         "currency_code": "USD"
       },
       "presentment_money": {
-        "amount": "0.00",
+        "amount": "12.25",
         "currency_code": "USD"
       }
     },
     "payment_terms": null,
-    "admin_graphql_api_id": "gid://shopify/DraftOrder/1069920494",
+    "admin_graphql_api_id": "gid://shopify/DraftOrder/994118539",
     "customer": {
       "id": 207119551,
       "email": "bob.norman@mail.example.com",
       "accepts_marketing": false,
       "created_at": "2023-02-13T10:18:48-05:00",
-      "updated_at": "2023-02-13T10:18:48-05:00",
+      "updated_at": "2023-02-13T10:29:47-05:00",
       "first_name": "Bob",
       "last_name": "Norman",
-      "orders_count": 1,
+      "orders_count": 2,
       "state": "disabled",
-      "total_spent": "199.65",
-      "last_order_id": 450789469,
+      "total_spent": "405.90",
+      "last_order_id": 1073459966,
       "note": null,
       "verified_email": true,
       "multipass_identifier": null,
       "tax_exempt": false,
       "tags": "Léon, Noël",
-      "last_order_name": "#1001",
+      "last_order_name": "#1002",
       "currency": "USD",
       "phone": "+16136120707",
       "accepts_marketing_updated_at": "2005-06-12T11:57:11-04:00",

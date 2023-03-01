@@ -1,41 +1,45 @@
 # Update a Customer
+
 Updates a customer
 
 [Documentation](https://shopify.dev/docs/api/admin-rest/2023-01/resources/customer)
 
-
 **Sample Payload**
+
 ```json
 {
-  "primaryResourceId": "customer-id",
+  "primaryResourceId": 123456789,
   "data": {
-    "customer":{
-      "first_name":"Steve",
-      "last_name":"Lastnameson",
-      "email":"steve.lastnameson@example.com",
-      "phone":"+15142546011",
-      "verified_email":true,
-      "addresses":[
+    "customer": {
+      "first_name": "Steve",
+      "last_name": "Lastnameson",
+      "email": "steve.lastnameson@example.com",
+      "phone": "+15142546011",
+      "verified_email": true,
+      "addresses": [
         {
-          "address1":"123 Oak St",
-          "city":"Ottawa",
-          "province":"ON",
-          "phone":"555-1212",
-          "zip":"123 ABC",
-          "last_name":"Lastnameson",
-          "first_name":"Mother",
-          "country":"CA"
+          "address1": "123 Oak St",
+          "city": "Ottawa",
+          "province": "ON",
+          "phone": "555-1212",
+          "zip": "123 ABC",
+          "last_name": "Lastnameson",
+          "first_name": "Mother",
+          "country": "CA"
         }
       ],
-      "password":"newpass",
-      "password_confirmation":"newpass",
-      "send_email_welcome":false
+      "password": "newpass",
+      "password_confirmation": "newpass",
+      "send_email_welcome": false
     }
   }
 }
 ```
 
+**Note:** `primaryResourceId` represents the customer ID
+
 **Sample Response**
+
 ```json
 {
   "customer": {
