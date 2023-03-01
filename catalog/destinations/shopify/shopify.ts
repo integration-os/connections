@@ -46,9 +46,11 @@ export class ShopifyDriver implements DestinationClassI {
       };
     } catch (err) {
       if (axios.isAxiosError(err)) {
+        const { errors } = err.response.data as any;
+
         return {
           success: false,
-          message: `Connection to Shopify failed: ${(err.response.data as any).errors}`,
+          message: `Connection to Shopify failed: ${JSON.stringify(errors)}`,
         };
       }
 
@@ -90,7 +92,8 @@ export class ShopifyDriver implements DestinationClassI {
         }
 
         if (err.response.status === 400) {
-          throw new Error(`[Shopify] Bad Request: ${(err.response.data as any).errors}`);
+          const { errors } = err.response.data as any;
+          throw new Error(`[Shopify] Bad Request: ${JSON.stringify(errors)}`);
         }
       }
 
