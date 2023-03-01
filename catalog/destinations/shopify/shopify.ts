@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 import axiosRetry from "axios-retry";
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
 import { ShopifyAction } from "./lib/types";
@@ -67,7 +67,7 @@ export class ShopifyDriver implements DestinationClassI {
    */
   async process(method: "POST" | "PUT" | "DELETE", path: string, data?: AnyObject) {
     try {
-      let result;
+      let result: AxiosResponse;
 
       switch (method) {
         case "PUT":
@@ -82,7 +82,7 @@ export class ShopifyDriver implements DestinationClassI {
           break;
       }
 
-      return result;
+      return result.data;
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response.status === 406) {

@@ -5,7 +5,7 @@ Shopify is an all-in-one e-commerce platform that enables individuals and busine
 
 ### IP Whitelisting
 
-To enable Buildable to connect to your database, please ensure that your firewall accepts incoming requests from the following IP addresses:
+To enable Buildable to connect to your Shopify instance, please ensure that your firewall accepts incoming requests from the following IP addresses:
 
 `35.245.232.82` `35.245.100.81`
 
