@@ -43,15 +43,24 @@ describe("Test: Shopify Destination", () => {
       // attempt connection
       await driver.connect();
 
-      driver.client.post = jest.fn().mockRejectedValue(new AxiosError("Mocked Error", "Too many requests", {}, {}, {
-        status: 429,
-        statusText: "Too many requests",
-        config: {},
-        headers: {},
-        data: {
-          errors: "Mocked HTTP 429 Too many requests response",
+      const error: Partial<AxiosError> = {
+        isAxiosError: true,
+        response: {
+          status: 429,
+          statusText: "Too many requests",
+          config: {},
+          headers: {},
+          data: {
+            errors: "Mocked HTTP 429 Too many requests response",
+          },
         },
-      }));
+        stack: "",
+        toJSON(): object {
+          return {};
+        },
+      };
+
+      driver.client.post = jest.fn().mockRejectedValue(error);
 
       driver.connect = jest.fn();
 
@@ -133,20 +142,25 @@ describe("Test: Shopify Destination", () => {
       const querySpy = jest.spyOn(driver.client, "get");
 
       // mock Axios error
-      const err = new AxiosError();
-
-      err.response = {
-        status: 400,
-        data: {
-          errors: "Mocked Axios error",
+      const error: Partial<AxiosError> = {
+        isAxiosError: true,
+        response: {
+          status: 400,
+          data: {
+            errors: "Mocked Axios error",
+          },
+          statusText: "OK",
+          headers: {},
+          config: {},
         },
-        statusText: "OK",
-        headers: {},
-        config: {},
+        stack: "",
+        toJSON(): object {
+          return {};
+        },
       };
 
       // reject with Axios error
-      querySpy.mockImplementation(() => Promise.reject(err));
+      querySpy.mockImplementation(() => Promise.reject(error));
 
       const result = await driver.testConnection();
 
@@ -241,14 +255,20 @@ describe("Test: Shopify Destination", () => {
         postSpy = jest.spyOn(driver.client, "post");
 
         // mock an axios 406 error
-        const error = new AxiosError();
-        error.response = {
-          status: 406,
-          statusText: "Not Accepted",
-          config: {},
-          headers: {},
-          data: {
-            errors: "Mocked HTTP 406 Not Accepted response",
+        const error: Partial<AxiosError> = {
+          isAxiosError: true,
+          response: {
+            status: 406,
+            statusText: "Not Accepted",
+            config: {},
+            headers: {},
+            data: {
+              errors: "Mocked HTTP 406 Not Accepted response",
+            },
+          },
+          stack: "",
+          toJSON(): object {
+            return {};
           },
         };
 
@@ -266,14 +286,20 @@ describe("Test: Shopify Destination", () => {
         postSpy = jest.spyOn(driver.client, "put");
 
         // mock an axios 400 error
-        const error = new AxiosError();
-        error.response = {
-          status: 400,
-          statusText: "Not Accepted",
-          config: {},
-          headers: {},
-          data: {
-            errors: "Mocked HTTP 400 Bad Request response",
+        const error: Partial<AxiosError> = {
+          isAxiosError: true,
+          response: {
+            status: 400,
+            statusText: "Not Accepted",
+            config: {},
+            headers: {},
+            data: {
+              errors: "Mocked HTTP 400 Bad Request response",
+            },
+          },
+          stack: "",
+          toJSON(): object {
+            return {};
           },
         };
 
