@@ -5,8 +5,8 @@
   "main": "",
   "scripts": {
     "prettier": "prettier --write catalog/**/**/*.ts",
-    "test": "jest ./tests",
-    "coverage": "jest --coverage ./tests"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
