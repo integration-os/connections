@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 import axiosRetry from "axios-retry";
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
 import { ShopifyAction } from "./lib/types";
@@ -45,10 +45,10 @@ export class ShopifyDriver implements DestinationClassI {
         message: "Connection to Shopify was successful",
       };
     } catch (err) {
-      if (err instanceof AxiosError) {
+      if (axios.isAxiosError(err)) {
         return {
           success: false,
-          message: `Connection to Shopify failed: ${err.response.data.errors}`,
+          message: `Connection to Shopify failed: ${(err.response.data as any).errors}`,
         };
       }
 
@@ -84,13 +84,13 @@ export class ShopifyDriver implements DestinationClassI {
 
       return result.data;
     } catch (err) {
-      if (err instanceof AxiosError) {
+      if (axios.isAxiosError(err)) {
         if (err.response.status === 406) {
           throw new Error("[Shopify] The selected action is not supported");
         }
 
         if (err.response.status === 400) {
-          throw new Error(`[Shopify] Bad Request: ${err.response.data.errors}`);
+          throw new Error(`[Shopify] Bad Request: ${(err.response.data as any).errors}`);
         }
       }
 

@@ -38,10 +38,11 @@
     "customers.update",
     "customers.delete",
 
-    "inventory_items.create",
+    "inventory_items.update",
 
     "draft_orders.create",
     "draft_orders.send_invoice.create",
+    "draft_orders.complete.create",
     "draft_orders.update",
     "draft_orders.delete",
 
@@ -62,7 +63,7 @@
     "products.delete",
     "products.variants.create",
     "variants.update",
-    "variants.delete",
+    "products.variants.delete",
 
     "checkouts.create",
     "checkouts.update",
