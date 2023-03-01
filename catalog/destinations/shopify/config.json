@@ -13,8 +13,8 @@
       "placeholder": "mystore"
     },
     {
-      "name": "SHOPIFY_ACCESS_TOKEN",
-      "label": "Enter your Shopify access token",
+      "name": "SHOPIFY_ACCESS_KEY",
+      "label": "Enter your Shopify access key",
       "placeholder": "shpat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     }
   ],
