@@ -58,6 +58,7 @@
     "@supabase/supabase-js": "^1.35.6",
     "@types/paypal-rest-sdk": "^1.7.6",
     "axios": "^0.27.2",
+    "axios-retry": "^3.4.0",
     "bytes": "^3.1.2",
     "dayjs": "^1.11.7",
     "firebase": "^9.15.0",

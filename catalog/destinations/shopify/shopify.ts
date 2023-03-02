@@ -38,6 +38,7 @@ export class ShopifyDriver implements DestinationClassI {
 
   async testConnection(): Promise<TestConnection> {
     try {
+      this.connect();
       await this.client.get("/events.json");
 
       return {
@@ -48,16 +49,10 @@ export class ShopifyDriver implements DestinationClassI {
       if (axios.isAxiosError(err)) {
         const { errors } = err.response.data as any;
 
-        return {
-          success: false,
-          message: `Connection to Shopify failed: ${JSON.stringify(errors)}`,
-        };
+        throw new Error(`Connection to Shopify failed: ${JSON.stringify(errors)}`);
       }
 
-      return {
-        success: false,
-        message: `Connection to Shopify failed: ${err.message}`,
-      };
+      throw new Error(`Connection to Shopify failed: ${err.message}`);
     }
   }
 
