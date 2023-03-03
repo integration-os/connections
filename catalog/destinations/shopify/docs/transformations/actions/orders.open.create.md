@@ -1,40 +1,25 @@
-# Update an order
+# Re-open a closed order
 
-This operation allows for updating properties of an order
-including `buyer_accepts_marketing`, `email`, `phone`, `note`, `tags`, `metafields` and `shipping_address_attributes`.
-It is not for editing the items of an order.
+Re-opens a closed order.
 
 **Requirements**
 
 - Requires access to protected customer data
-- Requires either `orders`or `marketplace_orders` access scope.
+- Requires `orders` access scope.
 
 [Documentation](https://shopify.dev/docs/api/admin-rest/2023-01/resources/order)
 
-## Sample Payload
+**Sample Payload**
 
 ```json
 {
-  "primaryResourceId": 123465798,
-  "data": {
-    "order": {
-      "id": 450789469,
-      "metafields": [
-        {
-          "key": "new",
-          "value": "newvalue",
-          "type": "single_line_text_field",
-          "namespace": "global"
-        }
-      ]
-    }
-  }
+  "primaryResourceId": 1234567890
 }
 ```
 
-**Note:** `primaryResourceId` represents the order ID.
+**Note:** `primaryResourceId` represents the order ID to open. It must be a closed order.
 
-## Sample Response
+**Sample Response**
 
 ```json
 {
@@ -124,6 +109,7 @@ It is not for editing the items of an order.
     "landing_site": "http://www.example.com?source=abc",
     "landing_site_ref": "abc",
     "location_id": null,
+    "merchant_of_record_app_id": null,
     "name": "#1001",
     "note": null,
     "note_attributes": [
@@ -219,7 +205,6 @@ It is not for editing the items of an order.
         "currency_code": "USD"
       }
     },
-    "total_price_usd": "598.94",
     "total_shipping_price_set": {
       "shop_money": {
         "amount": "0.00",
@@ -243,7 +228,7 @@ It is not for editing the items of an order.
     },
     "total_tip_received": "0.00",
     "total_weight": 0,
-    "updated_at": "2023-02-14T06:17:48-05:00",
+    "updated_at": "2023-02-14T06:15:53-05:00",
     "user_id": null,
     "billing_address": {
       "first_name": "Bob",
@@ -270,21 +255,28 @@ It is not for editing the items of an order.
       "updated_at": "2023-02-14T06:14:36-05:00",
       "first_name": "Bob",
       "last_name": "Norman",
-      "orders_count": 1,
       "state": "disabled",
-      "total_spent": "199.65",
-      "last_order_id": 450789469,
       "note": null,
       "verified_email": true,
       "multipass_identifier": null,
       "tax_exempt": false,
       "tags": "Léon, Noël",
-      "last_order_name": "#1001",
       "currency": "USD",
       "phone": "+16136120707",
       "accepts_marketing_updated_at": "2005-06-12T11:57:11-04:00",
       "marketing_opt_in_level": null,
       "tax_exemptions": [],
+      "email_marketing_consent": {
+        "state": "not_subscribed",
+        "opt_in_level": null,
+        "consent_updated_at": "2004-06-13T11:57:11-04:00"
+      },
+      "sms_marketing_consent": {
+        "state": "not_subscribed",
+        "opt_in_level": "single_opt_in",
+        "consent_updated_at": "2023-02-14T06:14:36-05:00",
+        "consent_collected_from": "OTHER"
+      },
       "admin_graphql_api_id": "gid://shopify/Customer/207119551",
       "default_address": {
         "id": 207119551,
@@ -325,6 +317,7 @@ It is not for editing the items of an order.
         "location_id": 655441491,
         "name": "#1001.0",
         "order_id": 450789469,
+        "origin_address": {},
         "receipt": {
           "testcase": true,
           "authorization": "123456"
@@ -687,8 +680,13 @@ It is not for editing the items of an order.
       "avs_result_code": null,
       "cvv_result_code": null,
       "credit_card_number": "•••• •••• •••• 4242",
-      "credit_card_company": "Visa"
+      "credit_card_company": "Visa",
+      "credit_card_name": null,
+      "credit_card_wallet": null,
+      "credit_card_expiration_month": null,
+      "credit_card_expiration_year": null
     },
+    "payment_terms": null,
     "refunds": [
       {
         "id": 509562969,
@@ -698,6 +696,16 @@ It is not for editing the items of an order.
         "order_id": 450789469,
         "processed_at": "2023-02-14T06:14:36-05:00",
         "restock": true,
+        "total_additional_fees_set": {
+          "shop_money": {
+            "amount": "0.00",
+            "currency_code": "USD"
+          },
+          "presentment_money": {
+            "amount": "0.00",
+            "currency_code": "USD"
+          }
+        },
         "total_duties_set": {
           "shop_money": {
             "amount": "0.00",
@@ -726,6 +734,7 @@ It is not for editing the items of an order.
             "message": null,
             "order_id": 450789469,
             "parent_id": 801038806,
+            "payment_id": "#1001.3",
             "processed_at": "2005-08-05T12:59:12-04:00",
             "receipt": {},
             "source_name": "web",
@@ -961,7 +970,8 @@ It is not for editing the items of an order.
             }
           }
         ],
-        "duties": []
+        "duties": [],
+        "additional_fees": []
       }
     ],
     "shipping_address": {
