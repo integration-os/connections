@@ -38,7 +38,7 @@ export class ShopifyDriver implements DestinationClassI {
 
   async testConnection(): Promise<TestConnection> {
     try {
-      this.connect();
+      await this.connect();
       await this.client.get("/events.json");
 
       return {
