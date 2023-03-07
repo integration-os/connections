@@ -56,6 +56,11 @@ const getFTPClient = (config: {
   const client = new ftp();
 
   return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      reject(new Error('Timeout error'));
+      client.end();
+    }, 5000);
+
     client.connect({
       host: config.FTP_HOST,
       port: config.FTP_PORT,
@@ -64,6 +69,8 @@ const getFTPClient = (config: {
     });
 
     client.on("ready", () => {
+      clearTimeout(timeout);
+
       client.list(config.FTP_PATH, (err, list) => {
         if (err) reject(err);
 

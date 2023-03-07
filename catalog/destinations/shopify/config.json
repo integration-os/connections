@@ -1,0 +1,86 @@
+{
+  "title": "Shopify",
+  "description": "Shopify is an online platform for creating and managing e-commerce stores",
+  "apiVersion": "NA",
+  "type": "shopify",
+  "category": "ecommerce",
+  "image": "https://assets.buildable.dev/catalog/node-templates/shopify.svg",
+  "tags": ["ecommerce", "business"],
+  "authentication": [
+    {
+      "name": "SHOPIFY_STORE_NAME",
+      "label": "Enter the name of your Shopify store",
+      "placeholder": "mystore"
+    },
+    {
+      "name": "SHOPIFY_ACCESS_KEY",
+      "label": "Enter your Shopify access key",
+      "placeholder": "shpat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": [
+    "reports.create",
+    "reports.update",
+    "reports.delete",
+
+    "customers.create",
+    "customers.account_activation_url.create",
+    "customers.send_invite.create",
+    "customers.update",
+    "customers.delete",
+
+    "inventory_items.update",
+
+    "draft_orders.create",
+    "draft_orders.send_invoice.create",
+    "draft_orders.complete.create",
+    "draft_orders.update",
+    "draft_orders.delete",
+
+    "orders.create",
+    "orders.cancel.create",
+    "orders.close.create",
+    "orders.update",
+    "orders.delete",
+    "orders.risks.create",
+    "orders.risks.update",
+    "orders.risks.delete",
+    "orders.refunds.create",
+    "orders.refunds.calculate.create",
+    "orders.transactions.create",
+
+    "products.create",
+    "products.update",
+    "products.delete",
+    "products.variants.create",
+    "variants.update",
+    "products.variants.delete",
+
+    "checkouts.create",
+    "checkouts.update",
+    "checkouts.complete.create",
+    "checkouts.payments.create",
+
+    "fulfillment_orders.cancel.create",
+    "fulfillment_orders.close.create",
+    "fulfillment_orders.hold.create",
+    "fulfillment_orders.move.create",
+    "fulfillment_orders.open.create",
+    "fulfillment_orders.release_hold.create",
+    "fulfillment_orders.reschedule.create",
+
+    "fulfillments.create",
+    "fulfillments.cancel.create",
+    "fulfillments.update_tracking.create"
+  ],
+  "destinationType": "http"
+}
