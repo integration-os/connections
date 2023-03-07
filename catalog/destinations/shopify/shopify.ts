@@ -92,7 +92,7 @@ export class ShopifyDriver implements DestinationClassI {
           throw new Error(`[Shopify] Bad Request: ${JSON.stringify(errors)}`);
         }
 
-        throw new Error(`[Shopify] An error occurred while contacting Shopify API: ${errors || err.message}`);
+        throw new Error(`[Shopify] An error occurred while contacting Shopify API: ${JSON.stringify(errors) || err.message}`);
       }
 
       throw err;
