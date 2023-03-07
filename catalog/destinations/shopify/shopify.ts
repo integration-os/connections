@@ -86,10 +86,13 @@ export class ShopifyDriver implements DestinationClassI {
           throw new Error("[Shopify] The selected action is not supported");
         }
 
+        const { errors } = err.response.data as any;
+
         if (err.response.status === 400) {
-          const { errors } = err.response.data as any;
           throw new Error(`[Shopify] Bad Request: ${JSON.stringify(errors)}`);
         }
+
+        throw new Error(`[Shopify] An error occurred while contacting Shopify API: ${errors || err.message}`);
       }
 
       throw err;
@@ -152,8 +155,8 @@ export default function getProxyDriver(config: AnyObject) {
           });
         } else {
           method = extractMethod(rest[1]);
-
           const secondaryResource = rest[0];
+
           path = composeUriSuffix({
             resource,
             secondaryResource,
