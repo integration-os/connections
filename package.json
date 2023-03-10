@@ -64,6 +64,7 @@
     "firebase": "^9.15.0",
     "firebase-admin": "^11.3.0",
     "ftp": "^0.3.10",
+    "jwt-decode": "^3.1.2",
     "knex": "^2.4.0",
     "lodash": "^4.17.21",
     "paypal-rest-sdk": "^1.8.1",
