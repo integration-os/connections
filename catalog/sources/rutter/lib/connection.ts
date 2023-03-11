@@ -70,13 +70,7 @@ export default class RutterConnection {
         }
       }
     `;
-
-    try {
-      await this.client.post("", { query: mutation });
-    } catch (e) {
-      console.log("Error creating webhook: ", e.response.data);
-      return false;
-    }
+    await this.client.post("", { query: mutation });
 
     return true;
   }
