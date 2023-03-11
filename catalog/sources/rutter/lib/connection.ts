@@ -45,7 +45,7 @@ export default class RutterConnection {
   async createWebhook({ webhookUrl, events }: {webhookUrl: string, events: Events}): Promise<boolean> {
     await this.rotateAccessToken();
 
-    const allowedWebhookTypes = `[${events.map((event) => `"${event}"`).join(", ")}]`;
+    const allowedWebhookTypes = this.createWebhookTypes(events);
 
     // TODO: change isSandbox to false
     const mutation = `
@@ -70,7 +70,6 @@ export default class RutterConnection {
         }
       }
     `;
-
     await this.client.post("", { query: mutation });
 
     return true;
@@ -152,7 +151,7 @@ export default class RutterConnection {
   async updateWebhookEvents(webhookId: string, events: Events): Promise<RutterWebhook> {
     await this.rotateAccessToken();
 
-    const allowedWebhookTypes = `[${events.map((event) => `"${event}"`).join(", ")}]`;
+    const allowedWebhookTypes = this.createWebhookTypes(events);
 
     const mutation = `
       mutation {
@@ -247,5 +246,16 @@ export default class RutterConnection {
     const response = await axios.post(RutterConnection.BASE_URL, { query: mutation });
 
     return response.data.data.login.token;
+  }
+
+  /**
+   * Create the webhook types string for the GraphQL mutation
+   * @param events
+   * @private
+   */
+  private createWebhookTypes(events: string[]) {
+    const eventList = Array.from(new Set([...MANDATORY_EVENTS, ...events]));
+
+    return `[${eventList.map((event) => `"${event}"`).join(", ")}]`;
   }
 }

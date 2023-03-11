@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import axios from "axios";
 import {
   AnyObject, DeleteWebhookEndpointProps,
   Events,
@@ -40,20 +41,28 @@ export default class RutterIntegration implements IntegrationClassI {
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     // initialize connection with Rutter
-    this.RUTTER_CONNECTION = new RutterConnection(this.RUTTER_EMAIL, this.RUTTER_PASSWORD);
-    await this.RUTTER_CONNECTION.init();
+    try {
+      this.RUTTER_CONNECTION = new RutterConnection(this.RUTTER_EMAIL, this.RUTTER_PASSWORD);
+      await this.RUTTER_CONNECTION.init();
 
-    // issue create a webhook
-    await this.RUTTER_CONNECTION.createWebhook({ webhookUrl, events });
+      // issue create a webhook
+      await this.RUTTER_CONNECTION.createWebhook({ webhookUrl, events });
 
-    // issue list webhooks
-    const webhook = await this.RUTTER_CONNECTION.findWebhookByUrl(webhookUrl);
+      // issue list webhooks
+      const webhook = await this.RUTTER_CONNECTION.findWebhookByUrl(webhookUrl);
 
-    // return webhook
-    return {
-      webhookData: webhook,
-      events,
-    };
+      // return webhook
+      return {
+        webhookData: webhook,
+        events: webhook.allowlist.allowedTypes,
+      };
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        throw new Error(`Rutter API Error: ${JSON.stringify((e.response.data as any).errors)}`);
+      }
+
+      throw new Error(`An unexpected error occurred: ${e.message}`);
+    }
   }
 
   async verifyWebhookSignature({ request, signature }: VerifyWebhookSignatureProps): Promise<Truthy> {
@@ -71,43 +80,92 @@ export default class RutterIntegration implements IntegrationClassI {
   }
 
   async subscribe({ webhookId, events }: SubscriptionProps): Promise<SubscribeReturns> {
-    const webhook = await this.RUTTER_CONNECTION.updateWebhookEvents(webhookId, events);
+    try {
+      const webhook = await this.RUTTER_CONNECTION.updateWebhookEvents(webhookId, events);
 
-    return {
-      webhook, events,
-    };
+      return {
+        webhook,
+        events: webhook.allowlist.allowedTypes,
+      };
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        throw new Error(`Rutter API Error: ${JSON.stringify((e.response.data as any).errors)}`);
+      }
+
+      throw new Error(`An unexpected error occurred: ${e.message}`);
+    }
   }
 
   async getWebhooks({ webhookId }: WebhooksProps | undefined): Promise<AnyObject | AnyObject[]> {
-    return this.RUTTER_CONNECTION.findWebhookById(webhookId);
+    try {
+      return this.RUTTER_CONNECTION.findWebhookById(webhookId);
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        throw new Error(`Rutter API Error: ${JSON.stringify((e.response.data as any).errors)}`);
+      }
+
+      throw new Error(`An unexpected error occurred: ${e.message}`);
+    }
   }
 
   async unsubscribe({ webhookId, events }: SubscriptionProps): Promise<{ events: Events; webhook?: any; webhooks?: any }> {
-    const webhook = await this.RUTTER_CONNECTION.findWebhookById(webhookId);
-    const newEvents = webhook.allowlist.allowedTypes.filter((event: string) => !events.includes(event));
+    try {
+      const webhook = await this.RUTTER_CONNECTION.findWebhookById(webhookId);
+      const newEvents = webhook.allowlist.allowedTypes.filter((event: string) => !events.includes(event));
 
-    await this.RUTTER_CONNECTION.updateWebhookEvents(webhookId, newEvents);
+      const newWebhook = await this.RUTTER_CONNECTION.updateWebhookEvents(webhookId, newEvents);
 
-    return {
-      webhook,
-      events: newEvents,
-    };
+      return {
+        webhook: newWebhook,
+        events: newWebhook.allowlist.allowedTypes,
+      };
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        throw new Error(`Rutter API Error: ${JSON.stringify((e.response.data as any).errors)}`);
+      }
+
+      throw new Error(`An unexpected error occurred: ${e.message}`);
+    }
   }
 
   async getSubscribedEvents({ webhookId }: WebhooksProps): Promise<Events> {
-    return this.RUTTER_CONNECTION.getSubscribedEvents(webhookId);
+    try {
+      return this.RUTTER_CONNECTION.getSubscribedEvents(webhookId);
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        throw new Error(`Rutter API Error: ${JSON.stringify((e.response.data as any).errors)}`);
+      }
+
+      throw new Error(`An unexpected error occurred: ${e.message}`);
+    }
   }
 
   async deleteWebhookEndpoint({ webhookId }: DeleteWebhookEndpointProps): Promise<Truthy> {
-    return this.RUTTER_CONNECTION.dropWebhook(webhookId);
+    try {
+      return this.RUTTER_CONNECTION.dropWebhook(webhookId);
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        throw new Error(`Rutter API Error: ${JSON.stringify((e.response.data as any).errors)}`);
+      }
+
+      throw new Error(`An unexpected error occurred: ${e.message}`);
+    }
   }
 
   async testConnection(): Promise<TestConnection> {
-    await this.RUTTER_CONNECTION.init();
+    try {
+      await this.RUTTER_CONNECTION.init();
 
-    return {
-      success: true,
-      message: "Connection to Rutter API established",
-    };
+      return {
+        success: true,
+        message: "Connection to Rutter API established",
+      };
+    } catch (e) {
+      console.log(e.message);
+      return {
+        success: false,
+        message: `Connection to Rutter API failed: ${e.message}`,
+      };
+    }
   }
 }
