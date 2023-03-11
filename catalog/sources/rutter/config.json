@@ -102,41 +102,6 @@
   "connectionTypes": ["source"],
   "events": [
     {
-      "name": "INITIAL_UPDATE",
-      "description": "The initial synchronization of data",
-      "group": ""
-    },
-    {
-      "name": "HISTORICAL_UPDATE",
-      "description": "A historical update of data",
-      "group": ""
-    },
-    {
-      "name": "CONNECTION_UPDATED",
-      "description": "The connection to the API has been updated",
-      "group": ""
-    },
-    {
-      "name": "CONNECTION_NEEDS_UPDATE",
-      "description": "The connection to the API needs an update",
-      "group": ""
-    },
-    {
-      "name": "CONNECTION_DISABLED",
-      "description": "The connection to the API has been disabled",
-      "group": ""
-    },
-    {
-      "name": "CONNECTION_LINK_ERROR",
-      "description": "There was an error with the connection to the API link",
-      "group": ""
-    },
-    {
-      "name": "CONNECTION_ERROR",
-      "description": "There was an error with the connection to the API",
-      "group": ""
-    },
-    {
       "name": "ORDER_FULFILLED",
       "description": "An order has been fulfilled",
       "group": ""
