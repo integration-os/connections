@@ -1,0 +1,250 @@
+{
+  "title": "Rutter",
+  "description": "A universal API for Commerce, Accounting, Payments & More. For devs, by devs. Simple auth flow",
+  "apiVersion": "NA",
+  "type": "rutter",
+  "category": "accounting",
+  "image": "https://assets.buildable.dev/catalog/node-templates/rutter.svg",
+  "tags": [
+    "ecommerce",
+    "accounting",
+    "payments"
+  ],
+  "authentication": [
+    {
+      "name": "RUTTER_EMAIL",
+      "label": "Enter your Rutter Email",
+      "placeholder": "johndoe@mail.com"
+    },
+    {
+      "name": "RUTTER_PASSWORD",
+      "label": "Enter your Rutter Password",
+      "placeholder": "********"
+    },
+    {
+      "name": "RUTTER_CLIENT_SECRET",
+      "label": "Enter your Rutter Client Secret",
+      "placeholder": "sk_df556f38-4bbf-4278-b236-7818fba3c699"
+    }
+  ],
+  "eventSchema": {
+    "type": "INVOICE",
+    "code": "INVOICE_CREATED",
+    "access_token": "313c3e00-2bbc-4b2e-a9dc-13abed546b65",
+    "invoice": {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "account_id": "00000000-0000-0000-0000-000000000000",
+      "platform_id": "12345678",
+      "document_number": "CUSTINVC-1",
+      "customer_id": "00000000-0000-0000-0000-000000000000",
+      "issue_date": "2023-01-02T02:34:56.000Z",
+      "due_date": "2023-01-02T02:34:56.000Z",
+      "currency_code": "USD",
+      "line_items": [
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "platform_id": "12345678",
+          "description": "A Rutter shirt.",
+          "unit_amount": "12.34",
+          "quantity": 1,
+          "discount_amount": "0",
+          "sub_total": "12.34",
+          "tax_amount": "2",
+          "amount": "14.34",
+          "discount_percentage": "0",
+          "tax_rate_id": "00000000-0000-0000-0000-000000000000",
+          "item_id": "00000000-0000-0000-0000-000000000000"
+        }
+      ],
+      "status": "partially_paid",
+      "total_discount": "0",
+      "sub_total": "12.34",
+      "tax_amount": "2",
+      "total_amount": "14.34",
+      "amount_due": "9.34",
+      "memo": "For a Rutter shirt.",
+      "linked_payments": [
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "type": "INVOICE_PAYMENT",
+          "amount": "3",
+          "date": "2023-01-02T02:34:56.000Z"
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "type": "INVOICE_CREDIT_MEMO",
+          "amount": "2",
+          "date": "2023-01-02T02:34:56.000Z"
+        }
+      ],
+      "customer": {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "platform_id": "12345678",
+        "name": "Eric Yu",
+        "email": "eric@rutter.com",
+        "updated_at": "2023-01-02T02:34:56.000Z"
+      }
+    }
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": false,
+    "subscriptionDelayMultiplier": 0.0,
+    "showEvents": true
+  },
+  "paths": {
+    "id": "_.body.id",
+    "event": "_.body.code",
+    "payload": "_.body",
+    "secret": "_.headers.x-rutter-signature",
+    "signature": "_.headers.x-rutter-signature"
+  },
+  "connectionTypes": ["source"],
+  "events": [
+    {
+      "name": "INITIAL_UPDATE",
+      "description": "The initial synchronization of data",
+      "group": ""
+    },
+    {
+      "name": "HISTORICAL_UPDATE",
+      "description": "A historical update of data",
+      "group": ""
+    },
+    {
+      "name": "CONNECTION_UPDATED",
+      "description": "The connection to the API has been updated",
+      "group": ""
+    },
+    {
+      "name": "CONNECTION_NEEDS_UPDATE",
+      "description": "The connection to the API needs an update",
+      "group": ""
+    },
+    {
+      "name": "CONNECTION_DISABLED",
+      "description": "The connection to the API has been disabled",
+      "group": ""
+    },
+    {
+      "name": "CONNECTION_LINK_ERROR",
+      "description": "There was an error with the connection to the API link",
+      "group": ""
+    },
+    {
+      "name": "CONNECTION_ERROR",
+      "description": "There was an error with the connection to the API",
+      "group": ""
+    },
+    {
+      "name": "ORDER_FULFILLED",
+      "description": "An order has been fulfilled",
+      "group": ""
+    },
+    {
+      "name": "ORDER_DELETED",
+      "description": "An order has been deleted",
+      "group": ""
+    },
+    {
+      "name": "ORDER_UPDATED",
+      "description": "An order has been updated",
+      "group": ""
+    },
+    {
+      "name": "ORDER_CREATED",
+      "description": "A new order has been placed",
+      "group": ""
+    },
+    {
+      "name": "PRODUCT_CREATED",
+      "description": "A new product has been created",
+      "group": ""
+    },
+    {
+      "name": "PRODUCT_UPDATED",
+      "description": "A product has been updated",
+      "group": ""
+    },
+    {
+      "name": "PRODUCT_DELETED",
+      "description": "A product has been deleted",
+      "group": ""
+    },
+    {
+      "name": "PRODUCT_READY",
+      "description": "A product is ready to be published",
+      "group": ""
+    },
+    {
+      "name": "PRODUCT_FINISH_FAILED",
+      "description": "An error occurred while finishing a product",
+      "group": ""
+    },
+    {
+      "name": "CUSTOMER_CREATED",
+      "description": "A new customer has been created",
+      "group": ""
+    },
+    {
+      "name": "CUSTOMER_UPDATED",
+      "description": "A customer has been updated",
+      "group": ""
+    },
+    {
+      "name": "CUSTOMER_DELETED",
+      "description": "A customer has been deleted",
+      "group": ""
+    },
+    {
+      "name": "STORE_UPDATED",
+      "description": "A store has been updated",
+      "group": ""
+    },
+    {
+      "name": "JOB_COMPLETED",
+      "description": "A job has been completed",
+      "group": ""
+    },
+    {
+      "name": "INVOICE_CREATED",
+      "description": "An invoice has been created",
+      "group": ""
+    },
+    {
+      "name": "INVOICE_UPDATED",
+      "description": "An invoice has been updated",
+      "group": ""
+    },
+    {
+      "name": "ACCOUNT_CREATED",
+      "description": "An account has been created",
+      "group": ""
+    },
+    {
+      "name": "ACCOUNT_UPDATED",
+      "description": "An account has been updated",
+      "group": ""
+    },
+    {
+      "name": "BILL_CREATED",
+      "description": "A bill has been created",
+      "group": ""
+    },
+    {
+      "name": "BILL_UPDATED",
+      "description": "A bill has been updated",
+      "group": ""
+    },
+    {
+      "name": "VENDOR_CREATED",
+      "description": "A vendor has been created",
+      "group": ""
+    },
+    {
+      "name": "VENDOR_UPDATED",
+      "description": "A vendor has been updated",
+      "group": ""
+    }
+  ]
+}
