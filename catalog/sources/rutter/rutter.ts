@@ -52,7 +52,7 @@ export default class RutterIntegration implements IntegrationClassI {
     // return webhook
     return {
       webhookData: webhook,
-      events,
+      events: webhook.allowlist.allowedTypes,
     };
   }
 
@@ -74,7 +74,8 @@ export default class RutterIntegration implements IntegrationClassI {
     const webhook = await this.RUTTER_CONNECTION.updateWebhookEvents(webhookId, events);
 
     return {
-      webhook, events,
+      webhook,
+      events: webhook.allowlist.allowedTypes,
     };
   }
 
@@ -86,11 +87,11 @@ export default class RutterIntegration implements IntegrationClassI {
     const webhook = await this.RUTTER_CONNECTION.findWebhookById(webhookId);
     const newEvents = webhook.allowlist.allowedTypes.filter((event: string) => !events.includes(event));
 
-    await this.RUTTER_CONNECTION.updateWebhookEvents(webhookId, newEvents);
+    const newWebhook = await this.RUTTER_CONNECTION.updateWebhookEvents(webhookId, newEvents);
 
     return {
-      webhook,
-      events: newEvents,
+      webhook: newWebhook,
+      events: newWebhook.allowlist.allowedTypes,
     };
   }
 
