@@ -107,6 +107,8 @@ export default class RutterConnection {
 
     for (const webhook of webhooks) {
       if (webhook.url === url) {
+        // filter out mandatory events from the list
+        webhook.allowlist.allowedTypes = webhook.allowlist.allowedTypes.filter((type) => !MANDATORY_EVENTS.includes(type));
         return webhook;
       }
     }
@@ -146,6 +148,8 @@ export default class RutterConnection {
 
     for (const webhook of webhooks) {
       if (webhook.id === webhookId) {
+        // filter out mandatory events from the list
+        webhook.allowlist.allowedTypes = webhook.allowlist.allowedTypes.filter((type) => !MANDATORY_EVENTS.includes(type));
         return webhook;
       }
     }
@@ -185,7 +189,12 @@ export default class RutterConnection {
       throw Error(`${JSON.stringify(response.data.errors)}`);
     }
 
-    return response.data.data.updateWebhookConfig.webhookConfig as RutterWebhook;
+    const webhook = response.data.data.updateWebhookConfig.webhookConfig as RutterWebhook;
+
+    // filter out mandatory events from the list
+    webhook.allowlist.allowedTypes = webhook.allowlist.allowedTypes.filter((type) => !MANDATORY_EVENTS.includes(type));
+
+    return webhook;
   }
 
   /**
