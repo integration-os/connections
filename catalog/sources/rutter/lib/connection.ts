@@ -70,9 +70,9 @@ export default class RutterConnection {
         }
       }
     `;
-    await this.client.post("", { query: mutation });
+    const response = await this.client.post("", { query: mutation });
 
-    return true;
+    return response.data.errors === undefined;
   }
 
   /**
@@ -98,6 +98,11 @@ export default class RutterConnection {
     }`;
 
     const response = await this.client.post("", { query });
+
+    if (response.data.errors) {
+      throw Error(`${JSON.stringify(response.data.errors)}`);
+    }
+
     const webhooks: Array<RutterWebhook> = response.data.data.me.organization.webhookConfigs;
 
     for (const webhook of webhooks) {
@@ -132,6 +137,11 @@ export default class RutterConnection {
     }`;
 
     const response = await this.client.post("", { query });
+
+    if (response.data.errors) {
+      throw Error(`${JSON.stringify(response.data.errors)}`);
+    }
+
     const webhooks: Array<RutterWebhook> = response.data.data.me.organization.webhookConfigs;
 
     for (const webhook of webhooks) {
@@ -171,6 +181,10 @@ export default class RutterConnection {
 
     const response = await this.client.post("", { query: mutation });
 
+    if (response.data.errors) {
+      throw Error(`${JSON.stringify(response.data.errors)}`);
+    }
+
     return response.data.data.updateWebhookConfig.webhookConfig as RutterWebhook;
   }
 
@@ -190,6 +204,11 @@ export default class RutterConnection {
       }`;
 
     const response = await this.client.post("", { query: mutation });
+
+    if (response.data.errors) {
+      throw Error(`${JSON.stringify(response.data.errors)}`);
+    }
+
     return response.data.data.deleteWebhookUrl.error === null;
   }
 
@@ -248,6 +267,10 @@ export default class RutterConnection {
     `;
 
     const response = await axios.post(RutterConnection.BASE_URL, { query: mutation });
+
+    if (response.data.errors) {
+      throw Error(`${JSON.stringify(response.data.errors)}`);
+    }
 
     return response.data.data.login.token;
   }
