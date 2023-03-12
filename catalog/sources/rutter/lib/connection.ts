@@ -208,10 +208,14 @@ export default class RutterConnection {
    * @private
    */
   private async rotateAccessToken() {
-    const decodedToken = jwtDecode(this.ACCESS_TOKEN) as RutterDecodedToken;
-
-    if (decodedToken.exp < Date.now() / 1000) {
+    if (!this.ACCESS_TOKEN) {
       await this.init();
+    } else {
+      const decodedToken = jwtDecode(this.ACCESS_TOKEN) as RutterDecodedToken;
+
+      if (decodedToken.exp < Date.now() / 1000) {
+        await this.init();
+      }
     }
   }
 
