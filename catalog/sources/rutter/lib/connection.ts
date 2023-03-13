@@ -20,13 +20,16 @@ export default class RutterConnection {
 
   private readonly password: string;
 
+  private readonly clientSecret: string;
+
   private ACCESS_TOKEN: string;
 
   private client: AxiosInstance;
 
-  constructor(email: string, password: string) {
+  constructor(email: string, password: string, clientSecret: string) {
     this.email = email;
     this.password = password;
+    this.clientSecret = clientSecret;
   }
 
   /**
@@ -71,6 +74,10 @@ export default class RutterConnection {
       }
     `;
     const response = await this.client.post("", { query: mutation });
+
+    if (response.data.errors) {
+      throw Error(`${JSON.stringify(response.data.errors)}`);
+    }
 
     return response.data.errors === undefined;
   }
@@ -229,6 +236,27 @@ export default class RutterConnection {
     const webhook = await this.findWebhookById(webhookId);
 
     return webhook.allowlist.allowedTypes.filter((event) => !MANDATORY_EVENTS.includes(event));
+  }
+
+  async testConnection(): Promise<boolean> {
+    try {
+      await this.rotateAccessToken();
+
+      const query = `
+        query TestConnection {
+          me {
+            organization {
+              clientSecret
+            }
+          }
+      }`;
+
+      const response = await this.client.post("", { query });
+
+      return response.data.errors === undefined && response.data.data.me.organization.clientSecret === this.clientSecret;
+    } catch (e) {
+      return false;
+    }
   }
 
   /**
