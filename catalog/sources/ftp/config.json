@@ -218,8 +218,14 @@
   "connectionTypes": ["source", "extractor"],
   "testConnection": true,
   "queues": [
-    "FTP_DOWNLOAD_QUEUE",
-    "FTP_EXTRACTION_QUEUE"
+    {
+      "label": "Select Download Queue",
+      "name": "FTP_DOWNLOAD_QUEUE"
+    },
+    {
+      "label": "Select Extraction Queue",
+      "name": "FTP_EXTRACTION_QUEUE"
+    }
   ],
   "classifications": {
     "dataIngestion": {
