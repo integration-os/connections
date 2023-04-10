@@ -73,10 +73,10 @@
       ]
     },
 		{
-      "name": "FTP_EXTRACTOR_ENABLED",
-      "label": "Enable FTP File Content Extraction",
+      "name": "FTP_FILE_ARCHIVING_ENABLED",
+      "label": "Enable File Archiving",
       "type": "select",
-      "value": "Y",
+      "value": "N",
       "options": [
         {
           "value": "Y",
@@ -86,6 +86,31 @@
           "value": "N",
           "name": "No"
         }
+      ],
+      "conditionallyRender": [
+        "FTP_FILE_EXTRACTION_ENABLED"
+      ]
+    },
+    {
+      "name": "FTP_FILE_EXTRACTION_ENABLED",
+      "label": "Enable File Content Extraction",
+      "type": "select",
+      "value": "N",
+      "options": [
+        {
+          "value": "Y",
+          "name": "Yes"
+        },
+				{
+          "value": "N",
+          "name": "No"
+        }
+      ],
+      "conditionallyRender": [
+        "FTP_EXTRACTOR_FILE_TYPE",
+        "FTP_EXTRACTOR_FILE_PARSER",
+        "FTP_EXTRACTOR_RECORD_COUNT_LIMIT",
+        "FTP_EXTRACTOR_FILE_SIZE_LIMIT"
       ]
     },
     {
@@ -97,9 +122,28 @@
         {
           "name": "CSV",
           "value": "csv"
+        },
+        {
+          "name": "JSON",
+          "value": "json"
         }
-      ],
-			"required": false
+      ]
+    },
+    {
+      "name": "FTP_EXTRACTOR_FILE_PARSER",
+      "label": "Enter the Extractor File Parser",
+      "type": "select",
+      "value": "csv",
+      "options": [
+        {
+          "name": "CSV",
+          "value": "csv"
+        },
+        {
+          "name": "JSON",
+          "value": "json"
+        }
+      ]
     },
 		{
       "name": "FTP_EXTRACTOR_RECORD_COUNT_LIMIT",
@@ -119,8 +163,7 @@
           "name": "1000",
           "value": "1000"
         }
-      ],
-			"required": false
+      ]
     },
     {
       "name": "FTP_EXTRACTOR_FILE_SIZE_LIMIT",
@@ -217,16 +260,6 @@
   ],
   "connectionTypes": ["source", "extractor"],
   "testConnection": true,
-  "queues": [
-    {
-      "label": "Select Download Queue",
-      "name": "FTP_DOWNLOAD_QUEUE"
-    },
-    {
-      "label": "Select Extraction Queue",
-      "name": "FTP_EXTRACTION_QUEUE"
-    }
-  ],
   "classifications": {
     "dataIngestion": {
       "streamTypes": ["buildable::extractor::ftp-file"],
