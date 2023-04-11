@@ -117,7 +117,7 @@
     },
     {
       "name": "FTP_EXTRACTOR_FILE_TYPE",
-      "label": "Enter the Extractor File Type",
+      "label": "Select the Extractor File Type",
       "type": "select",
       "value": "csv",
       "options": [
@@ -133,7 +133,7 @@
     },
     {
       "name": "FTP_EXTRACTOR_FILE_PARSER",
-      "label": "Enter the Extractor File Parser",
+      "label": "Select the Extractor File Parser",
       "type": "select",
       "value": "csv",
       "options": [
