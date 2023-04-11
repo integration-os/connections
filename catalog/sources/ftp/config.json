@@ -76,7 +76,7 @@
       "name": "FTP_FILE_ARCHIVING_ENABLED",
       "label": "Enable File Archiving",
       "type": "select",
-      "value": "N",
+      "value": "Y",
       "options": [
         {
           "value": "Y",
@@ -89,13 +89,14 @@
       ],
       "conditionallyRender": [
         "FTP_FILE_EXTRACTION_ENABLED"
-      ]
+      ],
+      "hidden": true
     },
     {
       "name": "FTP_FILE_EXTRACTION_ENABLED",
       "label": "Enable File Content Extraction",
       "type": "select",
-      "value": "N",
+      "value": "Y",
       "options": [
         {
           "value": "Y",
@@ -111,7 +112,8 @@
         "FTP_EXTRACTOR_FILE_PARSER",
         "FTP_EXTRACTOR_RECORD_COUNT_LIMIT",
         "FTP_EXTRACTOR_FILE_SIZE_LIMIT"
-      ]
+      ],
+      "hidden": true
     },
     {
       "name": "FTP_EXTRACTOR_FILE_TYPE",
