@@ -1,0 +1,74 @@
+{
+  "_v": "1.0.0",
+  "title": "RabbitMQ",
+  "description": "an open-source message broker software that facilitates communication between applications by implementing the Advanced Message Queuing Protocol (AMQP).",
+  "apiVersion": "NA",
+  "type": "rabbitmq",
+  "category": "broker",
+  "image": "https://assets.buildable.dev/catalog/node-templates/rabbitmq.svg",
+  "tags": ["queue", "message-broker"],
+  "authentication": [
+    {
+      "name": "RABBITMQ_URL",
+      "label": "Enter your RabbitMQ URL",
+      "placeholder": "localhost"
+    },
+    {
+      "name": "RABBITMQ_PORT",
+      "label": "Enter your RabbitMQ port",
+      "placeholder": "amqp://localhost"
+    },
+    {
+      "name": "RABBITMQ_QUEUE",
+      "label": "Enter your RabbitMQ Queue",
+      "placeholder": "my-queue"
+    }
+  ],
+  "eventSchema": {
+    "body": "string",
+    "fields": {
+      "consumerTag": "string",
+      "deliveryTag": 0,
+      "redelivered": false,
+      "exchange": "string",
+      "routingKey": "string"
+    },
+    "properties": {
+      "contentType": "string",
+      "contentEncoding": "string",
+      "headers": {},
+      "deliveryMode": 0,
+      "priority": 0,
+      "correlationId": "string",
+      "replyTo": "string",
+      "expiration": "string",
+      "messageId": "string",
+      "timestamp": "string",
+      "type": "string",
+      "userId": "string",
+      "appId": "string",
+      "clusterId": "string"
+    }
+  },
+  "settings": {
+    "parseWebhookBody": false,
+    "hasSubscriptionDelay": true,
+    "subscriptionDelayMultiplier": 0.5,
+    "showEvents": true
+  },
+  "paths": {
+    "id": "_.body.consumerTag",
+    "event": "consumer",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "connectionTypes": ["source", "action"],
+  "events": [
+    {
+      "name": "consumer",
+      "group": "consumer",
+      "description": "Consumer"
+    }
+  ]
+}

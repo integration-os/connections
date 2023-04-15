@@ -1,0 +1,11 @@
+## Connect 
+
+an open-source message broker software that facilitates communication between applications by implementing the Advanced Message Queuing Protocol (AMQP).
+
+### Securely Encrypted
+
+Rest assured, your credentials are securely encrypted to keep your information safe.
+
+### Need Help?
+
+Start a conversation in our [Discord Server](https://discord.com/invite/47AJ42Wzys) or send an email to [support@buildable.dev](mailto:https://discord.com/invite/47AJ42Wzys). Our Data Engineers are available 24/7 to help if you ever get stuck.
