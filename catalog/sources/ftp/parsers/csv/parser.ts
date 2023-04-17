@@ -1,6 +1,6 @@
-const parseCSV = (payload: string): {
+function parseCSV(payload: string): {
   [key: string]: string
-}[] => {
+}[] {
   const [headerLine, ...dataLines] = payload.split("\n");
 
   const delimiter = ",";
@@ -17,4 +17,4 @@ const parseCSV = (payload: string): {
       return obj;
     }, {});
   });
-};
+}

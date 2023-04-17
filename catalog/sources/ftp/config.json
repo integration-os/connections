@@ -135,15 +135,15 @@
       "name": "FTP_EXTRACTOR_FILE_PARSER",
       "label": "Select the Extractor File Parser",
       "type": "select",
-      "value": "csv",
+      "value": "function parseCSV (payload) { const [headerLine, ...dataLines] = payload.split('\\n'); const delimiter = ','; const headers = headerLine.split(delimiter); return dataLines.map((line) => { const cells = line.split(delimiter); return headers.reduce((obj, header, index) => { obj[header] = cells[index]; return obj; }, {}); }); };",
       "options": [
         {
           "name": "CSV",
-          "value": "csv"
+          "value": "function parseCSV (payload) { const [headerLine, ...dataLines] = payload.split('\\n'); const delimiter = ','; const headers = headerLine.split(delimiter); return dataLines.map((line) => { const cells = line.split(delimiter); return headers.reduce((obj, header, index) => { obj[header] = cells[index]; return obj; }, {}); }); };"
         },
         {
           "name": "JSON",
-          "value": "json"
+          "value": "function parseJSON (payload) { try { const parsedPayload = JSON.parse(payload); return Object.entries(parsedPayload).map(([key, value]) => ({ key, value })); } catch (e) { return []; } };"
         }
       ]
     },
@@ -182,7 +182,8 @@
     "createBuildableEnvVars": false,
     "autoSubscribeAllEvents": true,
     "showEvents": true,
-    "secureAuthFields": true
+    "secureAuthFields": true,
+    "parser": "FTP_EXTRACTOR_FILE_PARSER"
   },
   "paths": {
     "id": null,
