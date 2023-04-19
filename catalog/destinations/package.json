@@ -9,6 +9,7 @@
     "dayjs": "^1.11.7",
     "firebase": "^9.15.0",
     "firebase-admin": "^11.3.0",
+    "kafkajs": "^2.2.4",
     "knex": "^2.3.0",
     "mongodb": "^4.11.0",
     "pg": "^8.8.0",
