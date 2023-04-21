@@ -1,0 +1,7 @@
+[
+  {
+    "key": "WEBHOOK_URL",
+    "heading": "Webhook URL",
+    "subHeading": "Set this URL as the webhook URL in your Rutter dashboard"
+  }
+]
