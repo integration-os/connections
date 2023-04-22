@@ -1,8 +1,8 @@
-### Insert Data
+### Push Data
 
-Allows to insert row(s) into a BigQuery table
+Allows to push data into a Kafka topic
 
-[Documentation](https://cloud.google.com/bigquery/docs/reference/standard-sql/dml-syntax)
+[Documentation](https://kafka.apache.org/quickstart)
 
 **Types**
 
@@ -10,6 +10,10 @@ Allows to insert row(s) into a BigQuery table
 interface IKafkaPushData {
   topic: string;
   data: string | string[] | Buffer | Buffer[] | AnyObject | AnyObject[];
+  headers?: AnyObject
+  partition?: number
+  key?: string
+  timestamp?: string
 }
 ```
 
@@ -17,7 +21,14 @@ interface IKafkaPushData {
 ```json
 {
     "topic": "topic_0",
-    "data": [{ "id": 1, "name": "John Doe" }]
+    "data": [{ "id": 1, "name": "John Doe" }],
+    "headers": {
+        "header1": "value1",
+        "header2": "value2"
+    },
+    "partition": 3,
+    "key": "1",
+    "timestamp": "2023-01-01T00:00:00.000Z"
 }
 ```
 
