@@ -49,6 +49,9 @@ class MSSQLDriver implements DestinationClassI {
         password: MSSQL_PASSWORD,
         port: MSSQL_PORT,
         database: MSSQL_DATABASE,
+        options: {
+          encrypt: true,
+        },
       },
     });
 
