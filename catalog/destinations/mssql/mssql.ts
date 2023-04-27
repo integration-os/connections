@@ -28,7 +28,7 @@ class MSSQLDriver implements DestinationClassI {
     this.MSSQL_HOST = MSSQL_HOST;
     this.MSSQL_USERNAME = MSSQL_USERNAME;
     this.MSSQL_PASSWORD = MSSQL_PASSWORD;
-    this.MSSQL_PORT = parseFloat(MSSQL_PORT);
+    this.MSSQL_PORT = Number(MSSQL_PORT);
     this.MSSQL_DATABASE = MSSQL_DATABASE;
   }
 
@@ -47,7 +47,7 @@ class MSSQLDriver implements DestinationClassI {
         host: MSSQL_HOST,
         user: MSSQL_USERNAME,
         password: MSSQL_PASSWORD,
-        port: MSSQL_PORT,
+        port: Number(MSSQL_PORT),
         database: MSSQL_DATABASE,
         options: {
           encrypt: true,
