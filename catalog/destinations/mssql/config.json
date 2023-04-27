@@ -8,7 +8,7 @@
   "tags": ["Microsoft", "db", "sql"],
   "authentication": [
     {
-      "name": "MSSQL_SERVER",
+      "name": "MSSQL_HOST",
       "label": "Enter your MSSQL Server",
       "placeholder": "my-server"
     },
