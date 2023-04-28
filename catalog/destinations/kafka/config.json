@@ -25,7 +25,8 @@
     {
       "name": "KAFKA_CLIENT_ID",
       "label": "Enter a Client ID for your connection",
-      "placeholder": "myclientid"
+      "placeholder": "myclientid",
+      "value": "event"
     }
   ],
   "eventSchema": {},
