@@ -98,7 +98,13 @@ export class KafkaDriver implements DestinationClassI {
   async pushData({ topic, data, headers, partition, key, timestamp }: IKafkaPushData) {
     return this.producer.send({
       topic,
-      messages: [{ value: JSON.stringify(data), headers, partition, key, timestamp }],
+      messages: [{
+        value: JSON.stringify(data),
+        headers,
+        partition,
+        key,
+        timestamp,
+      }],
     });
   }
 }

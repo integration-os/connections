@@ -1,10 +1,10 @@
-## Kafka Destination Setup 
+## Microsoft SQL Server Destination Setup
 
 Check out our [quick start guide](https://docs.buildable.dev/) to learn how to get started.
 
 ### IP Whitelisting
 
-To enable Buildable to connect to your Kafka Server, please ensure that your firewall accepts incoming requests from the following IP addresses:
+To enable Buildable to connect to your database, please ensure that your firewall accepts incoming requests from the following IP addresses:
 
 `35.245.232.82` `35.245.100.81`
 

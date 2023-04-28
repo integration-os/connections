@@ -1,0 +1,195 @@
+{
+  "title": "Rutter",
+  "description": "The Common Language for Business Data",
+  "apiVersion": "2023-02-07",
+  "type": "rutter",
+  "category": "data",
+  "image": "https://assets.buildable.dev/catalog/node-templates/rutter.svg",
+  "tags": ["commerce", "accounting", "payment"],
+  "authentication": [],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": false,
+    "showUrl": true,
+    "autoSubscribeAllEvents": true,
+    "showEvents": true,
+    "secureAuthFields": false
+  },
+  "paths": {
+    "id": null,
+    "event": "_.body.code",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "events": [
+    {
+      "name": "INITIAL_UPDATE",
+      "description": "This webhook fires after an initial data download for a Connection has been completed. You can now send requests to Rutter to fetch merchant data.",
+      "group": "connection"
+    },
+    {
+      "name": "HISTORICAL_UPDATE",
+      "description": "HISTORICAL_UPDATE will only fire if you have data batching enabled.",
+      "group": "connection"
+    },
+    {
+      "name": "CONNECTION_UPDATED",
+      "description": "This webhook fires after a merchant re-authenticates an existing Connection, or after completing authentication for a created connection.",
+      "group": "connection"
+    },
+    {
+      "name": "CONNECTION_NEEDS_UPDATE",
+      "description": "This webhook fires after a merchant unauthorizes/uninstalls an existing Connection, or if the authentication fails for any other reason.",
+      "group": "connection"
+    },
+    {
+      "name": "CONNECTION_DISABLED",
+      "description": "This webhook fires after Rutter has encountered a problem with a connection and has temporarily disabled access to it.",
+      "group": "connection"
+    },
+    {
+      "name": "CONNECTION_LINK_ERROR",
+      "description": "This webhook fires after an error occurs during the authentication process.",
+      "group": "connection"
+    },
+    {
+      "name": "CONNECTION_ERROR",
+      "description": "This webhook after an error occurs for a connection.",
+      "group": "connection"
+    },
+    {
+      "name": "ORDER_FULFILLED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "ORDER_DELETED",
+      "description": "Fired after an order has been deleted.",
+      "group": "order"
+    },
+    {
+      "name": "ORDER_UPDATED",
+      "description": "Fired after an order has been updated for a connection.",
+      "group": "order"
+    },
+    {
+      "name": "ORDER_CREATED",
+      "description": "Fired after a new order has been created for a connection.",
+      "group": "order"
+    },
+    {
+      "name": "PRODUCT_CREATED",
+      "description": "Fired after a product has been created.",
+      "group": "product"
+    },
+    {
+      "name": "PRODUCT_UPDATED",
+      "description": "Fired after a product has been updated.",
+      "group": "product"
+    },
+    {
+      "name": "PRODUCT_DELETED",
+      "description": "Fired after a product has been deleted. This is available only to Shopify, WooCommerce, and Wix.",
+      "group": "product"
+    },
+    {
+      "name": "PRODUCT_READY",
+      "description": "A PRODUCT_READY webhook will be fired when the job (POST /product) has completed.",
+      "group": "product"
+    },
+    {
+      "name": "PRODUCT_FINISH_FAILED",
+      "description": "In the platforms where image upload and/or variant create run asynchronously after the initial POST /products request, we will send an error message in case variant create or image upload fails. In the case of success, we will send a PRODUCT_UPDATE webhook.",
+      "group": "product"
+    },
+    {
+      "name": "CUSTOMER_CREATED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "CUSTOMER_UPDATED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "CUSTOMER_DELETED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "STORE_UPDATED",
+      "description": "This webhook fires a merchant's store configuration changes (the most common changes are default currency change and default language change).",
+      "group": "store"
+    },
+    {
+      "name": "JOB_COMPLETED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "INVOICE_CREATED",
+      "description": "Fires when an invoice is created.",
+      "group": "invoice"
+    },
+    {
+      "name": "INVOICE_UPDATED",
+      "description": "Fires when an invoice is updated.",
+      "group": "invoice"
+    },
+    {
+      "name": "ACCOUNT_CREATED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "ACCOUNT_UPDATED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "BILL_CREATED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "BILL_UPDATED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "VENDOR_CREATED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "VENDOR_UPDATED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "JOURNAL_ENTRY_CREATED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "JOURNAL_ENTRY_UPDATED",
+      "description": "",
+      "group": ""
+    },
+    {
+      "name": "VERSIONED_ENTITY",
+      "description": "",
+      "group": ""
+    }
+  ],
+  "connectionTypes": ["source"],
+  "testConnection": false,
+  "classifications": {
+    "dataIngestion": {
+      "streamTypes": ["manual"],
+      "extractionTypes": []
+    }
+  }
+}

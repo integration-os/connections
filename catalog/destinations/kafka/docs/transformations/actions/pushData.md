@@ -10,25 +10,27 @@ Allows to push data into a Kafka topic
 interface IKafkaPushData {
   topic: string;
   data: string | string[] | Buffer | Buffer[] | AnyObject | AnyObject[];
-  headers?: AnyObject
-  partition?: number
-  key?: string
-  timestamp?: string
+  headers?: AnyObject;
+  partition?: number;
+  key?: string;
+  timestamp?: number;
 }
 ```
 
 **Sample Payload**
 ```json
 {
-    "topic": "topic_0",
-    "data": [{ "id": 1, "name": "John Doe" }],
-    "headers": {
-        "header1": "value1",
-        "header2": "value2"
-    },
-    "partition": 3,
-    "key": "1",
-    "timestamp": "2023-01-01T00:00:00.000Z"
+  "topic": "topic_0",
+  "data": [{ 
+    "id": 1, 
+    "name": "John Doe" 
+  }],
+  "headers": {
+    "header1": "value1",
+    "header2": "value2"
+  },
+  "partition": 3,
+  "key": "1"
 }
 ```
 
