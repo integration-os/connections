@@ -40,8 +40,12 @@
       "name": "FTP_SCAN_INTERVAL",
       "label": "Select the FTP Scan Interval",
       "type": "select",
-      "value": "*/15 * * * *",
+      "value": "*/1 * * * *",
       "options": [
+        {
+          "value": "*/1 * * * *",
+          "name": "At every minute (Sandbox Feature)"
+        },
         {
           "value": "*/15 * * * *",
           "name": "At every 15th minute"
@@ -171,8 +175,8 @@
       "name": "FTP_EXTRACTOR_FILE_SIZE_LIMIT",
       "label": "Enter the Maximum Allowed Extractor File Size",
       "subText": "The maximum allowed value is 5GB",
-      "placeholder": "50mb",
-      "value": "50mb",
+      "placeholder": "2mb",
+      "value": "2mb",
 			"required": false,
 			"disabled": true
     }
