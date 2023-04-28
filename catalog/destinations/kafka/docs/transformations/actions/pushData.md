@@ -13,7 +13,7 @@ interface IKafkaPushData {
   headers?: AnyObject;
   partition?: number;
   key?: string;
-  timestamp?: number;
+  timestamp?: number | string;
 }
 ```
 

@@ -11,6 +11,7 @@ describe("Test: Kafka Destination", () => {
         KAFKA_BROKER_URLS: process.env.KAFKA_BROKER_URLS,
         KAFKA_USERNAME: process.env.KAFKA_USERNAME,
         KAFKA_PASSWORD: process.env.KAFKA_PASSWORD,
+        KAFKA_CLIENT_ID: process.env.KAFKA_CLIENT_ID,
       },
     );
 
@@ -28,6 +29,7 @@ describe("Test: Kafka Destination", () => {
         KAFKA_BROKER_URLS: process.env.KAFKA_BROKER_URLS,
         KAFKA_USERNAME: process.env.KAFKA_USERNAME,
         KAFKA_PASSWORD: process.env.KAFKA_PASSWORD,
+        KAFKA_CLIENT_ID: process.env.KAFKA_CLIENT_ID,
       },
     );
 
@@ -47,6 +49,7 @@ describe("Test: Kafka Destination", () => {
           KAFKA_BROKER_URLS: process.env.KAFKA_BROKER_URLS,
           KAFKA_USERNAME: process.env.KAFKA_USERNAME,
           KAFKA_PASSWORD: process.env.KAFKA_PASSWORD,
+          KAFKA_CLIENT_ID: process.env.KAFKA_CLIENT_ID,
         },
       );
     });
@@ -65,7 +68,9 @@ describe("Test: Kafka Destination", () => {
     it("should accept config passed as arguments", async () => {
       return driver.connect({ KAFKA_BROKER_URLS: process.env.KAFKA_BROKER_URLS,
         KAFKA_USERNAME: process.env.KAFKA_USERNAME,
-        KAFKA_PASSWORD: process.env.KAFKA_PASSWORD }).then(async () => {
+        KAFKA_PASSWORD: process.env.KAFKA_PASSWORD,
+        KAFKA_CLIENT_ID: process.env.KAFKA_CLIENT_ID,
+      }).then(async () => {
         const result = await driver.testConnection();
 
         expect(result.success).toBeTruthy();
@@ -80,6 +85,7 @@ describe("Test: Kafka Destination", () => {
           KAFKA_BROKER_URLS: process.env.KAFKA_BROKER_URLS,
           KAFKA_USERNAME: process.env.KAFKA_USERNAME,
           KAFKA_PASSWORD: process.env.KAFKA_PASSWORD,
+          KAFKA_CLIENT_ID: process.env.KAFKA_CLIENT_ID,
         },
       );
 
@@ -104,6 +110,7 @@ describe("Test: Kafka Destination", () => {
           KAFKA_BROKER_URLS: process.env.KAFKA_BROKER_URLS,
           KAFKA_USERNAME: process.env.KAFKA_USERNAME,
           KAFKA_PASSWORD: process.env.KAFKA_PASSWORD,
+          KAFKA_CLIENT_ID: process.env.KAFKA_CLIENT_ID,
         },
       );
     });
@@ -161,6 +168,7 @@ describe("Test: Kafka Destination", () => {
           KAFKA_BROKER_URLS: process.env.KAFKA_BROKER_URLS,
           KAFKA_USERNAME: process.env.KAFKA_USERNAME,
           KAFKA_PASSWORD: process.env.KAFKA_PASSWORD,
+          KAFKA_CLIENT_ID: process.env.KAFKA_CLIENT_ID,
         },
       );
 

@@ -1,7 +1,14 @@
-import { Kafka, KafkaConfig, Producer } from "kafkajs";
+import crypto from "crypto";
+
+import { Kafka, Producer } from "kafkajs";
 
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
 import { IKafkaPushData } from "./lib/types";
+
+function generateRandomHexString(n: number): string {
+  const bytes = crypto.randomBytes(n / 2);
+  return bytes.toString("hex");
+}
 
 export class KafkaDriver implements DestinationClassI {
   public client: Kafka = null;
@@ -14,17 +21,20 @@ export class KafkaDriver implements DestinationClassI {
 
   public readonly KAFKA_PASSWORD: string;
 
-  constructor({ KAFKA_BROKER_URLS, KAFKA_USERNAME, KAFKA_PASSWORD }: AnyObject) {
+  public readonly KAFKA_CLIENT_ID: string | null = null;
+
+  constructor({ KAFKA_BROKER_URLS, KAFKA_USERNAME, KAFKA_PASSWORD, KAFKA_CLIENT_ID }: AnyObject) {
     this.KAFKA_BROKER_URLS = KAFKA_BROKER_URLS;
     this.KAFKA_USERNAME = KAFKA_USERNAME;
     this.KAFKA_PASSWORD = KAFKA_PASSWORD;
+    this.KAFKA_CLIENT_ID = KAFKA_CLIENT_ID;
   }
 
   async connect(config?: AnyObject): Promise<void | Truthy> {
     const { KAFKA_BROKER_URLS, KAFKA_USERNAME, KAFKA_PASSWORD } = config || this;
 
     this.client = new Kafka({
-      clientId: "buildable",
+      clientId: this.KAFKA_CLIENT_ID || `event-${generateRandomHexString(8)}`,
       brokers: KAFKA_BROKER_URLS.split(",").map((url) => url.trim()),
       ssl: true,
       sasl: {
@@ -55,7 +65,7 @@ export class KafkaDriver implements DestinationClassI {
     // If the client is not yet initialized, initialize it
     if (!this.client) {
       this.client = new Kafka({
-        clientId: "buildable",
+        clientId: this.KAFKA_CLIENT_ID || `event-${generateRandomHexString(8)}`,
         brokers: this.KAFKA_BROKER_URLS.split(",").map((url) => url.trim()),
         ssl: true,
         sasl: {
@@ -96,6 +106,8 @@ export class KafkaDriver implements DestinationClassI {
    * @param timestamp - Timestamp in UTC format
    */
   async pushData({ topic, data, headers, partition, key, timestamp }: IKafkaPushData) {
+    timestamp = timestamp ? timestamp.toString() : undefined;
+
     return this.producer.send({
       topic,
       messages: [{

@@ -21,6 +21,11 @@
       "name": "KAFKA_PASSWORD",
       "label": "Enter your Kafka Password",
       "placeholder": "mypassword"
+    },
+    {
+      "name": "KAFKA_CLIENT_ID",
+      "label": "Enter a Client ID for your connection",
+      "placeholder": "myclientid"
     }
   ],
   "eventSchema": {},
