@@ -6,5 +6,5 @@ export interface IKafkaPushData {
   headers?: AnyObject;
   partition?: number;
   key?: string;
-  timestamp?: string;
+  timestamp?: number | string;
 }
