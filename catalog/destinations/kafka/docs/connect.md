@@ -1,10 +1,10 @@
 ## Connect 
 
-BigQuery is a fully-managed, serverless data warehouse provided by Google Cloud. It allows you to store, manage, and analyze large amounts of data with ease and at a low cost. BigQuery supports both structured and semi-structured data and can handle terabyte-scale datasets with fast query performance.
+Kafka is an open-source streaming platform used for building real-time data pipelines and streaming applications.
 
 ### IP Whitelisting
 
-To enable Buildable to connect to your database, please ensure that your firewall accepts incoming requests from the following IP addresses:
+To enable Buildable to connect to your Kafka Server, please ensure that your firewall accepts incoming requests from the following IP addresses:
 
 `35.245.232.82` `35.245.100.81`
 
