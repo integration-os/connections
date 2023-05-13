@@ -8,9 +8,14 @@
   "tags": ["accounting", "business", "finance", "payroll"],
   "authentication": [
     {
-      "name": "GOOGLE_SERVICE_ACCOUNT_KEY",
-      "label": "Enter your Service Account Key content",
-      "placeholder": "{\"type\": \"service_account\", \"project_id\": \"my-gcp-project\", ..."
+      "name": "XERO_CLIENT_ID",
+      "label": "Enter your Xero Client ID",
+      "placeholder": "7C1120751AECA051C1234ABCD190AA92"
+    },
+    {
+      "name": "XERO_CLIENT_SECRET",
+      "label": "Enter your Xero Client Secret",
+      "placeholder": "e8uKLzfYb9RXQgD0IcAokNxjW7nHw3Sh1r4sTyvBp6mV-5tJ2"
     }
   ],
   "eventSchema": {},
