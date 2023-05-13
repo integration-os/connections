@@ -1,0 +1,27 @@
+{
+  "title": "Xero",
+  "description": "Xero is a cloud-based accounting software that helps small businesses manage their finances.",
+  "apiVersion": "NA",
+  "type": "xero",
+  "category": "accounting",
+  "image": "https://assets.buildable.dev/catalog/node-templates/xero.svg",
+  "tags": ["accounting", "business", "finance", "payroll"],
+  "authentication": [
+    {
+      "name": "GOOGLE_SERVICE_ACCOUNT_KEY",
+      "label": "Enter your Service Account Key content",
+      "placeholder": "{\"type\": \"service_account\", \"project_id\": \"my-gcp-project\", ..."
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": ["performAction"],
+  "destinationType": "http"
+}
