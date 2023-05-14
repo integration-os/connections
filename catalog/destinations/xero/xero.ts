@@ -59,6 +59,19 @@ export class XeroDriver implements DestinationClassI {
       };
     }
   }
+
+  async performAction(prop: string | symbol, data: any) {
+    const [api, method] = prop.toString().split(".");
+
+    switch (api) {
+      case "accountingApi":
+        return this.client.accountingApi[method](this.tenantIds[0], data);
+
+      // TODO: Add support for other APIs
+      default:
+        throw new Error(`Method ${prop as string}() for Xero not found`);
+    }
+  }
 }
 
 export default function getProxyDriver(config: AnyObject) {
@@ -89,7 +102,7 @@ export default function getProxyDriver(config: AnyObject) {
           try {
             await driver.connect(config);
 
-            const result = await target[prop](payload);
+            const result = await target.performAction(prop, payload);
 
             await driver.disconnect();
 
