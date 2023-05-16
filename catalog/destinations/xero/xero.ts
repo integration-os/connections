@@ -18,19 +18,20 @@ export class XeroDriver implements DestinationClassI {
   }
 
   async connect(config?: AnyObject): Promise<void | Truthy> {
+    // initialize Xero client
     this.client = new XeroClient({
-      clientId: this.XERO_CLIENT_ID,
-      clientSecret: this.XERO_CLIENT_SECRET,
+      clientId: config.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
+      clientSecret: config.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
       redirectUris: [config.oauth2.redirectUri],
       scopes: config.oauth2.scopes,
       httpTimeout: 3000,
     });
 
+    // set up Xero OAuth2 token set
     const tokenSet: XeroOAuth2TokenSet = config.oauth2.resolved;
-
     this.client.setTokenSet(tokenSet as TokenSet);
 
-    // get tenants
+    // get and save all registered tenants
     const response = await axios.get("https://api.xero.com/connections", {
       headers: {
         "Content-Type": "application/json",
@@ -41,6 +42,7 @@ export class XeroDriver implements DestinationClassI {
   }
 
   async disconnect(): Promise<void | Truthy> {
+    this.tenantIds = [];
     this.client = null;
   }
 
@@ -60,14 +62,56 @@ export class XeroDriver implements DestinationClassI {
     }
   }
 
-  async performAction(prop: string | symbol, data: any) {
+  /**
+   * Perform an action on the Xero API
+   * @param prop - the name of the API and method to call, e.g. accounting.getAccounts
+   * @param params - the parameters to pass to the API method
+   */
+  async performAction(prop: string | symbol, params: any) {
+    // extract api and method from prop
     const [api, method] = prop.toString().split(".");
 
-    switch (api) {
-      case "accountingApi":
-        return this.client.accountingApi[method](this.tenantIds[0], data);
+    // create an object to store the responses for each tenant
+    const responses = {};
 
-      // TODO: Add support for other APIs
+    let targetMethod = null;
+    let methodParams = null;
+    let args = null;
+
+    switch (api) {
+      case "accounting":
+        // get the method from the accountingApi
+        targetMethod = this.client.accountingApi[method];
+
+        if (typeof targetMethod !== "function") {
+          throw new Error(`Method ${prop as string}() for Xero not found`);
+        }
+
+        // Infer the method params from the function definition
+        methodParams = (Function.prototype.toString.call(targetMethod)
+          .match(/\((.*?)\)/)?.[1] || "")
+          .split(",")
+          .map((param) => param.trim()) as Parameters<typeof targetMethod>;
+
+        for (const tenantId of this.tenantIds) {
+          // recreate the args array for each tenant
+          args = methodParams.map((param) => {
+            if (param === "xeroTenantId") {
+              return tenantId;
+            }
+            return params[param];
+          });
+
+          // call the method for each tenant
+          try {
+            responses[tenantId] = await this.client.accountingApi[method](...args);
+          } catch (err) {
+            responses[tenantId] = err.response;
+          }
+        }
+
+        return responses;
+
       default:
         throw new Error(`Method ${prop as string}() for Xero not found`);
     }
@@ -79,42 +123,38 @@ export default function getProxyDriver(config: AnyObject) {
 
   return new Proxy(driver, {
     get: (target, prop) => {
-      if (typeof driver[prop] === "function") {
-        if (prop === "testConnection") {
-          return async () => driver.testConnection();
-        }
+      if (prop === "testConnection") {
+        return async () => driver.testConnection();
+      }
 
-        // Force the proxy to return a Promise that only resolves once the connection has been established
-        if (prop === "connect") {
-          return async () => {
-            await driver.connect(config);
-          };
-        }
-
-        // Force the proxy to return a Promise that only resolves once the connection has been dropped
-        if (prop === "disconnect") {
-          return async () => {
-            await driver.disconnect();
-          };
-        }
-
-        return async (payload) => {
-          try {
-            await driver.connect(config);
-
-            const result = await target.performAction(prop, payload);
-
-            await driver.disconnect();
-
-            return result;
-          } catch (err) {
-            console.log("Error occurred ===> ", err);
-            throw err;
-          }
+      // Force the proxy to return a Promise that only resolves once the connection has been established
+      if (prop === "connect") {
+        return async () => {
+          await driver.connect(config);
         };
       }
 
-      throw new Error(`Method ${prop as string}() not found`);
+      // Force the proxy to return a Promise that only resolves once the connection has been dropped
+      if (prop === "disconnect") {
+        return async () => {
+          await driver.disconnect();
+        };
+      }
+
+      return async (payload) => {
+        try {
+          await driver.connect(config);
+
+          const result = await target.performAction(prop, payload);
+
+          await driver.disconnect();
+
+          return result;
+        } catch (err) {
+          console.log("Error occurred ===> ", err);
+          throw err;
+        }
+      };
     },
   });
 }
