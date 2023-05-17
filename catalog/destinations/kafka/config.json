@@ -1,0 +1,43 @@
+{
+  "title": "Kafka",
+  "description": "Kafka is an open-source streaming platform used for building real-time data pipelines and streaming applications.",
+  "apiVersion": "NA",
+  "type": "kafka",
+  "category": "streaming",
+  "image": "https://assets.buildable.dev/catalog/node-templates/kafka.svg",
+  "tags": ["streaming"],
+  "authentication": [
+    {
+      "name": "KAFKA_BROKER_URLS",
+      "label": "Enter your Kafka Broker Nodes URLs, separated by comma (,)",
+      "placeholder": "kafka-broker1.dev:9092,kafka-broker2.dev:9092,kafka-broker3.dev:9092"
+    },
+    {
+      "name": "KAFKA_USERNAME",
+      "label": "Enter your Kafka Username",
+      "placeholder": "myusername"
+    },
+    {
+      "name": "KAFKA_PASSWORD",
+      "label": "Enter your Kafka Password",
+      "placeholder": "mypassword"
+    },
+    {
+      "name": "KAFKA_CLIENT_ID",
+      "label": "Enter a Client ID for your connection",
+      "placeholder": "myclientid",
+      "value": "event"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": ["pushData"],
+  "destinationType": "http"
+}

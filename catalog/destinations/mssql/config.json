@@ -1,0 +1,48 @@
+{
+  "title": "Microsoft SQL Server",
+  "description": "Microsoft SQL Server is a relational database management system developed by Microsoft",
+  "apiVersion": "NA",
+  "type": "mssql",
+  "category": "database",
+  "image": "https://assets.buildable.dev/catalog/node-templates/sql-server.svg",
+  "tags": ["Microsoft", "db", "sql"],
+  "authentication": [
+    {
+      "name": "MSSQL_HOST",
+      "label": "Enter your MSSQL Server",
+      "placeholder": "my-server"
+    },
+    {
+      "name": "MSSQL_USERNAME",
+      "label": "Enter your MSSQL Username",
+      "placeholder": "my-username"
+    },
+    {
+      "name": "MSSQL_PASSWORD",
+      "type": "password",
+      "label": "Enter your MSSQL Password",
+      "placeholder": "supersecretpassword"
+    },
+    {
+      "name": "MSSQL_PORT",
+      "label": "Enter your MSSQL Port",
+      "placeholder": "1433"
+    },
+    {
+      "name": "MSSQL_DATABASE",
+      "label": "Enter your MSSQL Database Name",
+      "placeholder": "my-db"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": ["insert", "update", "delete", "executeRawQuery"],
+  "destinationType": "http"
+}

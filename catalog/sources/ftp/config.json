@@ -40,12 +40,8 @@
       "name": "FTP_SCAN_INTERVAL",
       "label": "Select the FTP Scan Interval",
       "type": "select",
-      "value": "*/1 * * * *",
+      "value": "*/15 * * * *",
       "options": [
-        {
-          "value": "*/1 * * * *",
-          "name": "At every minute (Sandbox Feature)"
-        },
         {
           "value": "*/15 * * * *",
           "name": "At every 15th minute"
@@ -77,8 +73,8 @@
       ]
     },
 		{
-      "name": "FTP_EXTRACTOR_ENABLED",
-      "label": "Enable FTP File Content Extraction",
+      "name": "FTP_FILE_ARCHIVING_ENABLED",
+      "label": "Enable File Archiving",
       "type": "select",
       "value": "Y",
       "options": [
@@ -90,20 +86,66 @@
           "value": "N",
           "name": "No"
         }
-      ]
+      ],
+      "conditionallyRender": [
+        "FTP_FILE_EXTRACTION_ENABLED"
+      ],
+      "hidden": true
+    },
+    {
+      "name": "FTP_FILE_EXTRACTION_ENABLED",
+      "label": "Enable File Content Extraction",
+      "type": "select",
+      "value": "Y",
+      "options": [
+        {
+          "value": "Y",
+          "name": "Yes"
+        },
+				{
+          "value": "N",
+          "name": "No"
+        }
+      ],
+      "conditionallyRender": [
+        "FTP_EXTRACTOR_FILE_TYPE",
+        "FTP_EXTRACTOR_FILE_PARSER",
+        "FTP_EXTRACTOR_RECORD_COUNT_LIMIT",
+        "FTP_EXTRACTOR_FILE_SIZE_LIMIT"
+      ],
+      "hidden": true
     },
     {
       "name": "FTP_EXTRACTOR_FILE_TYPE",
-      "label": "Enter the Extractor File Type",
+      "label": "Select the Extractor File Type",
       "type": "select",
       "value": "csv",
       "options": [
         {
           "name": "CSV",
           "value": "csv"
+        },
+        {
+          "name": "JSON",
+          "value": "json"
         }
-      ],
-			"required": false
+      ]
+    },
+    {
+      "name": "FTP_EXTRACTOR_FILE_PARSER",
+      "label": "Select the Extractor File Parser",
+      "type": "select",
+      "value": "function parseCSV (payload) { const [headerLine, ...dataLines] = payload.split('\\n'); const delimiter = ','; const headers = headerLine.split(delimiter); return dataLines.map((line) => { const cells = line.split(delimiter); return headers.reduce((obj, header, index) => { obj[header] = cells[index]; return obj; }, {}); }); };",
+      "options": [
+        {
+          "name": "CSV",
+          "value": "function parseCSV (payload) { const [headerLine, ...dataLines] = payload.split('\\n'); const delimiter = ','; const headers = headerLine.split(delimiter); return dataLines.map((line) => { const cells = line.split(delimiter); return headers.reduce((obj, header, index) => { obj[header] = cells[index]; return obj; }, {}); }); };"
+        },
+        {
+          "name": "JSON",
+          "value": "function parseJSON (payload) { try { const parsedPayload = JSON.parse(payload); return Object.entries(parsedPayload).map(([key, value]) => ({ key, value })); } catch (e) { return []; } };"
+        }
+      ]
     },
 		{
       "name": "FTP_EXTRACTOR_RECORD_COUNT_LIMIT",
@@ -123,15 +165,14 @@
           "name": "1000",
           "value": "1000"
         }
-      ],
-			"required": false
+      ]
     },
     {
       "name": "FTP_EXTRACTOR_FILE_SIZE_LIMIT",
       "label": "Enter the Maximum Allowed Extractor File Size",
       "subText": "The maximum allowed value is 5GB",
-      "placeholder": "2mb",
-      "value": "2mb",
+      "placeholder": "50mb",
+      "value": "50mb",
 			"required": false,
 			"disabled": true
     }
@@ -141,7 +182,8 @@
     "createBuildableEnvVars": false,
     "autoSubscribeAllEvents": true,
     "showEvents": true,
-    "secureAuthFields": true
+    "secureAuthFields": true,
+    "parser": "FTP_EXTRACTOR_FILE_PARSER"
   },
   "paths": {
     "id": null,

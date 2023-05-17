@@ -5,7 +5,7 @@
   "type": "bigquery",
   "category": "database",
   "image": "https://assets.buildable.dev/catalog/node-templates/bigquery.svg",
-  "tags": ["database", "db", "warehouse", "analytics", "olap"],
+  "tags": ["database", "warehouse"],
   "authentication": [
     {
       "name": "GOOGLE_SERVICE_ACCOUNT_KEY",
