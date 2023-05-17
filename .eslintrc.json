@@ -47,7 +47,7 @@
     "class-methods-use-this": ["off"],
     "consistent-return": ["off"],
     "newIsCap": ["off"],
-
+    "no-param-reassign": ["off"],
     "import/prefer-default-export": ["off"],
     "import/extensions": ["off"]
   }
