@@ -76,7 +76,6 @@ export class XeroDriver implements DestinationClassI {
 
     let targetMethod = null;
     let methodParams = null;
-    let args = null;
 
     switch (api) {
       case "accounting":
@@ -92,29 +91,30 @@ export class XeroDriver implements DestinationClassI {
           .match(/\((.*?)\)/)?.[1] || "")
           .split(",")
           .map((param) => param.trim()) as Parameters<typeof targetMethod>;
-
-        for (const tenantId of this.tenantIds) {
-          // recreate the args array for each tenant
-          args = methodParams.map((param) => {
-            if (param === "xeroTenantId") {
-              return tenantId;
-            }
-            return params[param];
-          });
-
-          // call the method for each tenant
-          try {
-            responses[tenantId] = await this.client.accountingApi[method](...args);
-          } catch (err) {
-            responses[tenantId] = err.response;
-          }
-        }
-
-        return responses;
+        break;
 
       default:
         throw new Error(`Method ${prop as string}() for Xero not found`);
     }
+
+    for (const tenantId of this.tenantIds) {
+      // recreate the args array for each tenant
+      const args = methodParams.map((param) => {
+        if (param === "xeroTenantId") {
+          return tenantId;
+        }
+        return params[param];
+      });
+
+      // call method
+      try {
+        responses[tenantId] = (await this.client.accountingApi[method](...args)).body;
+      } catch (err) {
+        responses[tenantId] = err.response;
+      }
+    }
+
+    return responses;
   }
 }
 

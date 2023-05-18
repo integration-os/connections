@@ -24,12 +24,20 @@ Create a new bank transfer history record in Xero.
 
 ```json
 {
-    "historyRecords": [
+  "responses": [
+    {
+      "Id": "12b9a900-fd76-4db0-b392-9551e165f3bb",
+      "Status": "OK",
+      "ProviderName": "Event Test App",
+      "DateTimeUTC": "/Date(1684354973404)/",
+      "HistoryRecords": [
         {
-        "historyRecordID": "00000000-0000-0000-0000-000000000000",
-        "details": "Hello World",
-        "createdDateUTC": "2020-01-01T00:00:00Z"
+          "historyRecordID": "00000000-0000-0000-0000-000000000000",
+          "details": "Hello World",
+          "createdDateUTC": "2020-01-01T00:00:00Z"
         }
-    ]
+      ]
+    }
+  ]
 }
 ```

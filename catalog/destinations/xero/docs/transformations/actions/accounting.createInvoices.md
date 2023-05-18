@@ -45,30 +45,38 @@ Create one or more invoices in Xero.
 
 ```json
 {
-  "invoices": [
+  "responses": [
     {
-      "type": "ACCREC",
-      "contact": {
-        "contactID": "00000000-0000-0000-0000-000000000000"
-      },
-      "date": "2020-10-10",
-      "dueDate": "2020-10-28",
-      "lineItems": [
+      "Id": "12b9a900-fd76-4db0-b392-9551e165f3bb",
+      "Status": "OK",
+      "ProviderName": "Event Test App",
+      "DateTimeUTC": "/Date(1684354973404)/",
+      "Invoices": [
         {
-          "description": "Foobar",
-          "quantity": 1,
-          "unitAmount": 20,
-          "accountCode": "000",
-          "tracking": [
+          "type": "ACCREC",
+          "contact": {
+            "contactID": "00000000-0000-0000-0000-000000000000"
+          },
+          "date": "2020-10-10",
+          "dueDate": "2020-10-28",
+          "lineItems": [
             {
-              "trackingCategoryID": "00000000-0000-0000-0000-000000000000",
-              "trackingOptionID": "00000000-0000-0000-0000-000000000000"
+              "description": "Foobar",
+              "quantity": 1,
+              "unitAmount": 20,
+              "accountCode": "000",
+              "tracking": [
+                {
+                  "trackingCategoryID": "00000000-0000-0000-0000-000000000000",
+                  "trackingOptionID": "00000000-0000-0000-0000-000000000000"
+                }
+              ]
             }
-          ]
+          ],
+          "reference": "Website Design",
+          "status": "DRAFT"
         }
-      ],
-      "reference": "Website Design",
-      "status": "DRAFT"
+      ]
     }
   ]
 }

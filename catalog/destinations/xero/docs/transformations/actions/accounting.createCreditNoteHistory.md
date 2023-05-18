@@ -25,10 +25,18 @@ Create credit note history in Xero.
 
 ```json
 {
-  "historyRecords": [
+  "responses": [
     {
-      "details": "Credit Note History Details",
-      "dateUtc": "2020-12-10T00:00:00Z"
+      "Id": "12b9a900-fd76-4db0-b392-9551e165f3bb",
+      "Status": "OK",
+      "ProviderName": "Event Test App",
+      "DateTimeUTC": "/Date(1684354973404)/",
+      "HistoryRecords": [
+        {
+          "details": "Credit Note History Details",
+          "dateUtc": "2020-12-10T00:00:00Z"
+        }
+      ]
     }
   ]
 }
