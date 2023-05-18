@@ -24,7 +24,7 @@
   },
   "events": [
     {
-      "name": "connection.estasblished",
+      "name": "connection.established",
       "description": "Fired when a connection is established to RabbitMQ.",
       "group": "connection"
     },
