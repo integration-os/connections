@@ -37,7 +37,6 @@ Create one or more employees in Xero.
         }
       ]
     }
-  ],
-
+  ]
 }
 ```

@@ -61,7 +61,6 @@ Create credit notes in Xero.
         }
       ]
     }
-  ],
-
+  ]
 }
 ```

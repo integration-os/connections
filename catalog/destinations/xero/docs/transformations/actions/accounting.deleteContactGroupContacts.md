@@ -7,7 +7,7 @@ Delete all contacts from a contact group in Xero.
 **Sample Request**
 ```json
 {
-  "contactGroupID": "00000000-0000-0000-0000-000000000000",
+  "contactGroupID": "00000000-0000-0000-0000-000000000000"
 }
 ```
 
@@ -19,7 +19,7 @@ Delete all contacts from a contact group in Xero.
       "contactGroup": {
         "contactGroupID": "00000000-0000-0000-0000-000000000000",
         "name": "Hello World",
-        "status": "DELETED",
+        "status": "DELETED"
       }
     }
   ]
