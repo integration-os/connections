@@ -1,0 +1,7 @@
+[
+  {
+    "key": "WEBHOOK_URL",
+    "heading": "Webhook URL",
+    "subHeading": "RabbitMQ messages will be sent to this URL"
+  }
+]

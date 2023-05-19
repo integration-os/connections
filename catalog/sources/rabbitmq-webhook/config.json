@@ -1,0 +1,75 @@
+{
+  "title": "RabbitMQ Webhook",
+  "description": "An open-source message broker that implements the Advanced Message Queuing Protocol (AMQP).",
+  "apiVersion": "2023-02-07",
+  "type": "rabbitmq-webhook",
+  "category": "broker",
+  "image": "https://assets.buildable.dev/catalog/node-templates/rabbitmq.svg",
+  "tags": ["queue", "message broker"],
+  "authentication": [],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": false,
+    "showUrl": true,
+    "autoSubscribeAllEvents": true,
+    "showEvents": true,
+    "secureAuthFields": false
+  },
+  "paths": {
+    "id": null,
+    "event": "_.body.event",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "events": [
+    {
+      "name": "connection.established",
+      "description": "Fired when a connection is established to RabbitMQ.",
+      "group": "connection"
+    },
+    {
+      "name": "connection.failed",
+      "description": "Fired when a connection to RabbitMQ fails.",
+      "group": "connection"
+    },
+    {
+      "name": "connection.disconnected",
+      "description": "Fired when a connection to RabbitMQ is disconnected.",
+      "group": "connection"
+    },
+    {
+      "name": "consumer.connection.established",
+      "description": "Fired when a connection is established to the consumer.",
+      "group": "consumer"
+    },
+    {
+      "name": "consumer.connection.failed",
+      "description": "Fired when a connection to the consumer fails.",
+      "group": "consumer"
+    },
+    {
+      "name": "queue.connection.established",
+      "description": "Fired when a connection is established to the queue.",
+      "group": "queue"
+    },
+    {
+      "name": "queue.connection.failed",
+      "description": "Fired when a connection to the queue fails.",
+      "group": "queue"
+    },
+    {
+      "name": "message.received",
+      "description": "Fired when a message is received.",
+      "group": "message"
+    }
+  ],
+  "connectionTypes": ["source"],
+  "testConnection": false,
+  "classifications": {
+    "dataIngestion": {
+      "streamTypes": ["manual"],
+      "extractionTypes": []
+    }
+  }
+}
