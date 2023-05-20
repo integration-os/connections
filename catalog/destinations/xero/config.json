@@ -110,7 +110,7 @@
     "accounting.deleteLinkedTransaction",
     "accounting.deletePayment",
     "accounting.deleteTrackingCategory",
-    "accounting.deleteTrackingOption"
+    "accounting.deleteTrackingOptions"
   ],
   "destinationType": "http"
 }
