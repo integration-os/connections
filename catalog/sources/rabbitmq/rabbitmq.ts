@@ -63,12 +63,6 @@ export default class RabbitMQ {
 
       const channel = await connection.createChannel();
 
-      const queueNames = this.RABBITMQ_QUEUES.split(",").map((queue) => queue.trim());
-
-      for (const queueName of queueNames) {
-        await channel.checkQueue(queueName);
-      }
-
       await connection.close();
 
       return {
