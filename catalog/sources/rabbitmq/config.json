@@ -1,19 +1,29 @@
 {
-  "title": "RabbitMQ Webhook",
+  "title": "RabbitMQ",
   "description": "An open-source message broker that implements the Advanced Message Queuing Protocol (AMQP).",
   "apiVersion": "2023-02-07",
-  "type": "rabbitmq-webhook",
+  "type": "rabbitmq",
   "category": "broker",
   "image": "https://assets.buildable.dev/catalog/node-templates/rabbitmq.svg",
   "tags": ["queue", "message broker"],
-  "authentication": [],
+  "authentication": [
+    {
+      "name": "RABBITMQ_CONNECTION_URI",
+      "label": "Enter your RabbitMQ connection URI",
+      "placeholder": "amqps://username:password@host/ytbqyshy"
+    },
+    {
+      "name": "RABBITMQ_QUEUES",
+      "label": "Enter your comma separated RabbitMQ queues",
+      "placeholder": "payments_queue, customers_queue"
+    }
+  ],
   "eventSchema": {},
   "settings": {
     "createBuildableEnvVars": false,
-    "showUrl": true,
     "autoSubscribeAllEvents": true,
     "showEvents": true,
-    "secureAuthFields": false
+    "secureAuthFields": true
   },
   "paths": {
     "id": null,
@@ -65,7 +75,7 @@
     }
   ],
   "connectionTypes": ["source"],
-  "testConnection": false,
+  "testConnection": true,
   "classifications": {
     "dataIngestion": {
       "streamTypes": ["manual"],
