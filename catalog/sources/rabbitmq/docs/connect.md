@@ -1,6 +1,6 @@
 ## Connect 
 
-Receive messages from RabbitMQ via a Webhook.
+Receive events from listening to RabbitMQ queues.
 
 ### Securely Encrypted
 
