@@ -4,9 +4,9 @@ import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../t
 import { XeroOAuth2TokenSet } from "./lib/types";
 
 export class XeroDriver implements DestinationClassI {
-  private client: XeroClient;
+  public client: XeroClient;
 
-  private tenantIds: string[];
+  public tenantIds: string[];
 
   private readonly XERO_CLIENT_ID: any;
 
@@ -94,7 +94,7 @@ export class XeroDriver implements DestinationClassI {
         break;
 
       default:
-        throw new Error(`Method ${prop as string}() for Xero not found`);
+        throw new Error(`API ${api as string} for Xero not found`);
     }
 
     for (const tenantId of this.tenantIds) {
@@ -123,29 +123,35 @@ export default function getProxyDriver(config: AnyObject) {
 
   return new Proxy(driver, {
     get: (target, prop) => {
-      if (prop === "testConnection") {
-        return async () => driver.testConnection();
+      if (prop === "tenantIds") {
+        return target.tenantIds;
       }
 
-      // Force the proxy to return a Promise that only resolves once the connection has been established
-      if (prop === "connect") {
-        return async () => {
-          await driver.connect(config);
-        };
+      if (prop === "client") {
+        return target.client;
+      }
+      // check if driver[prop] is not a function
+      if (typeof target[prop] !== "function") {
+        throw new Error(`Method ${prop as string}() not found`);
       }
 
-      // Force the proxy to return a Promise that only resolves once the connection has been dropped
-      if (prop === "disconnect") {
-        return async () => {
-          await driver.disconnect();
-        };
-      }
+      return async (payload, params) => {
+        if (prop === "connect") {
+          return driver.connect(payload || config);
+        }
 
-      return async (payload) => {
+        if (prop === "disconnect") {
+          return driver.disconnect();
+        }
+
+        if (prop === "testConnection") {
+          return driver.testConnection();
+        }
+
         try {
-          await driver.connect(config);
+          await driver.connect(config || payload);
 
-          const result = await target.performAction(prop, payload);
+          const result = await target.performAction(payload, params);
 
           await driver.disconnect();
 
