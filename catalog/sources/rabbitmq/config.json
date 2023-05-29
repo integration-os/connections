@@ -20,7 +20,6 @@
   ],
   "eventSchema": {},
   "settings": {
-    "createBuildableEnvVars": false,
     "autoSubscribeAllEvents": true,
     "showEvents": true,
     "secureAuthFields": true
