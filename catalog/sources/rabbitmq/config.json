@@ -49,6 +49,16 @@
       "group": "connection"
     },
     {
+      "name": "channel.connection.established",
+      "description": "Fired when a connection is established to the channel.",
+      "group": "channel"
+    },
+    {
+      "name": "channel.connection.failed",
+      "description": "Fired when a connection to the channel fails.",
+      "group": "channel"
+    },
+    {
       "name": "consumer.connection.established",
       "description": "Fired when a connection is established to the consumer.",
       "group": "consumer"
@@ -67,6 +77,11 @@
       "name": "queue.connection.failed",
       "description": "Fired when a connection to the queue fails.",
       "group": "queue"
+    },
+    {
+      "name": "heartbeat.received",
+      "description": "Fired when a message is received.",
+      "group": "message"
     },
     {
       "name": "message.received",
