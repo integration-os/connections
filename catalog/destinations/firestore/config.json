@@ -9,7 +9,7 @@
   "authentication": [
     {
       "name": "SERVICE_ACCOUNT_CONFIG",
-      "label": "Enter your Firebase Service Account Config",
+      "label": "Enter your Firebase Service Account Configuration",
       "placeholder": "{'type': 'service_account', 'project_id': 'buildable-destination', ...}",
       "type": "textarea"
     }
