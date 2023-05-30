@@ -15,7 +15,7 @@ export class SageDriver implements DestinationClassI {
     this.SAGE_CLIENT_SECRET = SAGE_CLIENT_SECRET;
   }
 
-  async connect(config: AnyObject): Promise<void | Truthy> {
+  async connect(config?: AnyObject): Promise<void | Truthy> {
     this.client = axios.create({
       baseURL: "https://api.accounting.sage.com/v3.1",
       headers: {
@@ -49,7 +49,7 @@ export class SageDriver implements DestinationClassI {
     } catch (e) {
       return {
         success: false,
-        message: `Could not establish connection to BigQuery: ${e.message}`,
+        message: `Could not establish connection to Sage: ${e.message}`,
       };
     }
   }
@@ -76,14 +76,14 @@ export class SageDriver implements DestinationClassI {
     }
 
     // compose the URL
-    const url = `/${resource}`;
+    let url = `/${resource}`;
 
     if (payload.id) {
-      url.concat(`/${payload.id}`);
-    }
+      url += `/${payload.id}`;
 
-    if (secondaryResource) {
-      url.concat(`/${secondaryResource}`);
+      if (secondaryResource) {
+        url += `/${secondaryResource}`;
+      }
     }
 
     // perform the action
@@ -125,16 +125,13 @@ export default function getProxyDriver(config: AnyObject) {
             return driver.testConnection();
           }
 
-          // Force the proxy to return a Promise that only resolves once the connection has been established
           if (prop === "connect") {
-            return driver.connect(config || action);
+            // action in this case is the config object
+            return driver.connect(action || config);
           }
 
-          // Force the proxy to return a Promise that only resolves once the connection has been dropped
           if (prop === "disconnect") {
-            return async () => {
-              await driver.disconnect();
-            };
+            return driver.disconnect();
           }
 
           try {
