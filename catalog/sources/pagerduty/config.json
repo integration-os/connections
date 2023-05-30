@@ -3,11 +3,11 @@
   "description": "A cloud computing company specializing in a SaaS incident responses",
   "apiVersion": "Webhooks v3",
   "type": "pagerduty",
-  "category": "observability",
+  "category": "monitoring",
   "image": "https://assets.buildable.dev/catalog/node-templates/pagerduty.svg",
   "tags": [
-    "monitoring",
-    "incident"
+    "observability",
+    "issues"
   ],
   "authentication": [
     {
