@@ -24,6 +24,11 @@
     "hasEvents": false,
     "showEvents": false
   },
+  "oauth2": {
+    "auth_url": "https://www.sageone.com/oauth2/auth/central?filter=apiv3.1",
+    "token_url": "https://oauth.accounting.sage.com/token",
+    "refresh_url": "https://oauth.accounting.sage.com/token"
+  },
   "paths": null,
   "events": [],
   "connectionTypes": ["target"],
