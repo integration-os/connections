@@ -1,8 +1,8 @@
-## Delete Journal Codes
+### Delete Other Payment
 
-Delete a journal code.
+Delete an existing other payment.
 
-[Documentation](https://developer.sage.com/accounting/reference/accounting/#tag/Journal-Codes/operation/deleteJournalCodesKey)
+[Documentation](https://developer.sage.com/accounting/reference/payments/#tag/Other-Payments/operation/deleteOtherPaymentsId)
 
 **Types**
 

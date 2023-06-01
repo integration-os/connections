@@ -146,6 +146,7 @@ describe("Test: Sage Destination", () => {
         SAGE_CLIENT_SECRET: process.env.SAGE_CLIENT_SECRET,
         oauth2,
       };
+
       driver = new SageDriver(config);
       proxyDriver = getProxyDriver(config);
 
@@ -162,6 +163,7 @@ describe("Test: Sage Destination", () => {
       const postSpy = jest.spyOn(proxyDriver.client, "post");
       postSpy.mockImplementation(() => Promise.resolve({ data: { success: true } }));
 
+      // mocking the connect method to avoid the client being overwritten by performAction
       proxyDriver.connect = jest.fn().mockResolvedValue({});
 
       const result = await proxyDriver.performAction("journals.create", {});

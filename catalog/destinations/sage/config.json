@@ -34,7 +34,7 @@
   "connectionTypes": ["target"],
   "actions": [
     "ledger_accounts.create",
-    "ledger_accounts.delete",
+    "ledger_accounts.update",
 
     "journals.create",
     "journals.delete",
@@ -130,9 +130,9 @@
     "contact_payments.create",
     "contact_payments.update",
     "contact_payments.delete",
-    "other.payments.create",
-    "other.payments.update",
-    "other.payments.delete",
+    "other_payments.create",
+    "other_payments.update",
+    "other_payments.delete",
 
     "product_sales_price_types.create",
     "product_sales_price_types.update",
