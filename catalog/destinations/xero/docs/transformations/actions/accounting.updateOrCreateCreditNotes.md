@@ -37,45 +37,43 @@ Update or create credit notes in Xero.
 ```json
 {
   "tenant1": {
-    {
-      "creditNotes": [
-        {
-          "type": "ACCPAYCREDIT",
-          "contact": {
-            "contactID": "00000000-0000-0000-0000-000000000000",
-            "name": "Hello World"
-          },
-          "date": "2020-01-01T00:00:00",
-          "status": "DRAFT",
-          "lineAmountTypes": "Exclusive",
-          "lineItems": [
-            {
-              "description": "Hello World",
-              "quantity": 1.0,
-              "unitAmount": 20.0,
-              "taxType": "NONE",
-              "taxAmount": 0.0,
-              "lineAmount": 20.0,
-              "accountCode": "000",
-              "lineItemID": "00000000-0000-0000-0000-000000000000"
-            }
-          ],
-          "subTotal": 20.0,
-          "totalTax": 0.0,
-          "total": 20.0,
-          "creditNoteID": "00000000-0000-0000-0000-000000000000",
-          "updatedDateUTC": "2020-01-01T00:00:00",
-          "currencyCode": "NZD",
-          "fullyPaidOnDate": "2020-01-01T00:00:00",
-          "creditNoteNumber": "00000000",
-          "reference": "Hello World",
-          "currencyRate": 1.0,
-          "remainingCredit": 20.0,
-          "hasAttachments": false,
-          "hasErrors": false
-        }
-      ]
-    }
-  ]
+    "creditNotes": [
+      {
+        "type": "ACCPAYCREDIT",
+        "contact": {
+          "contactID": "00000000-0000-0000-0000-000000000000",
+          "name": "Hello World"
+        },
+        "date": "2020-01-01T00:00:00",
+        "status": "DRAFT",
+        "lineAmountTypes": "Exclusive",
+        "lineItems": [
+          {
+            "description": "Hello World",
+            "quantity": 1.0,
+            "unitAmount": 20.0,
+            "taxType": "NONE",
+            "taxAmount": 0.0,
+            "lineAmount": 20.0,
+            "accountCode": "000",
+            "lineItemID": "00000000-0000-0000-0000-000000000000"
+          }
+        ],
+        "subTotal": 20.0,
+        "totalTax": 0.0,
+        "total": 20.0,
+        "creditNoteID": "00000000-0000-0000-0000-000000000000",
+        "updatedDateUTC": "2020-01-01T00:00:00",
+        "currencyCode": "NZD",
+        "fullyPaidOnDate": "2020-01-01T00:00:00",
+        "creditNoteNumber": "00000000",
+        "reference": "Hello World",
+        "currencyRate": 1.0,
+        "remainingCredit": 20.0,
+        "hasAttachments": false,
+        "hasErrors": false
+      }
+    ]
+  }
 }
 ```
