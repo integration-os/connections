@@ -17,16 +17,14 @@ Create one or more tracking categories.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "trackingCategories": [
-        {
-          "trackingCategoryID": "00000000-0000-0000-0000-000000000000",
-          "name": "Test Tracking Category",
-          "status": "ACTIVE"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "trackingCategories": [
+      {
+        "trackingCategoryID": "00000000-0000-0000-0000-000000000000",
+        "name": "Test Tracking Category",
+        "status": "ACTIVE"
+      }
+    ]
+  }
 }
 ```

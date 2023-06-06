@@ -22,17 +22,15 @@ Create currencies in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "currency": {
-        "code": "USD",
-        "description": "United States Dollar",
-        "decimalPlaces": 2,
-        "active": true,
-        "default": true
-      }
+  "tenant1": {
+    "currency": {
+      "code": "USD",
+      "description": "United States Dollar",
+      "decimalPlaces": 2,
+      "active": true,
+      "default": true
     }
-  ]
+  }
 }
 ```
 

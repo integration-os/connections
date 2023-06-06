@@ -4,8 +4,8 @@ Create a batch payment history record in Xero.
 
 [Documentation](https://xeroapi.github.io/xero-node/accounting/index.html#api-Accounting-createBatchPaymentHistoryRecord)
 
-
 **Sample Payload**
+
 ```json
 {
   "batchPaymentID": "00000000-0000-0000-0000-000000000000",
@@ -21,19 +21,18 @@ Create a batch payment history record in Xero.
 ```
 
 **Sample Response**
+
 ```json
 {
-  "responses": [
-    {
-      "historyRecords": [
-        {
-          "historyRecordID": "00000000-0000-0000-0000-000000000000",
-          "details": "hello foobar",
-          "createdDateUTC": "2020-01-01T00:00:00Z"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "historyRecords": [
+      {
+        "historyRecordID": "00000000-0000-0000-0000-000000000000",
+        "details": "hello foobar",
+        "createdDateUTC": "2020-01-01T00:00:00Z"
+      }
+    ]
+  }
 }
 ```
 

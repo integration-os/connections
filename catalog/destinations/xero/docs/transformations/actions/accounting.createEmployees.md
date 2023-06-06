@@ -24,15 +24,13 @@ Create one or more employees in Xero.
 
 ```json
 {
-  "responses": [
-    {
-      "employees": [
-        {
-          "firstName": "Nick",
-          "lastName": "Fury"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "employees": [
+      {
+        "firstName": "Nick",
+        "lastName": "Fury"
+      }
+    ]
+  }
 }
 ```

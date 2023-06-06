@@ -22,12 +22,14 @@ Update a repeating invoice in Xero.
 **Sample Response**
 ```json
 {
-  "repeatingInvoices": [
-    {
-      "repeatingInvoiceID": "00000000-0000-0000-0000-000000000000",
-      "reference": "Hello World",
-      "status": "DRAFT"
-    }
-  ]
+  "tenant1:": {
+    "repeatingInvoices": [
+      {
+        "repeatingInvoiceID": "00000000-0000-0000-0000-000000000000",
+        "reference": "Hello World",
+        "status": "DRAFT"
+      }
+    ]
+  }
 }
 ```

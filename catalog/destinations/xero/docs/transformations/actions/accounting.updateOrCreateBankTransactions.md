@@ -34,26 +34,24 @@ Update or create bank transactions in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "bankTransactions": [
-        {
-          "type": "RECEIVE",
-          "contact": {
-            "contactID": "00000000-0000-0000-0000-000000000000"
-          },
-          "lineItems": [
-            {
-              "description": "Hello World",
-              "quantity": 1,
-              "unitAmount": 20.0,
-              "accountCode": "000",
-              "taxType": "NONE"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "bankTransactions": [
+      {
+        "type": "RECEIVE",
+        "contact": {
+          "contactID": "00000000-0000-0000-0000-000000000000"
+        },
+        "lineItems": [
+          {
+            "description": "Hello World",
+            "quantity": 1,
+            "unitAmount": 20.0,
+            "accountCode": "000",
+            "taxType": "NONE"
+          }
+        ]
+      }
+    ]
+  }
 }
 ```

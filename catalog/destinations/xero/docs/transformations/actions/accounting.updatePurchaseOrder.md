@@ -22,12 +22,14 @@ Update a purchase order in Xero.
 **Sample Response**
 ```json
 {
-  "purchaseOrders": [
-    {
-      "purchaseOrderID": "00000000-0000-0000-0000-000000000000",
-      "purchaseOrderNumber": "Hello World",
-      "status": "DRAFT"
-    }
-  ]
+  "tenant1": {
+    "purchaseOrders": [
+      {
+        "purchaseOrderID": "00000000-0000-0000-0000-000000000000",
+        "purchaseOrderNumber": "Hello World",
+        "status": "DRAFT"
+      }
+    ]
+  }
 }
 ```

@@ -29,8 +29,7 @@ Create a new linked transaction in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
+  "tenant1": {
       "linkedTransactions": [
         {
           "sourceTransactionID": "00000000-0000-0000-0000-000000000000",
@@ -50,6 +49,5 @@ Create a new linked transaction in Xero.
         }
       ]
     }
-  ]
 }
 ```

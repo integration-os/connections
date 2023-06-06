@@ -24,16 +24,14 @@ Create invoice history in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "historyRecords": [
-        {
-          "type": "NOTE",
-          "dateUtc": "2020-12-10T00:00:00.000Z",
-          "note": "This is a note"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "historyRecords": [
+      {
+        "type": "NOTE",
+        "dateUtc": "2020-12-10T00:00:00.000Z",
+        "note": "This is a note"
+      }
+    ]
+  }
 }
 ```

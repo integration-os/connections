@@ -13,27 +13,25 @@ Delete an account in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "accounts": [
-        {
-          "code": "123456",
-          "name": "FooBar",
-          "accountID": "9d646b58-09db-4029-b1c3-4d79ff9ebcd8",
-          "type": "EXPENSE",
-          "status": "DELETED",
-          "description": "Hello World",
-          "taxType": "INPUT",
-          "enablePaymentsToAccount": false,
-          "showInExpenseClaims": false,
-          "_class": "EXPENSE",
-          "reportingCode": "EXP",
-          "reportingCodeName": "Expense",
-          "updatedDateUTC": "2023-05-18T10:25:49.793Z",
-          "addToWatchlist": false
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "accounts": [
+      {
+        "code": "123456",
+        "name": "FooBar",
+        "accountID": "9d646b58-09db-4029-b1c3-4d79ff9ebcd8",
+        "type": "EXPENSE",
+        "status": "DELETED",
+        "description": "Hello World",
+        "taxType": "INPUT",
+        "enablePaymentsToAccount": false,
+        "showInExpenseClaims": false,
+        "_class": "EXPENSE",
+        "reportingCode": "EXP",
+        "reportingCodeName": "Expense",
+        "updatedDateUTC": "2023-05-18T10:25:49.793Z",
+        "addToWatchlist": false
+      }
+    ]
+  }
 }
 ```

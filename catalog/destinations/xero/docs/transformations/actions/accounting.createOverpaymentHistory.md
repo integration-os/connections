@@ -22,8 +22,7 @@ Creates one or more overpayment history records for a specified overpayment.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
+  "tenant1": {
       "historyRecords": [
         {
           "details": "HelloWorld",
@@ -31,7 +30,6 @@ Creates one or more overpayment history records for a specified overpayment.
         }
       ]
     }
-  ]
 }
 ```
 

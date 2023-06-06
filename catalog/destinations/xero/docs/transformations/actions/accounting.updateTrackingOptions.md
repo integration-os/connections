@@ -18,12 +18,14 @@ Update a tracking option in Xero.
 **Sample Response**
 ```json
 {
-  "options": [
-    {
-      "trackingOptionID": "00000000-0000-0000-0000-000000000000",
-      "name": "Hello World",
-      "status": "ACTIVE"
-    }
-  ]
+  "tenant1": {
+    "options": [
+      {
+        "trackingOptionID": "00000000-0000-0000-0000-000000000000",
+        "name": "Hello World",
+        "status": "ACTIVE"
+      }
+    ]
+  }
 }
 ```

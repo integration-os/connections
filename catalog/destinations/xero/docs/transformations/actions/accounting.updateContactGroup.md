@@ -22,16 +22,14 @@ Update a contact group in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "contactGroups": [
-        {
-          "contactGroupID": "00000000-0000-0000-0000-000000000000",
-          "name": "Hello World",
-          "status": "ACTIVE"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "contactGroups": [
+      {
+        "contactGroupID": "00000000-0000-0000-0000-000000000000",
+        "name": "Hello World",
+        "status": "ACTIVE"
+      }
+    ]
+  }
 }
 ```

@@ -20,16 +20,14 @@ Create a history record for a quote.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "historyRecords": [
-        {
-          "historyRecordID": "00000000-0000-0000-0000-000000000000",
-          "details": "HelloWorld",
-          "dateUTC": "/Date(1684354973404)/"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "historyRecords": [
+      {
+        "historyRecordID": "00000000-0000-0000-0000-000000000000",
+        "details": "HelloWorld",
+        "dateUTC": "/Date(1684354973404)/"
+      }
+    ]
+  }
 }
 ```

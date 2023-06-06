@@ -15,19 +15,17 @@ Delete contacts from a contact group in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "contactGroup": {
-        "contactGroupID": "00000000-0000-0000-0000-000000000000",
-        "name": "Hello World",
-        "contacts": [
-          {
-            "contactID": "00000000-0000-0000-0000-000000000000"
-          }
-        ]
-      }
+  "tenant1": {
+    "contactGroup": {
+      "contactGroupID": "00000000-0000-0000-0000-000000000000",
+      "name": "Hello World",
+      "contacts": [
+        {
+          "contactID": "00000000-0000-0000-0000-000000000000"
+        }
+      ]
     }
-  ]
+  }
 }
 ```
 

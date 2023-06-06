@@ -31,25 +31,23 @@ Creates one or more quotes.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "quotes": [
-        {
-          "contact": {
-            "contactID": "00000000-0000-0000-0000-000000000000"
-          },
-          "lineItems": [
-            {
-              "description": "HelloWorld",
-              "quantity": 0,
-              "unitAmount": 0,
-              "accountCode": "00000000-0000-0000-0000-000000000000"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "quotes": [
+      {
+        "contact": {
+          "contactID": "00000000-0000-0000-0000-000000000000"
+        },
+        "lineItems": [
+          {
+            "description": "HelloWorld",
+            "quantity": 0,
+            "unitAmount": 0,
+            "accountCode": "00000000-0000-0000-0000-000000000000"
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
 

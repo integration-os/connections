@@ -17,13 +17,11 @@ Create one or more tracking options.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "trackingOption": {
-        "trackingOptionID": "00000000-0000-0000-0000-000000000000",
-        "name": "Test Tracking Option"
-      }
+  "tenant1": {
+    "trackingOption": {
+      "trackingOptionID": "00000000-0000-0000-0000-000000000000",
+      "name": "Test Tracking Option"
     }
-  ]
+  }
 }
 ```

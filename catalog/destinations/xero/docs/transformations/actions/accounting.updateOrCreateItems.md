@@ -24,17 +24,15 @@ Update or create items in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "items": [
-        {
-          "itemID": "00000000-0000-0000-0000-000000000000",
-          "code": "Hello World",
-          "name": "Hello World",
-          "status": "ACTIVE"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "items": [
+      {
+        "itemID": "00000000-0000-0000-0000-000000000000",
+        "code": "Hello World",
+        "name": "Hello World",
+        "status": "ACTIVE"
+      }
+    ]
+  }
 }
 ```

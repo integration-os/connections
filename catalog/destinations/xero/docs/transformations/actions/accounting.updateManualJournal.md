@@ -30,23 +30,21 @@ Update a manual journal in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "manualJournals": [
-        {
-          "manualJournalID": "00000000-0000-0000-0000-000000000000",
-          "narration": "Hello World",
-          "status": "DRAFT",
-          "journalLines": [
-            {
-              "description": "Hello World",
-              "accountID": "00000000-0000-0000-0000-000000000000",
-              "lineAmount": 0.0
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "manualJournals": [
+      {
+        "manualJournalID": "00000000-0000-0000-0000-000000000000",
+        "narration": "Hello World",
+        "status": "DRAFT",
+        "journalLines": [
+          {
+            "description": "Hello World",
+            "accountID": "00000000-0000-0000-0000-000000000000",
+            "lineAmount": 0.0
+          }
+        ]
+      }
+    ]
+  }
 }
 ```

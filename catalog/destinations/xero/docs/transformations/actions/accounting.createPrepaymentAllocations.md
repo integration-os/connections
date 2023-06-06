@@ -26,18 +26,16 @@ Creates one or more prepayment allocations for a specified prepayment.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "prepaymentAllocations": [
-        {
-          "invoice": {
-            "invoiceID": "00000000-0000-0000-0000-000000000000"
-          },
-          "amount": 0,
-          "date": "2020-12-10T00:00:00.000Z"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "prepaymentAllocations": [
+      {
+        "invoice": {
+          "invoiceID": "00000000-0000-0000-0000-000000000000"
+        },
+        "amount": 0,
+        "date": "2020-12-10T00:00:00.000Z"
+      }
+    ]
+  }
 }
 ```

@@ -5,6 +5,7 @@ Update a tracking category in Xero.
 [Documentation](https://xeroapi.github.io/xero-node/accounting/index.html#api-Accounting-updateTrackingCategory)
 
 **Sample Payload**
+
 ```json
 {
   "trackingCategoryID": "00000000-0000-0000-0000-000000000000",
@@ -16,12 +17,15 @@ Update a tracking category in Xero.
 ```
 
 **Sample Response**
+
 ```json
 {
-  "trackingCategory": {
-    "trackingCategoryID": "00000000-0000-0000-0000-000000000000",
-    "name": "Hello World",
-    "status": "ACTIVE"
+  "tenant1": {
+    "trackingCategory": {
+      "trackingCategoryID": "00000000-0000-0000-0000-000000000000",
+      "name": "Hello World",
+      "status": "ACTIVE"
+    }
   }
 }
 ```

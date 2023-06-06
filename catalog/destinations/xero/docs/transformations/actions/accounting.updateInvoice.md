@@ -37,36 +37,34 @@ Update invoices in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "invoices": [
-        {
-          "type": "ACCREC",
-          "contact": {
-            "contactID": "00000000-0000-0000-0000-000000000000",
-            "name": "Hello World"
-          },
-          "date": "2021-05-18T10:25:49.793Z",
-          "dueDate": "2021-05-18T10:25:49.793Z",
-          "status": "DRAFT",
-          "lineAmountTypes": "Exclusive",
-          "lineItems": [
-            {
-              "description": "Hello World",
-              "quantity": 0.0,
-              "unitAmount": 0.0,
-              "taxType": "NONE",
-              "taxAmount": 0.0,
-              "lineAmount": 0.0,
-              "accountCode": "000",
-              "lineItemID": "00000000-0000-0000-0000-000000000000"
-            }
-          ],
-          "invoiceID": "00000000-0000-0000-0000-000000000000"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "invoices": [
+      {
+        "type": "ACCREC",
+        "contact": {
+          "contactID": "00000000-0000-0000-0000-000000000000",
+          "name": "Hello World"
+        },
+        "date": "2021-05-18T10:25:49.793Z",
+        "dueDate": "2021-05-18T10:25:49.793Z",
+        "status": "DRAFT",
+        "lineAmountTypes": "Exclusive",
+        "lineItems": [
+          {
+            "description": "Hello World",
+            "quantity": 0.0,
+            "unitAmount": 0.0,
+            "taxType": "NONE",
+            "taxAmount": 0.0,
+            "lineAmount": 0.0,
+            "accountCode": "000",
+            "lineItemID": "00000000-0000-0000-0000-000000000000"
+          }
+        ],
+        "invoiceID": "00000000-0000-0000-0000-000000000000"
+      }
+    ]
+  }
 }
 ```
 

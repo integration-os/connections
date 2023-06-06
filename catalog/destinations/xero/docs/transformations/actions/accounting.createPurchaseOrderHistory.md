@@ -21,14 +21,12 @@ Creates a history record for a purchase order.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "historyRecords": [
-        {
-          "details": "HelloWorld"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "historyRecords": [
+      {
+        "details": "HelloWorld"
+      }
+    ]
+  }
 }
 ```

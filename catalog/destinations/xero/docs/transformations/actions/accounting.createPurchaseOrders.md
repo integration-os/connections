@@ -33,38 +33,36 @@ Creates one or more purchase orders.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "purchaseOrders": [
-        {
-          "purchaseOrderID": "00000000-0000-0000-0000-000000000000",
-          "purchaseOrderNumber": "HelloWorld",
-          "contact": {
-            "contactID": "00000000-0000-0000-0000-000000000000",
-            "name": "HelloWorld"
-          },
-          "date": "/Date(1684354973404)/",
-          "deliveryDate": "/Date(1684354973404)/",
-          "deliveryAddress": "HelloWorld",
-          "attentionTo": "HelloWorld",
-          "telephone": "HelloWorld",
-          "deliveryInstructions": "HelloWorld",
-          "brandingThemeID": "00000000-0000-0000-0000-000000000000",
-          "currencyCode": "HelloWorld",
-          "currencyRate": 0,
-          "status": "HelloWorld",
-          "lineAmountTypes": "HelloWorld",
-          "subTotal": 0,
-          "totalTax": 0,
-          "total": 0,
-          "totalDiscount": 0,
-          "totalItems": 0,
-          "updatedDateUTC": "/Date(1684354973404)/",
-          "hasAttachments": true,
-          "isDiscounted": true
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "purchaseOrders": [
+      {
+        "purchaseOrderID": "00000000-0000-0000-0000-000000000000",
+        "purchaseOrderNumber": "HelloWorld",
+        "contact": {
+          "contactID": "00000000-0000-0000-0000-000000000000",
+          "name": "HelloWorld"
+        },
+        "date": "/Date(1684354973404)/",
+        "deliveryDate": "/Date(1684354973404)/",
+        "deliveryAddress": "HelloWorld",
+        "attentionTo": "HelloWorld",
+        "telephone": "HelloWorld",
+        "deliveryInstructions": "HelloWorld",
+        "brandingThemeID": "00000000-0000-0000-0000-000000000000",
+        "currencyCode": "HelloWorld",
+        "currencyRate": 0,
+        "status": "HelloWorld",
+        "lineAmountTypes": "HelloWorld",
+        "subTotal": 0,
+        "totalTax": 0,
+        "total": 0,
+        "totalDiscount": 0,
+        "totalItems": 0,
+        "updatedDateUTC": "/Date(1684354973404)/",
+        "hasAttachments": true,
+        "isDiscounted": true
+      }
+    ]
+  }
 }
 ```

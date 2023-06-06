@@ -22,16 +22,14 @@ Update or create quotes in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "quotes": [
-        {
-          "quoteID": "00000000-0000-0000-0000-000000000000",
-          "quoteNumber": "Hello World",
-          "status": "DRAFT"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "quotes": [
+      {
+        "quoteID": "00000000-0000-0000-0000-000000000000",
+        "quoteNumber": "Hello World",
+        "status": "DRAFT"
+      }
+    ]
+  }
 }
 ```

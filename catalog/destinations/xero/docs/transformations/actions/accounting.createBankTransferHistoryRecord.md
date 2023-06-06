@@ -24,7 +24,7 @@ Create a new bank transfer history record in Xero.
 
 ```json
 {
-  "responses": [
+  "tenant1":
     {
       "historyRecords": [
         {
@@ -34,6 +34,5 @@ Create a new bank transfer history record in Xero.
         }
       ]
     }
-  ]
 }
 ```

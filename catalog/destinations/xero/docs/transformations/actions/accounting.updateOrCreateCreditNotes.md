@@ -36,7 +36,7 @@ Update or create credit notes in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
+  "tenant1": {
     {
       "creditNotes": [
         {

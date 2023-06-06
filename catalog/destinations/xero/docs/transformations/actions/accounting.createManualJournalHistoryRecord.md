@@ -24,8 +24,7 @@ Create manual journal history record in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
+  "tenant1": {
       "historyRecords": [
         {
           "type": "NOTE",
@@ -34,6 +33,5 @@ Create manual journal history record in Xero.
         }
       ]
     }
-  ]
 }
 ```

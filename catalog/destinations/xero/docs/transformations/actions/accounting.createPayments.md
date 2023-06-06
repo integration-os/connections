@@ -31,25 +31,23 @@ Creates one or more payments for invoices or credit notes.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "payments": [
-        {
-          "invoice": {
-            "invoiceID": "00000000-0000-0000-0000-000000000000"
-          },
-          "account": {
-            "accountID": "00000000-0000-0000-0000-000000000000"
-          },
-          "date": "2020-12-10T00:00:00.000Z",
-          "amount": 0,
-          "reference": "HelloWorld",
-          "isReconciled": true,
-          "status": "AUTHORISED",
-          "paymentType": "ACCRECPAYMENT"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "payments": [
+      {
+        "invoice": {
+          "invoiceID": "00000000-0000-0000-0000-000000000000"
+        },
+        "account": {
+          "accountID": "00000000-0000-0000-0000-000000000000"
+        },
+        "date": "2020-12-10T00:00:00.000Z",
+        "amount": 0,
+        "reference": "HelloWorld",
+        "isReconciled": true,
+        "status": "AUTHORISED",
+        "paymentType": "ACCRECPAYMENT"
+      }
+    ]
+  }
 }
 ```

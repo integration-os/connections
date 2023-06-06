@@ -25,16 +25,14 @@ Create a new contact history record in Xero.
 
 ```json
 {
-  "responses": [
-    {
-      "historyRecords": [
-        {
-          "details": "Contacted via phone",
-          "date": "2020-01-01T00:00:00Z"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "historyRecords": [
+      {
+        "details": "Contacted via phone",
+        "date": "2020-01-01T00:00:00Z"
+      }
+    ]
+  }
 }
 ```
 

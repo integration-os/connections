@@ -21,16 +21,14 @@ Update or create contacts in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "contacts": [
-        {
-          "contactID": "00000000-0000-0000-0000-000000000000",
-          "name": "Hello World",
-          "status": "ACTIVE"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "contacts": [
+      {
+        "contactID": "00000000-0000-0000-0000-000000000000",
+        "name": "Hello World",
+        "status": "ACTIVE"
+      }
+    ]
+  }
 }
 ```

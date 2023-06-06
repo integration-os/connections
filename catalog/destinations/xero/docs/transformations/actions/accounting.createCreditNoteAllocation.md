@@ -5,6 +5,7 @@ Create credit note allocations in Xero.
 [Documentation](https://xeroapi.github.io/xero-node/accounting/index.html#api-Accounting-createCreditNoteAllocation)
 
 **Sample Payload**
+
 ```json
 {
   "creditNotID": "00000000-0000-0000-0000-000000000000",
@@ -24,20 +25,19 @@ Create credit note allocations in Xero.
 ```
 
 **Sample Response**
+
 ```json
 {
-  "responses": [
-    {
-      "allocations": [
-        {
-          "amount": 1,
-          "date": "2020-12-10",
-          "invoice": {
-            "invoiceID": "00000000-0000-0000-0000-000000000000"
-          }
+  "tenant1": {
+    "allocations": [
+      {
+        "amount": 1,
+        "date": "2020-12-10",
+        "invoice": {
+          "invoiceID": "00000000-0000-0000-0000-000000000000"
         }
-      ]
-    }
-  ]
+      }
+    ]
+  }
 }
 ```

@@ -27,21 +27,19 @@ Update a linked transaction in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "linkedTransactions": [
-        {
-          "linkedTransactionID": "00000000-0000-0000-0000-000000000000",
-          "sourceTransactionID": "00000000-0000-0000-0000-000000000000",
-          "sourceLineItemID": "00000000-0000-0000-0000-000000000000",
-          "contactID": "00000000-0000-0000-0000-000000000000",
-          "targetTransactionID": "00000000-0000-0000-0000-000000000000",
-          "targetLineItemID": "00000000-0000-0000-0000-000000000000",
-          "status": "ACTIVE",
-          "type": "ACCPAY"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "linkedTransactions": [
+      {
+        "linkedTransactionID": "00000000-0000-0000-0000-000000000000",
+        "sourceTransactionID": "00000000-0000-0000-0000-000000000000",
+        "sourceLineItemID": "00000000-0000-0000-0000-000000000000",
+        "contactID": "00000000-0000-0000-0000-000000000000",
+        "targetTransactionID": "00000000-0000-0000-0000-000000000000",
+        "targetLineItemID": "00000000-0000-0000-0000-000000000000",
+        "status": "ACTIVE",
+        "type": "ACCPAY"
+      }
+    ]
+  }
 }
 ```

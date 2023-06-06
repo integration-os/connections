@@ -23,17 +23,15 @@ Update or create employees in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "employees": [
-        {
-          "employeeID": "00000000-0000-0000-0000-000000000000",
-          "firstName": "Hello",
-          "lastName": "World",
-          "status": "ACTIVE"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "employees": [
+      {
+        "employeeID": "00000000-0000-0000-0000-000000000000",
+        "firstName": "Hello",
+        "lastName": "World",
+        "status": "ACTIVE"
+      }
+    ]
+  }
 }
 ```

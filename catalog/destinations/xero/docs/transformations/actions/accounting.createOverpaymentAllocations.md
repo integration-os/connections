@@ -27,8 +27,7 @@ Creates one or more overpayment allocations for a specified overpayment.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
+  "tenant1": {
       "overpayments": [
         {
           "overpaymentID": "00000000-0000-0000-0000-000000000000",
@@ -70,6 +69,5 @@ Creates one or more overpayment allocations for a specified overpayment.
         }
       ]
     }
-  ]
 }
 ```

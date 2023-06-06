@@ -39,7 +39,7 @@ Create a new bank transaction in Xero.
 
 ```json
 {
-  "responses": [
+  "tenant1":
     {
       "bankTransactions": [
         {
@@ -91,6 +91,5 @@ Create a new bank transaction in Xero.
         }
       ]
     }
-  ]
 }
 ```

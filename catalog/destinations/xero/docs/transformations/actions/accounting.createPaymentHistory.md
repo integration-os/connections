@@ -22,8 +22,7 @@ Creates one or more payment history records for a specified payment.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
+  "tenant1": {
       "historyRecords": [
         {
           "details": "HelloWorld",
@@ -31,6 +30,5 @@ Creates one or more payment history records for a specified payment.
         }
       ]
     }
-  ]
 }
 ```

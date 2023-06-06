@@ -36,29 +36,27 @@ Creates a receipt.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "receipts": [
-        {
-          "contact": {
-            "contactID": "00000000-0000-0000-0000-000000000000"
-          },
-          "user": {
-            "userID": "00000000-0000-0000-0000-000000000000"
-          },
-          "lineItems": [
-            {
-              "description": "HelloWorld",
-              "quantity": 0,
-              "unitAmount": 0,
-              "accountCode": "00000000-0000-0000-0000-000000000000"
-            }
-          ],
-          "lineAmountType": "EXCLUSIVE",
-          "status": "DRAFT"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "receipts": [
+      {
+        "contact": {
+          "contactID": "00000000-0000-0000-0000-000000000000"
+        },
+        "user": {
+          "userID": "00000000-0000-0000-0000-000000000000"
+        },
+        "lineItems": [
+          {
+            "description": "HelloWorld",
+            "quantity": 0,
+            "unitAmount": 0,
+            "accountCode": "00000000-0000-0000-0000-000000000000"
+          }
+        ],
+        "lineAmountType": "EXCLUSIVE",
+        "status": "DRAFT"
+      }
+    ]
+  }
 }
 ```

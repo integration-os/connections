@@ -21,15 +21,13 @@ Create expense claim history in Xero.
 
 ```json
 {
-  "responses": [
-    {
-      "historyRecords": [
-        {
-          "details": "Foobar",
-          "dateUtcString": "2020-12-10T00:00:00.000Z"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "historyRecords": [
+      {
+        "details": "Foobar",
+        "dateUtcString": "2020-12-10T00:00:00.000Z"
+      }
+    ]
+  }
 }
 ```

@@ -28,8 +28,7 @@ Create items in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
+  "tenant1": {
       "items": [
         {
           "code": "abcXYZ123",
@@ -42,6 +41,5 @@ Create items in Xero.
         }
       ]
     }
-  ]
 }
 ```

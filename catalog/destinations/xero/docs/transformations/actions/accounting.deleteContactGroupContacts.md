@@ -14,14 +14,12 @@ Delete all contacts from a contact group in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "contactGroup": {
-        "contactGroupID": "00000000-0000-0000-0000-000000000000",
-        "name": "Hello World",
-        "status": "DELETED"
-      }
+  "tenant1": {
+    "contactGroup": {
+      "contactGroupID": "00000000-0000-0000-0000-000000000000",
+      "name": "Hello World",
+      "status": "DELETED"
     }
-  ]
+  }
 }
 ```

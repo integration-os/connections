@@ -21,12 +21,14 @@ Update a tax rate in Xero.
 **Sample Response**
 ```json
 {
-  "taxRates": [
-    {
-      "taxRateID": "00000000-0000-0000-0000-000000000000",
-      "name": "Hello World",
-      "status": "ACTIVE"
-    }
-  ]
+  "tenant1": {
+    "taxRates": [
+      {
+        "taxRateID": "00000000-0000-0000-0000-000000000000",
+        "name": "Hello World",
+        "status": "ACTIVE"
+      }
+    ]
+  }
 }
 ```

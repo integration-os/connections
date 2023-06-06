@@ -28,21 +28,19 @@ Create a new bank transaction history record in Xero.
 
 ```json
 {
-  "responses": [
-    {
-      "historyRecords": [
-        {
-          "details": "Received through the Xero API from ABC Org",
-          "changes": "Approved",
-          "dateUTC": "2023-05-20T16:52:19.359Z"
-        },
-        {
-          "details": "INV-0041 to ABC Furniture for 100.00.",
-          "changes": "Edited",
-          "dateUTC": "2023-05-20T16:52:19.359Z"
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "historyRecords": [
+      {
+        "details": "Received through the Xero API from ABC Org",
+        "changes": "Approved",
+        "dateUTC": "2023-05-20T16:52:19.359Z"
+      },
+      {
+        "details": "INV-0041 to ABC Furniture for 100.00.",
+        "changes": "Edited",
+        "dateUTC": "2023-05-20T16:52:19.359Z"
+      }
+    ]
+  }
 }
 ```

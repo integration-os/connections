@@ -45,8 +45,7 @@ Create one or more invoices in Xero.
 
 ```json
 {
-  "responses": [
-    {
+  "tenant1": {
       "invoices": [
         {
           "type": "ACCREC",
@@ -74,6 +73,5 @@ Create one or more invoices in Xero.
         }
       ]
     }
-  ]
 }
 ```

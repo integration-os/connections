@@ -30,8 +30,7 @@ Create manual journals in Xero.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
+  "tenant1": {
       "manualJournals": [
         {
           "date": "2020-12-10T00:00:00.000Z",
@@ -46,6 +45,5 @@ Create manual journals in Xero.
         }
       ]
     }
-  ]
 }
 ```

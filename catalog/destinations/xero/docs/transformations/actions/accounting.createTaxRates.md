@@ -28,22 +28,20 @@ Create one or more tax rates.
 **Sample Response**
 ```json
 {
-  "responses": [
-    {
-      "taxRates": [
-        {
-          "taxRateID": "00000000-0000-0000-0000-000000000000",
-          "name": "Test Tax Rate",
-          "taxType": "INPUT",
-          "taxComponents": [
-            {
-              "name": "Test Tax Component",
-              "rate": 2.25
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  "tenant1": {
+    "taxRates": [
+      {
+        "taxRateID": "00000000-0000-0000-0000-000000000000",
+        "name": "Test Tax Rate",
+        "taxType": "INPUT",
+        "taxComponents": [
+          {
+            "name": "Test Tax Component",
+            "rate": 2.25
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
