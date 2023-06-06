@@ -84,9 +84,6 @@
     "purchase_invoices.update",
     "purchase_invoices.delete",
     "purchase_invoices.release.create",
-    "purchase_orders.create",
-    "purchase_orders.update",
-    "purchase_orders.delete",
 
     "sales_corrective_invoices.create",
     "sales_corrective_invoices.update",
