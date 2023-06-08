@@ -12,7 +12,7 @@ You can generate a developer application as follows:
     - You may be required to enable Developer menu in this step
 5. Click on "Create an app" button.
 6. Give your application a name and click on "Create app"
-7. In Configuration, set up the permissions (scopes) you want to give to Buildable.
+7. In Configuration, set up the permissions (scopes) you want to give to Event.
 8. In API credentials, generate an API token and save it.
 9. Click on "Install app" button that appears on the top right.
 
