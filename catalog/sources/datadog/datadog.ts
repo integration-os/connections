@@ -51,7 +51,7 @@ export default class DatadogIntegration implements IntegrationClassI {
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {
     const response = await this.datadogClient.createWebhooksIntegration({
       body: {
-        name: `buildable-${this.randomHex()}`,
+        name: `event-inc-${this.randomHex()}`,
         url: webhookUrl,
       },
     });

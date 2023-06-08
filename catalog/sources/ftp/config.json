@@ -264,7 +264,7 @@
   "testConnection": true,
   "classifications": {
     "dataIngestion": {
-      "streamTypes": ["buildable::extractor::ftp-file"],
+      "streamTypes": ["event-inc::extractor::ftp-file"],
       "extractionTypes": []
     },
     "dataStorage": {

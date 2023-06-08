@@ -8,17 +8,16 @@ This is where we build and share our App Connections for popular and useful apps
 
 2. Create a branch for your work
 
-Create a folder in the [catalog](/catalog/) that matches the name of the connection that is being created. Copy over the [sample definition file](/sample/source/config.json) and [sample changelog file](/sample/source/CHANGELOG.md) into the folder and begin creating the Class file.
+Create a folder in the [catalog](/catalog/) that matches the name of the connection that is being created. Copy over the [sample definition file](/sample/source/config.json)  into the folder and begin creating the Class file.
 
 ```
 ├── catalog/
 │   ├── stripe/
-│       ├── CHANGELOG.md
 │       ├── config.json
 |       └── stripe.ts
 ```
 
-Once you've tested and finished your Source Connection, create a pull request on the `development` branch of this repository from your forked repository's branch. Once approved and merged to main, your Connection will be live on Event, for the entire community!
+Once you've tested and finished your Source Connection, create a pull request on the `main` branch of this repository from your forked repository's branch. Once approved and merged, your Connection will be live on Event, for the entire community!
 
 ## Class Definition
 

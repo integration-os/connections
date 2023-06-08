@@ -8,7 +8,7 @@ Rest assured, your credentials are securely encrypted to keep your information s
 
 ### File Parsers
 
-FTP parsers are [open-source functions](https://github.com/buildable/connections/tree/main/catalog/sources/ftp/parsers) that facilitate the extraction of archived file contents, tailored to their respective file types.
+FTP parsers are [open-source functions](https://github.com/event-cloud/connections/tree/main/catalog/sources/ftp/parsers) that facilitate the extraction of archived file contents, tailored to their respective file types.
 
 To create and use custom parsers, you'll need to use the `@event-inc/connections` [NPM package](https://www.npmjs.com/package/@event-inc/connections).
 

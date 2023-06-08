@@ -65,7 +65,7 @@ describe("Datadog Integration", () => {
 
     it("should create a webhook if its id is not found", async () => {
       const result = await datadog.subscribe({
-        webhookId: "buildable-non-existent",
+        webhookId: "event-inc-non-existent",
         events: [], // ignored
       });
 

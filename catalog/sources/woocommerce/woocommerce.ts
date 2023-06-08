@@ -39,7 +39,7 @@ export default class WooCommerceIntegration implements IntegrationClassI {
       baseURL: WOOCOMMERCE_WP_URL,
       headers: {
         "Content-Type": "application/json",
-        "User-Agent": "buildable",
+        "User-Agent": "event-inc",
         Authorization: `Basic ${Buffer.from(
           `${WOOCOMMERCE_CONSUMER_KEY.trim()}:${WOOCOMMERCE_CONSUMER_SECRET.trim()}`,
         )

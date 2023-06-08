@@ -10,7 +10,7 @@ Connections are [Buildable's](https://buildable.dev/) core open-source offering 
 
 **1. Connections that act as a source of events**
 
-These connections have the ability to subscribe to incoming events through webhooks. All received events are securely verified and organized into the [Event Stream](https://docs.buildable.dev/getting-started/core-concepts#stream) in your Event account. They work natively to trigger [Buildable Workflows](https://docs.buildable.dev/workflows/building-workflows), which means you can build, test, deploy any logic from incoming Source events. There are three types of source connections: 
+These connections have the ability to subscribe to incoming events through webhooks. All received events are securely verified and organized into the [Event Stream](https://docs.event.dev/getting-started/core-concepts#stream) in your Event account. They work natively to trigger [Buildable Workflows](https://docs.event.dev/workflows/building-workflows), which means you can build, test, deploy any logic from incoming Source events. There are three types of source connections: 
 
 1. Cloud apps, such as Stripe, Twilio and SendGrid
 2. Databases, such as MongoDB, PostgreSQL and MySQL
@@ -20,7 +20,7 @@ Examples include [Stripe](/catalog/stripe/), [Shopify](/catalog/shopify/), [GitH
 
 **2. Connections that do not act as a source of events**
 
-These connections provide the ability to be easily referenced within your [Workflows](https://docs.buildable.dev/workflows/building-workflows), leveraging the power of [Environment Variables](https://docs.buildable.dev/getting-started/core-concepts#environment-variables). 
+These connections provide the ability to be easily referenced within your [Workflows](https://docs.event.dev/workflows/building-workflows), leveraging the power of [Environment Variables](https://docs.event.dev/getting-started/core-concepts#environment-variables). 
 
 Examples include [Airtable](/catalog/airtable/), [Notion](/catalog/notion/), [Twilio](/catalog/twilio/), etc.
 

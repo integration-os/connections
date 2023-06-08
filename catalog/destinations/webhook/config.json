@@ -50,7 +50,7 @@
       "name": "WEBHOOK_HEADERS",
       "label": "Enter your Webhook Headers",
       "placeholder": "",
-      "value": "{\"buildable-connection-type\":\"webhook\"}",
+      "value": "{\"event-connection-type\":\"webhook\"}",
       "required": false
     }
   ],

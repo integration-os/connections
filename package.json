@@ -26,9 +26,9 @@
   "author": "Event Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/buildable/event-cloud/issues"
+    "url": "https://github.com/event-cloud/issues"
   },
-  "homepage": "https://github.com/buildable/event-cloud#readme",
+  "homepage": "https://github.com/event-cloud#readme",
   "devDependencies": {
     "@types/amqplib": "^0.10.1",
     "@types/bytes": "^3.1.1",

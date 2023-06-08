@@ -131,8 +131,8 @@ describe("Test: BigQuery Destination", () => {
       credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY),
     });
 
-    const datasetName = `buildable_test_dataset_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
-    const tableName = `buildable_test_table_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
+    const datasetName = `event_test_dataset_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
+    const tableName = `event_test_table_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
 
     beforeAll(async () => {
       // create a temporary BigQuery dataset
@@ -258,8 +258,8 @@ describe("Test: BigQuery Destination", () => {
       credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY),
     });
 
-    const datasetName = `buildable_test_dataset_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
-    const tableName = `buildable_test_table_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
+    const datasetName = `event_test_dataset_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
+    const tableName = `event_test_table_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
 
     beforeAll(async () => {
       // create a temporary BigQuery dataset
@@ -456,8 +456,8 @@ describe("Test: BigQuery Destination", () => {
       credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY),
     });
 
-    const datasetName = `buildable_test_dataset_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
-    const tableName = `buildable_test_table_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
+    const datasetName = `event_test_dataset_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
+    const tableName = `event_test_table_${crypto.randomBytes(4).toString("hex").slice(0, 8)}`;
 
     beforeAll(async () => {
       // create a temporary BigQuery dataset

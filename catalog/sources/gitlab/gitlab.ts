@@ -53,7 +53,7 @@ export default class GitLabIntegration implements IntegrationClassI {
       baseURL: `${this.GITLAB_BASE_URL}/api/v4`,
       headers: {
         "Content-Type": "application/json",
-        "User-Agent": "buildable",
+        "User-Agent": "event-inc",
         Authorization: `Bearer ${GITLAB_ACCESS_TOKEN}`,
       },
     });
