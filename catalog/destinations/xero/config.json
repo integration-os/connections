@@ -5,7 +5,7 @@
   "type": "xero",
   "category": "accounting",
   "image": "https://assets.buildable.dev/catalog/node-templates/xero.svg",
-  "tags": ["accounting", "business", "finance", "payroll"],
+  "tags": ["accounting", "finance", "payroll"],
   "authentication": [
     {
       "name": "XERO_CLIENT_ID",
