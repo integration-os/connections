@@ -18,7 +18,7 @@ Create a folder in the [catalog](/catalog/) that matches the name of the connect
 |       └── stripe.ts
 ```
 
-Once you've tested and finished your Source Connection, create a pull request on the `development` branch of this repository from your forked repository's branch. Once approved and merged to main, your Connection will be live on Buildable, for the entire community!
+Once you've tested and finished your Source Connection, create a pull request on the `development` branch of this repository from your forked repository's branch. Once approved and merged to main, your Connection will be live on Event, for the entire community!
 
 ## Class Definition
 
@@ -49,7 +49,7 @@ The class has the below methods and your implementation **must** not change the 
 
 ### `getWebhooks`
 
-- Retrieves all the webhooks created by Buildable
+- Retrieves all the webhooks created by Event
 
 ### `getSubscribedEvents`
 

@@ -4,13 +4,13 @@ BigQuery is a fully-managed, serverless data warehouse provided by Google Cloud.
 
 ### Generate a Service Account key
 
-To communicate with BigQuery, Buildable requires a service account key generated from your Google Cloud console as follows:
+To communicate with BigQuery, Event requires a service account key generated from your Google Cloud console as follows:
 1. Go to the Google Cloud Console (https://console.cloud.google.com/) and select your project.
 2. Navigate to the IAM & Admin section and select "Service accounts".
 3. Click the "Create Service Account" button.
 4. Give your service account a name, such as "bigquery-service-account".
 5. Assign a role to the service account.   
-   - Permissions required by Buildable are:
+   - Permissions required by Event are:
      - `bigquery.tables.get`
      - `bigquery.tables.list`
      - `bigquery.tables.create`
@@ -19,7 +19,7 @@ To communicate with BigQuery, Buildable requires a service account key generated
      - `bigquery.tables.updateData`
 6. Click "Create Key" and select "JSON" as the key type.
 7. Save the JSON key file to your local machine.
-8. Copy the content of your JSON key file and paste it into your Buildable dashboard.
+8. Copy the content of your JSON key file and paste it into your Event dashboard.
 
 For more information about BigQuery IAM, please see https://cloud.google.com/bigquery/docs/access-control
 
@@ -27,7 +27,7 @@ For more information about Service Accounts, please see https://cloud.google.com
 
 ### IP Whitelisting
 
-To enable Buildable to connect to your database, please ensure that your firewall accepts incoming requests from the following IP addresses:
+To enable Event to connect to your database, please ensure that your firewall accepts incoming requests from the following IP addresses:
 
 `35.245.232.82` `35.245.100.81`
 
@@ -43,4 +43,4 @@ Rest assured, your credentials are securely encrypted to keep your information s
 
 ### Need Help?
 
-Start a conversation in our [Discord Server](https://discord.com/invite/47AJ42Wzys) or send an email to [support@event.dev](mailto:https://discord.com/invite/47AJ42Wzys). Our Data Engineers are available 24/7 to help if you ever get stuck.
+Start a conversation by sending an email to [support@event.dev](mailto:support@event.dev). Our Data Engineers are available 24/7 to help if you ever get stuck.

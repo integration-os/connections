@@ -3,7 +3,7 @@
  *
  * @description - Stripe integration for Buildable
  *
- * @author    Buildable Technologies Inc.
+ * @author    Event Inc.
  * @license   MIT
  * @docs      https://stripe.com/docs/webhooks
  */

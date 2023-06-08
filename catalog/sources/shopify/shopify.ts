@@ -3,7 +3,7 @@
  *
  * @description - Shopify integration for Buildable
  *
- * @author    Buildable Technologies Inc.
+ * @author    Event Inc.
  * @license   MIT
  * @docs      https://shopify.dev/api/admin-rest/2022-04/resources/webhook
  */

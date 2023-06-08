@@ -14,4 +14,4 @@ To create and use custom parsers, you'll need to use the `@event-inc/connections
 
 ### Need Help?
 
-Start a conversation in our [Discord Server](https://discord.com/invite/47AJ42Wzys) or send an email to [support@event.dev](mailto:https://discord.com/invite/47AJ42Wzys). Our Data Engineers are available 24/7 to help if you ever get stuck.
+Start a conversation by sending an email to [support@event.dev](mailto:support@event.dev). Our Data Engineers are available 24/7 to help if you ever get stuck.

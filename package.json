@@ -1,7 +1,7 @@
 {
   "name": "connections",
   "version": "1.0.0",
-  "description": "Buildable's core open-source offering that makes it easy to collect, centralize and action your backend system activity.",
+  "description": "Event's open-source Connections allow developers to review and customize sources and destinations of data.",
   "main": "",
   "scripts": {
     "prettier": "prettier --write catalog/**/**/*.ts",
@@ -10,10 +10,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/buildable/connections.git"
+    "url": "git+https://github.com/event-cloud/connections.git"
   },
   "keywords": [
-    "buildable",
+    "event",
+    "event-inc",
     "connections",
     "templates",
     "integrations",
@@ -22,12 +23,12 @@
     "etl",
     "elt"
   ],
-  "author": "Buildable Technologies Inc.",
+  "author": "Event Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/buildable/connections/issues"
+    "url": "https://github.com/buildable/event-cloud/issues"
   },
-  "homepage": "https://github.com/buildable/connections#readme",
+  "homepage": "https://github.com/buildable/event-cloud#readme",
   "devDependencies": {
     "@types/amqplib": "^0.10.1",
     "@types/bytes": "^3.1.1",
