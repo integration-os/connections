@@ -404,7 +404,7 @@ const noSSLWooCommerce = new (class extends WooCommerceIntegration {
       },
       headers: {
         "Content-Type": "application/json",
-        "User-Agent": "buildable",
+        "User-Agent": "event-inc",
       },
       httpsAgent: new https.Agent({
         rejectUnauthorized: false,

@@ -1,13 +1,3 @@
-/**
- * Shopify.ts
- *
- * @description - Shopify integration for Buildable
- *
- * @author    Buildable Technologies Inc.
- * @license   MIT
- * @docs      https://shopify.dev/api/admin-rest/2022-04/resources/webhook
- */
-
 import { ApiVersion, DataType, Shopify } from "@shopify/shopify-api";
 import crypto from "crypto";
 import { IntegrationClassI } from "../../../types/sourceClassDefinition";

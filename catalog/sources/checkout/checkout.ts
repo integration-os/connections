@@ -68,7 +68,7 @@ export default class CheckoutIntegration implements IntegrationClassI {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "User-Agent": "buildable",
+        "User-Agent": "event-inc",
         Authorization: `Bearer ${this.apiKeySecret}`,
       },
     });
@@ -78,7 +78,7 @@ export default class CheckoutIntegration implements IntegrationClassI {
     const workflowConditions = this.eventsToWorkflowConditions(events);
     try {
       const webhooks = await this.checkout.post("/", {
-        name: "Buildable",
+        name: "Event Inc",
         active: true,
         conditions: [
           {
@@ -234,12 +234,12 @@ export default class CheckoutIntegration implements IntegrationClassI {
    * Checkout workflows can have four different groups of events:
    * Gateway, Platforms, Dispute, FinCrime
    *
-   * To make this compatible with Buildable's flat event type, we
+   * To make this compatible with Event's flat event type, we
    * expect events to have the format {event_type}.{event_name},
    * and in this method we do the de-normalization.
    *
    * So the Checkout.com Gateway event "payment_paid" becomes
-   * "gateway.payment_paid" in Buildable
+   * "gateway.payment_paid" in Event
    *
    */
   private eventsToWorkflowConditions(events: Events): WorkflowConditionEvents {

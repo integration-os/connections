@@ -1,6 +1,6 @@
 ![Header](https://github.com/buildable/.github/blob/main/profile/connections.png?raw=true)
 
-[![GitHub stars](https://img.shields.io/github/stars/buildable/connections)](https://github.com/buildable/connections/stargazers) ![GitHub contributors](https://img.shields.io/github/contributors/buildable/connections) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/buildable/connections) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/buildable/connections) [![GitHub issues](https://img.shields.io/github/issues/buildable/connections)](https://github.com/buildable/connections/issues) ![GitHub closed issues](https://img.shields.io/github/issues-closed/buildable/connections) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/buildable/connections) [![GitHub license](https://img.shields.io/github/license/buildable/connections)](https://github.com/buildable/connections) [![Twitter Follow](https://img.shields.io/twitter/follow/eventcloudhq?style=social)](https://twitter.com/eventcloudhq)
+[![GitHub stars](https://img.shields.io/github/stars/event-cloud/connections)](https://github.com/event-cloud/connections/stargazers) ![GitHub contributors](https://img.shields.io/github/contributors/event-cloud/connections) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/event-cloud/connections) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/event-cloud/connections) [![GitHub issues](https://img.shields.io/github/issues/event-cloud/connections)](https://github.com/event-cloud/connections/issues) ![GitHub closed issues](https://img.shields.io/github/issues-closed/event-cloud/connections) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/event-cloud/connections) [![GitHub license](https://img.shields.io/github/license/event-cloud/connections)](https://github.com/event-cloud/connections) [![Twitter Follow](https://img.shields.io/twitter/follow/eventcloudhq?style=social)](https://twitter.com/eventcloudhq)
 
 ---
 
@@ -26,8 +26,8 @@ If we’re missing a Connection type your team needs, you can build it using our
 
 Supported by a network of early advocates, contributors, and champions!
 
-<a href="https://github.com/buildable/connections/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=buildable/connections" />
+<a href="https://github.com/event-cloud/connections/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=event-cloud/connections" />
 </a>
 
 ### License

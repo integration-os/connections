@@ -68,7 +68,7 @@ export default class AlchemyIntegration implements IntegrationClassI {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "User-Agent": "buildable",
+        "User-Agent": "event-inc",
         "X-Alchemy-Token": ALCHEMY_API_TOKEN,
       },
     });

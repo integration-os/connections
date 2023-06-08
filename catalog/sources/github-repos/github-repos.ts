@@ -26,7 +26,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
 
   readonly GITHUB_REPOS_ACCESS_TOKEN: string; // Generated from GitHub account
 
-  GITHUB_REPOS_ACCOUNT_USERNAME: string; // Account name i.e. buildable
+  GITHUB_REPOS_ACCOUNT_USERNAME: string; // Account name i.e. event-inc
 
   GITHUB_REPOS_REPOSITORY: string; // Repository name i.e. event-integrations
 
@@ -43,7 +43,7 @@ export default class GitHubReposIntegration implements IntegrationClassI {
   }) {
     this.octokit = new Octokit({
       auth: GITHUB_REPOS_ACCESS_TOKEN,
-      userAgent: "buildable",
+      userAgent: "event-inc",
     });
 
     this.GITHUB_REPOS_ACCESS_TOKEN = GITHUB_REPOS_ACCESS_TOKEN;
