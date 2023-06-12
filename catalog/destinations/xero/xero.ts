@@ -8,27 +8,36 @@ export class XeroDriver implements DestinationClassI {
 
   public tenantIds: string[];
 
-  private readonly XERO_CLIENT_ID: any;
+  private readonly XERO_CLIENT_ID: string;
 
-  private readonly XERO_CLIENT_SECRET: any;
+  private readonly XERO_CLIENT_SECRET: string;
 
-  constructor({ XERO_CLIENT_ID, XERO_CLIENT_SECRET }: AnyObject) {
+  private readonly XERO_ACCESS_TOKEN: string;
+
+  private readonly XERO_REFRESH_TOKEN: string;
+
+  constructor({ XERO_CLIENT_ID, XERO_CLIENT_SECRET, XERO_ACCESS_TOKEN, XERO_REFRESH_TOKEN }: AnyObject) {
     this.XERO_CLIENT_ID = XERO_CLIENT_ID;
     this.XERO_CLIENT_SECRET = XERO_CLIENT_SECRET;
+    this.XERO_ACCESS_TOKEN = XERO_ACCESS_TOKEN;
+    this.XERO_REFRESH_TOKEN = XERO_REFRESH_TOKEN;
   }
 
   async connect(config?: AnyObject): Promise<void | Truthy> {
     // initialize Xero client
     this.client = new XeroClient({
-      clientId: config.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
-      clientSecret: config.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
-      redirectUris: [config.oauth2.redirectUri],
-      scopes: config.oauth2.scopes,
+      clientId: config?.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
+      clientSecret: config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
       httpTimeout: 3000,
     });
 
     // set up Xero OAuth2 token set
-    const tokenSet: XeroOAuth2TokenSet = config.oauth2.resolved;
+    const tokenSet: XeroOAuth2TokenSet = {
+      access_token: config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN,
+      refresh_token: config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
+      token_type: "Bearer",
+    };
+
     this.client.setTokenSet(tokenSet as TokenSet);
 
     // get and save all registered tenants
@@ -91,6 +100,8 @@ export class XeroDriver implements DestinationClassI {
           .match(/\((.*?)\)/)?.[1] || "")
           .split(",")
           .map((param) => param.trim()) as Parameters<typeof targetMethod>;
+
+        console.log("methodParams ===> ", methodParams);
         break;
 
       default:

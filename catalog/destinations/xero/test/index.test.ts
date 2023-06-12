@@ -6,24 +6,14 @@ jest.mock("axios");
 describe("Test: Xero Destination", () => {
   let driver: XeroDriver | null = null;
 
-  const oauth2 = {
-    redirectUri: "http://localhost:3000/callback",
-    scopes: ["openid", "profile", "email", "accounting.transactions"],
-    resolved: {
-      access_token: "access_token",
-      expires_at: 1999999999,
-      expires_in: 1999999999,
-      id_token: "id_token",
-      refresh_token: "refresh_token",
-    },
-  };
-
   // mock implementation of driver.client
 
   it("should reject unknown methods from the proxy object", async () => {
     driver = getProxyDriver({
       XERO_CLIENT_ID: process.env.XERO_CLIENT_ID,
       XERO_CLIENT_SECRET: process.env.XERO_CLIENT_SECRET,
+      XERO_ACCESS_TOKEN: process.env.XERO_ACCESS_TOKEN,
+      XERO_REFRESH_TOKEN: process.env.XERO_REFRESH_TOKEN,
     });
 
     try {
@@ -38,7 +28,8 @@ describe("Test: Xero Destination", () => {
       driver = getProxyDriver({
         XERO_CLIENT_ID: process.env.XERO_CLIENT_ID,
         XERO_CLIENT_SECRET: process.env.XERO_CLIENT_SECRET,
-        oauth2,
+        XERO_ACCESS_TOKEN: process.env.XERO_ACCESS_TOKEN,
+        XERO_REFRESH_TOKEN: process.env.XERO_REFRESH_TOKEN,
       });
 
       const mockedResponse = { data: [{ tenantId: "tenant1" }, { tenantId: "tenant2" }, { tenantId: "tenant3" }] };
@@ -61,13 +52,13 @@ describe("Test: Xero Destination", () => {
       driver = getProxyDriver({
         XERO_CLIENT_ID: "",
         XERO_CLIENT_SECRET: "",
-        oauth2: {},
       });
 
       await driver.connect({
         XERO_CLIENT_ID: process.env.XERO_CLIENT_ID,
         XERO_CLIENT_SECRET: process.env.XERO_CLIENT_SECRET,
-        oauth2,
+        XERO_ACCESS_TOKEN: process.env.XERO_ACCESS_TOKEN,
+        XERO_REFRESH_TOKEN: process.env.XERO_REFRESH_TOKEN,
       });
 
       expect(driver.client).toBeDefined();
@@ -89,7 +80,8 @@ describe("Test: Xero Destination", () => {
         await driver.connect({
           XERO_CLIENT_ID: process.env.XERO_CLIENT_ID,
           XERO_CLIENT_SECRET: process.env.XERO_CLIENT_SECRET,
-          oauth2,
+          XERO_ACCESS_TOKEN: process.env.XERO_ACCESS_TOKEN,
+          XERO_REFRESH_TOKEN: process.env.XERO_REFRESH_TOKEN,
         });
 
         fail("Should have thrown an error");
@@ -104,7 +96,8 @@ describe("Test: Xero Destination", () => {
       driver = getProxyDriver({
         XERO_CLIENT_ID: process.env.XERO_CLIENT_ID,
         XERO_CLIENT_SECRET: process.env.XERO_CLIENT_SECRET,
-        oauth2,
+        XERO_ACCESS_TOKEN: process.env.XERO_ACCESS_TOKEN,
+        XERO_REFRESH_TOKEN: process.env.XERO_REFRESH_TOKEN,
       });
     });
 
@@ -131,7 +124,8 @@ describe("Test: Xero Destination", () => {
       driver = getProxyDriver({
         XERO_CLIENT_ID: process.env.XERO_CLIENT_ID,
         XERO_CLIENT_SECRET: process.env.XERO_CLIENT_SECRET,
-        oauth2,
+        XERO_ACCESS_TOKEN: process.env.XERO_ACCESS_TOKEN,
+        XERO_REFRESH_TOKEN: process.env.XERO_REFRESH_TOKEN,
       });
 
       const mockedResponse = { data: [{ tenantId: "tenant1" }, { tenantId: "tenant2" }, { tenantId: "tenant3" }] };
@@ -169,7 +163,8 @@ describe("Test: Xero Destination", () => {
       driver = getProxyDriver({
         XERO_CLIENT_ID: process.env.XERO_CLIENT_ID,
         XERO_CLIENT_SECRET: process.env.XERO_CLIENT_SECRET,
-        oauth2,
+        XERO_ACCESS_TOKEN: process.env.XERO_ACCESS_TOKEN,
+        XERO_REFRESH_TOKEN: process.env.XERO_REFRESH_TOKEN,
       });
 
       const mockedResponse = { data: [{ tenantId: "tenant1" }, { tenantId: "tenant2" }, { tenantId: "tenant3" }] };
