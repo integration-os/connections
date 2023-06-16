@@ -173,7 +173,6 @@ export default function getProxyDriver(config: AnyObject) {
           return result;
         } catch (err) {
           console.log("Error occurred ===> ", err);
-          console.log("Axios error ==>", (err as any).response);
           throw err;
         }
       };
