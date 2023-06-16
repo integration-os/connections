@@ -172,7 +172,6 @@ export default function getProxyDriver(config: AnyObject) {
 
         console.log("payload params", {
           payload,
-          params,
         });
 
         try {
