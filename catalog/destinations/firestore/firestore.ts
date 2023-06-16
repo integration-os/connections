@@ -69,7 +69,7 @@ export const testConnection = async (config: FirestoreConfig) => {
 
   try {
     // Test the connection by trying to list
-    const query = client.collection("buildable-test-connection");
+    const query = client.collection("event-test-connection");
 
     await query.get();
 

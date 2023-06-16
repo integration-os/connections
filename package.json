@@ -1,7 +1,7 @@
 {
   "name": "connections",
   "version": "1.0.0",
-  "description": "Buildable's core open-source offering that makes it easy to collect, centralize and action your backend system activity.",
+  "description": "Event's open-source Connections allow developers to review and customize sources and destinations of data.",
   "main": "",
   "scripts": {
     "prettier": "prettier --write catalog/**/**/*.ts",
@@ -10,10 +10,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/buildable/connections.git"
+    "url": "git+https://github.com/event-cloud/connections.git"
   },
   "keywords": [
-    "buildable",
+    "event",
+    "event-inc",
     "connections",
     "templates",
     "integrations",
@@ -22,13 +23,14 @@
     "etl",
     "elt"
   ],
-  "author": "Buildable Technologies Inc.",
+  "author": "Event Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/buildable/connections/issues"
+    "url": "https://github.com/event-cloud/issues"
   },
-  "homepage": "https://github.com/buildable/connections#readme",
+  "homepage": "https://github.com/event-cloud#readme",
   "devDependencies": {
+    "@types/amqplib": "^0.10.1",
     "@types/bytes": "^3.1.1",
     "@types/ftp": "^0.3.33",
     "@types/jest": "^28.1.6",
@@ -57,6 +59,7 @@
     "@shopify/shopify-api": "^4.1.0",
     "@supabase/supabase-js": "^1.35.6",
     "@types/paypal-rest-sdk": "^1.7.6",
+    "amqplib": "^0.10.3",
     "axios": "^0.27.2",
     "axios-retry": "^3.4.0",
     "bytes": "^3.1.2",

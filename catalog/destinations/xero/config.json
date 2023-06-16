@@ -5,7 +5,7 @@
   "type": "xero",
   "category": "accounting",
   "image": "https://assets.buildable.dev/catalog/node-templates/xero.svg",
-  "tags": ["accounting", "business", "finance", "payroll"],
+  "tags": ["accounting", "finance", "payroll"],
   "authentication": [
     {
       "name": "XERO_CLIENT_ID",
@@ -16,6 +16,16 @@
       "name": "XERO_CLIENT_SECRET",
       "label": "Enter your Xero Client Secret",
       "placeholder": "e8uKLzfYb9RXQgD0IcAokNxjW7nHw3Sh1r4sTyvBp6mV-5tJ2"
+    },
+    {
+      "name": "XERO_ACCESS_TOKEN",
+      "label": "Enter your Xero OAuth2 Access Token",
+      "placeholder": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjF..."
+    },
+    {
+      "name": "XERO_REFRESH_TOKEN",
+      "label": "Enter your Xero OAuth2 Refresh Token",
+      "placeholder": "hUjddv7tUhdcUxJ5UyLYtmwT6_wbkrZc7zj37LCQ0cE"
     }
   ],
   "eventSchema": {},

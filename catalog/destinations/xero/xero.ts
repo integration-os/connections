@@ -57,6 +57,7 @@ export class XeroDriver implements DestinationClassI {
 
   async testConnection(): Promise<TestConnection> {
     try {
+      console.log("tenantIds ===> ", this.tenantIds);
       await this.client.accountingApi.getAccounts(this.tenantIds[0]);
 
       return {
@@ -146,9 +147,15 @@ export default function getProxyDriver(config: AnyObject) {
         return target.client;
       }
       // check if driver[prop] is not a function
-      if (typeof target[prop] !== "function") {
-        throw new Error(`Method ${prop as string}() not found`);
-      }
+      // if (typeof target[prop] !== "function") {
+      //   throw new Error(`Method ${prop as string}() not found`);
+      // }
+
+      console.log("target props", {
+        target,
+        prop,
+        typeofcheck: typeof target[prop],
+      });
 
       return async (payload) => {
         if (prop === "connect") {
@@ -162,6 +169,11 @@ export default function getProxyDriver(config: AnyObject) {
         if (prop === "testConnection") {
           return driver.testConnection();
         }
+
+        console.log("payload params", {
+          payload,
+          params,
+        });
 
         try {
           await driver.connect(payload);

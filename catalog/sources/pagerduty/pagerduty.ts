@@ -44,7 +44,7 @@ export default class PagerDutyIntegration implements IntegrationClassI {
       baseURL: "https://api.pagerduty.com/webhook_subscriptions",
       headers: {
         "Content-Type": "application/json",
-        "User-Agent": "buildable",
+        "User-Agent": "event-inc",
         Accept: "application/vnd.pagerduty+json;version=2",
         Authorization: `Token token=${PAGERDUTY_API_TOKEN}`,
       },

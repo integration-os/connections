@@ -1,13 +1,3 @@
-/**
- * Stripe.ts
- *
- * @description - Stripe integration for Buildable
- *
- * @author    Buildable Technologies Inc.
- * @license   MIT
- * @docs      https://stripe.com/docs/webhooks
- */
-
 import Stripe from "stripe";
 import { IntegrationClassI } from "../../../types/sourceClassDefinition";
 

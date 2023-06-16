@@ -66,7 +66,7 @@ export default class WebflowIntegration implements IntegrationClassI {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "User-Agent": "buildable",
+        "User-Agent": "event-inc",
         Authorization: `Bearer ${this.WEBFLOW_API_TOKEN}`,
         "accept-version": this.WEBFLOW_VERSION,
       },
