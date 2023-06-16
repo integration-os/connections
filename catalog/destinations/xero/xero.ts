@@ -124,6 +124,8 @@ export class XeroDriver implements DestinationClassI {
 
       // call method
       try {
+        console.log("tenantId ===> ", tenantId);
+        console.log("args ===> ", args);
         responses[tenantId] = (await this.client.accountingApi[method](...args)).body;
       } catch (err) {
         responses[tenantId] = err.response;
