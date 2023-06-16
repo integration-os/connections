@@ -74,12 +74,14 @@ export class XeroDriver implements DestinationClassI {
 
   /**
    * Perform an action on the Xero API
-   * @param prop - the name of the API and method to call, e.g. accounting.getAccounts
+   * @param action - the name of the API and method to call, e.g. accounting.getAccounts
    * @param params - the parameters to pass to the API method
    */
-  async performAction(prop: string | symbol, params: any) {
-    // extract api and method from prop
-    const [api, method] = prop.toString().split(".");
+  async performAction(action: string | symbol, params: any) {
+    console.log("action ===> ", action);
+    console.log("params ===> ", params);
+    // extract api and method from action
+    const [api, method] = action.toString().split(".");
 
     // create an object to store the responses for each tenant
     const responses = {};
@@ -94,9 +96,9 @@ export class XeroDriver implements DestinationClassI {
 
         console.log("targetMethod ===> ", targetMethod);
 
-        // if (typeof targetMethod !== "function") {
-        //   throw new Error(`Method ${prop as string}() for Xero not found`);
-        // }
+        if (typeof targetMethod !== "function") {
+          throw new Error(`Method ${action as string}() for Xero not found`);
+        }
 
         // Infer the method params from the function definition
         methodParams = (Function.prototype.toString.call(targetMethod)
@@ -155,9 +157,9 @@ export default function getProxyDriver(config: AnyObject) {
         typeofcheck: typeof target[prop],
       });
 
-      return async (payload, params) => {
+      return async (payload) => {
         if (prop === "connect") {
-          return driver.connect(payload || config);
+          return driver.connect(config);
         }
 
         if (prop === "disconnect") {
@@ -174,15 +176,16 @@ export default function getProxyDriver(config: AnyObject) {
         });
 
         try {
-          await driver.connect(config || payload);
+          await driver.connect(payload);
 
-          const result = await target.performAction(payload, params);
+          const result = await target.performAction(prop, payload);
 
           await driver.disconnect();
 
           return result;
         } catch (err) {
           console.log("Error occurred ===> ", err);
+          console.log("Axios error ==>", (err as any).response);
           throw err;
         }
       };
