@@ -172,7 +172,6 @@ export default function getProxyDriver(config: AnyObject) {
 
         console.log("payload params", {
           payload,
-          params,
         });
 
         try {
@@ -185,7 +184,6 @@ export default function getProxyDriver(config: AnyObject) {
           return result;
         } catch (err) {
           console.log("Error occurred ===> ", err);
-          console.log("Axios error ==>", (err as any).response);
           throw err;
         }
       };
