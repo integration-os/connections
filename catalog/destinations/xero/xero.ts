@@ -91,9 +91,11 @@ export class XeroDriver implements DestinationClassI {
         // get the method from the accountingApi
         targetMethod = this.client.accountingApi[method];
 
-        if (typeof targetMethod !== "function") {
-          throw new Error(`Method ${prop as string}() for Xero not found`);
-        }
+        console.log("targetMethod ===> ", targetMethod);
+
+        // if (typeof targetMethod !== "function") {
+        //   throw new Error(`Method ${prop as string}() for Xero not found`);
+        // }
 
         // Infer the method params from the function definition
         methodParams = (Function.prototype.toString.call(targetMethod)
