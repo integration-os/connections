@@ -31,6 +31,9 @@ export class XeroDriver implements DestinationClassI {
       httpTimeout: 3000,
     });
 
+    console.log(" === ACCESS_TOKEN within connect", config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN);
+    console.log(" === REFRESH_TOKEN within connect", config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN);
+
     // set up Xero OAuth2 token set
     const tokenSet: XeroOAuth2TokenSet = {
       access_token: config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN,
