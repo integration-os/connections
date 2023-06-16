@@ -39,14 +39,14 @@ export default class CircleCIIntegration implements IntegrationClassI {
       baseURL: "https://circleci.com/api/v2/webhook",
       headers: {
         "Content-Type": "application/json",
-        "User-Agent": "buildable",
+        "User-Agent": "event-inc",
         "Circle-Token": CIRCLECI_PERSONAL_API_KEY,
       },
     });
 
     this.CIRCLECI_API_KEY = CIRCLECI_PERSONAL_API_KEY;
     this.CIRCLECI_PROJECT_ID = CIRCLECI_PROJECT_ID;
-    this.CIRCLECI_WEBHOOK_NAME = `buildable-${this.randomHex()}`;
+    this.CIRCLECI_WEBHOOK_NAME = `event-inc-${this.randomHex()}`;
   }
 
   async init({ webhookUrl, events }: InitProps): Promise<InitReturns> {

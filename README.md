@@ -1,45 +1,35 @@
-![Header](https://assets.buildable.dev/catalog/graphics/one-api-100-integrations.png)
+![Header](https://github.com/buildable/.github/blob/main/profile/connections.png?raw=true)
 
-[![Buildable](https://assets.buildable.dev/buildable-logos/powered-by-buildable.svg)](https://buildable.dev) [![GitHub stars](https://img.shields.io/github/stars/buildable/connections)](https://github.com/buildable/connections/stargazers) ![GitHub contributors](https://img.shields.io/github/contributors/buildable/connections) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/buildable/connections) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/buildable/connections) [![GitHub issues](https://img.shields.io/github/issues/buildable/connections)](https://github.com/buildable/connections/issues) ![GitHub closed issues](https://img.shields.io/github/issues-closed/buildable/connections) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/buildable/connections) [![GitHub license](https://img.shields.io/github/license/buildable/connections)](https://github.com/buildable/connections) [![Twitter Follow](https://img.shields.io/twitter/follow/BuildableHQ?style=social)](https://twitter.com/BuildableHQ)
+[![GitHub stars](https://img.shields.io/github/stars/event-cloud/connections)](https://github.com/event-cloud/connections/stargazers) ![GitHub contributors](https://img.shields.io/github/contributors/event-cloud/connections) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/event-cloud/connections) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/event-cloud/connections) [![GitHub issues](https://img.shields.io/github/issues/event-cloud/connections)](https://github.com/event-cloud/connections/issues) ![GitHub closed issues](https://img.shields.io/github/issues-closed/event-cloud/connections) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/event-cloud/connections) [![GitHub license](https://img.shields.io/github/license/event-cloud/connections)](https://github.com/event-cloud/connections) [![Twitter Follow](https://img.shields.io/twitter/follow/eventcloudhq?style=social)](https://twitter.com/eventcloudhq)
 
 ---
 
 ## What are Connections?
 
-Connections are [Buildable's](https://buildable.dev/) core open-source offering that makes it easy to collect, centralize and action your backend system activity. There are two types of Connections:
+Connections act the ingress and egress of Event's powerful data orchestration, monitoring and replay layer. There are two types of Connections within Events:
 
-**1. Connections that act as a source of events**
+1. **[Sources](https://docs.event.dev/sdk/sources)**:
+Collect real-time events from any cloud app, database, warehouse, internal server, streaming service or file system
 
-These connections have the ability to subscribe to incoming events through webhooks. All received events are securely verified and organized into the [Event Stream](https://docs.buildable.dev/getting-started/core-concepts#stream) in your Buildable account. They work natively to trigger [Buildable Workflows](https://docs.buildable.dev/workflows/building-workflows), which means you can build, test, deploy any logic from incoming Source events. There are three types of source connections: 
+2. **[Destinations](https://docs.event.dev/sdk/destinations)**:
+Send real-time events to any cloud app, database, warehouse, internal servers, streaming service or file system.
 
-1. Cloud apps, such as Stripe, Twilio and SendGrid
-2. Databases, such as MongoDB, PostgreSQL and MySQL
-3. Servers, such as a web server you run internally
-
-Examples include [Stripe](/catalog/stripe/), [Shopify](/catalog/shopify/), [GitHub](/catalog/github-repos/), etc.
-
-**2. Connections that do not act as a source of events**
-
-These connections provide the ability to be easily referenced within your [Workflows](https://docs.buildable.dev/workflows/building-workflows), leveraging the power of [Environment Variables](https://docs.buildable.dev/getting-started/core-concepts#environment-variables). 
-
-Examples include [Airtable](/catalog/airtable/), [Notion](/catalog/notion/), [Twilio](/catalog/twilio/), etc.
+For a full list of Connections, view Event's [Integrations Page](https://docs.event.dev/integrations/all-integrations)
 
 ## Contributing to Connections
 
-Buildable’s core engineering team will be reviewing and merging submissions from customers and the community daily. 
+Event’s core engineering team will be reviewing and merging submissions from customers and the community daily. 
 
-If we’re missing an event source your team needs, for example, you can build it using our samples within a few hours or request it our Public Roadmap.
-
-Learn more in our [contribution guidelines](CONTRIBUTING.md).
+If we’re missing a Connection type your team needs, you can build it using our samples within a few hours or get in touch support@event.dev.
 
 ## Contributors
 
 Supported by a network of early advocates, contributors, and champions!
 
-<a href="https://github.com/buildable/connections/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=buildable/connections" />
+<a href="https://github.com/event-cloud/connections/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=event-cloud/connections" />
 </a>
 
 ### License
 
-© 2022, Buildable Technologies Inc. - Released under the MIT License
+© 2023, Buildable Technologies Inc. - Released under the MIT License

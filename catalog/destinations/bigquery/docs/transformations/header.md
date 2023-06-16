@@ -5,7 +5,7 @@ BigQuery is a fully-managed, serverless data warehouse provided by Google Cloud.
 
 ### IP Whitelisting
 
-To enable Buildable to connect to your database, please ensure that your firewall accepts incoming requests from the following IP addresses:
+To enable Event to connect to your database, please ensure that your firewall accepts incoming requests from the following IP addresses:
 
 `35.245.232.82` `35.245.100.81`
 

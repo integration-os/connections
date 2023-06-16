@@ -44,7 +44,7 @@ export default class AdyenIntegration implements IntegrationClassI {
       baseURL: `https://management-test.adyen.com/v1/companies/${ADYEN_COMPANY_ID}/webhooks`,
       headers: {
         "Content-Type": "application/json",
-        "User-Agent": "buildable",
+        "User-Agent": "event-inc",
         "X-API-Key": ADYEN_API_KEY,
       },
     });

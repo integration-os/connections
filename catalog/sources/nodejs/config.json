@@ -9,7 +9,6 @@
   "authentication": [],
   "eventSchema": {},
   "settings": {
-    "createBuildableEnvVars": false,
     "autoSubscribeAllEvents": false,
     "autoAddAllEventsToPipeline": false,
     "showSecret": true,

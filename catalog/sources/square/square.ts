@@ -46,7 +46,7 @@ export default class SquareIntegration implements IntegrationClassI {
     const webhook =
       await this.square.webhookSubscriptionsApi.createWebhookSubscription({
         subscription: {
-          name: `buildable-${this.randomHex()}`,
+          name: `event-inc-${this.randomHex()}`,
           eventTypes: events,
           notificationUrl: webhookUrl,
         },
