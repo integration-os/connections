@@ -148,15 +148,11 @@ export default function getProxyDriver(config: AnyObject) {
       if (prop === "client") {
         return target.client;
       }
-      // check if driver[prop] is not a function
-      // if (typeof target[prop] !== "function") {
-      //   throw new Error(`Method ${prop as string}() not found`);
-      // }
 
       console.log("target props", {
         target,
         prop,
-        typeofcheck: typeof target[prop],
+        // typeofcheck: typeof target[prop],
       });
 
       return async (payload) => {
@@ -177,7 +173,7 @@ export default function getProxyDriver(config: AnyObject) {
         });
 
         try {
-          await driver.connect(payload);
+          await driver.connect(config);
 
           const result = await target.performAction(prop, payload);
 
