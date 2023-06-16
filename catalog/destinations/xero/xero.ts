@@ -31,6 +31,9 @@ export class XeroDriver implements DestinationClassI {
       httpTimeout: 3000,
     });
 
+    console.log(" === ACCESS_TOKEN within connect", config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN);
+    console.log(" === REFRESH_TOKEN within connect", config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN);
+
     // set up Xero OAuth2 token set
     const tokenSet: XeroOAuth2TokenSet = {
       access_token: config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN,
@@ -124,6 +127,8 @@ export class XeroDriver implements DestinationClassI {
 
       // call method
       try {
+        console.log("tenantId ===> ", tenantId);
+        console.log("args ===> ", args);
         responses[tenantId] = (await this.client.accountingApi[method](...args)).body;
       } catch (err) {
         responses[tenantId] = err.response;
@@ -146,15 +151,11 @@ export default function getProxyDriver(config: AnyObject) {
       if (prop === "client") {
         return target.client;
       }
-      // check if driver[prop] is not a function
-      // if (typeof target[prop] !== "function") {
-      //   throw new Error(`Method ${prop as string}() not found`);
-      // }
 
       console.log("target props", {
         target,
         prop,
-        typeofcheck: typeof target[prop],
+        // typeofcheck: typeof target[prop],
       });
 
       return async (payload) => {
@@ -175,7 +176,7 @@ export default function getProxyDriver(config: AnyObject) {
         });
 
         try {
-          await driver.connect(payload);
+          await driver.connect(config);
 
           const result = await target.performAction(prop, payload);
 
