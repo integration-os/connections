@@ -17,10 +17,6 @@ export class XeroDriver implements DestinationClassI {
   private readonly XERO_REFRESH_TOKEN: string;
 
   constructor({ XERO_CLIENT_ID, XERO_CLIENT_SECRET, XERO_ACCESS_TOKEN, XERO_REFRESH_TOKEN }: AnyObject) {
-    console.log(XERO_CLIENT_ID, "XERO_CLIENT_ID");
-    console.log(XERO_CLIENT_SECRET, "XERO_CLIENT_SECRET");
-    console.log(XERO_ACCESS_TOKEN, "XERO_ACCESS_TOKEN");
-    console.log(XERO_REFRESH_TOKEN, "XERO_REFRESH_TOKEN");
     this.XERO_CLIENT_ID = XERO_CLIENT_ID;
     this.XERO_CLIENT_SECRET = XERO_CLIENT_SECRET;
     this.XERO_ACCESS_TOKEN = XERO_ACCESS_TOKEN;
@@ -34,9 +30,6 @@ export class XeroDriver implements DestinationClassI {
       clientSecret: config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
       httpTimeout: 3000,
     });
-    console.log(" === ACCESS_TOKEN within connect", config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN);
-    console.log(" === REFRESH_TOKEN within connect", config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN);
-
     // set up Xero OAuth2 token set
     const tokenSet: XeroOAuth2TokenSet = {
       access_token: config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN,
@@ -63,7 +56,6 @@ export class XeroDriver implements DestinationClassI {
 
   async testConnection(): Promise<TestConnection> {
     try {
-      console.log("tenantIds ===> ", this.tenantIds);
       await this.client.accountingApi.getAccounts(this.tenantIds[0]);
 
       return {
@@ -84,8 +76,6 @@ export class XeroDriver implements DestinationClassI {
    * @param params - the parameters to pass to the API method
    */
   async performAction(action: string | symbol, params: any) {
-    console.log("action ===> ", action);
-    console.log("params ===> ", params);
     // extract api and method from action
     const [api, method] = action.toString().split(".");
 
@@ -100,8 +90,6 @@ export class XeroDriver implements DestinationClassI {
         // get the method from the accountingApi
         targetMethod = this.client.accountingApi[method];
 
-        console.log("targetMethod ===> ", targetMethod);
-
         if (typeof targetMethod !== "function") {
           throw new Error(`Method ${action as string}() for Xero not found`);
         }
@@ -112,7 +100,6 @@ export class XeroDriver implements DestinationClassI {
           .split(",")
           .map((param) => param.trim()) as Parameters<typeof targetMethod>;
 
-        console.log("methodParams ===> ", methodParams);
         break;
 
       default:
@@ -130,8 +117,6 @@ export class XeroDriver implements DestinationClassI {
 
       // call method
       try {
-        console.log("tenantId ===> ", tenantId);
-        console.log("args ===> ", args);
         responses[tenantId] = (await this.client.accountingApi[method](...args)).body;
       } catch (err) {
         responses[tenantId] = err.response;
@@ -154,12 +139,6 @@ export default function getProxyDriver(config: AnyObject) {
         return target.client;
       }
 
-      console.log("target props", {
-        target,
-        prop,
-        // typeofcheck: typeof target[prop],
-      });
-
       return async (payload) => {
         if (prop === "connect") {
           return driver.connect(config);
@@ -173,10 +152,6 @@ export default function getProxyDriver(config: AnyObject) {
           return driver.testConnection();
         }
 
-        console.log("payload params", {
-          payload,
-        });
-
         try {
           await driver.connect(config);
 
@@ -186,7 +161,6 @@ export default function getProxyDriver(config: AnyObject) {
 
           return result;
         } catch (err) {
-          console.log("Error occurred ===> ", err);
           throw err;
         }
       };
