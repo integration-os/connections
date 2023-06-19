@@ -17,6 +17,10 @@ export class XeroDriver implements DestinationClassI {
   private readonly XERO_REFRESH_TOKEN: string;
 
   constructor({ XERO_CLIENT_ID, XERO_CLIENT_SECRET, XERO_ACCESS_TOKEN, XERO_REFRESH_TOKEN }: AnyObject) {
+    console.log(XERO_CLIENT_ID, "XERO_CLIENT_ID");
+    console.log(XERO_CLIENT_SECRET, "XERO_CLIENT_SECRET");
+    console.log(XERO_ACCESS_TOKEN, "XERO_ACCESS_TOKEN");
+    console.log(XERO_REFRESH_TOKEN, "XERO_REFRESH_TOKEN");
     this.XERO_CLIENT_ID = XERO_CLIENT_ID;
     this.XERO_CLIENT_SECRET = XERO_CLIENT_SECRET;
     this.XERO_ACCESS_TOKEN = XERO_ACCESS_TOKEN;
@@ -30,7 +34,6 @@ export class XeroDriver implements DestinationClassI {
       clientSecret: config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
       httpTimeout: 3000,
     });
-
     console.log(" === ACCESS_TOKEN within connect", config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN);
     console.log(" === REFRESH_TOKEN within connect", config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN);
 
@@ -141,7 +144,6 @@ export class XeroDriver implements DestinationClassI {
 
 export default function getProxyDriver(config: AnyObject) {
   const driver = new XeroDriver(config);
-
   return new Proxy(driver, {
     get: (target, prop) => {
       if (prop === "tenantIds") {
