@@ -35,6 +35,11 @@ export class XeroDriver implements DestinationClassI {
       config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
       config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
     );
+
+    console.log("Xero token set: ", validTokenSet);
+    console.log(validTokenSet.access_token);
+    console.log(validTokenSet.refresh_token);
+
     this.client.setTokenSet(validTokenSet);
 
     // get and save all registered tenants
