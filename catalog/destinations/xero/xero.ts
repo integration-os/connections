@@ -1,7 +1,6 @@
 import { XeroClient } from "xero-node";
 import axios from "axios";
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
-import { isTokenExpired } from "./helper";
 
 export class XeroDriver implements DestinationClassI {
   public client: XeroClient;
@@ -24,45 +23,34 @@ export class XeroDriver implements DestinationClassI {
   }
 
   async connect(config?: AnyObject): Promise<void | Truthy> {
-    // initialize Xero client
+    // initialize the client
     this.client = new XeroClient({
       clientId: config?.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
       clientSecret: config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
       httpTimeout: 3000,
     });
 
-    let accessToken = config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN;
+    try {
+      // Refreshes the token set
+      const validTokenSet = await this.client.refreshWithRefreshToken(
+        config?.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
+        config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
+        config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
+      );
 
-    if (isTokenExpired(accessToken)) {
-      this.client = new XeroClient();
-      try {
-        console.log("Refreshing token...");
-        const validTokenSet = await this.client.refreshWithRefreshToken(
-          config?.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
-          config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
-          config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
-        );
-        accessToken = validTokenSet.access_token;
-      } catch (err) {
-        console.log("Error refreshing token: ", err);
-      }
-    } else {
-      this.client.setTokenSet({
-        access_token: accessToken,
-        refresh_token: config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
-        token_type: "Bearer",
+      this.client.setTokenSet(validTokenSet);
+
+      // get and save all registered tenants
+      const response = await axios.get("https://api.xero.com/connections", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${validTokenSet.access_token}`,
+        },
       });
+      this.tenantIds = response.data.map((item: any) => item.tenantId);
+    } catch (err) {
+      console.log("Error connecting to Xero", err);
     }
-
-    // get and save all registered tenants
-    const response = await axios.get("https://api.xero.com/connections", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    this.tenantIds = response.data.map((item: any) => item.tenantId);
-    console.log("End of connect!");
   }
 
   async disconnect(): Promise<void | Truthy> {
