@@ -33,7 +33,7 @@ export class XeroDriver implements DestinationClassI {
 
     let accessToken = config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN;
 
-    console.log("access token before refresh");
+    console.log("access token before refresh", accessToken);
 
     if (isTokenExpired(accessToken)) {
       console.log("token expired, refreshing");
@@ -42,6 +42,8 @@ export class XeroDriver implements DestinationClassI {
         config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
         config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
       );
+      console.log("access token set after refresh", validTokenSet.access_token);
+      console.log("refresh token set after refresh", validTokenSet.refresh_token);
       this.client.setTokenSet(validTokenSet);
       accessToken = validTokenSet.access_token;
     } else {
@@ -53,7 +55,7 @@ export class XeroDriver implements DestinationClassI {
       });
     }
 
-    console.log("access token after refresh");
+    console.log("access token after refresh", accessToken);
 
     // get and save all registered tenants
     const response = await axios.get("https://api.xero.com/connections", {
