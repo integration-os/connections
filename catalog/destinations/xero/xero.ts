@@ -1,6 +1,7 @@
 import { XeroClient } from "xero-node";
 import axios from "axios";
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
+import { isTokenExpired } from "./helper";
 
 export class XeroDriver implements DestinationClassI {
   public client: XeroClient;
@@ -30,22 +31,39 @@ export class XeroDriver implements DestinationClassI {
       httpTimeout: 3000,
     });
 
-    const validTokenSet = await this.client.refreshWithRefreshToken(
-      config?.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
-      config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
-      config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
-    );
+    let accessToken = config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN;
 
-    this.client.setTokenSet(validTokenSet);
+    console.log("access token before refresh");
+
+    if (isTokenExpired(accessToken)) {
+      console.log("token expired, refreshing");
+      const validTokenSet = await this.client.refreshWithRefreshToken(
+        config?.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
+        config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
+        config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
+      );
+      this.client.setTokenSet(validTokenSet);
+      accessToken = validTokenSet.access_token;
+    } else {
+      console.log("token not expired, setting token set");
+      this.client.setTokenSet({
+        access_token: accessToken,
+        refresh_token: config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
+        token_type: "Bearer",
+      });
+    }
+
+    console.log("access token after refresh");
 
     // get and save all registered tenants
     const response = await axios.get("https://api.xero.com/connections", {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${validTokenSet.access_token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
     this.tenantIds = response.data.map((item: any) => item.tenantId);
+    console.log("End of connect!");
   }
 
   async disconnect(): Promise<void | Truthy> {
