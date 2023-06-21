@@ -1,7 +1,6 @@
-import { TokenSet, XeroClient } from "xero-node";
+import { XeroClient } from "xero-node";
 import axios from "axios";
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
-import { XeroOAuth2TokenSet } from "./lib/types";
 
 export class XeroDriver implements DestinationClassI {
   public client: XeroClient;
@@ -30,20 +29,20 @@ export class XeroDriver implements DestinationClassI {
       clientSecret: config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
       httpTimeout: 3000,
     });
-    // set up Xero OAuth2 token set
-    const tokenSet: XeroOAuth2TokenSet = {
-      access_token: config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN,
-      refresh_token: config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
-      token_type: "Bearer",
-    };
 
-    this.client.setTokenSet(tokenSet as TokenSet);
+    const validTokenSet = await this.client.refreshWithRefreshToken(
+      config?.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
+      config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
+      config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
+    );
+
+    this.client.setTokenSet(validTokenSet);
 
     // get and save all registered tenants
     const response = await axios.get("https://api.xero.com/connections", {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${tokenSet.access_token}`,
+        Authorization: `Bearer ${validTokenSet.access_token}`,
       },
     });
     this.tenantIds = response.data.map((item: any) => item.tenantId);
