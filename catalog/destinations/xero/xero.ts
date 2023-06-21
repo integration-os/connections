@@ -33,29 +33,26 @@ export class XeroDriver implements DestinationClassI {
 
     let accessToken = config?.XERO_ACCESS_TOKEN || this.XERO_ACCESS_TOKEN;
 
-    console.log("access token before refresh", accessToken);
-
     if (isTokenExpired(accessToken)) {
-      console.log("token expired, refreshing");
-      const validTokenSet = await this.client.refreshWithRefreshToken(
-        config?.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
-        config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
-        config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
-      );
-      console.log("access token set after refresh", validTokenSet.access_token);
-      console.log("refresh token set after refresh", validTokenSet.refresh_token);
-      this.client.setTokenSet(validTokenSet);
-      accessToken = validTokenSet.access_token;
+      this.client = new XeroClient();
+      try {
+        console.log("Refreshing token...");
+        const validTokenSet = await this.client.refreshWithRefreshToken(
+          config?.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
+          config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
+          config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
+        );
+        accessToken = validTokenSet.access_token;
+      } catch (err) {
+        console.log("Error refreshing token: ", err);
+      }
     } else {
-      console.log("token not expired, setting token set");
       this.client.setTokenSet({
         access_token: accessToken,
         refresh_token: config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
         token_type: "Bearer",
       });
     }
-
-    console.log("access token after refresh", accessToken);
 
     // get and save all registered tenants
     const response = await axios.get("https://api.xero.com/connections", {
