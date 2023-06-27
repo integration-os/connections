@@ -98,10 +98,7 @@ export class XeroDriver implements DestinationClassI {
         message: "Connection established successfully",
       };
     } catch (err) {
-      return {
-        success: false,
-        message: "Could not establish connection to Xero",
-      };
+      throw new Error(`Could not establish connection to Xero: ${err.response?.body}`);
     }
   }
 
