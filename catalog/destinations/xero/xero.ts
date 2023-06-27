@@ -15,11 +15,35 @@ export class XeroDriver implements DestinationClassI {
 
   private readonly XERO_REFRESH_TOKEN: string;
 
-  constructor({ XERO_CLIENT_ID, XERO_CLIENT_SECRET, XERO_ACCESS_TOKEN, XERO_REFRESH_TOKEN }: AnyObject) {
+  constructor({
+    XERO_CLIENT_ID,
+    XERO_CLIENT_SECRET,
+    XERO_ACCESS_TOKEN,
+    XERO_REFRESH_TOKEN,
+  }: AnyObject) {
     this.XERO_CLIENT_ID = XERO_CLIENT_ID;
     this.XERO_CLIENT_SECRET = XERO_CLIENT_SECRET;
     this.XERO_ACCESS_TOKEN = XERO_ACCESS_TOKEN;
     this.XERO_REFRESH_TOKEN = XERO_REFRESH_TOKEN;
+
+    this.client = new XeroClient({
+      clientId: XERO_CLIENT_ID,
+      clientSecret: XERO_CLIENT_SECRET,
+      httpTimeout: 3000,
+    });
+  }
+
+  private async refreshTokenSet() {
+    // Refreshes the token set
+    const validTokenSet = await this.client.refreshWithRefreshToken(
+      this.XERO_CLIENT_ID,
+      this.XERO_CLIENT_SECRET,
+      this.XERO_REFRESH_TOKEN,
+    );
+
+    this.client.setTokenSet(validTokenSet);
+
+    return validTokenSet;
   }
 
   async connect(config?: AnyObject): Promise<void | Truthy> {
@@ -31,14 +55,8 @@ export class XeroDriver implements DestinationClassI {
     });
 
     try {
-      // Refreshes the token set
-      const validTokenSet = await this.client.refreshWithRefreshToken(
-        config?.XERO_CLIENT_ID || this.XERO_CLIENT_ID,
-        config?.XERO_CLIENT_SECRET || this.XERO_CLIENT_SECRET,
-        config?.XERO_REFRESH_TOKEN || this.XERO_REFRESH_TOKEN,
-      );
-
-      this.client.setTokenSet(validTokenSet);
+      // get a valid token set
+      const validTokenSet = await this.refreshTokenSet();
 
       // get and save all registered tenants
       const response = await axios.get("https://api.xero.com/connections", {
@@ -60,6 +78,19 @@ export class XeroDriver implements DestinationClassI {
 
   async testConnection(): Promise<TestConnection> {
     try {
+      // get a valid token set
+      const validTokenSet = await this.refreshTokenSet();
+
+      // get and save all registered tenants
+      const response = await axios.get("https://api.xero.com/connections", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${validTokenSet.access_token}`,
+        },
+      });
+
+      this.tenantIds = response.data.map((item: any) => item.tenantId);
+
       await this.client.accountingApi.getAccounts(this.tenantIds[0]);
 
       return {
