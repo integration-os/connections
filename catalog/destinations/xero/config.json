@@ -32,12 +32,8 @@
   "settings": {
     "createBuildableEnvVars": true,
     "hasEvents": false,
-    "showEvents": false
-  },
-  "oauth2": {
-    "auth_url": "https://login.xero.com/identity/connect/authorize",
-    "token_url": "https://identity.xero.com/connect/token",
-    "refresh_url": "https://identity.xero.com/connect/token"
+    "showEvents": false,
+    "oauth": true
   },
   "paths": null,
   "events": [],
