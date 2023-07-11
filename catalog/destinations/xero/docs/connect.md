@@ -2,9 +2,7 @@
 
 Xero is a cloud-based accounting software that helps small businesses manage their finances.
 
-### Generate a Service Account key
-
--
+This Connection requires an OAuth flow to authenticate and must be created via the [Event SDK](https://www.npmjs.com/package/@event-inc/connections).
 
 ### IP Whitelisting
 

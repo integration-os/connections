@@ -1,6 +1,7 @@
 import { XeroClient } from "xero-node";
 import axios from "axios";
 import { AnyObject, DestinationClassI, TestConnection, Truthy } from "../../../types/destinationClassDefinition";
+import jwt_decode from "jwt-decode";
 
 export class XeroDriver implements DestinationClassI {
   public client: XeroClient;
@@ -58,13 +59,23 @@ export class XeroDriver implements DestinationClassI {
       // get a valid token set
       const validTokenSet = await this.refreshTokenSet();
 
+      const accessToken = validTokenSet.access_token;
+
+      const decodedToken: {
+        authentication_event_id: string;
+      } = jwt_decode(accessToken);
+
       // get and save all registered tenants
       const response = await axios.get("https://api.xero.com/connections", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${validTokenSet.access_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
+        params: {
+          authEventId: decodedToken.authentication_event_id
+        }
       });
+      
       this.tenantIds = response.data.map((item: any) => item.tenantId);
     } catch (err) {
       console.log("Error connecting to Xero", err);
@@ -78,18 +89,41 @@ export class XeroDriver implements DestinationClassI {
 
   async testConnection(): Promise<TestConnection> {
     try {
-      // get a valid token set
       const validTokenSet = await this.refreshTokenSet();
 
-      // get and save all registered tenants
+      const accessToken = validTokenSet.access_token;
+
+      const decodedToken: {
+        authentication_event_id: string;
+      } = jwt_decode(accessToken);
+  
+      this.client.setTokenSet(validTokenSet);
+
       const response = await axios.get("https://api.xero.com/connections", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${validTokenSet.access_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
+        params: {
+          authEventId: decodedToken.authentication_event_id
+        }
       });
 
       this.tenantIds = response.data.map((item: any) => item.tenantId);
+
+      if (this.tenantIds.length === 0 || this.tenantIds.length > 1) {
+        const existingTenants = await axios.get("https://api.xero.com/connections", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          }
+        });
+
+        const tenantNames = existingTenants.data.map(item => item.tenantName).join(", ");
+        const existingTenantsMessage = tenantNames.length > 0 ? ` The following tenants are currently connected: ${tenantNames}.` : "";
+
+        throw new Error(`No tenant was explicitly selected on connect.${existingTenantsMessage}Ensure you disconnect and connect again with a single tenant selected.`);
+      }
 
       await this.client.accountingApi.getAccounts(this.tenantIds[0]);
 
@@ -98,7 +132,7 @@ export class XeroDriver implements DestinationClassI {
         message: "Connection established successfully",
       };
     } catch (err) {
-      throw new Error(`Could not establish connection to Xero: ${err.response?.body}`);
+      throw new Error(err.message || `Could not establish connection to Xero: ${err.response?.body}`);
     }
   }
 
