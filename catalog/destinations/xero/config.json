@@ -33,7 +33,8 @@
     "createBuildableEnvVars": true,
     "hasEvents": false,
     "showEvents": false,
-    "oauth": true
+    "oauth": true,
+    "connectionBundled": true
   },
   "paths": null,
   "events": [],

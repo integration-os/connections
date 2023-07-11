@@ -1,0 +1,201 @@
+{
+  "title": "Xero",
+  "description": "Xero is a cloud-based accounting software that helps small businesses manage their finances.",
+  "apiVersion": "NA",
+  "type": "xero",
+  "category": "accounting",
+  "image": "https://assets.buildable.dev/catalog/node-templates/xero.svg",
+  "tags": ["accounting", "finance", "payroll"],
+  "authentication": [
+    {
+      "name": "XERO_CLIENT_ID",
+      "label": "Enter your Xero Client ID",
+      "placeholder": "7C1120751AECA051C1234ABCD190AA92"
+    },
+    {
+      "name": "XERO_CLIENT_SECRET",
+      "label": "Enter your Xero Client Secret",
+      "placeholder": "e8uKLzfYb9RXQgD0IcAokNxjW7nHw3Sh1r4sTyvBp6mV-5tJ2"
+    },
+    {
+      "name": "XERO_ACCESS_TOKEN",
+      "label": "Enter your Xero OAuth2 Access Token",
+      "placeholder": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjF..."
+    },
+    {
+      "name": "XERO_REFRESH_TOKEN",
+      "label": "Enter your Xero OAuth2 Refresh Token",
+      "placeholder": "hUjddv7tUhdcUxJ5UyLYtmwT6_wbkrZc7zj37LCQ0cE"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "autoSubscribeAllEvents": true,
+    "showEvents": true,
+    "secureAuthFields": true,
+    "oauth": true,
+    "connectionBundled": true
+  },
+  "paths": {
+    "id": null,
+    "event": "_.body.event",
+    "payload": "_.body",
+    "secret": null,
+    "signature": null
+  },
+  "events": [
+    {
+      "name": "accounting.accounts.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.attachments.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.banktransactions.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.banktransfers.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.batchpayments.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.brandingthemes.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.budgets.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.contactgroups.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.contacts.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.creditnotes.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.currencies.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.employees.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.invoices.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.items.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.journals.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.linkedtransactions.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.manualjournals.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.organisation.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.overpayments.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.paymentservices.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.payments.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.prepayments.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.purchaseorders.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.quotes.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.repeatinginvoices.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.taxrates.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.trackingcategories.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.users.batch-pulled",
+      "description": "",
+      "group": "accounting"
+    },
+    {
+      "name": "accounting.batch-pulled.failed",
+      "description": "",
+      "group": "accounting"
+    }
+  ],
+  "connectionTypes": ["source"],
+  "testConnection": true,
+  "classifications": {
+    "dataIngestion": {
+      "streamTypes": ["manual"],
+      "extractionTypes": []
+    }
+  }
+}
