@@ -1,3 +1,3 @@
 ## RabbitMQ Source Setup
 
-Check out our [quick start guide](https://docs.buildable.dev/) for more information.
+Check out our [quick start guide](https://docs.event.dev/) to learn how to get started.
