@@ -45,147 +45,147 @@
   },
   "events": [
     {
-      "name": "accounting.accounts.batch-pulled",
+      "name": "accounting.accounts.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.attachments.batch-pulled",
+      "name": "accounting.attachments.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.banktransactions.batch-pulled",
+      "name": "accounting.banktransactions.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.banktransfers.batch-pulled",
+      "name": "accounting.banktransfers.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.batchpayments.batch-pulled",
+      "name": "accounting.batchpayments.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.brandingthemes.batch-pulled",
+      "name": "accounting.brandingthemes.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.budgets.batch-pulled",
+      "name": "accounting.budgets.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.contactgroups.batch-pulled",
+      "name": "accounting.contactgroups.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.contacts.batch-pulled",
+      "name": "accounting.contacts.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.creditnotes.batch-pulled",
+      "name": "accounting.creditnotes.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.currencies.batch-pulled",
+      "name": "accounting.currencies.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.employees.batch-pulled",
+      "name": "accounting.employees.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.invoices.batch-pulled",
+      "name": "accounting.invoices.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.items.batch-pulled",
+      "name": "accounting.items.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.journals.batch-pulled",
+      "name": "accounting.journals.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.linkedtransactions.batch-pulled",
+      "name": "accounting.linkedtransactions.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.manualjournals.batch-pulled",
+      "name": "accounting.manualjournals.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.organisation.batch-pulled",
+      "name": "accounting.organisation.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.overpayments.batch-pulled",
+      "name": "accounting.overpayments.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.paymentservices.batch-pulled",
+      "name": "accounting.paymentservices.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.payments.batch-pulled",
+      "name": "accounting.payments.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.prepayments.batch-pulled",
+      "name": "accounting.prepayments.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.purchaseorders.batch-pulled",
+      "name": "accounting.purchaseorders.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.quotes.batch-pulled",
+      "name": "accounting.quotes.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.repeatinginvoices.batch-pulled",
+      "name": "accounting.repeatinginvoices.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.taxrates.batch-pulled",
+      "name": "accounting.taxrates.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.trackingcategories.batch-pulled",
+      "name": "accounting.trackingcategories.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.users.batch-pulled",
+      "name": "accounting.users.synced",
       "description": "",
       "group": "accounting"
     },
     {
-      "name": "accounting.batch-pulled.failed",
+      "name": "accounting.sync.failed",
       "description": "",
       "group": "accounting"
     }
