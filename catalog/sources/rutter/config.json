@@ -190,5 +190,6 @@
       "streamTypes": ["manual"],
       "extractionTypes": []
     }
-  }
+  },
+  "hidden": true
 }

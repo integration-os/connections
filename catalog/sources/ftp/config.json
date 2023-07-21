@@ -271,5 +271,6 @@
       "provider": "aws::s3",
       "metadata": {}
     }
-  }
+  },
+  "hidden": true
 }
