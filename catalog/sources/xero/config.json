@@ -192,10 +192,9 @@
   ],
   "connectionTypes": ["source"],
   "testConnection": true,
-  "classifications": {
+  "classification": {
     "dataIngestion": {
-      "streamTypes": ["manual"],
-      "extractionTypes": []
+      "streamType": "manual"
     }
   }
 }

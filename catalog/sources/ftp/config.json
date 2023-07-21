@@ -262,14 +262,9 @@
   ],
   "connectionTypes": ["source", "extractor"],
   "testConnection": true,
-  "classifications": {
+  "classification": {
     "dataIngestion": {
-      "streamTypes": ["event-inc::extractor::ftp-file"],
-      "extractionTypes": []
-    },
-    "dataStorage": {
-      "provider": "aws::s3",
-      "metadata": {}
+      "streamType": "event-inc::extractor::file"
     }
   },
   "hidden": true
