@@ -89,10 +89,5 @@
     }
   ],
   "connectionTypes": ["source"],
-  "testConnection": true,
-  "classification": {
-    "dataIngestion": {
-      "streamType": "manual"
-    }
-  }
+  "testConnection": true
 }
