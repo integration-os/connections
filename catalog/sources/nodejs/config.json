@@ -26,10 +26,9 @@
   "events": [],
   "connectionTypes": ["source"],
   "testConnection": false,
-  "classifications": {
+  "classification": {
     "dataIngestion": {
-      "streamTypes": ["manual"],
-      "extractionTypes": []
+      "streamType": "manual"
     }
   }
 }
