@@ -1,0 +1,178 @@
+{
+  "title": "Sage",
+  "description": "Sage provides business management solutions to help businesses of all sizes manage their operations more effectively.\n",
+  "apiVersion": "v3.1",
+  "type": "sage",
+  "category": "accounting",
+  "image": "https://assets.buildable.dev/catalog/node-templates/bigquery.svg",
+  "tags": ["sage", "accounting"],
+  "authentication": [
+    {
+      "name": "SAGE_CLIENT_ID",
+      "label": "Enter your Client ID",
+      "placeholder": "my-client-id"
+    },
+    {
+      "name": "SAGE_CLIENT_SECRET",
+      "label": "Enter your Client Secret",
+      "placeholder": "my-client-secret"
+    }
+  ],
+  "eventSchema": {},
+  "settings": {
+    "createBuildableEnvVars": true,
+    "hasEvents": false,
+    "showEvents": false
+  },
+  "oauth2": {
+    "auth_url": "https://www.sageone.com/oauth2/auth/central?filter=apiv3.1",
+    "token_url": "https://oauth.accounting.sage.com/token",
+    "refresh_url": "https://oauth.accounting.sage.com/token"
+  },
+  "paths": null,
+  "events": [],
+  "connectionTypes": ["target"],
+  "actions": [
+    "ledger_accounts.create",
+    "ledger_accounts.update",
+
+    "journals.create",
+    "journals.delete",
+    "journals.reissue.create",
+    "journal_codes.create",
+    "journal_codes.update",
+    "journal_codes.delete",
+
+    "attachments.create",
+    "attachments.update",
+    "attachments.delete",
+
+    "bank_accounts.create",
+    "bank_accounts.update",
+    "bank_accounts.delete",
+    "bank_accounts.create",
+    "bank_accounts.delete",
+    "bank_reconciliations.create",
+    "bank_reconciliations.update",
+    "bank_transfers.create",
+    "bank_transfers.update",
+    "bank_transfers.delete",
+
+    "addresses.create",
+    "addresses.update",
+    "addresses.delete",
+
+    "contacts.create",
+    "contacts.update",
+    "contacts.delete",
+    "contact_persons.create",
+    "contact_persons.update",
+    "contact_persons.delete",
+
+    "business_exchange_rates.create",
+    "business_exchange_rates.update",
+    "business_exchange_rates.delete",
+
+    "purchase_corrective_invoices.create",
+    "purchase_corrective_invoices.update",
+    "purchase_corrective_invoices.delete",
+    "purchase_credit_notes.create",
+    "purchase_credit_notes.update",
+    "purchase_credit_notes.delete",
+    "purchase_credit_notes.release.create",
+    "purchase_invoices.create",
+    "purchase_invoices.update",
+    "purchase_invoices.delete",
+    "purchase_invoices.release.create",
+
+    "sales_corrective_invoices.create",
+    "sales_corrective_invoices.update",
+    "sales_corrective_invoices.delete",
+    "sales_credit_notes.create",
+    "sales_credit_notes.update",
+    "sales_credit_notes.delete",
+    "sales_credit_notes.release.create",
+    "sales_estimates.create",
+    "sales_estimates.update",
+    "sales_estimates.delete",
+    "sales_invoices.create",
+    "sales_invoices.update",
+    "sales_invoices.delete",
+    "sales_invoices.release.create",
+    "sales_quick_entries.create",
+    "sales_quick_entries.update",
+    "sales_quick_entries.delete",
+    "sales_quotes.create",
+    "sales_quotes.update",
+    "sales_quotes.delete",
+
+    "hosted_artefact_payment_settings.create",
+    "hosted_artefact_payment_settings.delete",
+
+    "contact_opening_balances.create",
+    "contact_opening_balances.update",
+    "contact_opening_balances.delete",
+    "bank_opening_balances.create",
+    "bank_opening_balances.update",
+    "bank_opening_balances.delete",
+    "ledger_account_opening_balances.create",
+    "ledger_account_opening_balances.update",
+    "ledger_account_opening_balances.delete",
+    "opening_balance_journals.create",
+    "opening_balance_journals.delete",
+
+    "contact_allocations.create",
+    "contact_allocations.update",
+    "contact_allocations.delete",
+    "contact_payments.create",
+    "contact_payments.update",
+    "contact_payments.delete",
+    "other_payments.create",
+    "other_payments.update",
+    "other_payments.delete",
+
+    "product_sales_price_types.create",
+    "product_sales_price_types.update",
+    "product_sales_price_types.delete",
+
+    "products.create",
+    "products.update",
+    "products.delete",
+
+    "services.create",
+    "services.update",
+    "services.delete",
+
+    "services_rate_types.create",
+    "services_rate_types.update",
+    "services_rate_types.delete",
+
+    "stock_items.create",
+    "stock_items.update",
+    "stock_items.delete",
+    "stock_movements.create",
+    "stock_movements.update",
+    "stock_movements.delete",
+
+    "analysis_type_categories.create",
+    "analysis_type_categories.update",
+    "analysis_type_categories.delete",
+
+    "analysis_types.update",
+
+    "business_settings.update",
+    "datev_settings.update",
+    "financial_settings.update",
+    "invoice_settings.update",
+
+    "tax_profiles.update",
+    "tax_rates.create",
+    "tax_rates.update",
+    "tax_rates.delete",
+
+    "migrations.update",
+    "migration_tax_returns.create",
+    "email_settings.update"
+  ],
+  "destinationType": "http"
+}
